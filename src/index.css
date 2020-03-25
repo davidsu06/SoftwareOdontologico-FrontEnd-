@@ -1,0 +1,65 @@
+:root {
+    --blanco: #ffffff;
+    --gris1: #edf2f6;
+    --gris2: #2f3848;
+    --gris3: #1a202d;
+    --negro: #000000;
+    --headingFont:'Raleway', sans-serif;
+    --textFont:  'Roboto', sans-serif;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  } 
+
+  /* LISTADO PACIENTES / PERSONAL */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .listado-list {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .list {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--blanco);
+    padding: .5rem 2rem;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-radius: .5rem;
+  
+  }
+
+  .list {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--blanco);
+    padding: .5rem 2rem;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-radius: .5rem;
+  
+  }
+
+  .sombra {
+    -webkit-box-shadow: 0px 4px 10px -3px rgba(117,117,117,1);
+    -moz-box-shadow: 0px 4px 10px -3px rgba(117,117,117,1);
+    box-shadow: 0px 4px 10px -3px rgba(117,117,117,1);
+  }
+  
+  .list .acciones .btn:first-of-type {
+    margin-right: 1rem;
+  }
+  .list p {
+    font-size: 1.6rem;
+    flex: 1;
+    padding-right: 2rem;
+  }
+ 
+  .list.acciones .btn:first-of-type {
+    margin-right: 1rem;
+  }
