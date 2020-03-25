@@ -7,7 +7,7 @@ const Paciente = ({paciente}) => {
     const pacientesContext = useContext(pacienteContext);
     const { eliminarPaciente} = pacientesContext;
 
-    // Funcion se ejecuta cuando el usuario seleecciona el btn de elimnar paciente
+    // Funcion se ejecuta cuando el usuario selecciona el btn de elimnar paciente
     const onClickEliminar = id => {
         eliminarPaciente(id);
         
