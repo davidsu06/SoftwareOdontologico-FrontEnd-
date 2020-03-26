@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import Persona from './Persona';
 import personaContext from '../../context/personal/personaContext';
-import PanelGestion from '../layout/PanelGestion';
 import NavbarGestion from '../layout/NavbarGestion';
+import SidebarGestion from '../layout/SidebarGestion';
 
 const ListadoPersona = () => {
 
@@ -20,13 +20,13 @@ const ListadoPersona = () => {
 
     return ( 
         <>
-            <PanelGestion titulo="Consultar Personal"/>
+            <NavbarGestion titulo="Consultar Personal"/>
 
             <div className="container-fluid">
 
                 <div className="row">
 
-                <NavbarGestion/>
+                <SidebarGestion/>
                     <div className="col-9 mt-3">
 
                         <div className="d-flex p-2">

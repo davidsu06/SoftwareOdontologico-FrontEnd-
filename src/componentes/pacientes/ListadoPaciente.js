@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import Paciente from './Paciente';
 import pacienteContext from '../../context/pacientes/pacienteContext';
-import PanelGestion from '../layout/PanelGestion';
 import NavbarGestion from '../layout/NavbarGestion';
+import SidebarGestion from '../layout/SidebarGestion';
 
 const ListadoPaciente = () => {
 
@@ -20,11 +20,11 @@ const ListadoPaciente = () => {
 
     return ( 
         <>
-            <PanelGestion titulo="Consultar Pacientes"/>
+            <NavbarGestion titulo="Consultar Pacientes"/>
             <div className="container-fluid">
                 <div className="row">
 
-                    <NavbarGestion/>
+                    <SidebarGestion/>
                         <div className="col-9 mt-3">
                 
                             <div className="d-flex p-2">
