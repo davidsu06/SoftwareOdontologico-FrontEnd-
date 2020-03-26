@@ -1,17 +1,10 @@
 import React from 'react';
-import PanelGestion from '../layout/PanelGestion';
-import NavbarGestion from '../layout/NavbarGestion';
-import PersonaState from '../../context/personal/personaState';
+import ListadoPersona from '../personal/ListadoPersona';
 
 const ConsultarPersonal = () => {
     return ( 
         <>
-            <PersonaState>
-                <div className="d-flex flex-row">
-                    <PanelGestion/>
-                    <NavbarGestion titulo="Consultar Personal"/> 
-                </div>
-            </PersonaState>  
+            <ListadoPersona/>
         </>
 
      );

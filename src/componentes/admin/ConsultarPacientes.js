@@ -1,13 +1,11 @@
 import React from 'react';
-// import PanelGestion from '../layout/PanelGestion';
-import NavbarGestion from '../layout/NavbarGestion';
+import ListadoPaciente from '../pacientes/ListadoPaciente';
 
 
 const ConsultarPacientes = () => {
     return ( 
         <>
-            {/* <PanelGestion/> */}
-            <NavbarGestion titulo="Consultar Pacientes"/> 
+            <ListadoPaciente/> 
         </>
      );
 }
