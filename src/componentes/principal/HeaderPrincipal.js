@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 const HeaderPrincipal = ({actualizarNavegacion}) => {
     
     return (
-        <nav className="nav"  style={{backgroundColor:'#196B81'}}>
+        <nav className="nav" style={{backgroundColor:'#196B81'}}>
             <button 
                 type="button" 
                 className="btn btn-link" 

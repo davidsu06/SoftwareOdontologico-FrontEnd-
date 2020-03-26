@@ -1,63 +1,61 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import logo from '../../media/Logo.png'
+import './Login.css';
 
 const Login = () => {
 
     //Creación del State para el inicio de Sesión
     const [sesion, guardarSesion] = useState({
-        usuario:'',
-        contrasena:''
+        usuario: '',
+        contrasena: ''
     });
 
-    const {usuario, contrasena} = sesion;
+    const { usuario, contrasena } = sesion;
 
-    const guardarInformacion = e =>{
+    const guardarInhtmlFormacion = e => {
         guardarSesion({
             ...sesion,
-            [e.target.name]:[e.target.value]
+            [e.target.name]: [e.target.value]
         });
     }
 
-    const onSubmit= e =>{
-        
+    const onSubmit = e => {
+        e.preventDefault();
     }
 
-    return ( 
-        <div className="row card justify-content-center align-items-center vh-100">
+    return (
+        <div id="contenido" className="justify-content-center align-items-center vh-100">
             <form>
-                <div className="form-group">
-                    <label htmlFor="usuario">Usuario:</label>
-                    <input type="email"
-                        className="form-control"
-                        id="usuario"
-                        name="usuario"
+                <h1> <img src={logo} alt="logo" className="w-25 img-fluid" /> Inicio de Sesión </h1>
+        
+                <fieldset>
+                    <label id="etiqueta" htmlFor="name">Usuario:</label>
+                    <input 
+                        type="text" 
+                        id="name" 
+                        name="usuario" 
                         value={usuario} 
-                        onChange={guardarInformacion}
+                        onChange={guardarInhtmlFormacion}
                     />
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="password">Contraseña:</label>
-                    <input type="password" 
-                        className="form-control" 
+                    
+                    <label id="etiqueta" htmlFor="password">Contraseña:</label>
+                    <input 
+                        type="password" 
                         id="password" 
                         name="contrasena" 
-                        value={contrasena}
-                        onChange={guardarInformacion}
+                        value={contrasena} 
+                        onChange={guardarInhtmlFormacion}
                     />
-                </div>
+                </fieldset>
 
-                <Link to={'/'} className="btn btn-link">Regreso a Inicio</Link>
+                <button id="boton" type="submit">Ingresar</button>
 
-                <button 
-                    type="submit" 
-                    className="btn btn-primary"
-                >Iniciar Sesión</button>
-   
+                <Link to={'/'} className="btn bg-light text-left font-weight-bold p-3">
+                    Volver a Inicio
+                </Link>
                 
             </form>
-
-            
         </div>
         
      );
