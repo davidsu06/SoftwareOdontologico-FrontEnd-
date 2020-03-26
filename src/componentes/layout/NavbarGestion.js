@@ -11,19 +11,24 @@ const NavbarGestion = ({titulo}) => {
         width: '20rem',
     };   
 
+    const imgStyle = {
+        width: '5rem',
+    }
+
     const buttonStyle = {
         width: '19rem',
     }
 
     return (  
         <>
-            <div className="p-0 d-inline-block bg-info list-unstyled font-weight-bold" style={ulStyle}>
+            <div className="d-flex flex-row align-items-start">
+            <ul className="list-group d-inline-block bg-info">
 
-                <li className="p-4 text-center">
-                    <img src={logo} alt="logo" className="w-50 img-fluid"></img>
+                <li className="list-group-item text-center">
+                    <img src={logo} alt="logo" style={imgStyle}></img>
                 </li>
 
-                <li className="btn btn-primary text-white font-weight-bold text-left p-3" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapseExample" style={{backgroundColor:'#196B81'}}>
+                <li className="list-group-item btn btn-primary text-white font-weight-bold text-left p-3" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapseExample" style={{backgroundColor:'#196B81'}}>
                     Gestión de pacientes
                 </li>
 
@@ -39,7 +44,7 @@ const NavbarGestion = ({titulo}) => {
                     </Link>
                 </div>
 
-                <li className="btn btn-primary text-white font-weight-bold text-left p-3" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapseExample" style={{backgroundColor:'#196B81'}}>
+                <li className="list-group-item btn btn-primary text-white font-weight-bold text-left p-3" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapseExample" style={{backgroundColor:'#196B81'}}>
                     Gestión de agenda
                 </li>
 
@@ -61,7 +66,7 @@ const NavbarGestion = ({titulo}) => {
                     </Link>
                 </div>     
 
-                <li className="btn btn-primary text-white font-weight-bold text-left p-3" data-toggle="collapse" href="#collapse3" role="button" aria-expanded="false" aria-controls="collapseExample" style={{backgroundColor:'#196B81'}}>
+                <li className="list-group-item btn btn-primary text-white font-weight-bold text-left p-3" data-toggle="collapse" href="#collapse3" role="button" aria-expanded="false" aria-controls="collapseExample" style={{backgroundColor:'#196B81'}}>
                     Gestión de personal
                 </li>
 
@@ -77,7 +82,7 @@ const NavbarGestion = ({titulo}) => {
                     </Link>
                 </div>
 
-                <li className="btn btn-primary text-white font-weight-bold text-left p-3" data-toggle="collapse" href="#collapse4" role="button" aria-expanded="false" aria-controls="collapseExample" style={{backgroundColor:'#196B81'}}>
+                <li className="list-group-item btn btn-primary text-white font-weight-bold text-left p-3" data-toggle="collapse" href="#collapse4" role="button" aria-expanded="false" aria-controls="collapseExample" style={{backgroundColor:'#196B81'}}>
                     Facturas
                 </li>
 
@@ -93,17 +98,17 @@ const NavbarGestion = ({titulo}) => {
                     </Link>
                 </div>
 
-            </div>
+            </ul>
  
-            <div className="p-0 d-inline">
-                <ul class="p-0">
-                    <h1 className="bg-info p-1">
-                        <h1 className="display-1 text-center">{titulo}</h1>
-                        <h2>
-                            <a className="text-decoration-none text-dark h5" href="#!">Cerrar sesión</a>
-                        </h2>
-                    </h1>
+                <ul className="d-block bg-info">
+                    <li className="">
+                        <h1 className="display-4">{titulo}</h1>
+                    </li>
+                    <li className="">
+                        <a className="text-dark text-decoration-none" href="#!">Cerrar sesión</a>
+                    </li>
                 </ul>
+            
             </div>
             {titulo === "Consultar Pacientes" ? <ListadoPaciente/> : <ListadoPersona/>}
         </>
