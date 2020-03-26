@@ -6,10 +6,12 @@ import Login from './componentes/principal/Login'
 import ConsultarPacientes from './componentes/admin/ConsultarPacientes';
 import ConsultarPersonal from './componentes/admin/ConsultarPersonal';
 import PacienteState from './context/pacientes/pacienteState';
+import PersonaState from './context/personal/personaState';
 
 function App() {
   return(
-    <PacienteState>  
+    <PacienteState> 
+      <PersonaState> 
         <Router>
           <Switch>
             <Route exact path="/" component={MenuPrincipal}/>
@@ -18,6 +20,7 @@ function App() {
             <Route exact path="/consultar-personal" component={ConsultarPersonal}/>
           </Switch>
         </Router>
+      </PersonaState>
     </PacienteState> 
   );
 }
