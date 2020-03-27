@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import HeaderPrincipal from './HeaderPrincipal';
-import Noticias from './Noticias';
+import ListadoNoticias from './ListadoNoticias';
 import QuienesSomos from './QuienesSomos';
 import Servicios from './Servicios';
 import Contactenos from './Contactenos';
@@ -8,7 +8,7 @@ import Contactenos from './Contactenos';
 const MenuPrincipal = () => {
 
     //Creación State para Navegación
-    const [navegacion, actualizarNavegacion] = useState('inicio');
+    const [navegacion, actualizarNavegacion] = useState('noticias');
 
     return ( 
 
@@ -17,8 +17,8 @@ const MenuPrincipal = () => {
             actualizarNavegacion={actualizarNavegacion}
         />
 
-        {navegacion === 'inicio' 
-            ? <Noticias />
+        {navegacion === 'noticias' 
+            ? <ListadoNoticias />
 
             :null
         }

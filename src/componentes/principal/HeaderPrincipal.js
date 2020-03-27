@@ -9,7 +9,7 @@ const HeaderPrincipal = ({actualizarNavegacion}) => {
                 type="button" 
                 className="btn btn-link" 
                 href="#!"
-                onClick={()=> actualizarNavegacion('inicio')}
+                onClick={()=> actualizarNavegacion('noticias')}
             >Inicio</button>
 
             <button 
