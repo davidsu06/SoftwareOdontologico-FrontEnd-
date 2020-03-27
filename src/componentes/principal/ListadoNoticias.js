@@ -27,7 +27,6 @@ const ListadoNoticias = () => {
                 />
             ))}
         </div>
-
      );
 }
  
