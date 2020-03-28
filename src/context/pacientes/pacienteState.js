@@ -1,17 +1,13 @@
 import React, { useReducer } from 'react';
 import pacienteContext from './pacienteContext';
 import PacienteReducer from './pacienteReducer';
+import clienteAxios from '../../config/axios';
 
 import { LISTAR_PACIENTE, ELIMINAR_PACIENTE } from '../../types';
 
 
 const PacienteState = props => {
-    const pacientes = [
-        {id: 1, nombre: "Jojan Santiago Guzman Sierra"},
-        {id: 2, nombre: "Estefania Cordoba"},
-        {id: 3, nombre: "Erika Cardona"},
-        {id: 4, nombre: "Valentina Valencia"}
-    ]
+    
     const initialState = {
         pacientes: []
     }
@@ -20,17 +16,31 @@ const PacienteState = props => {
 
     // Funciones
 
-    const listarPacientes = () => {
-        dispatch({
-            type: LISTAR_PACIENTE,
-            payload: pacientes
-    })}
+    const listarPacientes = async () => {
+        
+        try {
+            const resultado = await clienteAxios.get('/api/pacientes');
+            dispatch({
+                type: LISTAR_PACIENTE,     
+                payload: resultado.data.pacientes
+            })
+        } catch (error) {
+            console.log(error);                
+        }
+    }
 
-    const eliminarPaciente = id => {
-        dispatch({
-            type: ELIMINAR_PACIENTE,
-            payload: id
-        })
+    const eliminarPaciente = async pacienteId => {
+        console.log(pacienteId);
+        try {
+            await clienteAxios.delete(`/api/pacientes/${pacienteId}`);
+            dispatch({
+                type: ELIMINAR_PACIENTE,
+                payload: pacienteId
+            })
+        }catch (error) {
+            console.log(error);
+            
+        }
     }
 
     return (

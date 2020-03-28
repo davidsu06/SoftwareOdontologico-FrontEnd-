@@ -1,6 +1,8 @@
-import React, { Fragment, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Paciente from './Paciente';
 import pacienteContext from '../../context/pacientes/pacienteContext';
+import NavbarGestion from '../layout/NavbarGestion';
+import SidebarGestion from '../layout/SidebarGestion';
 
 const ListadoPaciente = () => {
 
@@ -17,28 +19,34 @@ const ListadoPaciente = () => {
     }, []);
 
     return ( 
-        <Fragment>
-            <h1> Desde ListadoPaciente </h1>
-            <button type="button" 
-                className="btn btn-info"
-                onClick = { () => listarPacientes()}
-            >Listar</button>
-            
-            <div className="d-flex p-2">
-            
-            <ul className="listado-list">
-                {pacientes.length === 0
-                ? (<li className="list"><p>No hay pacientes</p></li>)
-                : pacientes.map(paciente => (
-                    <Paciente
-                    key={paciente.id}
-                        paciente={paciente}
-                    />
-                ))
-            }
-            </ul>
+        <>
+            <NavbarGestion titulo="Consultar Pacientes"/>
+            <div className="container-fluid">
+                <div className="row">
+
+                    <SidebarGestion/>
+                        <div className="col-9 mt-3">
+                
+                            <div className="d-flex p-2">
+                            
+                                <ul className="listado-list">
+                                    {pacientes.length === 0
+                                    ? (<li className="list"><p>No hay pacientes</p></li>)
+                                    : pacientes.map(paciente => (
+                                        <Paciente
+                                        key={paciente._id}
+                                            paciente={paciente}
+                                        />
+                                    ))
+                                }
+                                </ul>
+
+                            </div>
+                        </div>                                        
+                </div>
             </div>
-        </Fragment>
+            
+        </>
      );
 }
  

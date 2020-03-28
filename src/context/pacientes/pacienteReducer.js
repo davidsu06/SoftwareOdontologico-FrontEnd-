@@ -8,6 +8,7 @@ export default (state, action) => {
     switch(action.type) {
 
         case LISTAR_PACIENTE:
+            
             return {
                 ...state,
                 pacientes: action.payload
@@ -16,7 +17,7 @@ export default (state, action) => {
         case ELIMINAR_PACIENTE:
             return {
                 ...state,
-                pacientes: state.pacientes.filter(paciente => paciente.id !== action.payload)
+                pacientes: state.pacientes.filter(paciente => paciente._id !== action.payload)
             }
         default:
             return state;
