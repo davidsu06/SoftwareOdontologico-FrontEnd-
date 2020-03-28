@@ -17,8 +17,11 @@ function App() {
   return(
     <PacienteState> 
       <PersonaState> 
+<<<<<<< HEAD
         <AlertaState>
         <AuthState>
+=======
+>>>>>>> e9b439c2f5cda534cdeaedd6fa4d7ceae0b27a33
         <Router>
           <Switch>
             <Route exact path="/" component={MenuPrincipal}/>
@@ -27,8 +30,11 @@ function App() {
             <Route exact path="/consultar-personal" component={ConsultarPersonal}/>
           </Switch>
         </Router>
+<<<<<<< HEAD
         </AuthState>
         </AlertaState>
+=======
+>>>>>>> e9b439c2f5cda534cdeaedd6fa4d7ceae0b27a33
       </PersonaState>
     </PacienteState> 
   );
