@@ -2,7 +2,7 @@ import React from 'react';
 
 const Contactenos = () => {
     return ( 
-        <h1>Desde Contactenos</h1>
+        <h1 className="titulos_principal">Desde Contactenos</h1>
      );
 }
  

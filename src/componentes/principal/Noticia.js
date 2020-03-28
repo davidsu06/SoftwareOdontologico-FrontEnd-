@@ -4,7 +4,7 @@ import Styled from '@emotion/styled';
 const Tarjeta = Styled.div `
     margin: 50px;
     max-width: 380px;
-    max-height: 650px;
+    max-height: 580px;
 `;
 
 const NotiWeb = Styled.a `
@@ -12,7 +12,13 @@ const NotiWeb = Styled.a `
     font-style: normal;
     border-radius: 10px;
     width: 95%;
-    margin-top: 30px;
+    font-size: 18px;
+    background-color: #28a745;
+    border: none;
+`;
+
+const Imagen = Styled.img `
+    max-height: 270px;
 `;
 
 const Noticia = ({noticia}) => {
@@ -20,7 +26,7 @@ const Noticia = ({noticia}) => {
         <Tarjeta className="card">
             <div className="row no-gutters">
                 <div>
-                    <img src={noticia.urlToImage} className="card-img " alt={noticia.title} />
+                    <Imagen src={noticia.urlToImage} className="card-img " alt={noticia.title} />
                 </div>
                 
                 <div className="card-body">
