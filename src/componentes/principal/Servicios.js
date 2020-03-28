@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-
-const Servicios = () => {
-    return ( 
-        <h1>Desde Servicios</h1>
-=======
 import React, { Fragment } from 'react';
 import Styled from '@emotion/styled';
 import im1 from '../../media/imagenes servicios/Implante dental.png';
@@ -56,7 +49,6 @@ const Servicios = () => {
             
             
         </Fragment>
->>>>>>> e9b439c2f5cda534cdeaedd6fa4d7ceae0b27a33
      );
 }
  
