@@ -13,10 +13,7 @@ const FormularioCrearPaciente = () => {
     const [error,guardarError]=useState({
         Mensaje: 'Hubo Error',
         bandera: false
-    });
-    
-    const {Documento, Nombre, Apellidos, Fnacimiento, Direccion, Telefono}=paciente;
-    
+    });    
     //Extraer los valores al state
     const Guardar= e =>{
         guardarpaciente({
@@ -77,7 +74,17 @@ const FormularioCrearPaciente = () => {
             return;
         }
 
-        console.log('enviando paciente.....')
+        console.log('enviando paciente.....');
+
+        guardarError({
+            Documento:'',
+            Nombre: '',
+            Apellidos:'',
+            Fnacimiento:'',
+            Direccion:'',
+            Telefono:''
+        })
+
     }
 
     
@@ -88,32 +95,32 @@ const FormularioCrearPaciente = () => {
               
             <div className="form-group">
                 <label className="font-weight-bold">DOCUMENTO DE IDENTIDAD</label>
-                <input type="NUMBER" className="form-control" name="Documento" onChange={Guardar} placeholder="ej. 123456789"/>
+                <input type="NUMBER" className="form-control" name="Documento" onChange={Guardar} placeholder="ej. 123456789" value={paciente.Documento}/>
             </div>
 
             <div className="form-group">
                 <label className="font-weight-bold">NOMBRE</label>
-                <input type="text" className="form-control" name="Nombre"  onChange={Guardar} placeholder="ej. Andres Felipe"/>
+                <input type="text" className="form-control" name="Nombre"  onChange={Guardar} placeholder="ej. Andres Felipe" value={paciente.Nombre}/>
             </div>
 
             <div className="form-group">
                 <label className="font-weight-bold">APELLIDOS</label>
-                <input type="text" className="form-control" name="Apellidos" onChange={Guardar} placeholder="ej. Perez Gonzalez"/>
+                <input type="text" className="form-control" name="Apellidos" onChange={Guardar} placeholder="ej. Perez Gonzalez" value={paciente.Apellidos}/>
             </div>
 
             <div className="form-group">
                 <label className="font-weight-bold">FECHA DE NACIMIENTO</label>
-                <input type="date" className="form-control" name="Fnacimiento"  onChange={Guardar} placeholder="dd/mm/aaaa"/>
+                <input type="date" className="form-control" name="Fnacimiento"  onChange={Guardar} placeholder="dd/mm/aaaa" value={paciente.Fnacimiento}/>
             </div>
 
             <div className="form-group">
                 <label className="font-weight-bold">DIRECCION</label>
-                <input type="text" className="form-control" name="Direccion" onChange={Guardar} placeholder="ej. Calle 9 #11-01"/>
+                <input type="text" className="form-control" name="Direccion" onChange={Guardar} placeholder="ej. Calle 9 #11-01" value={paciente.Direccion}/>
             </div>
 
             <div className="form-group">
                 <label className="font-weight-bold">TELEFONO</label>
-                <input type="number" className="form-control" name="Telefono" onChange={Guardar} placeholder="ej. 3003000000"/>
+                <input type="number" className="form-control" name="Telefono" onChange={Guardar} placeholder="ej. 3003000000" value={paciente.Telefono}/>
             </div>
             {error.bandera ? <Error mensaje={error.Mensaje}/> : null}  
             <div className="form-group">
