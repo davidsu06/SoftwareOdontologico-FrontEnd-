@@ -9,7 +9,8 @@ import PacienteState from './context/pacientes/pacienteState';
 import PersonaState from './context/personal/personaState';
 import AuthState from './context/autenticacion/authState';
 import AlertaState from './context/alertas/alertaState'
-
+import CrearPacientes from './componentes/admin/CrearPacientes';
+import CrearPersonal from './componentes/admin/CrearPersonal';
 function App() {
 
   console.log(process.env.REACT_APP_BACKEND_URL);
@@ -25,6 +26,8 @@ function App() {
                 <Route exact path="/iniciar-sesion" component={Login}/>
                 <Route exact path="/consultar-pacientes" component={ConsultarPacientes}/>
                 <Route exact path="/consultar-personal" component={ConsultarPersonal}/>
+                <Route exact path="/crear-pacientes" component={CrearPacientes}/>
+                <Route exact path="/crear-personal" component={CrearPersonal}/>
               </Switch>
             </Router>
           </AuthState>

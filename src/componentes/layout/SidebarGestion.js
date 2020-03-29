@@ -5,7 +5,7 @@ const SidebarGestion = () => {
 
     return (  
         <>
-            <nav className="d-md-block sidebar">
+            <nav className="d-md-block sidebar mr-0">
 
                 <div className="sidebar-sticky">
 
@@ -122,6 +122,7 @@ const SidebarGestion = () => {
                 </div>
                 
             </nav>
+            
         </>
     );
 }

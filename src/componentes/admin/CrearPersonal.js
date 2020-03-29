@@ -1,28 +1,25 @@
-import React ,{Fragment}from 'react';
-import FormularioCrearPaciente from '../pacientes/FormularioCrearPaciente';
+import React from 'react';
 import NavbarGestion from '../layout/NavbarGestion';
 import SidebarGestion from '../layout/SidebarGestion';
-const CrearPacientes = () => {
+import FormularioCrearPersonal from '../personal/FormularioCrearPersonal';
+const CrearPaciente = () => {
     return (  
         <fragment>
             
-            <NavbarGestion titulo="Crear Pacientes"/>
+            <NavbarGestion titulo="Crear Personal"/>
             <div className="container-fluid fondo">
                 <div className="row">
 
                     <SidebarGestion/>
                         <div className="col-9 mt-12">
                 
-                            <FormularioCrearPaciente/>
+                            <FormularioCrearPersonal/>
 
                         </div>                                        
                 </div>
             </div>
-        
-
         </fragment>
-
     );
 }
  
-export default CrearPacientes;
+export default CrearPaciente;
