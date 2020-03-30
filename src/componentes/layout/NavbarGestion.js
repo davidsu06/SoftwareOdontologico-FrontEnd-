@@ -16,7 +16,7 @@ const NavbarGestion = ({titulo}) => {
             <h1 className="display-4">{titulo}</h1>
             <ul className="navbar-dark px-3">
                 <li className="nav-item text-nowrap">
-                    <button onClick={() => cerrarSesion()} className="btn btn-link" >Cerrar sesión</button>
+                    <button onClick={() => cerrarSesion()} className="btn btn-danger ml-auto" >Cerrar sesión</button>
                 </li>
             </ul>
         </nav>        

@@ -1,13 +1,15 @@
   #contenido{
-      background-color: #196B81;
+      margin: 5.5cm;
+      /* background-color: #196B81;*/
   }
 
   form {
     max-width: 520px;
     padding: 10px 20px;
-    background: white;
+    background: #196B81;
     border-radius: 10px;
     margin: auto;
+    border: 2px solid black;
   }
   
   .titulos_principal {

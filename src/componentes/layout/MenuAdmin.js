@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import AuthContext from '../../context/autenticacion/authContext';
 
 
 const MenuAdmin = ({actualizarBandera,Bandera,titulo}) => {
 
+    // Extraer context de Auth
+    const {usuario, usuarioAutenticado, cerrarSesion} = useContext(AuthContext);
     
     const esconder = ()=>{
         
@@ -23,7 +26,7 @@ const MenuAdmin = ({actualizarBandera,Bandera,titulo}) => {
         <nav className="navbar navbar-expand-lg navbar-light border-bottom navhor  alineartitulo">
             <button onClick={esconder} className="btn" id="menu-toggle"><span className="navbar-toggler-icon"></span></button>
             <h1 className="alineartitulo">{titulo}</h1>
-            <button className="btn" id="menu-toggle alineartitulo"><span className="alineartitulo">cerrar sesion</span></button>
+            <button  onClick={()=>cerrarSesion()} className="btn ml-auto" id="menu-toggle alineartitulo"><span className="alineartitulo">cerrar sesion</span></button>
         </nav>
      );
 }

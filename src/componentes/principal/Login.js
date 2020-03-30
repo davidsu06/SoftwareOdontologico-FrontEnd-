@@ -49,7 +49,7 @@ const Login = (props) => {
     }
 
     return (
-        <div id="contenido" className="justify-content-center align-items-center vh-100">
+        <div id="contenido">
             <form onSubmit={onSubmit}>
 
                 <h1> <img src={logo} alt="logo" className="w-25 img-fluid" /> Inicio de Sesión </h1>
