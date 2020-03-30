@@ -5,11 +5,17 @@ import pacienteContext from '../../context/pacientes/pacienteContext';
 const Paciente = ({paciente}) => {
 
     const pacientesContext = useContext(pacienteContext);
-    const { eliminarPaciente} = pacientesContext;
+    const { eliminarPaciente, PacienteActual} = pacientesContext;
 
     // Funcion se ejecuta cuando el usuario selecciona el btn de elimnar paciente
     const onClickEliminar = id => {
         eliminarPaciente(id);
+        
+    }
+
+    // Seleccionar el paciente actual
+    const SeleccionarPaciente = paciente => {
+        PacienteActual(paciente);
         
     }
 
@@ -19,11 +25,13 @@ const Paciente = ({paciente}) => {
             <div className="acciones">
                 <button type="button" 
                     className="btn btn-info"
-                    
+                    onClick={() => SeleccionarPaciente(paciente)}
+                   
                 >Editar</button>
                 <button type="button" 
                     className="btn btn-info"
                     onClick={() => onClickEliminar(paciente._id)}
+                    
                 >Eliminar</button>
             </div>
         </li>

@@ -56,7 +56,7 @@ const FormularioCrearPaciente = () => {
             })
             return;
         }
-        if(personal.Fnacimiento.trim()=== "" || personal.Fnacimiento.length != 10){
+        if(personal.Fnacimiento.trim()=== "" || personal.Fnacimiento.length !== 10){
             guardarError({
                 Mensaje: 'el campo FECHA DE NACIMIENTO  no tiene el formato requerido',
                 bandera: true
@@ -91,7 +91,7 @@ const FormularioCrearPaciente = () => {
             })
             return;
         }
-        if(personal.contrasena != personal.confcontrasena){
+        if(personal.contrasena !== personal.confcontrasena){
             guardarError({
                 Mensaje: 'las CONTRASEÑAS no coinciden',
                 bandera: true
@@ -163,7 +163,7 @@ const FormularioCrearPaciente = () => {
                 <label className="font-weight-bold">CONTRASEÑA</label>
                 <input type="password" className="form-control" name="contrasena" onChange={Guardar} value={personal.contrasena}/>
             </div>
-            {personal.confcontrasena !=personal.confcontrasena ? <Error mensaje={"Las contraseñas no coinciden"}/> : null} 
+            {personal.confcontrasena !== personal.contrasena ? <Error mensaje={"Las contraseñas no coinciden"}/> : null} 
             <div className="form-group">
                 <label className="font-weight-bold">CONFIRMAR CONTRASEÑA</label>
                 <input type="password" className="form-control" name="confcontrasena" onChange={Guardar} value={personal.confcontrasena}/>

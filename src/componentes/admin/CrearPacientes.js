@@ -4,7 +4,7 @@ import NavbarGestion from '../layout/NavbarGestion';
 import SidebarGestion from '../layout/SidebarGestion';
 const CrearPacientes = () => {
     return (  
-        <fragment>
+        <Fragment>
             
             <NavbarGestion titulo="Crear Pacientes"/>
             <div className="container-fluid fondo">
@@ -20,7 +20,7 @@ const CrearPacientes = () => {
             </div>
         
 
-        </fragment>
+        </Fragment>
 
     );
 }
