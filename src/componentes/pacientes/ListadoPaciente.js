@@ -20,31 +20,17 @@ const ListadoPaciente = () => {
 
     return ( 
         <>
-            <NavbarGestion titulo="Consultar Pacientes"/>
-            <div className="container-fluid">
-                <div className="row">
-
-                    <SidebarGestion/>
-                        <div className="col-9 mt-3">
-                
-                            <div className="d-flex p-2">
-                            
-                                <ul className="listado-list">
-                                    {pacientes.length === 0
-                                    ? (<li className="list"><p>No hay pacientes</p></li>)
-                                    : pacientes.map(paciente => (
-                                        <Paciente
-                                        key={paciente.id}
-                                            paciente={paciente}
-                                        />
+            <ul className="listado-list">
+                {pacientes.length === 0
+                ? (<li className="list"><p>No hay pacientes</p></li>)
+                : pacientes.map(paciente => (
+                    <Paciente
+                        key={paciente.id}
+                        paciente={paciente}
+                    />
                                     ))
                                 }
-                                </ul>
-
-                            </div>
-                        </div>                                        
-                </div>
-            </div>
+            </ul>                                       
             
         </>
      );

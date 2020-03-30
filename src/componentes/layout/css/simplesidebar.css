@@ -1,0 +1,75 @@
+/*!
+ * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/template-overviews/simple-sidebar)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
+ */
+body {
+  overflow-x: hidden;
+  background-image: url("nice_snow.png");
+}
+.Logo{
+  width: 70px;
+  height: 70px;
+}
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+}
+.menuver{
+  
+  height: 100px;
+  background: rgba(1,95,107,1);
+background: -moz-linear-gradient(top, rgba(1,95,107,1) 0%, rgba(22,122,135,1) 14%, rgba(82,197,212,1) 53%, rgba(82,197,212,1) 76%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(1,95,107,1)), color-stop(14%, rgba(22,122,135,1)), color-stop(53%, rgba(82,197,212,1)), color-stop(76%, rgba(82,197,212,1)));
+background: -webkit-linear-gradient(top, rgba(1,95,107,1) 0%, rgba(22,122,135,1) 14%, rgba(82,197,212,1) 53%, rgba(82,197,212,1) 76%);
+background: -o-linear-gradient(top, rgba(1,95,107,1) 0%, rgba(22,122,135,1) 14%, rgba(82,197,212,1) 53%, rgba(82,197,212,1) 76%);
+background: -ms-linear-gradient(top, rgba(1,95,107,1) 0%, rgba(22,122,135,1) 14%, rgba(82,197,212,1) 53%, rgba(82,197,212,1) 76%);
+background: linear-gradient(to bottom, rgba(1,95,107,1) 0%, rgba(22,122,135,1) 14%, rgba(82,197,212,1) 53%, rgba(82,197,212,1) 76%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#015f6b', endColorstr='#52c5d4', GradientType=0 );
+}
+.navhor{
+  height: 100px;
+  background: rgba(31,195,217,1);
+background: -moz-linear-gradient(top, rgba(31,195,217,1) 0%, rgba(44,196,216,1) 14%, rgba(82,197,212,0.8) 56%, rgba(82,197,212,0.7) 76%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(31,195,217,1)), color-stop(14%, rgba(44,196,216,1)), color-stop(56%, rgba(82,197,212,0.8)), color-stop(76%, rgba(82,197,212,0.7)));
+background: -webkit-linear-gradient(top, rgba(31,195,217,1) 0%, rgba(44,196,216,1) 14%, rgba(82,197,212,0.8) 56%, rgba(82,197,212,0.7) 76%);
+background: -o-linear-gradient(top, rgba(31,195,217,1) 0%, rgba(44,196,216,1) 14%, rgba(82,197,212,0.8) 56%, rgba(82,197,212,0.7) 76%);
+background: -ms-linear-gradient(top, rgba(31,195,217,1) 0%, rgba(44,196,216,1) 14%, rgba(82,197,212,0.8) 56%, rgba(82,197,212,0.7) 76%);
+background: linear-gradient(to bottom, rgba(31,195,217,1) 0%, rgba(44,196,216,1) 14%, rgba(82,197,212,0.8) 56%, rgba(82,197,212,0.7) 76%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1fc3d9', endColorstr='#52c5d4', GradientType=0 );
+}
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}

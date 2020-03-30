@@ -1,23 +1,20 @@
-import React from 'react';
-import NavbarGestion from '../layout/NavbarGestion';
-import SidebarGestion from '../layout/SidebarGestion';
+import React,{useState} from 'react';
+import NavbarAdmin from '../layout/NavbarAdmin';
+import MenuAdmin from '../layout/MenuAdmin';
 import FormularioCrearPersonal from '../personal/FormularioCrearPersonal';
 const CrearPaciente = () => {
+    const [bandera,actualizarBandera]=useState(true);
     return (  
         <fragment>
-            
-            <NavbarGestion titulo="Crear Personal"/>
-            <div className="container-fluid fondo">
-                <div className="row">
-
-                    <SidebarGestion/>
-                        <div className="col-9 mt-12">
-                
-                            <FormularioCrearPersonal/>
-
-                        </div>                                        
+            <div className="d-flex" id="wrapper">
+               {bandera ?  <NavbarAdmin/> : null}
+                <div id="page-content-wrapper">
+                  <MenuAdmin titulo="Crear Personal" actualizarBandera={actualizarBandera} Bandera={bandera}/>
+                <div className="container-fluid">
+                <FormularioCrearPersonal/>
                 </div>
             </div>
+          </div> 
         </fragment>
     );
 }

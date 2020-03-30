@@ -20,16 +20,6 @@ const ListadoPersona = () => {
 
     return ( 
         <>
-            <NavbarGestion titulo="Consultar Personal"/>
-
-            <div className="container-fluid">
-
-                <div className="row">
-
-                <SidebarGestion/>
-                    <div className="col-9 mt-3">
-
-                        <div className="d-flex p-2">
                 
                             <ul className="listado-list">
                                 {personal.length === 0
@@ -42,14 +32,6 @@ const ListadoPersona = () => {
                                 ))
                             }
                             </ul>
-
-                        </div>
-                        
-                    </div>
-
-                </div>
-
-            </div>
         </>
      );
 }
