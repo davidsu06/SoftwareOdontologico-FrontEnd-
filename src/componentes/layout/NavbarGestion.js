@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from '../../media/Logo.png';
+import AuthContext from '../../context/autenticacion/authContext';
 
 const NavbarGestion = ({titulo}) => {
     
+    // Extraer los datos del context
+    const {usuario, usuarioAutenticado, cerrarSesion} = useContext(AuthContext);
+
     return ( 
     <>
         <nav className="navbar navbar-dark bg-dark flex-md-nowrap p-0 shadow text-white">
@@ -12,7 +16,7 @@ const NavbarGestion = ({titulo}) => {
             <h1 className="display-4">{titulo}</h1>
             <ul className="navbar-dark px-3">
                 <li className="nav-item text-nowrap">
-                    <a className="nav-link" href="#!">Cerrar sesión</a>
+                    <button onClick={() => cerrarSesion()} className="btn btn-link" >Cerrar sesión</button>
                 </li>
             </ul>
         </nav>        
