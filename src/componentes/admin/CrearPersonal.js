@@ -19,6 +19,7 @@ const CrearPaciente = () => {
 
     return (  
         <>
+
             <div className="d-flex" id="wrapper">
                {bandera ?  <NavbarAdmin/> : null}
                 <div id="page-content-wrapper">

@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, Fragment} from 'react';
 import NavbarAdmin from '../layout/NavbarAdmin';
 import MenuAdmin from '../layout/MenuAdmin';
 import ListadoPaciente from '../pacientes/ListadoPaciente';
@@ -9,7 +9,7 @@ const ConsultarPacientes = () => {
 
     return ( 
         <>
-        <fragment>
+        <Fragment>
             <div className="d-flex" id="wrapper">
                {bandera ?  <NavbarAdmin/> : null}
                 <div id="page-content-wrapper">
@@ -19,7 +19,7 @@ const ConsultarPacientes = () => {
                 </div>
             </div>
           </div> 
-        </fragment> 
+        </Fragment> 
         </>
      );
 }

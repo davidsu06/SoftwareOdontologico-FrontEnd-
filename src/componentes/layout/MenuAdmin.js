@@ -1,11 +1,12 @@
 import React, {useContext} from 'react';
 import AuthContext from '../../context/autenticacion/authContext';
+import { Link } from 'react-router-dom';
 
 
 const MenuAdmin = ({actualizarBandera,Bandera,titulo}) => {
 
     // Extraer context de Auth
-    const {usuario, usuarioAutenticado, cerrarSesion} = useContext(AuthContext);
+    const {cerrarSesion} = useContext(AuthContext);
     
     const esconder = ()=>{
         
@@ -26,7 +27,7 @@ const MenuAdmin = ({actualizarBandera,Bandera,titulo}) => {
         <nav className="navbar navbar-expand-lg navbar-light border-bottom navhor  alineartitulo">
             <button onClick={esconder} className="btn" id="menu-toggle"><span className="navbar-toggler-icon"></span></button>
             <h1 className="alineartitulo">{titulo}</h1>
-            <button  onClick={()=>cerrarSesion()} className="btn ml-auto" id="menu-toggle alineartitulo"><span className="alineartitulo">cerrar sesion</span></button>
+            <Link to={'/'} onClick={()=>cerrarSesion()} className="btn btn-danger ml-auto"><span className="alineartitulo">Cerrar Sesión</span></Link>
         </nav>
      );
 }

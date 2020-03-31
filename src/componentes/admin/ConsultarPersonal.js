@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, Fragment} from 'react';
 import NavbarAdmin from '../layout/NavbarAdmin';
 import MenuAdmin from '../layout/MenuAdmin';
 import ListadoPersona from '../personal/ListadoPersona';
@@ -8,7 +8,7 @@ const ConsultarPersonal = () => {
 
     return ( 
         <>
-            <fragment>
+            <Fragment>
              <div className="d-flex" id="wrapper">
                {bandera ?  <NavbarAdmin/> : null}
                 <div id="page-content-wrapper">
@@ -18,7 +18,7 @@ const ConsultarPersonal = () => {
                 </div>
             </div>
           </div> 
-        </fragment>
+        </Fragment>
         </>
 
      );
