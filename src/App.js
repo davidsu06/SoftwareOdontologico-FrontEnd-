@@ -1,5 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import tokenAuth from './config/token';
 
 import MenuPrincipal from './componentes/principal/MenuPrincipal'
 import Login from './componentes/principal/Login'
@@ -11,7 +12,8 @@ import AuthState from './context/autenticacion/authState';
 import AlertaState from './context/alertas/alertaState'
 import CrearPacientes from './componentes/admin/CrearPacientes';
 import CrearPersonal from './componentes/admin/CrearPersonal';
-import tokenAuth from './config/token';
+import InterfazAdmin from './componentes/layout/InterfazAdmin';
+
 
 //Revisar si se tiene un token
 const token = localStorage.getItem('token');
@@ -32,6 +34,7 @@ function App() {
               <Switch>
                 <Route exact path="/" component={MenuPrincipal}/>
                 <Route exact path="/iniciar-sesion" component={Login}/>
+                <Route exact path="/gestion-sistema" component={InterfazAdmin}/>
                 <Route exact path="/consultar-pacientes" component={ConsultarPacientes}/>
                 <Route exact path="/consultar-personal" component={ConsultarPersonal}/>
                 <Route exact path="/crear-pacientes" component={CrearPacientes}/>

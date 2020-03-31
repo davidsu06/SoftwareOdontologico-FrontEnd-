@@ -20,7 +20,7 @@ const Login = (props) => {
 
     useEffect( () =>{
         if(autenticado){
-            props.history.push('/consultar-pacientes');
+            props.history.push('/gestion-sistema');
         }
 
         if(mensaje){
