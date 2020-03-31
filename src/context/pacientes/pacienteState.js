@@ -8,6 +8,7 @@ import {
     EDITAR_PACIENTE,
     ELIMINAR_PACIENTE,
     AGREGAR_PACIENTE,
+    PACIENTE_NULL,
     PACIENTE_ACTUAL 
 } from '../../types';
 
@@ -75,6 +76,13 @@ const PacienteState = props => {
         })
     }
 
+    const PacienteNull = () => {
+        dispatch({
+            type: PACIENTE_NULL,
+            payload: null
+        })
+    }
+
     // Modifica un paciente
 
     const modificarPaciente = async paciente => {
@@ -104,6 +112,7 @@ const PacienteState = props => {
                 eliminarPaciente,
                 agregarPacientes,
                 PacienteActual,
+                PacienteNull,
                 modificarPaciente
                 
             }}

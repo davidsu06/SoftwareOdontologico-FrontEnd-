@@ -3,6 +3,7 @@ import {
     LISTAR_PACIENTE,
     ELIMINAR_PACIENTE,
     EDITAR_PACIENTE,
+    PACIENTE_NULL,
     PACIENTE_ACTUAL
  } from '../../types';
 
@@ -35,6 +36,12 @@ export default (state, action) => {
                 ...state,
                 pacientes: state.pacientes.filter(paciente => paciente._id === action.payload._id)
             }  
+        
+        case PACIENTE_NULL:
+            return{
+                ...state,
+                pacienteseleccionado: action.payload
+            }
 
         case ELIMINAR_PACIENTE:
             return {

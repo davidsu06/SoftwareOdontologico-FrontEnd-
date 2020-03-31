@@ -35,7 +35,9 @@ function App() {
                 <Route exact path="/consultar-pacientes" component={ConsultarPacientes}/>
                 <Route exact path="/consultar-personal" component={ConsultarPersonal}/>
                 <Route exact path="/crear-pacientes" component={CrearPacientes}/>
+                <Route exact path="/editar-pacientes" component={CrearPacientes}/>
                 <Route exact path="/crear-personal" component={CrearPersonal}/>
+                <Route exact path="/editar-personal" component={CrearPersonal}/>
               </Switch>
             </Router>
           </AuthState>

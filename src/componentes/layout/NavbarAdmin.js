@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from './../../media/Logo.png';
+import personaContext from '../../context/personal/personaContext';
+import pacienteContext from '../../context/pacientes/pacienteContext';
 
 const NavbarAdmin = () => {
+
+  const personalContext = useContext(personaContext);
+  const { PersonaNull } = personalContext;
+
+  const pacientesContext = useContext(pacienteContext);
+  const { PacienteNull } = pacientesContext;
+
 
     return (  
         <>
@@ -32,7 +41,7 @@ const NavbarAdmin = () => {
                 Gestión de pacientes
               </a>
               <div className="collapse" id="collapse2">
-                <Link to={'/crear-pacientes'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
+                <Link to={'/crear-pacientes'} onClick={() => PacienteNull()} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
                   Crear paciente
                 </Link>
               </div>
@@ -70,7 +79,7 @@ const NavbarAdmin = () => {
               </a>
 
               <div className="collapse" id="collapse3">
-                <Link to={'/crear-personal'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
+                <Link to={'/crear-personal'} onClick={() => PersonaNull()} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
                   Crear personal
                 </Link>
               </div>

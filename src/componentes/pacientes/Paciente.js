@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import pacienteContext from '../../context/pacientes/pacienteContext';
+import { Link } from 'react-router-dom';
 
 
 const Paciente = ({paciente}) => {
@@ -23,11 +24,10 @@ const Paciente = ({paciente}) => {
         <li className="list sombra">
             <p>{paciente.nombre} </p>
             <div className="acciones">
-                <button type="button" 
+                <Link to={'/editar-pacientes'} type="button" 
                     className="btn btn-info"
-                    onClick={() => SeleccionarPaciente(paciente)}
-                   
-                >Editar</button>
+                    onClick={() => SeleccionarPaciente(paciente)}         
+                >Editar</Link>
                 <button type="button" 
                     className="btn btn-info"
                     onClick={() => onClickEliminar(paciente._id)}

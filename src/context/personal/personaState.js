@@ -1,43 +1,99 @@
 import React, { useReducer } from 'react';
 import personaContext from './personaContext';
 import personaReducer from './personaReducer';
+import clienteAxios from '../../config/axios';
 
-import { LISTAR_PERSONA, ELIMINAR_PERSONA } from '../../types';
+import { LISTAR_PERSONA, PERSONAL_ACTUAL, AGREGAR_PERSONAL, EDITAR_PERSONAL, PERSONA_NULL, ELIMINAR_PERSONA } from '../../types';
 
 
 const PersonaState = props => {
-    const personal = [
-        {id: 1, nombre: "Jojan Santiago Guzman Sierra"},
-        {id: 2, nombre: "David Andres Soto"},
-        {id: 3, nombre: "Juan Jose Gonzalez"},
-        {id: 4, nombre: "Jefferson Echavarria"}
-    ]
+
     const initialState = {
-        personal: []
+        personal: [],
+        personalseleccionado: null
     }
 
     const [state, dispatch] = useReducer(personaReducer, initialState);
 
     // Funciones
 
-    const listarPersonal = () => {
+    const listarPersonal = async () => {
+        
+        try {
+            const resultado = await clienteAxios.get('/api/personal');
+            dispatch({
+                type: LISTAR_PERSONA,
+                payload: resultado.data.personal
+            })
+        } catch (error) {
+            console.log(error.response);
+        }
+    }
+    
+    const PersonalActual = personal => {
         dispatch({
-            type: LISTAR_PERSONA,
+            type: PERSONAL_ACTUAL,
             payload: personal
-    })}
-
-    const eliminarPersona = id => {
-        dispatch({
-            type: ELIMINAR_PERSONA,
-            payload: id
         })
+    }
+
+    const PersonaNull = () =>{
+        dispatch({
+            type: PERSONA_NULL,
+            payload: null
+        })
+    }
+
+    const agregarPersonal = async persona => {
+        
+        try {
+            const resultado = await clienteAxios.post('/api/personal', persona);
+            console.log(resultado);
+            dispatch({
+                type: AGREGAR_PERSONAL,
+                payload: persona
+            })
+        } catch (error) {
+            console.log(error.response);
+        }
+
+    }
+
+    const editarPersonal = async persona => {
+        
+        try {
+            const resultado = await clienteAxios.put(`/api/personal/${persona._id}`, persona);
+            dispatch({
+                type: EDITAR_PERSONAL,
+                payload: resultado.data.personal
+            })
+        } catch (error) {
+            console.log(error.response);
+        }
+    }
+
+    const eliminarPersona = async id => {
+        try {
+            await clienteAxios.delete(`api/personal/${id}`)
+            dispatch({
+                type: ELIMINAR_PERSONA,
+                payload: id
+            })
+        } catch (error) {
+            console.log(error.response);
+        }
     }
 
     return (
         <personaContext.Provider
             value={{
                 personal: state.personal,
+                personalseleccionado: state.personalseleccionado,
                 listarPersonal,
+                PersonalActual,
+                agregarPersonal,
+                editarPersonal,
+                PersonaNull,
                 eliminarPersona
             }}
         >

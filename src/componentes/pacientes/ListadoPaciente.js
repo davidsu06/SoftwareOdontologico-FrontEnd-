@@ -1,8 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import Paciente from './Paciente';
 import pacienteContext from '../../context/pacientes/pacienteContext';
-import NavbarGestion from '../layout/NavbarGestion';
-import SidebarGestion from '../layout/SidebarGestion';
 
 const ListadoPaciente = () => {
 

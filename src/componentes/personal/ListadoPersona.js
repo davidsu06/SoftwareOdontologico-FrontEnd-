@@ -1,8 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import Persona from './Persona';
 import personaContext from '../../context/personal/personaContext';
-import NavbarGestion from '../layout/NavbarGestion';
-import SidebarGestion from '../layout/SidebarGestion';
 
 const ListadoPersona = () => {
 
