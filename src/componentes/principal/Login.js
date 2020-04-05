@@ -49,15 +49,15 @@ const Login = (props) => {
     }
 
     return (
-        <div id="contenido">
+        <div className="container" style={{marginTop:'4.5cm'}}>
             <form onSubmit={onSubmit}>
 
-                <h1> <img src={logo} alt="logo" className="w-25 img-fluid" /> Inicio de Sesión </h1>
+                <h1 className="text-white" style={{textAlign:'center'}}> <img src={logo} alt="logo" className="w-25 img-fluid" /> Iniciar Sesión </h1>
         
                 {alerta ? <div className="p-3 mb-2 bg-danger text-white">{alerta.msg}</div>  :null}
 
                 <fieldset>
-                    <label id="etiqueta" htmlFor="name">documento:</label>
+                    <label id="etiqueta" htmlFor="name" className="text-white">documento:</label>
                     <input 
                         type="text" 
                         id="name" 
@@ -66,7 +66,7 @@ const Login = (props) => {
                         onChange={guardarInhtmlFormacion}
                     />
                     
-                    <label id="etiqueta" htmlFor="password">Contraseña:</label>
+                    <label id="etiqueta" htmlFor="password" className="text-white">Contraseña:</label>
                     <input 
                         type="password" 
                         id="password" 
@@ -78,7 +78,7 @@ const Login = (props) => {
 
                 <button id="boton" type="submit">Ingresar</button>
 
-                <Link to={'/'} className="btn bg-light text-left font-weight-bold p-3">
+                <Link to={'/'} className="btn btn-link text-left font-weight-bold text-white">
                     Volver a Inicio
                 </Link>
                 

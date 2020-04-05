@@ -1,14 +1,16 @@
 import React, { useState, Fragment } from 'react';
 import HeaderPrincipal from './HeaderPrincipal';
 import ListadoNoticias from './ListadoNoticias';
-import QuienesSomos from './QuienesSomos';
+import SaludDental from './SaludDental';
 import Servicios from './Servicios';
 import Contactenos from './Contactenos';
+import Footer from './Footer';
+import Inicio from './Inicio';
 
 const MenuPrincipal = () => {
 
     //Creación State para Navegación
-    const [navegacion, actualizarNavegacion] = useState('noticias');
+    const [navegacion, actualizarNavegacion] = useState('inicio');
 
     return ( 
 
@@ -16,6 +18,12 @@ const MenuPrincipal = () => {
         <HeaderPrincipal 
             actualizarNavegacion={actualizarNavegacion}
         />
+
+        {navegacion === 'inicio' 
+            ? <Inicio actualizarNavegacion={actualizarNavegacion}/>
+
+            :null
+        }
 
         {navegacion === 'noticias' 
             ? <ListadoNoticias />
@@ -29,8 +37,8 @@ const MenuPrincipal = () => {
             :null
         }
 
-        {navegacion === 'quienes' 
-            ? <QuienesSomos />
+        {navegacion === 'salud' 
+            ? <SaludDental />
 
             :null
         }
@@ -40,6 +48,8 @@ const MenuPrincipal = () => {
 
             :null
         }
+
+        <Footer />
     </Fragment>
         
      );

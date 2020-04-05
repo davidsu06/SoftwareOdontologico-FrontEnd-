@@ -6,42 +6,54 @@ const HeaderPrincipal = ({actualizarNavegacion}) => {
     
     return (
         <nav className="navbar" style={{backgroundColor:'#196B81'}}>
-            <img src={Logo} alt="Logo Odontología" style={{width:'3%'}} /> 
+
+            <button
+                type="button" 
+                className="btn btn-link" 
+                style={{width:'3%'}}
+                onClick={()=> actualizarNavegacion('inicio')}
+            ><img src={Logo} alt="Logo Odontología" className="w-100"/></button>
+
+            <button 
+                type="button" 
+                className="btn btn-link" 
+                style={{color:'white'}}
+                onClick={()=> actualizarNavegacion('inicio')}
+            ><b>Inicio</b></button>
 
             <button 
                 type="button" 
                 className="btn btn-link" 
                 style={{color:'white'}}
                 onClick={()=> actualizarNavegacion('noticias')}
-            >Inicio</button>
+            ><b>Noticias</b></button>
 
             <button 
                 type="button" 
                 className="btn btn-link" 
                 style={{color:'white'}}
                 onClick={()=> actualizarNavegacion('servicios')}
-            >Servicios</button>
+            ><b>Servicios</b></button>
 
             <button 
                 type="button" 
                 className="btn btn-link" 
                 style={{color:'white'}}
-                onClick={()=> actualizarNavegacion('quienes')}
-            >Quienes Somos</button>
-
+                onClick={()=> actualizarNavegacion('salud')}
+            ><b>Salud Dental</b></button>
+            
             <button 
                 type="button" 
                 className="btn btn-link" 
                 style={{color:'white'}}
                 onClick={()=> actualizarNavegacion('contactenos')}
-            >Contactenos</button>
-
+            ><b>Contactenos</b></button>
+            
             <Link to={'/iniciar-sesion'} className="btn btn-success my-2 my-sm-0 ml-auto" style={{color:'white'}}>
-                Iniciar Sesión
+                <b>Iniciar Sesión</b>
             </Link>    
-        </nav>
-            
-            
+
+        </nav>     
       );
 }
  

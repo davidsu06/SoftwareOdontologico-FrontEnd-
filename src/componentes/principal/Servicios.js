@@ -46,8 +46,6 @@ const Servicios = () => {
                 ))}
                 
             </div>
-            
-            
         </Fragment>
      );
 }

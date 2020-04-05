@@ -3,7 +3,7 @@ import Styled from '@emotion/styled';
 
 const Tarjeta = Styled.div `
     margin: 50px;
-    max-width: 380px;
+    max-width: 350px;
     max-height: 580px;
 `;
 
