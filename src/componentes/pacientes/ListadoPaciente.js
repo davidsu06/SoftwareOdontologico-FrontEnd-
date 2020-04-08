@@ -18,7 +18,7 @@ const ListadoPaciente = () => {
 
     return ( 
         <>
-            <ul className="listado-list">
+            <ul className="listado-list mt-3">
                 {pacientes.length === 0
                 ? (<li className="list"><p>No hay pacientes</p></li>)
                 : pacientes.map(paciente => (

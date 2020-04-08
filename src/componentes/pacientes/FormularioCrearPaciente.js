@@ -19,6 +19,7 @@ const FormularioCrearPaciente = () => {
     // Effect que detecta si hay un paciente seleccionado
     useEffect(() => {
         if (pacienteseleccionado !== null){
+            pacienteseleccionado.fnacimiento = pacienteseleccionado.fnacimiento.substr(0,10)
             guardarpaciente(pacienteseleccionado)
         }else{
             guardarpaciente({

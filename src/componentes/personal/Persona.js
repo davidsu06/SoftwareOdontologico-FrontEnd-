@@ -16,7 +16,7 @@ const Persona = ({persona}) => {
 
     // Seleccionar la persona actual
     const SeleccionarPersona = persona => {
-        PersonalActual(persona);
+        PersonalActual(persona);    
     }
 
     return ( 

@@ -21,6 +21,7 @@ const FormularioCrearPersonal = () => {
 
     useEffect(() => {
         if (personalseleccionado != null) {
+            personalseleccionado.fecha_nacimiento = personalseleccionado.fecha_nacimiento.substr(0,10)
             guardarpersonal(personalseleccionado);
         }else{
             guardarpersonal({

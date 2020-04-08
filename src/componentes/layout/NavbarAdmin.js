@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from './../../media/Logo.png';
 import personaContext from '../../context/personal/personaContext';
 import pacienteContext from '../../context/pacientes/pacienteContext';
+import citaContext from '../../context/citas/citaContext';
 import AuthContext from '../../context/autenticacion/authContext';
 
 const NavbarAdmin = () => {
@@ -12,6 +13,9 @@ const NavbarAdmin = () => {
 
   const pacientesContext = useContext(pacienteContext);
   const { PacienteNull } = pacientesContext;
+
+  const citasContext = useContext(citaContext);
+  const { CitaNull } = citasContext;
 
   const {usuario} = useContext(AuthContext);
   let cargo;
@@ -38,13 +42,13 @@ const NavbarAdmin = () => {
         </head>
 
         <body>
-          {cargo === 'admin'
+          {/* {cargo === 'admin'
             ?
-              (
+              ( */}
                 <div className="menuver border-right" id="sidebar-wrapper">
                   <div className="sidebar-heading">
                     <img src={logo} alt="logo" className="Logo"></img>
-                    <p>Bienvenido {usuario.nombre}</p>
+                    <p>Bienvenido </p>
                   </div>
 
                   <div className="list-group list-group-flush menuver">
@@ -54,7 +58,7 @@ const NavbarAdmin = () => {
                     </a>
 
                     <div className="collapse" id="collapse2">
-                      <Link to={'/crear-pacientes'} onClick={() => PacienteNull()} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
+                      <Link to={'/crear-pacientes'} onClick={ () => PacienteNull() } className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
                         Crear paciente
                       </Link>
                     </div>
@@ -70,7 +74,7 @@ const NavbarAdmin = () => {
                     </a>
 
                     <div className="collapse" id="collapse1">
-                      <Link to={'/crear-citas'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
+                      <Link to={'/crear-citas'} onClick={ () => CitaNull() } className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
                         Crear citas
                       </Link>
                     </div>
@@ -92,7 +96,7 @@ const NavbarAdmin = () => {
                     </a>
 
                     <div className="collapse" id="collapse3">
-                      <Link to={'/crear-personal'} onClick={() => PersonaNull()} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
+                      <Link to={'/crear-personal'} onClick={ () => PersonaNull() } className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
                         Crear personal
                       </Link>
                     </div>
@@ -136,10 +140,10 @@ const NavbarAdmin = () => {
                     </div>
                   </div>
               </div>
-              )
+              {/* )
 
             :null
-          }
+          } */}
 
           {cargo === 'Personal' || cargo === 'Medico'
             ?

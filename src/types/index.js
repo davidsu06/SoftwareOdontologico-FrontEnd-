@@ -12,6 +12,16 @@ export const PERSONAL_ACTUAL = 'PERSONAL_ACTUAL';
 export const AGREGAR_PERSONAL = 'AGREGAR_PERSONAL';
 export const PERSONA_NULL = 'PERSONA_NULL';
 
+export const CREAR_CITA = 'CREAR_CITA';
+export const ASIGNAR_CITA = 'ASIGNAR_CITA';
+export const LISTAR_CITA = 'LISTAR_CITA';
+export const EDITAR_CITA = 'EDITAR_CITA';
+export const ELIMINAR_CITA = 'ELIMINAR_CITA';
+export const FILTRAR_CITAS = 'FILTRAR_CITAS';
+export const ADQUIRIR_CITA = 'ADQUIRIR_CITA';
+export const CITA_ACTUAL = 'CITA_ACTUAL';
+export const CITA_NULL = 'CITA_NULL';
+
 export const REGISTRO_EXITOSO = 'REGISTRO_EXITOSO';
 export const REGISTRO_ERROR = 'REGISTRO_ERROR';
 export const LOGIN_EXITOSO= 'LOGIN_EXITOSO';

@@ -19,7 +19,7 @@ const ListadoPersona = () => {
     return ( 
         <>
                 
-                            <ul className="listado-list">
+                            <ul className="listado-list mt-3">
                                 {personal.length === 0
                                 ? (<li className="list"><p>No hay personal</p></li>)
                                 : personal.map(persona => (
