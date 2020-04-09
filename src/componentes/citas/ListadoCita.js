@@ -9,6 +9,10 @@ const ListadoCita = () => {
     const citasContext = useContext(citaContext);
     const { listarCitas, citas, filtrarCitas, citasfiltradas, searching } = citasContext;
 
+    
+    
+    
+
     useEffect(() => {
         listarCitas();
     }, [])
@@ -24,6 +28,8 @@ const ListadoCita = () => {
         const fecha = `${e.getFullYear()}-${month}-${e.getDate()}`;
         filtrarCitas(fecha);
     }
+
+    
 
     return ( 
         <>
@@ -52,12 +58,12 @@ const ListadoCita = () => {
 
                 <div className="col-md-8">
                     {
-                        searching && citasfiltradas.length === 0
+                        // searching && citasfiltradas.length === 0
 
-                        ? 
-                        (<h3 className="text-center">No hay citas disponibles para el día seleccionado</h3>)
+                        // ? 
+                        // (<h3 className="text-center">No hay citas disponibles para el día seleccionado</h3>)
 
-                        :
+                        // :
                         ( citas.length === 0
                             ? (<h3 className="text-center">No hay disponibilidad de citas</h3>) 
                             : 
@@ -77,6 +83,7 @@ const ListadoCita = () => {
                                         ? (
                                             citasfiltradas.map(citafiltrada => (
                                                 <Cita
+                                                
                                                 key={citafiltrada.id}
                                                 cita={citafiltrada}
                                                 />
@@ -85,6 +92,7 @@ const ListadoCita = () => {
                                         :
                                         (citas.map(cita => (
                                             <Cita
+                                            
                                             key={cita.id}
                                             cita={cita}
                                             />

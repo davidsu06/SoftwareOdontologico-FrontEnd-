@@ -8,16 +8,23 @@ const Cita = ({cita}) => {
     const { citaseleccionada, CitaActual, eliminarCita } = citasContext;
 
     const { fecha, hora } = cita;
+    
     console.log(fecha)
     console.log(hora)
-    const SeleccionarCita = cita => {
-        CitaActual(cita);
+    const newfecha = fecha.substr(0,10)
+    const SeleccionarCita = cita => {   
+        CitaActual(cita);        
+    }
+
+    const onClickEliminar = id => {
+        eliminarCita(id);
+        
     }
 
     return ( 
         <>
             <tr>
-                <td>{fecha}</td>
+                <td>{newfecha}</td>
                 <td>{hora}</td>
                 <td className="text-center">
                         <Link to={'/editar-citas'}
@@ -30,7 +37,7 @@ const Cita = ({cita}) => {
                         <button 
                         type="button"
                         className="btn btn-danger" 
-                        onClick={() => eliminarCita(cita.id)}
+                        onClick={() => onClickEliminar(cita._id)}
                         >Eliminar</button>
                 </td>
 

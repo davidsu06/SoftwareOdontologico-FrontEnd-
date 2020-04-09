@@ -4,7 +4,7 @@ import citaContext from '../../context/citas/citaContext';
 const FormularioCrearCita = () => {
     
     const citasContext = useContext(citaContext);
-    const { citaseleccionada, crearCita, editarCita } = citasContext;
+    const { citaseleccionada, crearCita, modificarCita } = citasContext;
 
     const timeStyle = {
         background: 'rgba(255,255,255,0.1)',
@@ -29,7 +29,8 @@ const FormularioCrearCita = () => {
 
     useEffect(() => {
         if (citaseleccionada != null) {
-            citaseleccionada.fecha = citaseleccionada.fecha.substr(0,10)
+             citaseleccionada.fecha = citaseleccionada.fecha.substr(0,10)
+            // citaseleccionada.hora = citaseleccionada.hora.substr(12,19)
             guardarCita(citaseleccionada);
         }else{
             guardarCita({
@@ -68,7 +69,7 @@ const FormularioCrearCita = () => {
         }
 
         if (citaseleccionada != null) 
-            editarCita(cita) 
+            modificarCita(cita) 
         else 
             crearCita(cita);
         

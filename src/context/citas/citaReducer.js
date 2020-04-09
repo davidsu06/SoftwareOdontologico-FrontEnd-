@@ -27,6 +27,7 @@ export default (state, action) => {
         case LISTAR_CITA:
             return{
                 ...state,
+                citas: action.payload
             }
 
         case FILTRAR_CITAS:
@@ -39,13 +40,13 @@ export default (state, action) => {
         case EDITAR_CITA:
             return{
                 ...state,
-                //citas: state.citas.filter( cita => cita.id === action.payload.id)
+                citas: state.citas.filter( cita => cita._id === action.payload._id)
             }
 
         case ELIMINAR_CITA:
             return{
                 ...state,
-                citas: state.citas.filter( cita => cita.id != action.payload )
+                citas: state.citas.filter( cita => cita._id !== action.payload )
             }
 
         case CITA_NULL:
