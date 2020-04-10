@@ -7,6 +7,7 @@ import Login from './componentes/principal/Login'
 import ConsultarPacientes from './componentes/admin/ConsultarPacientes';
 import ConsultarPersonal from './componentes/admin/ConsultarPersonal';
 import ConsultarCitas from './componentes/admin/ConsultarCitas';
+import AsignarCitas from './componentes/admin/AsignarCitas';
 import PacienteState from './context/pacientes/pacienteState';
 import PersonaState from './context/personal/personaState';
 import facturasState from './context/facturas/facturasState';
