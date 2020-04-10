@@ -24,7 +24,8 @@ const FormularioCrearCita = () => {
     const [cita, guardarCita] = useState({
         fecha: '',
         hora: '',
-        pacienteId: ''
+        pacienteId: '',
+        estado: 'Pendiente'
     });
 
 
@@ -37,7 +38,8 @@ const FormularioCrearCita = () => {
             guardarCita({
                 fecha: '',
                 hora: '',
-                pacienteId: ''
+                pacienteId: '',
+                estado: 'Pendiente'
             })
         }
     }, [citaseleccionada])
@@ -72,13 +74,12 @@ const FormularioCrearCita = () => {
 
         if (citaseleccionada != null) 
             modificarCita(cita) 
-        else 
+        else
             crearCita(cita);
-        
 
         guardarCita({
             fecha: '',
-            hora: ''
+            hora: '',
         })
 
 

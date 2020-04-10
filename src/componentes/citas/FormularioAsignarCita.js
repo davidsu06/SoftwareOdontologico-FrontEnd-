@@ -18,6 +18,10 @@ const FormularioAsignarCita = () => {
         hora: hora
     });
 
+    const [idPaciente, actualizarIdPaciente] = useState({
+        pacienteId: ''
+    })
+
     const onChange = e =>{
         guardarasignarPaciente({
             ...asignarPaciente,
@@ -28,7 +32,16 @@ const FormularioAsignarCita = () => {
 
     const Submit = e => {
         e.preventDefault();
+
+        actualizarIdPaciente({
+            pacienteId: asignarPaciente.pacienteId
+        })
+
         modificarCita(asignarPaciente)
+
+        guardarasignarPaciente({
+            pacienteId: ''
+        })
     }
     return ( 
         <>
@@ -53,7 +66,7 @@ const FormularioAsignarCita = () => {
                                 </p>
 
                                 <p className="card-text">
-                                    Paciente: {pacienteId}
+                                    Paciente: {idPaciente.pacienteId}
                                 </p>
 
                             </div>
@@ -70,7 +83,7 @@ const FormularioAsignarCita = () => {
 
                             <div className="form-group">
 
-                                <input type="text" className="form-control" name="pacienteId" placeholder="Documento" onChange={onChange}></input>
+                                <input type="text" className="form-control" name="pacienteId" placeholder="Documento" onChange={onChange} value={asignarPaciente.pacienteId}></input>
 
                             </div>
 

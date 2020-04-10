@@ -74,6 +74,7 @@ const ListadoCita = () => {
                                         <th scope="col">Fecha</th>
                                         <th scope="col">Hora</th>
                                         <th scope="col">Paciente ID</th>
+                                        <th scope="col">Estado</th>
                                         <th scope="col" className="text-center">Acciones</th>
                                     </tr>
                                 </thead>
