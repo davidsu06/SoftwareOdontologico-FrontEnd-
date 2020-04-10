@@ -9,6 +9,7 @@ import ConsultarPersonal from './componentes/admin/ConsultarPersonal';
 import ConsultarCitas from './componentes/admin/ConsultarCitas';
 import PacienteState from './context/pacientes/pacienteState';
 import PersonaState from './context/personal/personaState';
+import facturasState from './context/facturas/facturasState';
 import AuthState from './context/autenticacion/authState';
 import AlertaState from './context/alertas/alertaState'
 import CitaState from './context/citas/citaState';
@@ -16,6 +17,7 @@ import CrearPacientes from './componentes/admin/CrearPacientes';
 import CrearPersonal from './componentes/admin/CrearPersonal';
 import InterfazAdmin from './componentes/layout/InterfazAdmin';
 import CrearCitas from './componentes/admin/CrearCitas';
+import CrearFactura from './componentes/admin/CrearFactura';
 
 
 //Revisar si se tiene un token
@@ -31,7 +33,8 @@ function App() {
   return(
     <CitaState>
       <PacienteState> 
-        <PersonaState> 
+        <PersonaState>
+        <facturasState>
           <AlertaState>
             <AuthState>
               <Router>
@@ -48,10 +51,12 @@ function App() {
                   <Route exact path="/editar-personal" component={CrearPersonal}/>
                   <Route exact path="/crear-citas" component={CrearCitas}/>
                   <Route exact path="/editar-citas" component={CrearCitas}/>
+                  <Route exact path="/crear-factura" component={CrearFactura}/>
                 </Switch>
               </Router>
             </AuthState>
           </AlertaState>
+        </facturasState>
         </PersonaState>
       </PacienteState> 
     </CitaState>

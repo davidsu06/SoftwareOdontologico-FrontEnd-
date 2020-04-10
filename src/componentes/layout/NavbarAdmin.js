@@ -199,7 +199,7 @@ const NavbarAdmin = () => {
                     </a>
 
                     <div className="collapse" id="collapse4">
-                      <Link to={'/crear-factura'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
+                      <Link to={'/crear-facturas'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
                         Crear factura
                       </Link>
                     </div>
