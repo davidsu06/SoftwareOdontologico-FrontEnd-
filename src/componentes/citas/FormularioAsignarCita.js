@@ -4,12 +4,32 @@ import citaContext from '../../context/citas/citaContext';
 const FormularioAsignarCita = () => {
 
     const citasContext = useContext(citaContext);
-    const { citasignada } = citasContext;
-    const {fecha, hora, paciente} = citasignada;
+    const { citasignada, modificarCita } = citasContext;
+    const {fecha, hora, pacienteId, _id} = citasignada;
     console.log(fecha)
     console.log(hora)
-    console.log(paciente)
+    console.log(pacienteId)
+    console.log(_id)
 
+    const [asignarPaciente, guardarasignarPaciente] = useState({
+        pacienteId: '',
+        _id: _id,
+        fecha: fecha,
+        hora: hora
+    });
+
+    const onChange = e =>{
+        guardarasignarPaciente({
+            ...asignarPaciente,
+            [e.target.name]: e.target.value
+        })
+
+    }
+
+    const Submit = e => {
+        e.preventDefault();
+        modificarCita(asignarPaciente)
+    }
     return ( 
         <>
             <div className="container">
@@ -33,7 +53,7 @@ const FormularioAsignarCita = () => {
                                 </p>
 
                                 <p className="card-text">
-                                    Paciente: {paciente}
+                                    Paciente: {pacienteId}
                                 </p>
 
                             </div>
@@ -46,11 +66,11 @@ const FormularioAsignarCita = () => {
 
                         <h3 className="text-center mb-4">Digite el documento del paciente</h3>
 
-                        <form>
+                        <form onSubmit={Submit}>
 
                             <div className="form-group">
 
-                                <input type="text" className="form-control" name="documento" placeholder="Documento"></input>
+                                <input type="text" className="form-control" name="pacienteId" placeholder="Documento" onChange={onChange}></input>
 
                             </div>
 

@@ -6,6 +6,7 @@ import {
     EDITAR_CITA,
     CITA_NULL,
     FILTRAR_CITAS,
+    ASIGNAR_CITA,
     CITA_ASIGNADA
 } from '../../types';
 
@@ -55,6 +56,12 @@ export default (state, action) => {
                 ...state,
                 citaseleccionada: action.payload
             }
+
+        case ASIGNAR_CITA:
+            return{
+                ...state,
+                citas: state.citas.filter( cita => cita._id === action.payload._id)
+            } 
 
         case CITA_ASIGNADA:
             return{

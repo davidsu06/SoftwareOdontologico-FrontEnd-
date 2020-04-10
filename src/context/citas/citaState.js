@@ -20,18 +20,18 @@ const CitaState = props => {
 
     const initialState = {
         citas: [
-            {
-                id: '1',
-                fecha: '2020-04-10',
-                hora: '10:00',
-                paciente: ''
-            },
-            {
-                id: '2',
-                fecha: '2020-05-20',
-                hora: '12:00',
-                paciente: ''
-            }
+            // {
+            //     id: '1',
+            //     fecha: '2020-04-10',
+            //     hora: '10:00',
+            //     paciente: ''
+            // },
+            // {
+            //     id: '2',
+            //     fecha: '2020-05-20',
+            //     hora: '12:00',
+            //     paciente: ''
+            // }
         ],
         citaseleccionada: null,
         citasfiltradas: [],
@@ -43,6 +43,8 @@ const CitaState = props => {
 
     const crearCita = async cita => {
         try {
+            console.log(cita);
+            
             const resultado = await clienteAxios.post('/api/citas', cita);
              console.log(resultado);
             
@@ -129,12 +131,21 @@ const CitaState = props => {
         })
     }
 
-    const asignarCita = paciente => {
-        dispatch({
-            type: ASIGNAR_CITA,
-            payload: paciente
-        })
-    }
+    // const asignarCita = async cita => {
+        
+    //     try {
+    //         const resultado = await clienteAxios.put(`/api/citas/${cita._id}`, cita);
+    //         console.log(resultado);
+            
+    //         dispatch({
+    //             type: ASIGNAR_CITA,
+    //             payload: cita
+    //         })
+    //     }catch (error) {
+    //         console.log(error);
+            
+    //     }
+    // }
 
     return(
         <citaContext.Provider
@@ -152,7 +163,7 @@ const CitaState = props => {
                 eliminarCita,
                 CitaNull,
                 CitaAsignada,
-                asignarCita
+                // asignarCita
             }}
         >
             {props.children}

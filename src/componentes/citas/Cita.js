@@ -7,7 +7,7 @@ const Cita = ({cita}) => {
     const citasContext = useContext(citaContext);
     const { CitaActual, eliminarCita, CitaAsignada } = citasContext;
 
-    const { fecha, hora } = cita;
+    const { fecha, hora, pacienteId } = cita;
     
     console.log(fecha)
     console.log(hora)
@@ -26,6 +26,8 @@ const Cita = ({cita}) => {
             <tr>
                 <td>{newfecha}</td>
                 <td>{hora}</td>
+                <td>{pacienteId}</td>
+
                 <td className="text-center">
 
                     <Link to={'/asignar-citas'} className="mr-3 text-info" onClick={() => CitaAsignada(cita)}>Asignar</Link>
