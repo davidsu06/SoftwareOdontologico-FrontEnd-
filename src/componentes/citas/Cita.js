@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Cita = ({cita}) => {
 
     const citasContext = useContext(citaContext);
-    const { citaseleccionada, CitaActual, eliminarCita } = citasContext;
+    const { CitaActual, eliminarCita, CitaAsignada } = citasContext;
 
     const { fecha, hora } = cita;
     
@@ -27,18 +27,14 @@ const Cita = ({cita}) => {
                 <td>{newfecha}</td>
                 <td>{hora}</td>
                 <td className="text-center">
-                        <Link to={'/editar-citas'}
-                        type="button" 
-                        className="btn btn-info mr-3"
-                        onClick={() => SeleccionarCita(cita)}
 
-                        >Editar</Link>
+                    <Link to={'/asignar-citas'} className="mr-3 text-info" onClick={() => CitaAsignada(cita)}>Asignar</Link>
+                    
+                    <Link to={'/editar-citas'} type="button" class="fas fa-pencil-alt text-decoration-none text-dark mr-3" onClick={() => SeleccionarCita(cita)}></Link>
 
-                        <button 
-                        type="button"
-                        className="btn btn-danger" 
-                        onClick={() => onClickEliminar(cita._id)}
-                        >Eliminar</button>
+                    <i type="button" class="fas fa-trash-alt" onClick={() => onClickEliminar(cita._id)}></i>
+                   
+                    
                 </td>
 
             </tr>

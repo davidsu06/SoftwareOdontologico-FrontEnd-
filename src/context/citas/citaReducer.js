@@ -5,7 +5,8 @@ import {
     ELIMINAR_CITA,
     EDITAR_CITA,
     CITA_NULL,
-    FILTRAR_CITAS
+    FILTRAR_CITAS,
+    CITA_ASIGNADA
 } from '../../types';
 
 export default (state, action) => {
@@ -53,6 +54,12 @@ export default (state, action) => {
             return{
                 ...state,
                 citaseleccionada: action.payload
+            }
+
+        case CITA_ASIGNADA:
+            return{
+                ...state,
+                citasignada: action.payload
             }
 
         default:

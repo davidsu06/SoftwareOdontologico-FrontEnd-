@@ -95,12 +95,12 @@ const FormularioCrearCita = () => {
                 : null}
 
                 <div className="form-group">
-                    <label className="font-weight-bold">Elija una fecha</label>
+                    <label className="font-weight-bold text-white">Elija una fecha</label>
                     <input type="date" name="fecha" value={cita.fecha} onChange={onChange}></input>
                 </div>
 
                 <div className="form-group">
-                    <label className="font-weight-bold">Digite una hora</label>
+                    <label className="font-weight-bold text-white">Digite una hora</label>
                     <input type="time" style={timeStyle}  name="hora" value={cita.hora} onChange={onChange}></input>
                 </div>
 

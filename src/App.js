@@ -7,6 +7,7 @@ import Login from './componentes/principal/Login'
 import ConsultarPacientes from './componentes/admin/ConsultarPacientes';
 import ConsultarPersonal from './componentes/admin/ConsultarPersonal';
 import ConsultarCitas from './componentes/admin/ConsultarCitas';
+import AsignarCitas from './componentes/admin/AsignarCitas';
 import PacienteState from './context/pacientes/pacienteState';
 import PersonaState from './context/personal/personaState';
 import AuthState from './context/autenticacion/authState';
@@ -48,6 +49,7 @@ function App() {
                   <Route exact path="/editar-personal" component={CrearPersonal}/>
                   <Route exact path="/crear-citas" component={CrearCitas}/>
                   <Route exact path="/editar-citas" component={CrearCitas}/>
+                  <Route exact path="/asignar-citas" component={AsignarCitas}/>
                 </Switch>
               </Router>
             </AuthState>

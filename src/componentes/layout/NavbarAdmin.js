@@ -79,11 +79,11 @@ const NavbarAdmin = () => {
                       </Link>
                     </div>
 
-                    <div className="collapse" id="collapse1">
+                    {/* <div className="collapse" id="collapse1">
                       <Link to={'/asignar-citas'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
                         Asignar citas
                       </Link>
-                    </div>
+                    </div> */}
 
                     <div className="collapse" id="collapse1">
                       <Link to={'/consultar-citas'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">

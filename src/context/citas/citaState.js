@@ -10,7 +10,9 @@ import {
     ELIMINAR_CITA,
     CITA_NULL,
     EDITAR_CITA,
-    FILTRAR_CITAS
+    FILTRAR_CITAS,
+    CITA_ASIGNADA,
+    ASIGNAR_CITA
 } from '../../types';
 
 
@@ -18,20 +20,23 @@ const CitaState = props => {
 
     const initialState = {
         citas: [
-            // {
-            //     id: '1',
-            //     fecha: '2020-04-10',
-            //     hora: '10:00'
-            // },
-            // {
-            //     id: '2',
-            //     fecha: '2020-05-20',
-            //     hora: '12:00'
-            // }
+            {
+                id: '1',
+                fecha: '2020-04-10',
+                hora: '10:00',
+                paciente: ''
+            },
+            {
+                id: '2',
+                fecha: '2020-05-20',
+                hora: '12:00',
+                paciente: ''
+            }
         ],
         citaseleccionada: null,
         citasfiltradas: [],
-        searching: false
+        searching: false,
+        citasignada:{}
     }
 
     const [state,dispatch] = useReducer(citaReducer, initialState);
@@ -117,6 +122,20 @@ const CitaState = props => {
         })
     }
 
+    const CitaAsignada = cita => {
+        dispatch({
+            type: CITA_ASIGNADA,
+            payload: cita
+        })
+    }
+
+    const asignarCita = paciente => {
+        dispatch({
+            type: ASIGNAR_CITA,
+            payload: paciente
+        })
+    }
+
     return(
         <citaContext.Provider
             value={{
@@ -124,13 +143,16 @@ const CitaState = props => {
                 citaseleccionada: state.citaseleccionada,
                 citasfiltradas: state.citasfiltradas,
                 searching: state.searching,
+                citasignada: state.citasignada,
                 crearCita,
                 CitaActual,
                 listarCitas,
                 filtrarCitas,
                 modificarCita,
                 eliminarCita,
-                CitaNull
+                CitaNull,
+                CitaAsignada,
+                asignarCita
             }}
         >
             {props.children}
