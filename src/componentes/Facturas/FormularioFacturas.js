@@ -11,7 +11,8 @@ const FormularioFacturas = () => {
     const facturaContext = useContext(facturasContext);
     const {agregarFacturas} = facturaContext;
     
-    const BotonGuardar= () =>{
+    const BotonGuardar= e =>{
+        e.preventDefault();
         agregarFacturas(factura);
     }
 
@@ -26,7 +27,7 @@ const FormularioFacturas = () => {
     return (  
         <div className="container mt-4 pfacturas" >
         
-        <form>
+        <form onSubmit={BotonGuardar}>
 
         <div className="form-group ">
                 <label className="font-weight-bold">DOCUMENTO DEL PACIENTE</label>
@@ -57,7 +58,6 @@ const FormularioFacturas = () => {
                 <input type="submit"
                 className="form-control boton font-weight-bold" 
                 value="Generar Factura"
-                onClick={BotonGuardar}
                 />
             </div>           
         </form>

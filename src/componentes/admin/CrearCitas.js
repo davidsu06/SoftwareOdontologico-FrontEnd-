@@ -1,12 +1,20 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import NavbarAdmin from '../layout/NavbarAdmin';
 import MenuAdmin from '../layout/MenuAdmin';
 import citaContext from '../../context/citas/citaContext';
 import FormularioCrearCita from '../citas/FormularioCrearCita';
+import AuthContext from '../../context/autenticacion/authContext';
 
 const CrearCitas = () => {
 
     const [bandera,actualizarBandera]=useState(true);
+
+    const authContext = useContext(AuthContext);
+    const { usuarioAutenticado } = authContext;
+
+    useEffect(() => {
+      usuarioAutenticado();
+    }, [])
 
     const citasContext = useContext(citaContext);
     const { citaseleccionada } = citasContext;

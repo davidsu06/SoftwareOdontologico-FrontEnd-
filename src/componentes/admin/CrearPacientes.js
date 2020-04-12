@@ -1,11 +1,19 @@
-import React ,{Fragment,useState, useContext}from 'react';
+import React ,{Fragment,useState, useContext, useEffect}from 'react';
 import NavbarAdmin from '../layout/NavbarAdmin';
 import MenuAdmin from '../layout/MenuAdmin';
 import FormularioCrearPaciente from '../pacientes/FormularioCrearPaciente';
 import pacienteContext from '../../context/pacientes/pacienteContext';
+import AuthContext from '../../context/autenticacion/authContext';
 
 const CrearPacientes = () => {
     const [bandera,actualizarBandera]=useState(true);
+
+    const authContext = useContext(AuthContext);
+    const { usuarioAutenticado } = authContext;
+
+    useEffect(() => {
+      usuarioAutenticado();
+    }, [])
 
     const pacientesContext = useContext(pacienteContext);
     const { pacienteseleccionado } = pacientesContext;

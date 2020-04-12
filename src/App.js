@@ -8,9 +8,10 @@ import ConsultarPacientes from './componentes/admin/ConsultarPacientes';
 import ConsultarPersonal from './componentes/admin/ConsultarPersonal';
 import ConsultarCitas from './componentes/admin/ConsultarCitas';
 import AsignarCitas from './componentes/admin/AsignarCitas';
+import MisCitas from './componentes/citas/MisCitas';
 import PacienteState from './context/pacientes/pacienteState';
 import PersonaState from './context/personal/personaState';
-import facturasState from './context/facturas/facturasState';
+import FacturasState from './context/facturas/facturasState';
 import AuthState from './context/autenticacion/authState';
 import AlertaState from './context/alertas/alertaState'
 import CitaState from './context/citas/citaState';
@@ -32,35 +33,37 @@ function App() {
   console.log(process.env.REACT_APP_BACKEND_URL);
   
   return(
-    <CitaState>
-      <PacienteState> 
-        <PersonaState>
-        <facturasState>
-          <AlertaState>
-            <AuthState>
-              <Router>
-                <Switch>
-                  <Route exact path="/" component={MenuPrincipal}/>
-                  <Route exact path="/iniciar-sesion" component={Login}/>
-                  <Route exact path="/gestion-sistema" component={InterfazAdmin}/>
-                  <Route exact path="/consultar-pacientes" component={ConsultarPacientes}/>
-                  <Route exact path="/consultar-personal" component={ConsultarPersonal}/>
-                  <Route exact path="/consultar-citas" component={ConsultarCitas}/>
-                  <Route exact path="/crear-pacientes" component={CrearPacientes}/>
-                  <Route exact path="/editar-pacientes" component={CrearPacientes}/>
-                  <Route exact path="/crear-personal" component={CrearPersonal}/>
-                  <Route exact path="/editar-personal" component={CrearPersonal}/>
-                  <Route exact path="/crear-citas" component={CrearCitas}/>
-                  <Route exact path="/editar-citas" component={CrearCitas}/>
-                  <Route exact path="/crear-factura" component={CrearFactura}/>
-                </Switch>
-              </Router>
-            </AuthState>
-          </AlertaState>
-        </facturasState>
-        </PersonaState>
-      </PacienteState> 
-    </CitaState>
+    <AuthState>
+      <CitaState>
+        <PacienteState> 
+          <PersonaState> 
+            <FacturasState>
+              <AlertaState>
+                  <Router>
+                    <Switch>
+                      <Route exact path="/" component={MenuPrincipal}/>
+                      <Route exact path="/iniciar-sesion" component={Login}/>
+                      <Route exact path="/gestion-sistema" component={InterfazAdmin}/>
+                      <Route exact path="/consultar-pacientes" component={ConsultarPacientes}/>
+                      <Route exact path="/consultar-personal" component={ConsultarPersonal}/>
+                      <Route exact path="/consultar-citas" component={ConsultarCitas}/>
+                      <Route exact path="/crear-pacientes" component={CrearPacientes}/>
+                      <Route exact path="/editar-pacientes" component={CrearPacientes}/>
+                      <Route exact path="/crear-personal" component={CrearPersonal}/>
+                      <Route exact path="/editar-personal" component={CrearPersonal}/>
+                      <Route exact path="/crear-citas" component={CrearCitas}/>
+                      <Route exact path="/editar-citas" component={CrearCitas}/>
+                      <Route exact path="/asignar-citas" component={AsignarCitas}/>
+                      <Route exact path="/mis-citas" component={MisCitas}/>
+                      <Route exact path="/crear-factura" component={CrearFactura}/>
+                    </Switch>
+                  </Router>
+              </AlertaState>
+            </FacturasState>
+          </PersonaState>
+        </PacienteState> 
+      </CitaState>
+    </AuthState>
   );
 }
 

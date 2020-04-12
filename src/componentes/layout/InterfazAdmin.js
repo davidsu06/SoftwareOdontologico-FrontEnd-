@@ -1,10 +1,17 @@
-import React,{useState, Fragment} from 'react';
+import React,{useState, Fragment, useContext, useEffect} from 'react';
 import NavbarAdmin from './NavbarAdmin';
 import MenuAdmin from './MenuAdmin';
-
+import AuthContext from '../../context/autenticacion/authContext';
 
 const InterfazAdmin = () => {
     const [bandera,actualizarBandera]=useState(true);
+
+    const authContext = useContext(AuthContext);
+    const { usuarioAutenticado } = authContext;
+
+    useEffect(() => {
+      usuarioAutenticado();
+    }, [])
 
     return ( 
         <>

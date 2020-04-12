@@ -22,6 +22,7 @@ export const ADQUIRIR_CITA = 'ADQUIRIR_CITA';
 export const CITA_ACTUAL = 'CITA_ACTUAL';
 export const CITA_NULL = 'CITA_NULL';
 export const CITA_ASIGNADA = 'CITA_ASIGNADA';
+export const CITAS_PACIENTE= 'CITAS_PACIENTE';
 
 export const REGISTRO_EXITOSO = 'REGISTRO_EXITOSO';
 export const REGISTRO_ERROR = 'REGISTRO_ERROR';

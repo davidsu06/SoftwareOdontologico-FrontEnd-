@@ -1,9 +1,19 @@
-import React,{Fragment,useState} from 'react';
+import React,{Fragment,useState, useContext, useEffect} from 'react';
 import NavbarAdmin from '../layout/NavbarAdmin';
 import MenuAdmin from '../layout/MenuAdmin';
 import FormularioFacturas from '../Facturas/FormularioFacturas';
+import AuthContext from '../../context/autenticacion/authContext';
+
 const CrearFactura = () => {
     const [bandera,actualizarBandera]=useState(true);
+
+    const authContext = useContext(AuthContext);
+    const { usuarioAutenticado } = authContext;
+
+    useEffect(() => {
+      usuarioAutenticado();
+    }, [])
+
     return (  
         <Fragment>
              <div className="d-flex" id="wrapper">

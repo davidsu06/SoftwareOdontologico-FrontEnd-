@@ -1,11 +1,19 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import NavbarAdmin from '../layout/NavbarAdmin';
 import MenuAdmin from '../layout/MenuAdmin';
 import FormularioAsignarCita from '../citas/FormularioAsignarCita';
+import AuthContext from '../../context/autenticacion/authContext';
 
 const AsignarCitas = () => {
 
     const [bandera,actualizarBandera]=useState(true);
+
+    const authContext = useContext(AuthContext);
+    const { usuarioAutenticado } = authContext;
+
+    useEffect(() => {
+      usuarioAutenticado();
+    }, [])
 
     return (
         <>

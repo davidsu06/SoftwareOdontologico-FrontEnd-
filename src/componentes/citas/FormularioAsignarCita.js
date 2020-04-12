@@ -15,7 +15,8 @@ const FormularioAsignarCita = () => {
         pacienteId: '',
         _id: _id,
         fecha: fecha,
-        hora: hora
+        hora: hora,
+        estado: 'Asignado'
     });
 
     const [idPaciente, actualizarIdPaciente] = useState({
@@ -37,9 +38,12 @@ const FormularioAsignarCita = () => {
             pacienteId: asignarPaciente.pacienteId
         })
 
+        console.log(asignarPaciente)
+
         modificarCita(asignarPaciente)
 
         guardarasignarPaciente({
+            ...asignarPaciente,
             pacienteId: ''
         })
     }

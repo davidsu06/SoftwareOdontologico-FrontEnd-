@@ -42,13 +42,13 @@ const NavbarAdmin = () => {
         </head>
 
         <body>
-          {/* {cargo === 'admin'
+          {cargo === 'Administrador'
             ?
-              ( */}
+              (
                 <div className="menuver border-right" id="sidebar-wrapper">
                   <div className="sidebar-heading">
                     <img src={logo} alt="logo" className="Logo"></img>
-                    <p>Bienvenido </p>
+                    <p>Bienvenido Administrador</p>
                   </div>
 
                   <div className="list-group list-group-flush menuver">
@@ -140,10 +140,10 @@ const NavbarAdmin = () => {
                     </div>
                   </div>
               </div>
-              {/* )
+               )
 
             :null
-          } */}
+          } 
 
           {cargo === 'Personal' || cargo === 'Medico'
             ?
@@ -248,8 +248,14 @@ const NavbarAdmin = () => {
                     </a>
 
                     <div className="collapse" id="collapse1">
-                      <Link to={'/asignar-citas'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
-                        Asignar citas
+                      <Link to={'/consultar-citas'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
+                        Consultar citas
+                      </Link>
+                    </div>
+
+                    <div className="collapse" id="collapse1">
+                      <Link to={'/mis-citas'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
+                        Mis citas
                       </Link>
                     </div>
 

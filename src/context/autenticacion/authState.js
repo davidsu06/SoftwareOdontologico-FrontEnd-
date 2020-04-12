@@ -39,14 +39,14 @@ const AuthState = props =>{
         }
     }
 
-    const usuarioAutenticado = async documento =>{
+    const usuarioAutenticado = async () =>{
         const token = localStorage.getItem('token');
         if (token) {
             tokenAuth(token);
         }
 
         try {
-            const respuesta = await clienteAxios.get(`/api/auth/${documento}`);
+            const respuesta = await clienteAxios.get(`/api/auth`);
             console.log(respuesta)
             dispatch({
                 type: OBTENER_USUARIO,
@@ -62,12 +62,14 @@ const AuthState = props =>{
     const iniciarSesion = async datos =>{
         try {
             const respuesta = await clienteAxios.post('/api/auth', datos);
+            console.log(respuesta)
             dispatch({
                 type: LOGIN_EXITOSO,
                 payload: respuesta.data
             })
             const {documento} = datos;
-            usuarioAutenticado(documento);
+            usuarioAutenticado();
+            // sesionActual();
         } catch (error) {
             const alerta ={
                 msg: error.response.data.msg,
@@ -76,6 +78,26 @@ const AuthState = props =>{
             dispatch({
                 type: LOGIN_ERROR,
                 payload: alerta
+            })
+        }
+    }
+
+    const sesionUsuario = async () =>{
+        const token = localStorage.getItem('token');
+        if (token) {
+            tokenAuth(token);
+        }
+
+        try {
+            const respuesta = await clienteAxios.get(`/api/auth`);
+            console.log(respuesta)
+            dispatch({
+                type: OBTENER_USUARIO,
+                payload: respuesta.data
+            })
+        } catch (error) {
+            dispatch({
+                type: LOGIN_ERROR
             })
         }
     }
@@ -95,8 +117,10 @@ const AuthState = props =>{
                 usuario: state.usuario,
                 mensaje: state.mensaje,
                 regisrarPaciente,
+                usuarioAutenticado,
                 iniciarSesion,
-                cerrarSesion
+                sesionUsuario,
+                cerrarSesion,
             }}
         >
             {props.children}

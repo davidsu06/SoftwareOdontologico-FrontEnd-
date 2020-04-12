@@ -8,7 +8,7 @@ import {
     LISTAR_FACTURA
  } from '../../types';
  
-const facturasState = props => {
+const FacturasState = props => {
     
     const initialState = {
         facturas: [],
@@ -77,4 +77,4 @@ const facturasState = props => {
     )
 }
  
-export default facturasState;
+export default FacturasState;

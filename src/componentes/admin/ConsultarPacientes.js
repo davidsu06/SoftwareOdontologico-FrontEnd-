@@ -1,11 +1,18 @@
-import React,{useState, Fragment} from 'react';
+import React,{useState, Fragment, useContext, useEffect } from 'react';
 import NavbarAdmin from '../layout/NavbarAdmin';
 import MenuAdmin from '../layout/MenuAdmin';
 import ListadoPaciente from '../pacientes/ListadoPaciente';
-
+import AuthContext from '../../context/autenticacion/authContext';
 
 const ConsultarPacientes = () => {
     const [bandera,actualizarBandera]=useState(true);
+
+    const authContext = useContext(AuthContext);
+    const { usuarioAutenticado } = authContext;
+
+    useEffect(() => {
+      usuarioAutenticado();
+    }, [])
 
     return ( 
         <>

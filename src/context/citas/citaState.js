@@ -12,7 +12,8 @@ import {
     EDITAR_CITA,
     FILTRAR_CITAS,
     CITA_ASIGNADA,
-    ASIGNAR_CITA
+    ASIGNAR_CITA,
+    CITAS_PACIENTE
 } from '../../types';
 
 
@@ -115,8 +116,6 @@ const CitaState = props => {
         }
     }
 
-    
-
     const CitaNull = () => {
         dispatch({
             type: CITA_NULL,
@@ -128,6 +127,16 @@ const CitaState = props => {
         dispatch({
             type: CITA_ASIGNADA,
             payload: cita
+        })
+    }
+
+    const listarCitasPaciente = async pacienteId => {
+
+        await listarCitas();
+
+        dispatch({
+            type: CITAS_PACIENTE,
+            payload: pacienteId
         })
     }
 
@@ -163,6 +172,7 @@ const CitaState = props => {
                 eliminarCita,
                 CitaNull,
                 CitaAsignada,
+                listarCitasPaciente,
                 // asignarCita
             }}
         >

@@ -7,7 +7,8 @@ import {
     CITA_NULL,
     FILTRAR_CITAS,
     ASIGNAR_CITA,
-    CITA_ASIGNADA
+    CITA_ASIGNADA,
+    CITAS_PACIENTE
 } from '../../types';
 
 export default (state, action) => {
@@ -67,6 +68,12 @@ export default (state, action) => {
             return{
                 ...state,
                 citasignada: action.payload
+            }
+
+        case CITAS_PACIENTE:
+            return{
+                ...state,
+                citasfiltradas: state.citas.filter( cita => cita.pacienteId === action.payload)
             }
 
         default:
