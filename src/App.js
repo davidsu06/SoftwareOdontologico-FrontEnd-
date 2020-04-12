@@ -7,10 +7,12 @@ import Login from './componentes/principal/Login'
 import ConsultarPacientes from './componentes/admin/ConsultarPacientes';
 import ConsultarPersonal from './componentes/admin/ConsultarPersonal';
 import ConsultarCitas from './componentes/admin/ConsultarCitas';
+import CrearServicio from './componentes/admin/CrearServicio';
 import AsignarCitas from './componentes/admin/AsignarCitas';
 import PacienteState from './context/pacientes/pacienteState';
 import PersonaState from './context/personal/personaState';
-import facturasState from './context/facturas/facturasState';
+import FacturasState from './context/facturas/facturasState';
+import ServiciosState from './context/servicios/serviciosState';
 import AuthState from './context/autenticacion/authState';
 import AlertaState from './context/alertas/alertaState'
 import CitaState from './context/citas/citaState';
@@ -35,7 +37,8 @@ function App() {
     <CitaState>
       <PacienteState> 
         <PersonaState>
-        <facturasState>
+        <FacturasState>
+          <ServiciosState>
           <AlertaState>
             <AuthState>
               <Router>
@@ -45,6 +48,7 @@ function App() {
                   <Route exact path="/gestion-sistema" component={InterfazAdmin}/>
                   <Route exact path="/consultar-pacientes" component={ConsultarPacientes}/>
                   <Route exact path="/consultar-personal" component={ConsultarPersonal}/>
+                  <Route exact path="/crear-servicio" component={CrearServicio}/>
                   <Route exact path="/consultar-citas" component={ConsultarCitas}/>
                   <Route exact path="/crear-pacientes" component={CrearPacientes}/>
                   <Route exact path="/editar-pacientes" component={CrearPacientes}/>
@@ -57,7 +61,8 @@ function App() {
               </Router>
             </AuthState>
           </AlertaState>
-        </facturasState>
+          </ServiciosState>
+        </FacturasState>
         </PersonaState>
       </PacienteState> 
     </CitaState>

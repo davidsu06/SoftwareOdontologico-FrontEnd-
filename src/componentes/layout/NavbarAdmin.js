@@ -45,7 +45,7 @@ const NavbarAdmin = () => {
           {/* {cargo === 'admin'
             ?
               ( */}
-                <div className="menuver border-right" id="sidebar-wrapper">
+                <div className="menuver border-right negrilla" id="sidebar-wrapper">
                   <div className="sidebar-heading">
                     <img src={logo} alt="logo" className="Logo"></img>
                     <p>Bienvenido </p>
@@ -138,147 +138,23 @@ const NavbarAdmin = () => {
                         Consultar historia clínica
                       </Link>
                     </div>
-                  </div>
-              </div>
-              {/* )
-
-            :null
-          } */}
-
-          {cargo === 'Personal' || cargo === 'Medico'
-            ?
-              (
-                <div className="menuver border-right" id="sidebar-wrapper">
-                  <div className="sidebar-heading">
-                    <img src={logo} alt="logo" className="Logo"></img>
-                    <p>Bienvenido {usuario.nombre}</p>
-                  </div>
-
-                  <div className="list-group list-group-flush menuver">
-              
-                    <a className="list-group-item list-group-item-action menuver " data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapseExample" >
-                      Gestión de pacientes
+                    <a className="list-group-item list-group-item-action menuver" data-toggle="collapse" href="#collapse6" role="button" aria-expanded="false" aria-controls="collapseExample" >
+                      Servicios
                     </a>
 
-                    <div className="collapse" id="collapse2">
-                      <Link to={'/crear-pacientes'} onClick={() => PacienteNull()} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
-                        Crear paciente
+                    <div className="collapse" id="collapse6">
+                      <Link to={'/crear-servicio'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
+                        Crear Servicios
                       </Link>
                     </div>
 
-                    <div className="collapse" id="collapse2">
-                      <Link to={'/consultar-pacientes'}  className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
-                        Consultar paciente
-                      </Link>
-                    </div>
-                    
-                    <a className="list-group-item list-group-item-action menuver" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapseExample" >
-                      Gestión de agenda
-                    </a>
-
-                    <div className="collapse" id="collapse1">
-                      <Link to={'/crear-citas'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
-                        Crear citas
-                      </Link>
-                    </div>
-
-                    <div className="collapse" id="collapse1">
-                      <Link to={'/asignar-citas'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
-                        Asignar citas
-                      </Link>
-                    </div>
-
-                    <div className="collapse" id="collapse1">
-                      <Link to={'/consultar-citas'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
-                        Consultar citas
-                      </Link>
-                    </div>  
-
-                    <a className="list-group-item list-group-item-action menuver" data-toggle="collapse" href="#collapse4" role="button" aria-expanded="false" aria-controls="collapseExample">
-                      Facturas
-                    </a>
-
-                    <div className="collapse" id="collapse4">
-                      <Link to={'/crear-facturas'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
-                        Crear factura
-                      </Link>
-                    </div>
-
-                    <div className="collapse" id="collapse4">
-                      <Link to={'/consultar-facturas'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
-                        Consultar facturas
-                      </Link>
-                    </div>
-
-                    <a className="list-group-item list-group-item-action menuver" data-toggle="collapse" href="#collapse5" role="button" aria-expanded="false" aria-controls="collapseExample" >
-                      Historia clinica
-                    </a>
-
-                    <div className="collapse" id="collapse5">
-                      <Link to={'/crear-hist-clinica'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
-                        Crear historia clínica
-                      </Link>
-                    </div>
-
-                    <div className="collapse" id="collapse5">
-                      <Link to={'/consultar-hist-clinica'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
-                        Consultar historia clínica
+                    <div className="collapse" id="collapse6">
+                      <Link to={'/consultar-serc'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
+                        Consultar Servicios
                       </Link>
                     </div>
                   </div>
               </div>
-              )
-
-            :null
-          }
-
-          {cargo === 'Paciente'
-            ?
-              (
-                <div className="menuver border-right" id="sidebar-wrapper">
-                  <div className="sidebar-heading">
-                    <img src={logo} alt="logo" className="Logo"></img>
-                    <p>Bienvenido {usuario.nombre}</p>
-                  </div>
-
-                  <div className="list-group list-group-flush menuver">
-                    
-                    <a className="list-group-item list-group-item-action menuver" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapseExample" >
-                      Gestión de agenda
-                    </a>
-
-                    <div className="collapse" id="collapse1">
-                      <Link to={'/asignar-citas'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
-                        Asignar citas
-                      </Link>
-                    </div>
-
-                    <a className="list-group-item list-group-item-action menuver" data-toggle="collapse" href="#collapse4" role="button" aria-expanded="false" aria-controls="collapseExample">
-                      Facturas
-                    </a>
-
-                    <div className="collapse" id="collapse4">
-                      <Link to={'/consultar-facturas'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
-                        Consultar facturas
-                      </Link>
-                    </div>
-
-                    <a className="list-group-item list-group-item-action menuver" data-toggle="collapse" href="#collapse5" role="button" aria-expanded="false" aria-controls="collapseExample" >
-                      Historia clinica
-                    </a>
-
-                    <div className="collapse" id="collapse5">
-                      <Link to={'/consultar-hist-clinica'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
-                        Consultar historia clínica
-                      </Link>
-                    </div>
-                  </div>
-              </div>
-              )
-
-            :null
-          }
-
           <script src="./vendor/jquery/jquery.min.js"></script>
           <script src="./vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         </body>

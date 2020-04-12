@@ -87,7 +87,10 @@ ul {
     transition: margin .25s ease-out;
   }
 .pfacturas{
-  margin-bottom: 87px;
+  margin-bottom: 287px;
+}
+.negrilla{
+  font-weight: bold;
 }
   .menuver{
     width: auto;

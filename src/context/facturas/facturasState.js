@@ -5,10 +5,11 @@ import clienteAxios from '../../config/axios';
 
 import { 
     CREAR_FACTURA,
-    LISTAR_FACTURA
+    LISTAR_FACTURA,
+    LISTAR_SERVICIO
  } from '../../types';
  
-const facturasState = props => {
+const FacturasState = props => {
     
     const initialState = {
         facturas: [],
@@ -24,11 +25,10 @@ const facturasState = props => {
         try {
             console.log(facturas);
             const resultado = await clienteAxios.post('/api/facturas', facturas);
-             console.log(resultado);
-            
+            console.log(facturas);
             dispatch({
                 type: CREAR_FACTURA,    
-                payload: facturas
+                payload: resultado.data
                 
             })
         } catch (error) {
@@ -49,27 +49,28 @@ const facturasState = props => {
             console.log(error);                
         }
     }
-/*
-    const eliminarPaciente = async pacienteId => {
-        console.log(pacienteId);
+    const listarServicios = async () => {
+        
         try {
-            await clienteAxios.delete(`/api/pacientes/${pacienteId}`);
+            const resultado = await clienteAxios.get('/api/servicios');
+            console.log(resultado);
             dispatch({
-                type: ELIMINAR_PACIENTE,
-                payload: pacienteId
+                type: LISTAR_SERVICIO,     
+                payload: resultado.data.servicio
             })
-        }catch (error) {
-            console.log(error);
-            
+        } catch (error) {
+            console.log(error);                
         }
     }
-*/
 
     return (
         <facturasContext.Provider
             value={{
+                facturas: state.facturas,
+                facturaselecionado: state.facturaseleccionado,
                 agregarFacturas,
-                listarFacturas
+                listarFacturas,
+                listarServicios
             }}
         >
             {props.children}
@@ -77,4 +78,4 @@ const facturasState = props => {
     )
 }
  
-export default facturasState;
+export default FacturasState;

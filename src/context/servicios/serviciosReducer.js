@@ -1,6 +1,5 @@
 import { 
-    CREAR_FACTURA,
-    LISTAR_FACTURA,
+    CREAR_SERVICIO,
     LISTAR_SERVICIO
  } from '../../types';
 
@@ -8,23 +7,18 @@ import {
 export default (state, action) => {
     switch(action.type) {
 
-        case CREAR_FACTURA:
+        case CREAR_SERVICIO:
             
             return {
                 ...state,
-                facturas: [action.payload, ...state.facturas]
+                servicios: [action.payload, ...state.servicios]
             }
+
         case LISTAR_SERVICIO:
             
-        return {
-            ...state,
-            facturas: action.payload
-        }
-        case LISTAR_FACTURA:
-            
             return {
                 ...state,
-                facturas: action.payload
+                servicios: action.payload
             }
         default:
             return state;

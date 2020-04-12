@@ -1,18 +1,30 @@
-import React,{useState,useContext} from 'react';
+import React,{useState,useContext,useEffect} from 'react';
 import facturasContext from '../../context/facturas/facturasContext';
 const FormularioFacturas = () => {
     const [factura,guardarfactura]= useState({
         valor: '',
-        fecha:'1998-11-14',
+        fecha:Date.now(),
+        tratamiento:"",
         documento_paciente:'',
         documento_cajero:"jeferson echavrria gomez"
     });
 
     const facturaContext = useContext(facturasContext);
-    const {agregarFacturas} = facturaContext;
-    
-    const BotonGuardar= () =>{
+    const {facturas, agregarFacturas, listarServicios} = facturaContext;
+
+    useEffect(() => {
+        listarServicios();   
+        // eslint-disable-next-line
+    }, []);
+    const BotonGuardar= e =>{
+        e.preventDefault();
         agregarFacturas(factura);
+        guardarfactura({
+            ...factura,
+            valor:'',
+            documento_paciente:'primera',
+            tratamiento: "primera"
+        })
     }
 
     const Guardar= e =>{
@@ -24,13 +36,14 @@ const FormularioFacturas = () => {
     }
 
     return (  
+        <>
         <div className="container mt-4 pfacturas" >
         
-        <form>
+        <form onSubmit={BotonGuardar}>
 
         <div className="form-group ">
                 <label className="font-weight-bold">DOCUMENTO DEL PACIENTE</label>
-                <select className="form-control selector" id="select" name="documento_paciente" onChange={Guardar}>
+                <select className="form-control selector" id="select" name="documento_paciente" onChange={Guardar} value={factura.documento_paciente}>
                     <option value="primera">Selecione...</option>
                     <option value="123">123-jeferson echavarria</option>
                     <option value="456">456-juan jose gonzalez</option>
@@ -40,28 +53,31 @@ const FormularioFacturas = () => {
 
             <div className="form-group">
                 <label className="font-weight-bold" onChange={Guardar}>TRATAMIENTO</label>
-                <select className="form-control selector" id="select"name="tratamiento">
-                    <option value="primera">Selecione...</option>
-                    <option value="001">001-tratamiento dental</option>
-                    <option value="002">002-limpieza</option>
-                    <option value="003">003-otro</option>
+                <select className="form-control selector" id="select" name="tratamiento" onChange={Guardar} value={factura.tratamiento}>
+                <option value="primera">Selecione...</option>  
+                {facturas.length === 0
+                ? (<option>no hay servicios</option>  )
+                : facturas.map(servicios => (
+                <option value={servicios._id}>{servicios.nombre_servicio}</option> 
+                    ))
+                                }
                 </select>
             </div>
 
             <div className="form-group">
                 <label className="font-weight-bold">VALOR</label>
-                <input type="number" className="form-control" name="valor" onChange={Guardar}/>
+                <input type="number" className="form-control" name="valor" onChange={Guardar} value={factura.valor}/>
             </div> 
 
             <div className="form-group">
                 <input type="submit"
                 className="form-control boton font-weight-bold" 
                 value="Generar Factura"
-                onClick={BotonGuardar}
                 />
             </div>           
         </form>
     </div>
+    </>
     );
 }
  
