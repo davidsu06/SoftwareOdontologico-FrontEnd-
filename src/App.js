@@ -15,11 +15,14 @@ import FacturasState from './context/facturas/facturasState';
 import AuthState from './context/autenticacion/authState';
 import AlertaState from './context/alertas/alertaState'
 import CitaState from './context/citas/citaState';
+import HistoriaState from './context/historia/historiaState';
 import CrearPacientes from './componentes/admin/CrearPacientes';
 import CrearPersonal from './componentes/admin/CrearPersonal';
 import InterfazAdmin from './componentes/layout/InterfazAdmin';
 import CrearCitas from './componentes/admin/CrearCitas';
 import CrearFactura from './componentes/admin/CrearFactura';
+import CrearHistoria from './componentes/admin/CrearHistoria';
+import ConsultarHistorias from './componentes/admin/ConsultarHistorias';
 
 
 //Revisar si se tiene un token
@@ -39,6 +42,7 @@ function App() {
           <PersonaState> 
             <FacturasState>
               <AlertaState>
+                <HistoriaState>
                   <Router>
                     <Switch>
                       <Route exact path="/" component={MenuPrincipal}/>
@@ -54,10 +58,14 @@ function App() {
                       <Route exact path="/crear-citas" component={CrearCitas}/>
                       <Route exact path="/editar-citas" component={CrearCitas}/>
                       <Route exact path="/asignar-citas" component={AsignarCitas}/>
+                      <Route exact path="/crear-hist-clinica" component={CrearHistoria}/>
+                      <Route exact path="/editar-hist-clinica" component={CrearHistoria}/>
+                      <Route exact path="/consultar-hist-clinica" component={ConsultarHistorias}/>
                       <Route exact path="/mis-citas" component={MisCitas}/>
                       <Route exact path="/crear-factura" component={CrearFactura}/>
                     </Switch>
                   </Router>
+                </HistoriaState>
               </AlertaState>
             </FacturasState>
           </PersonaState>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Modal from './Modal';
 
 const Cita = ({cita}) => {
-
+    
     const citasContext = useContext(citaContext);
     const { CitaActual, eliminarCita, CitaAsignada } = citasContext;
 
@@ -51,6 +51,18 @@ const Cita = ({cita}) => {
                         }
 
                         <div className="mr-3">
+                            {estado === 'Sin asignar'
+                                ? null
+
+                                : 
+                                    (
+                                        <Link to={'/crear-hist-clinica'} 
+                                            type="button" 
+                                            class="far fa-address-book text-dark mr-4" 
+                                            onClick={() => SeleccionarCita(cita)}
+                                        ></Link>
+                                    )
+                            }
 
                             <Link to={'/editar-citas'} type="button" class="fas fa-pencil-alt text-decoration-none text-dark mr-2" onClick={() => SeleccionarCita(cita)}></Link>
 
