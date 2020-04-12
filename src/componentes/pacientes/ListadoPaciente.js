@@ -23,7 +23,7 @@ const ListadoPaciente = () => {
                 ? (<li className="list"><p>No hay pacientes</p></li>)
                 : pacientes.map(paciente => (
                     <Paciente
-                        key={paciente.id}
+                        key={paciente._id}
                         paciente={paciente}
                     />
                                     ))

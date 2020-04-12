@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import NavbarAdmin from '../layout/NavbarAdmin';
 import MenuAdmin from '../layout/MenuAdmin';
-import FormularioAsignarCita from '../citas/FormularioAsignarCita';
+import FormularioCrearHistoria from '../historias/FormularioCrearHistoria';
 import AuthContext from '../../context/autenticacion/authContext';
 
 const AsignarCitas = () => {
@@ -12,8 +12,8 @@ const AsignarCitas = () => {
     const { usuarioAutenticado } = authContext;
 
     useEffect(() => {
-      usuarioAutenticado();
-    }, [])
+        usuarioAutenticado();
+      }, [])
 
     return (
         <>
@@ -22,11 +22,11 @@ const AsignarCitas = () => {
             {bandera ?  <NavbarAdmin/> : null}
             <div id="page-content-wrapper">
 
-                <MenuAdmin titulo="Asignar Cita" actualizarBandera={actualizarBandera} Bandera={bandera}/>
+                <MenuAdmin titulo="Crear Historia Clínica" actualizarBandera={actualizarBandera} Bandera={bandera}/>
 
                 <div className="container-fluid">
 
-                <FormularioAsignarCita/>
+                <FormularioCrearHistoria/>
 
                 </div>
 

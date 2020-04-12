@@ -25,7 +25,7 @@ const FormularioCrearCita = () => {
         fecha: '',
         hora: '',
         pacienteId: '',
-        estado: 'Pendiente'
+        estado: 'Sin asignar'
     });
 
 
@@ -39,7 +39,7 @@ const FormularioCrearCita = () => {
                 fecha: '',
                 hora: '',
                 pacienteId: '',
-                estado: 'Pendiente'
+                estado: 'Sin asignar'
             })
         }
     }, [citaseleccionada])
@@ -78,6 +78,7 @@ const FormularioCrearCita = () => {
             crearCita(cita);
 
         guardarCita({
+            ...cita,
             fecha: '',
             hora: '',
         })

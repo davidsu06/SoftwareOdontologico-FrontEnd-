@@ -57,7 +57,7 @@ const Login = (props) => {
                 {alerta ? <div className="p-3 mb-2 bg-danger text-white">{alerta.msg}</div>  :null}
 
                 <fieldset>
-                    <label id="etiqueta" htmlFor="name" className="text-white">documento:</label>
+                    <label id="etiqueta" htmlFor="name" className="text-white">Documento:</label>
                     <input 
                         type="text" 
                         id="name" 

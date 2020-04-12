@@ -4,8 +4,6 @@ import personaContext from '../../context/personal/personaContext';
 
 const ListadoPersona = () => {
 
-    
-
     // Funcion para listar personas
 
     const personalContext = useContext(personaContext);
@@ -17,19 +15,18 @@ const ListadoPersona = () => {
     }, []);
 
     return ( 
-        <>
-                
-                            <ul className="listado-list mt-3">
-                                {personal.length === 0
-                                ? (<li className="list"><p>No hay personal</p></li>)
-                                : personal.map(persona => (
-                                    <Persona
-                                    key={persona.id}
-                                        persona={persona}
-                                    />
-                                ))
-                            }
-                            </ul>
+        <> 
+            <ul className="listado-list mt-3">
+                {personal.length === 0
+                ? (<li className="list"><p>No hay personal</p></li>)
+                : personal.map(persona => (
+                    <Persona
+                        key={persona._id}
+                        persona={persona}
+                    />
+                ))
+            }
+            </ul>
         </>
      );
 }

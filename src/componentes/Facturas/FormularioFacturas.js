@@ -10,12 +10,17 @@ const FormularioFacturas = () => {
     });
 
     const facturaContext = useContext(facturasContext);
+<<<<<<< HEAD
     const {facturas, agregarFacturas, listarServicios} = facturaContext;
 
     useEffect(() => {
         listarServicios();   
         // eslint-disable-next-line
     }, []);
+=======
+    const {agregarFacturas} = facturaContext;
+    
+>>>>>>> 6200bfe855844cdfffd642f4cdd32743841815b1
     const BotonGuardar= e =>{
         e.preventDefault();
         agregarFacturas(factura);

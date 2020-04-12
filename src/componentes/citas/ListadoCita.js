@@ -9,10 +9,6 @@ const ListadoCita = () => {
     const citasContext = useContext(citaContext);
     const { listarCitas, citas, filtrarCitas, citasfiltradas, searching } = citasContext;
 
-    
-    
-    
-
     useEffect(() => {
         listarCitas();
     }, [])

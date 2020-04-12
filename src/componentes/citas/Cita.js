@@ -1,16 +1,19 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import citaContext from '../../context/citas/citaContext';
 import { Link } from 'react-router-dom';
+import Modal from './Modal';
 
 const Cita = ({cita}) => {
-
+    
     const citasContext = useContext(citaContext);
     const { CitaActual, eliminarCita, CitaAsignada } = citasContext;
 
-    const { fecha, hora, pacienteId } = cita;
+    const { fecha, hora, pacienteId, estado } = cita;
     
-    console.log(fecha)
-    console.log(hora)
+    // console.log(fecha)
+    // console.log(hora)
+    // console.log(estado)
+
     const newfecha = fecha.substr(0,10)
 
     const SeleccionarCita = cita => {   
@@ -22,14 +25,13 @@ const Cita = ({cita}) => {
         
     }
 
-
     return ( 
         <>
             <tr>
                 <td>{newfecha}</td>
                 <td>{hora}</td>
                 <td>{pacienteId != '' ? pacienteId : 'No asignado'}</td>
-                <td></td>
+                <td>{estado}</td>
 
                 <td className="text-center">
 
@@ -49,12 +51,24 @@ const Cita = ({cita}) => {
                         }
 
                         <div className="mr-3">
+                            {estado === 'Sin asignar'
+                                ? null
+
+                                : 
+                                    (
+                                        <Link to={'/crear-hist-clinica'} 
+                                            type="button" 
+                                            class="far fa-address-book text-dark mr-4" 
+                                            onClick={() => SeleccionarCita(cita)}
+                                        ></Link>
+                                    )
+                            }
 
                             <Link to={'/editar-citas'} type="button" class="fas fa-pencil-alt text-decoration-none text-dark mr-2" onClick={() => SeleccionarCita(cita)}></Link>
 
                             <i type="button" class="fas fa-trash-alt mx-3" onClick={() => onClickEliminar(cita._id)}></i>
 
-                            <i type="button" class="fas fa-info-circle mx-2" data-toggle="modal" data-target="#detallescita"></i>
+                            <Modal />
                             
                         </div>
 
@@ -63,34 +77,7 @@ const Cita = ({cita}) => {
                 </td>
 
 
-                <div class="modal fade" id="detallescita" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
-                    <div class="modal-dialog" role="document">
-
-                        <div class="modal-content">
-
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Detalles de la cita</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-
-                            <div class="modal-body">
-                                <p>Paciente: </p>
-                                <p>Documento: </p>
-                                <p>Motivo de la cita: </p>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
+                
 
             </tr>
 

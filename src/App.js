@@ -9,6 +9,7 @@ import ConsultarPersonal from './componentes/admin/ConsultarPersonal';
 import ConsultarCitas from './componentes/admin/ConsultarCitas';
 import CrearServicio from './componentes/admin/CrearServicio';
 import AsignarCitas from './componentes/admin/AsignarCitas';
+import MisCitas from './componentes/citas/MisCitas';
 import PacienteState from './context/pacientes/pacienteState';
 import PersonaState from './context/personal/personaState';
 import FacturasState from './context/facturas/facturasState';
@@ -16,11 +17,14 @@ import ServiciosState from './context/servicios/serviciosState';
 import AuthState from './context/autenticacion/authState';
 import AlertaState from './context/alertas/alertaState'
 import CitaState from './context/citas/citaState';
+import HistoriaState from './context/historia/historiaState';
 import CrearPacientes from './componentes/admin/CrearPacientes';
 import CrearPersonal from './componentes/admin/CrearPersonal';
 import InterfazAdmin from './componentes/layout/InterfazAdmin';
 import CrearCitas from './componentes/admin/CrearCitas';
 import CrearFactura from './componentes/admin/CrearFactura';
+import CrearHistoria from './componentes/admin/CrearHistoria';
+import ConsultarHistorias from './componentes/admin/ConsultarHistorias';
 
 
 //Revisar si se tiene un token
