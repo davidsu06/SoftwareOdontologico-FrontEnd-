@@ -7,7 +7,7 @@ const FormularioCrearHistoria = () => {
 
     const {historiaseleccionado, crearHistoria, modificarHistoria} = useContext(historiaContext);
     const {usuario} = useContext(authContext);
-    const {citaseleccionada, modificarCita, CitaNull} = useContext(citaContext);
+    const {citaseleccionada, modificarCita} = useContext(citaContext);
 
     const [historia, guardarHistoria] = useState({
         pacienteId: '',
@@ -26,7 +26,6 @@ const FormularioCrearHistoria = () => {
     });
 
     const {pacienteId, personalId, fecha, hora, descripcion} = historia;
-    const {_id} = historiaseleccionado;
 
     useEffect(()=>{
         let newfecha;
@@ -49,8 +48,7 @@ const FormularioCrearHistoria = () => {
             });
         }
 
-        if(historiaseleccionado){
-            CitaNull();
+        else if(historiaseleccionado){
             newfecha = historiaseleccionado.fecha.substr(0,10)
             guardarHistoria({
                 pacienteId: historiaseleccionado.pacienteId,
@@ -81,9 +79,9 @@ const FormularioCrearHistoria = () => {
         }
 
         else{
+            const {_id} = historiaseleccionado
             modificarHistoria({_id, historia});
-        }
-        
+        } 
     }
 
     return ( 

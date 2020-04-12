@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import citaContext from '../../context/citas/citaContext';
+import historiaContext from '../../context/historia/historiaContext';
 import { Link } from 'react-router-dom';
 import Modal from './Modal';
 
@@ -7,6 +8,8 @@ const Cita = ({cita}) => {
     
     const citasContext = useContext(citaContext);
     const { CitaActual, eliminarCita, CitaAsignada } = citasContext;
+
+    const {HistoriaNull} = useContext(historiaContext);
 
     const { fecha, hora, pacienteId, estado } = cita;
     
@@ -17,12 +20,16 @@ const Cita = ({cita}) => {
     const newfecha = fecha.substr(0,10)
 
     const SeleccionarCita = cita => {   
-        CitaActual(cita);        
+        CitaAsignada(cita);        
     }
 
     const onClickEliminar = id => {
         eliminarCita(id);
-        
+    }
+
+    const onClickCrearHistoria = cita =>{
+        CitaActual(cita);
+        HistoriaNull();
     }
 
     return ( 
@@ -45,7 +52,7 @@ const Cita = ({cita}) => {
                         :
                             (
                                 <div>
-                                    <Link to={'/asignar-citas'} className=" text-info" onClick={() => CitaAsignada(cita)}>Asignar</Link>
+                                    <Link to={'/asignar-citas'} className=" text-info" onClick={()=>SeleccionarCita(cita)}>Asignar</Link>
                                 </div>
                             )
                         }
@@ -54,14 +61,7 @@ const Cita = ({cita}) => {
                             {estado === 'Sin asignar'
                                 ? null
 
-                                : 
-                                    (
-                                        <Link to={'/crear-hist-clinica'} 
-                                            type="button" 
-                                            class="far fa-address-book text-dark mr-4" 
-                                            onClick={() => SeleccionarCita(cita)}
-                                        ></Link>
-                                    )
+                                :<Link to={'/crear-hist-clinica'} type="button" class="far fa-address-book text-dark mr-4" onClick={() => onClickCrearHistoria(cita)}></Link>        
                             }
 
                             <Link to={'/editar-citas'} type="button" class="fas fa-pencil-alt text-decoration-none text-dark mr-2" onClick={() => SeleccionarCita(cita)}></Link>

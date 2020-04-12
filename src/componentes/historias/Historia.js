@@ -1,16 +1,19 @@
 import React, {useContext, useState, useEffect} from 'react';
 import historiaContext from '../../context/historia/historiaContext';
+import citaContext from '../../context/citas/citaContext';
 import { Link } from 'react-router-dom';
 
 const Historia = ({historia}) => {
 
     const { HistoriaActual } = useContext(historiaContext);
+    const {CitaNull} = useContext(citaContext);
 
     const { fecha, hora, pacienteId, descripcion } = historia;
     const newfecha = fecha.substr(0,10)
 
     const SeleccionarHistoria = historia => {   
-        HistoriaActual(historia);        
+        HistoriaActual(historia);
+        CitaNull();
     }
 
     return ( 

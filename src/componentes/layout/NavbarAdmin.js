@@ -4,7 +4,6 @@ import logo from './../../media/Logo.png';
 import personaContext from '../../context/personal/personaContext';
 import pacienteContext from '../../context/pacientes/pacienteContext';
 import citaContext from '../../context/citas/citaContext';
-import historiaContext from '../../context/historia/historiaContext';
 import AuthContext from '../../context/autenticacion/authContext';
 
 const NavbarAdmin = () => {
@@ -45,13 +44,8 @@ const NavbarAdmin = () => {
         <body>
           {cargo === 'Administrador'
             ?
-<<<<<<< HEAD
-              ( */}
-                <div className="menuver border-right negrilla" id="sidebar-wrapper">
-=======
               (
-                <div className="menuver border-right" id="sidebar-wrapper">
->>>>>>> 6200bfe855844cdfffd642f4cdd32743841815b1
+                <div className="menuver border-right negrilla" id="sidebar-wrapper">
                   <div className="sidebar-heading">
                     <img src={logo} alt="logo" className="Logo"></img>
                     <p>Bienvenido {usuario.nombre}</p>
@@ -139,24 +133,9 @@ const NavbarAdmin = () => {
                       <Link to={'/consultar-facturas'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
                         Consultar facturas
                       </Link>
-<<<<<<< HEAD
                     </div>
 
-                    <a className="list-group-item list-group-item-action menuver" data-toggle="collapse" href="#collapse5" role="button" aria-expanded="false" aria-controls="collapseExample" >
-                      Historia clinica
-                    </a>
-
-                    <div className="collapse" id="collapse5">
-                      <Link to={'/crear-hist-clinica'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
-                        Crear historia clínica
-                      </Link>
-                    </div>
-
-                    <div className="collapse" id="collapse5">
-                      <Link to={'/consultar-hist-clinica'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
-                        Consultar historia clínica
-                      </Link>
-                    </div>
+                    
                     <a className="list-group-item list-group-item-action menuver" data-toggle="collapse" href="#collapse6" role="button" aria-expanded="false" aria-controls="collapseExample" >
                       Servicios
                     </a>
@@ -164,7 +143,7 @@ const NavbarAdmin = () => {
                     <div className="collapse" id="collapse6">
                       <Link to={'/crear-servicio'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
                         Crear Servicios
-=======
+                      </Link>
                     </div>  
                   </div>
               </div>
@@ -290,7 +269,6 @@ const NavbarAdmin = () => {
                     <div className="collapse" id="collapse4">
                       <Link to={'/consultar-facturas'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
                         Mis facturas
->>>>>>> 6200bfe855844cdfffd642f4cdd32743841815b1
                       </Link>
                     </div>
 
@@ -300,7 +278,10 @@ const NavbarAdmin = () => {
                       </Link>
                     </div>
                   </div>
-              </div>
+                </div>
+              )
+              :null
+          }
           <script src="./vendor/jquery/jquery.min.js"></script>
           <script src="./vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         </body>
