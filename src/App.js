@@ -25,6 +25,7 @@ import CrearCitas from './componentes/admin/CrearCitas';
 import CrearFactura from './componentes/admin/CrearFactura';
 import CrearHistoria from './componentes/admin/CrearHistoria';
 import ConsultarHistorias from './componentes/admin/ConsultarHistorias';
+import MiHistorial from './componentes/admin/MiHistorial';
 
 
 //Revisar si se tiene un token
@@ -64,6 +65,7 @@ function App() {
                         <Route exact path="/crear-hist-clinica" component={CrearHistoria}/>
                         <Route exact path="/editar-hist-clinica" component={CrearHistoria}/>
                         <Route exact path="/consultar-hist-clinica" component={ConsultarHistorias}/>
+                        <Route exact path="/mi-hist-clinica" component={MiHistorial}/>
                         <Route exact path="/crear-factura" component={CrearFactura}/>
                         <Route exact path="/crear-servicio" component={CrearServicio}/>
                       </Switch>

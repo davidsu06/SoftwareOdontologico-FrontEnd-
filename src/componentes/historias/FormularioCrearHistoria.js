@@ -78,7 +78,7 @@ const FormularioCrearHistoria = () => {
             modificarCita(asignarPaciente);
         }
 
-        else{
+        else if(historiaseleccionado){
             const {_id} = historiaseleccionado
             modificarHistoria({_id, historia});
         } 

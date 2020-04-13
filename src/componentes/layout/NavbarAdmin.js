@@ -250,15 +250,21 @@ const NavbarAdmin = () => {
                       Gestión de agenda
                     </a>
 
-                    <div className="collapse" id="collapse1">
+                    {/*<div className="collapse" id="collapse1">
                       <Link to={'/consultar-citas'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
                         Consultar citas
                       </Link>
-                    </div>
+                    </div>*/}
 
                     <div className="collapse" id="collapse1">
                       <Link to={'/mis-citas'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
                         Mis citas
+                      </Link>
+                    </div>
+
+                    <div className="collapse" id="collapse1">
+                      <Link to={'/mi-hist-clinica'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
+                        Mi Historial Clínico
                       </Link>
                     </div>
 
