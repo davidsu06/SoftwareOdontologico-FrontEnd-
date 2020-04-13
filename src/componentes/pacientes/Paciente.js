@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import pacienteContext from '../../context/pacientes/pacienteContext';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+
 
 
 const Paciente = ({paciente}) => {
@@ -10,7 +12,21 @@ const Paciente = ({paciente}) => {
 
     // Funcion se ejecuta cuando el usuario selecciona el btn de elimnar paciente
     const onClickEliminar = id => {
-        eliminarPaciente(id);
+        Swal.fire({
+            title: '¿Estas seguro?',
+            text: "No se podrá revertir esta acción!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, eliminar!'
+          }).then((result) => {
+            if (result.value) {
+                eliminarPaciente(id);
+              
+            }
+          })
+        
         
     }
 

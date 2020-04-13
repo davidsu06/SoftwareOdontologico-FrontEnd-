@@ -98,6 +98,20 @@ const FormularioCrearPaciente = () => {
             })
             return;
         }
+        if(paciente.password.trim()=== ""){
+            guardarError({
+                Mensaje: 'el campo CONTRASEÑA es obligatorio',
+                bandera: true
+            })
+            return;
+        }
+        if(paciente.password !== paciente.confpassword){
+            guardarError({
+                Mensaje: 'las CONTRASEÑAS no coinciden',
+                bandera: true
+            })
+            return
+        }
 
         console.log('enviando paciente.....');
 
@@ -180,6 +194,11 @@ const FormularioCrearPaciente = () => {
             <div className="form-group">
                 <label className="font-weight-bold">CONTRASEÑA</label>
                 <input type="password" className="form-control" name="password" onChange={Guardar} placeholder="********" value={paciente.password}/>
+            </div>
+            {paciente.confpassword !== paciente.password ? <Error mensaje={"Las contraseñas no coinciden"}/> : null} 
+            <div className="form-group">
+                <label className="font-weight-bold">CONFIRMAR CONTRASEÑA</label>
+                <input type="password" className="form-control" name="confpassword" placeholder="********" onChange={Guardar} value={paciente.confpassword}/>
             </div>
             {error.bandera ? <Error mensaje={error.Mensaje}/> : null}  
             <div className="form-group">

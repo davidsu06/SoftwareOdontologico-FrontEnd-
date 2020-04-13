@@ -2,6 +2,8 @@ import React, { useReducer } from 'react';
 import citaContext from './citaContext';
 import citaReducer from './citaReducer';
 import clienteAxios from '../../config/axios';
+import Swal from 'sweetalert2';
+
 
 import {
     CREAR_CITA,
@@ -47,7 +49,12 @@ const CitaState = props => {
             console.log(cita);
             
             const resultado = await clienteAxios.post('/api/citas', cita);
-             console.log(resultado);
+            console.log(resultado);
+            Swal.fire(
+                'Correcto',
+                'La cita se agrego correctamente',
+                'success'
+            )
             
              dispatch({
                 type: CREAR_CITA,
@@ -92,6 +99,11 @@ const CitaState = props => {
         try {
             const resultado = await clienteAxios.put(`/api/citas/${cita._id}`, cita);
             console.log(resultado);
+            Swal.fire(
+                'Correcto',
+                'La cita se edito correctamente',
+                'success'
+            )
             
             dispatch({
                 type: EDITAR_CITA,
@@ -183,4 +195,3 @@ const CitaState = props => {
 }
 
 export default CitaState;
-

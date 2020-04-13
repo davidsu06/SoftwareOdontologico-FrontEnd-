@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import pacienteContext from './pacienteContext';
 import PacienteReducer from './pacienteReducer';
 import clienteAxios from '../../config/axios';
+import Swal from 'sweetalert2';
 
 import { 
     LISTAR_PACIENTE,
@@ -28,7 +29,11 @@ const PacienteState = props => {
         // console.log(paciente);
         try {
             const resultado = await clienteAxios.post('/api/pacientes', paciente);
-             console.log(resultado);
+            Swal.fire(
+                'Correcto',
+                'El paciente se agrego correctamente',
+                'success'
+            )
             
             dispatch({
                 type: AGREGAR_PACIENTE,    
@@ -57,7 +62,13 @@ const PacienteState = props => {
     const eliminarPaciente = async pacienteId => {
         console.log(pacienteId);
         try {
+            
             await clienteAxios.delete(`/api/pacientes/${pacienteId}`);
+            Swal.fire(
+                'Eliminado!',
+                'El paciente se ha eliminado correctamente.',
+                'success'
+              )
             dispatch({
                 type: ELIMINAR_PACIENTE,
                 payload: pacienteId
@@ -90,6 +101,11 @@ const PacienteState = props => {
         try {
             const resultado = await clienteAxios.put(`/api/pacientes/${paciente._id}`, paciente);
             console.log(resultado);
+            Swal.fire(
+                'Correcto',
+                'El paciente se edito correctamente',
+                'success'
+            )
             
             dispatch({
                 type: EDITAR_PACIENTE,

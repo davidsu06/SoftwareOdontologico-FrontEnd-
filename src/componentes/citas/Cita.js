@@ -3,6 +3,7 @@ import citaContext from '../../context/citas/citaContext';
 import historiaContext from '../../context/historia/historiaContext';
 import { Link } from 'react-router-dom';
 import Modal from './Modal';
+import Swal from 'sweetalert2';
 
 const Cita = ({cita}) => {
     
@@ -20,11 +21,25 @@ const Cita = ({cita}) => {
     const newfecha = fecha.substr(0,10)
 
     const SeleccionarCita = cita => {   
-        CitaAsignada(cita);        
+        CitaActual(cita);        
     }
 
     const onClickEliminar = id => {
-        eliminarCita(id);
+        
+        Swal.fire({
+            title: '¿Estas seguro?',
+            text: "No se podrá revertir esta acción!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, eliminar!'
+          }).then((result) => {
+            if (result.value) {
+                eliminarCita(id);
+              
+            }
+          })
     }
 
     const onClickCrearHistoria = cita =>{
