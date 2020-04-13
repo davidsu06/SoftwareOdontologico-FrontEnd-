@@ -29,6 +29,7 @@ const PacienteState = props => {
         // console.log(paciente);
         try {
             const resultado = await clienteAxios.post('/api/pacientes', paciente);
+            console.log(resultado)
             Swal.fire(
                 'Correcto',
                 'El paciente se agrego correctamente',

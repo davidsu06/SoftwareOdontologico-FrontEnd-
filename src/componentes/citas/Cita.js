@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import citaContext from '../../context/citas/citaContext';
 import historiaContext from '../../context/historia/historiaContext';
 import AuthContext from '../../context/autenticacion/authContext';
@@ -81,13 +81,13 @@ const Cita = ({cita}) => {
                 <td>{newfecha}</td>
                 <td>{hora}</td>
                 {
-                    cargo != 'Paciente'
+                    cargo !== 'Paciente'
                     ? <td>{pacienteId === '0' ? 'No asignado' : pacienteId}</td>
                     : null
                 }
 
                 {
-                    cargo != 'Paciente'
+                    cargo !== 'Paciente'
                     ? <td>{estado}</td>
                     : null
                 }
@@ -96,7 +96,7 @@ const Cita = ({cita}) => {
 
                     <div className="container d-flex justify-content-between">
 
-                        { pacienteId != "0" 
+                        { pacienteId !== "0" 
                         ?
                             (
                                 <div></div>
@@ -106,7 +106,7 @@ const Cita = ({cita}) => {
                                 cargo === 'Paciente'
                                 ? 
                                 <div>
-                                    <a type="button" className="text-info" onClick={ () => onClickSolicitar()}>Solicitar</a>
+                                    <a href="#!" type="button" className="text-info" onClick={ () => onClickSolicitar()}>Solicitar</a>
                                 </div>
                                 :
                                 <div>
@@ -119,7 +119,7 @@ const Cita = ({cita}) => {
                             {estado === 'Sin asignar'
                                 ? null
 
-                                :<Link to={'/crear-hist-clinica'} type="button" class="far fa-address-book text-dark mr-4" onClick={() => onClickCrearHistoria(cita)}></Link>        
+                                :<Link to={'/crear-hist-clinica'} type="button" className="far fa-address-book text-dark mr-4" onClick={() => onClickCrearHistoria(cita)}></Link>        
                             }
 
                             {
@@ -127,7 +127,7 @@ const Cita = ({cita}) => {
                                 ? null
                                 :
                                 (
-                                    <Link to={'/editar-citas'} type="button" class="fas fa-pencil-alt text-decoration-none text-dark mr-2" onClick={() => SeleccionarCita(cita)}></Link>
+                                    <Link to={'/editar-citas'} type="button" className="fas fa-pencil-alt text-decoration-none text-dark mr-2" onClick={() => SeleccionarCita(cita)}></Link>
 
                                 )
                             }
@@ -137,7 +137,7 @@ const Cita = ({cita}) => {
                                 ? null
                                 :
                                 (
-                                    <i type="button" class="fas fa-trash-alt mx-3" onClick={() => onClickEliminar(cita._id)}></i>
+                                    <i type="button" className="fas fa-trash-alt mx-3" onClick={() => onClickEliminar(cita._id)}></i>
                                 )
                             }
 

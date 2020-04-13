@@ -101,7 +101,7 @@ const FormularioCrearCita = () => {
 
             <form onSubmit={Submit}>
 
-                {error.mensaje != '' 
+                {error.mensaje !== '' 
                 
                 ? <div className="alert alert-danger font-weight-bold">{error.mensaje}</div> 
 

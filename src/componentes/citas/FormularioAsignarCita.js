@@ -6,7 +6,7 @@ const FormularioAsignarCita = () => {
 
     const citasContext = useContext(citaContext);
     const { citasignada, modificarCita } = citasContext;
-    const {fecha, hora, pacienteId, _id} = citasignada;
+    const {fecha, hora, _id} = citasignada;
     // console.log(fecha)
     // console.log(hora)
     // console.log(pacienteId)

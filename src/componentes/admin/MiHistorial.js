@@ -13,6 +13,7 @@ const MiHistorial = () => {
 
     useEffect(() => {
       usuarioAutenticado();
+      // eslint-disable-next-line
     }, [])
 
     return (

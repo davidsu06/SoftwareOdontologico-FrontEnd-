@@ -14,6 +14,7 @@ const MisCitas = () => {
 
     useEffect(() => {
         usuarioAutenticado();
+        // eslint-disable-next-line
     }, [])
 
     const citasContext = useContext(citaContext);
@@ -23,7 +24,7 @@ const MisCitas = () => {
         if (usuario != null) {
             listarCitasPaciente(usuario.documento)
         }
-    }, [usuario])
+    }, [usuario, listarCitasPaciente])
 
     return ( 
         <>

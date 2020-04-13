@@ -59,7 +59,7 @@ const FormularioFacturas = () => {
                 {facturas.length === 0
                 ? (<option>no hay servicios</option>  )
                 : facturas.map(servicios => (
-                <option value={servicios._id}>{servicios.nombre_servicio}</option> 
+                <option key={servicios._id} value={servicios._id}>{servicios.nombre_servicio}</option> 
                     ))
                                 }
                 </select>

@@ -13,6 +13,7 @@ const CrearPacientes = () => {
 
     useEffect(() => {
       usuarioAutenticado();
+      // eslint-disable-next-line
     }, [])
 
     const pacientesContext = useContext(pacienteContext);

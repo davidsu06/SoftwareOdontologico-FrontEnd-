@@ -20,6 +20,7 @@ const ListadoCita = () => {
 
     useEffect(() => {
         listarCitas();
+        // eslint-disable-next-line
     }, [])
 
     const SelectDate = e => {
@@ -79,12 +80,12 @@ const ListadoCita = () => {
                                         <th scope="col">Fecha</th>
                                         <th scope="col">Hora</th>
                                         {
-                                            cargo != 'Paciente'
+                                            cargo !== 'Paciente'
                                             ? <th scope="col">Paciente ID</th>
                                             : null
                                         }
                                         {
-                                            cargo != 'Paciente'
+                                            cargo !== 'Paciente'
                                             ? <th scope="col">Estado</th>
                                             : null
                                         }
@@ -99,7 +100,7 @@ const ListadoCita = () => {
                                             citasfiltradas.map(citafiltrada => (
                                                 <Cita
                                                 
-                                                key={citafiltrada.id}
+                                                key={citafiltrada._id}
                                                 cita={citafiltrada}
                                                 />
                                             ))
@@ -107,8 +108,7 @@ const ListadoCita = () => {
                                         :
                                         (citas.map(cita => (
                                             <Cita
-                                            
-                                            key={cita.id}
+                                            key={cita._id}
                                             cita={cita}
                                             />
                                         )))

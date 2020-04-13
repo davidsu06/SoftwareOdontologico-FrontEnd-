@@ -12,6 +12,7 @@ const CrearFactura = () => {
 
     useEffect(() => {
       usuarioAutenticado();
+      // eslint-disable-next-line
     }, [])
 
     return (  

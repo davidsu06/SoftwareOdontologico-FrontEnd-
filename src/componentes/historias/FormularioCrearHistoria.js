@@ -58,6 +58,7 @@ const FormularioCrearHistoria = () => {
                 descripcion: historiaseleccionado.descripcion
              });
         }
+        // eslint-disable-next-line
     },[usuario, citaseleccionada, historiaseleccionado]);
 
     const changeHistoria = e => {

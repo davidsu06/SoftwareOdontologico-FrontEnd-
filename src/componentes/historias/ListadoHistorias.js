@@ -10,6 +10,7 @@ const ListadoHistorias = () => {
 
     useEffect(() => {
         listarHistoria();
+        // eslint-disable-next-line
     }, [])
 
     return ( 

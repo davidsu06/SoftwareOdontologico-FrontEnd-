@@ -14,7 +14,7 @@ import {
     EDITAR_CITA,
     FILTRAR_CITAS,
     CITA_ASIGNADA,
-    ASIGNAR_CITA,
+    //ASIGNAR_CITA,
     CITAS_PACIENTE,
 } from '../../types';
 

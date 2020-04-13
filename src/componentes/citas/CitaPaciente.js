@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext} from 'react';
 import citaContext from '../../context/citas/citaContext';
 import AuthContext from '../../context/autenticacion/authContext';
 import Swal from 'sweetalert2';
@@ -48,7 +48,7 @@ const CitaPaciente = ({cita}) => {
                 <td>{newfecha}</td>
                 <td>{hora}</td>
                 <td className="text-center">
-                    <a type="button" className="text-info" onClick={ () => onClickCancelar(cita) }>Cancelar cita</a>
+                    <a href="#!" type="button" className="text-info" onClick={ () => onClickCancelar(cita) }>Cancelar cita</a>
                 </td>
             </tr>
         </>

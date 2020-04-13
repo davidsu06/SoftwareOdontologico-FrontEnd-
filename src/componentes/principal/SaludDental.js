@@ -81,7 +81,8 @@ const SaludDental = () => {
 
                 <section className="col-md-3 bg-success text-white p-3">
                     <iframe src="https://www.youtube.com/embed/jK5imyP1VQ4" 
-                        frameBorder="0" 
+                        frameBorder="0"
+                        title="Uso correcto de la seda dental" 
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                         allowFullScreen
                         className="w-100 h-50"

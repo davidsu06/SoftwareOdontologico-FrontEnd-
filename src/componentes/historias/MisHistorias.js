@@ -11,6 +11,7 @@ const ListadoHistorias = () => {
     
     useEffect(() => {
         listarHistoria();
+        // eslint-disable-next-line
     }, [])
 
     if(usuario){
@@ -33,8 +34,8 @@ const ListadoHistorias = () => {
                                 <tr>
                                     <th scope="col">Fecha</th>
                                     <th scope="col">Hora</th>
-                                    <th scope="col">Id. Paciente</th>
                                     <th scope="col">Descripción</th>
+                                    <th scope="col">Id. Paciente</th>
                                     <th scope="col">Médico de la cita</th>
                                 </tr>
                             </thead>

@@ -12,6 +12,7 @@ const ConsultarPacientes = () => {
 
     useEffect(() => {
       usuarioAutenticado();
+      // eslint-disable-next-line
     }, [])
 
     return ( 

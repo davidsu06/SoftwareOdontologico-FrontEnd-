@@ -12,6 +12,7 @@ const ConsultarPersonal = () => {
 
     useEffect(() => {
       usuarioAutenticado();
+      // eslint-disable-next-line
     }, [])
 
     return ( 

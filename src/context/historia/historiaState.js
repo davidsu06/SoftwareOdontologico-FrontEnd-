@@ -25,6 +25,7 @@ const HistoriaState = props => {
     //Funciones
     const crearHistoria = async historia =>{
         try {
+            console.log(historia)
             const respuesta = await clienteAxios.post('/api/historias', historia);
             console.log(respuesta)
             Swal.fire(
@@ -45,7 +46,6 @@ const HistoriaState = props => {
     const listarHistoria = async () =>{
         try {
             const respuesta = await clienteAxios.get('/api/historias');
-            console.log(respuesta)
             dispatch({
                 type: LISTAR_HISTORIA,
                 payload: respuesta.data.historias
