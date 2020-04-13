@@ -118,6 +118,11 @@ const CitaState = props => {
     const eliminarCita = async citaid => {
         try {
             await clienteAxios.delete(`/api/citas/${citaid}`);
+            Swal.fire(
+                'Eliminada!',
+                'La cita se ha eliminado correctamente.',
+                'success'
+              )
             dispatch({
                 type: ELIMINAR_CITA,
                 payload: citaid
