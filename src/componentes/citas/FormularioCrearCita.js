@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import citaContext from '../../context/citas/citaContext';
+import Swal from 'sweetalert2';
 
 const FormularioCrearCita = () => {
     
@@ -24,8 +25,7 @@ const FormularioCrearCita = () => {
     const [cita, guardarCita] = useState({
         fecha: '',
         hora: '',
-        pacienteId: '',
-        estado: 'Sin asignar'
+        pacienteId: '0'
     });
 
 
@@ -38,8 +38,7 @@ const FormularioCrearCita = () => {
             guardarCita({
                 fecha: '',
                 hora: '',
-                pacienteId: '',
-                estado: 'Sin asignar'
+                pacienteId: '0',
             })
         }
     }, [citaseleccionada])
@@ -73,9 +72,19 @@ const FormularioCrearCita = () => {
         }
 
         if (citaseleccionada != null) 
-            modificarCita(cita) 
-        else
+        {
+            modificarCita(cita)
+            Swal.fire(
+                'Correcto',
+                'La cita se editó correctamente',
+                'success'
+            ) 
+        }
+        else{
+            cita.estado = 'Sin asignar'
+            console.log(cita)
             crearCita(cita);
+        }
 
         guardarCita({
             ...cita,

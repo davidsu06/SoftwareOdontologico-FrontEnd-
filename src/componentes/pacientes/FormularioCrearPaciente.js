@@ -10,7 +10,8 @@ const FormularioCrearPaciente = () => {
         fnacimiento:'',        
         telefono:'',
         direccion:'',
-        password:''
+        password:'',
+        cargo: 'Paciente'
     });
 
     const pacientesContext = useContext(pacienteContext);
@@ -29,7 +30,8 @@ const FormularioCrearPaciente = () => {
                 fnacimiento:'',        
                 telefono:'',
                 direccion:'',
-                password:''
+                password:'',
+                cargo: 'Paciente'
             })
         }
     }, [pacienteseleccionado])

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import logo from './../../media/Logo.png';
 import personaContext from '../../context/personal/personaContext';
@@ -21,15 +21,14 @@ const NavbarAdmin = () => {
   let cargo;
 
   if(usuario){
-    if(usuario.cargo){
-      cargo = usuario.cargo;
-    }
-
-    else{
-      cargo = 'Paciente';
-    }
-    
+    cargo = usuario.cargo
   }
+
+  // if(usuario){
+  //   if(usuario.cargo){
+  //     cargo = usuario.cargo;
+  //   }
+  // }
 
   return (  
       <>
@@ -247,14 +246,14 @@ const NavbarAdmin = () => {
                   <div className="list-group list-group-flush menuver">
                     
                     <a className="list-group-item list-group-item-action menuver" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapseExample" >
-                      Gestión de agenda
+                      Citas
                     </a>
 
-                    {/*<div className="collapse" id="collapse1">
+                    <div className="collapse" id="collapse1">
                       <Link to={'/consultar-citas'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
                         Consultar citas
                       </Link>
-                    </div>*/}
+                    </div>
 
                     <div className="collapse" id="collapse1">
                       <Link to={'/mis-citas'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">

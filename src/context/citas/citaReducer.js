@@ -8,7 +8,7 @@ import {
     FILTRAR_CITAS,
     ASIGNAR_CITA,
     CITA_ASIGNADA,
-    CITAS_PACIENTE
+    CITAS_PACIENTE,
 } from '../../types';
 
 export default (state, action) => {

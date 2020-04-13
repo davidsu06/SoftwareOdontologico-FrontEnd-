@@ -62,6 +62,7 @@ function App() {
                         <Route exact path="/crear-citas" component={CrearCitas}/>
                         <Route exact path="/editar-citas" component={CrearCitas}/>
                         <Route exact path="/asignar-citas" component={AsignarCitas}/>
+                        <Route exact path="/mis-citas" component={MisCitas}/>
                         <Route exact path="/crear-hist-clinica" component={CrearHistoria}/>
                         <Route exact path="/editar-hist-clinica" component={CrearHistoria}/>
                         <Route exact path="/consultar-hist-clinica" component={ConsultarHistorias}/>

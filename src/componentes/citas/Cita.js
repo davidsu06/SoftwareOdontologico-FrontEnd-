@@ -1,18 +1,27 @@
 import React, { useContext, useState, useEffect } from 'react';
 import citaContext from '../../context/citas/citaContext';
 import historiaContext from '../../context/historia/historiaContext';
+import AuthContext from '../../context/autenticacion/authContext';
 import { Link } from 'react-router-dom';
 import Modal from './Modal';
 import Swal from 'sweetalert2';
 
 const Cita = ({cita}) => {
-    
+
+    const authContext = useContext(AuthContext);
+    const { usuario } = authContext;
+    let cargo; 
+
+    if(usuario){
+        cargo = usuario.cargo;
+    }
+
     const citasContext = useContext(citaContext);
-    const { CitaActual, eliminarCita, CitaAsignada } = citasContext;
+    const { CitaActual, eliminarCita, modificarCita, CitaAsignada } = citasContext;
 
     const {HistoriaNull} = useContext(historiaContext);
 
-    const { fecha, hora, pacienteId, estado } = cita;
+    const { fecha, hora, pacienteId, estado, _id } = cita;
     
     // console.log(fecha)
     // console.log(hora)
@@ -47,27 +56,61 @@ const Cita = ({cita}) => {
         HistoriaNull();
     }
 
+    const onClickSolicitar = () => {
+        modificarCita( 
+            {
+                _id, 
+                estado: 'Asignado',
+                pacienteId: usuario.documento
+            } 
+        )
+        Swal.fire(
+            'Correcto',
+            'Su cita se asignó correctamente',
+            'success'
+        )
+    }
+
     return ( 
         <>
+        {
+            cargo === 'Paciente' && estado === 'Asignado'
+            ? null
+            :
             <tr>
                 <td>{newfecha}</td>
                 <td>{hora}</td>
-                <td>{pacienteId != '' ? pacienteId : 'No asignado'}</td>
-                <td>{estado}</td>
+                {
+                    cargo != 'Paciente'
+                    ? <td>{pacienteId === '0' ? 'No asignado' : pacienteId}</td>
+                    : null
+                }
 
+                {
+                    cargo != 'Paciente'
+                    ? <td>{estado}</td>
+                    : null
+                }
+                
                 <td className="text-center">
 
                     <div className="container d-flex justify-content-between">
 
-                        { pacienteId != '' 
+                        { pacienteId != "0" 
                         ?
                             (
                                 <div></div>
                             )
                         :
                             (
+                                cargo === 'Paciente'
+                                ? 
                                 <div>
-                                    <Link to={'/asignar-citas'} className=" text-info" onClick={()=>SeleccionarCita(cita)}>Asignar</Link>
+                                    <a type="button" className="text-info" onClick={ () => onClickSolicitar()}>Solicitar</a>
+                                </div>
+                                :
+                                <div>
+                                    <Link to={'/asignar-citas'} className=" text-info" onClick={()=>CitaAsignada(cita)}>Asignar</Link>
                                 </div>
                             )
                         }
@@ -79,9 +122,24 @@ const Cita = ({cita}) => {
                                 :<Link to={'/crear-hist-clinica'} type="button" class="far fa-address-book text-dark mr-4" onClick={() => onClickCrearHistoria(cita)}></Link>        
                             }
 
-                            <Link to={'/editar-citas'} type="button" class="fas fa-pencil-alt text-decoration-none text-dark mr-2" onClick={() => SeleccionarCita(cita)}></Link>
+                            {
+                                cargo === 'Paciente'
+                                ? null
+                                :
+                                (
+                                    <Link to={'/editar-citas'} type="button" class="fas fa-pencil-alt text-decoration-none text-dark mr-2" onClick={() => SeleccionarCita(cita)}></Link>
 
-                            <i type="button" class="fas fa-trash-alt mx-3" onClick={() => onClickEliminar(cita._id)}></i>
+                                )
+                            }
+
+                            {
+                                cargo === 'Paciente'
+                                ? null
+                                :
+                                (
+                                    <i type="button" class="fas fa-trash-alt mx-3" onClick={() => onClickEliminar(cita._id)}></i>
+                                )
+                            }
 
                             <Modal />
                             
@@ -91,11 +149,10 @@ const Cita = ({cita}) => {
                     
                 </td>
 
-
-                
-
             </tr>
 
+        }
+            
         </>
      );
 }

@@ -15,7 +15,7 @@ import {
     FILTRAR_CITAS,
     CITA_ASIGNADA,
     ASIGNAR_CITA,
-    CITAS_PACIENTE
+    CITAS_PACIENTE,
 } from '../../types';
 
 
@@ -61,7 +61,7 @@ const CitaState = props => {
                 payload: cita
             })
         } catch (error) {
-            console.log(error);                
+            console.log(error.response);                
         }
     }
 
@@ -97,20 +97,17 @@ const CitaState = props => {
 
     const modificarCita = async cita => {
         try {
+            console.log(cita)
             const resultado = await clienteAxios.put(`/api/citas/${cita._id}`, cita);
-            console.log(resultado);
-            Swal.fire(
-                'Correcto',
-                'La cita se edito correctamente',
-                'success'
-            )
-            
+            console.log(resultado)
+                        
             dispatch({
                 type: EDITAR_CITA,
                 payload: cita
             })
+            listarCitas()
         }catch (error) {
-            console.log(error);
+            console.log(error.response);
             
         }
     }

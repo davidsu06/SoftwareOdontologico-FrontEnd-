@@ -18,7 +18,6 @@ export const LISTAR_CITA = 'LISTAR_CITA';
 export const EDITAR_CITA = 'EDITAR_CITA';
 export const ELIMINAR_CITA = 'ELIMINAR_CITA';
 export const FILTRAR_CITAS = 'FILTRAR_CITAS';
-export const ADQUIRIR_CITA = 'ADQUIRIR_CITA';
 export const CITA_ACTUAL = 'CITA_ACTUAL';
 export const CITA_NULL = 'CITA_NULL';
 export const CITA_ASIGNADA = 'CITA_ASIGNADA';

@@ -1,22 +1,21 @@
 import React, { useState, useContext } from 'react';
 import citaContext from '../../context/citas/citaContext';
+import Swal from 'sweetalert2';
 
 const FormularioAsignarCita = () => {
 
     const citasContext = useContext(citaContext);
     const { citasignada, modificarCita } = citasContext;
     const {fecha, hora, pacienteId, _id} = citasignada;
-    console.log(fecha)
-    console.log(hora)
-    console.log(pacienteId)
-    console.log(_id)
+    // console.log(fecha)
+    // console.log(hora)
+    // console.log(pacienteId)
+    // console.log(_id)
+
+    const newfecha = fecha.substr(0,10)
 
     const [asignarPaciente, guardarasignarPaciente] = useState({
-        pacienteId: '',
-        _id: _id,
-        fecha: fecha,
-        hora: hora,
-        estado: 'Asignado'
+        pacienteId: ''
     });
 
     const [idPaciente, actualizarIdPaciente] = useState({
@@ -33,17 +32,24 @@ const FormularioAsignarCita = () => {
 
     const Submit = e => {
         e.preventDefault();
-
+        
         actualizarIdPaciente({
             pacienteId: asignarPaciente.pacienteId
         })
 
-        console.log(asignarPaciente)
+        modificarCita({
+            _id,
+            pacienteId: asignarPaciente.pacienteId,
+            estado: 'Asignado'
+        })
 
-        modificarCita(asignarPaciente)
+        Swal.fire(
+            'Correcto',
+            'La cita se asignó correctamente',
+            'success'
+        )
 
         guardarasignarPaciente({
-            ...asignarPaciente,
             pacienteId: ''
         })
     }
@@ -62,7 +68,7 @@ const FormularioAsignarCita = () => {
                                 <h5 className="card-title font-weight-bold">Información de la cita</h5>
 
                                 <p className="card-text">
-                                    Fecha: {fecha}
+                                    Fecha: {newfecha}
                                 </p>
 
                                 <p className="card-text">
