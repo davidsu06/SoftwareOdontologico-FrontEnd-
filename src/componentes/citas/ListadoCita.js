@@ -1,16 +1,26 @@
 import React, { useContext, useEffect } from 'react';
 import citaContext from '../../context/citas/citaContext';
+import AuthContext from '../../context/autenticacion/authContext';
 import Cita from './Cita';
 import InfiniteCalendar from 'react-infinite-calendar';
 import 'react-infinite-calendar/styles.css'; 
 
 const ListadoCita = () => {
 
+    const authContext = useContext(AuthContext);
+    const { usuario } = authContext;
+    let cargo; 
+
+    if(usuario){
+        cargo = usuario.cargo;
+    }
+
     const citasContext = useContext(citaContext);
     const { listarCitas, citas, filtrarCitas, citasfiltradas, searching } = citasContext;
 
     useEffect(() => {
         listarCitas();
+        // eslint-disable-next-line
     }, [])
 
     const SelectDate = e => {
@@ -69,8 +79,16 @@ const ListadoCita = () => {
                                     <tr>
                                         <th scope="col">Fecha</th>
                                         <th scope="col">Hora</th>
-                                        <th scope="col">Paciente ID</th>
-                                        <th scope="col">Estado</th>
+                                        {
+                                            cargo !== 'Paciente'
+                                            ? <th scope="col">Paciente ID</th>
+                                            : null
+                                        }
+                                        {
+                                            cargo !== 'Paciente'
+                                            ? <th scope="col">Estado</th>
+                                            : null
+                                        }
                                         <th scope="col" className="text-center">Acciones</th>
                                     </tr>
                                 </thead>
@@ -82,7 +100,7 @@ const ListadoCita = () => {
                                             citasfiltradas.map(citafiltrada => (
                                                 <Cita
                                                 
-                                                key={citafiltrada.id}
+                                                key={citafiltrada._id}
                                                 cita={citafiltrada}
                                                 />
                                             ))
@@ -90,8 +108,7 @@ const ListadoCita = () => {
                                         :
                                         (citas.map(cita => (
                                             <Cita
-                                            
-                                            key={cita.id}
+                                            key={cita._id}
                                             cita={cita}
                                             />
                                         )))

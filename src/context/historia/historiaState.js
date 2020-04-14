@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import historiaContext from './historiaContext';
 import historiaReducer from './historiaReducer';
 import clienteAxios from '../../config/axios';
+import Swal from 'sweetalert2';
 
 import {
     LISTAR_HISTORIA,
@@ -24,8 +25,14 @@ const HistoriaState = props => {
     //Funciones
     const crearHistoria = async historia =>{
         try {
+            console.log(historia)
             const respuesta = await clienteAxios.post('/api/historias', historia);
             console.log(respuesta)
+            Swal.fire(
+                'Correcto',
+                'La historia se agrego correctamente',
+                'success'
+            )
             dispatch({
                 type: AGREGAR_HISTORIA,
                 payload: historia
@@ -39,7 +46,6 @@ const HistoriaState = props => {
     const listarHistoria = async () =>{
         try {
             const respuesta = await clienteAxios.get('/api/historias');
-            console.log(respuesta)
             dispatch({
                 type: LISTAR_HISTORIA,
                 payload: respuesta.data.historias
@@ -55,6 +61,11 @@ const HistoriaState = props => {
             const {_id, historia} = historial;
             const resultado = await clienteAxios.put(`/api/historias/${_id}`, historia);
             console.log(resultado);
+            Swal.fire(
+                'Correcto',
+                'La historia se edito correctamente',
+                'success'
+            )
             
             dispatch({
                 type: MODIFICAR_HISTORIA,

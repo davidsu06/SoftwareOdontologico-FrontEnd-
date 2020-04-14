@@ -47,7 +47,6 @@ const AuthState = props =>{
 
         try {
             const respuesta = await clienteAxios.get(`/api/auth`);
-            console.log(respuesta)
             dispatch({
                 type: OBTENER_USUARIO,
                 payload: respuesta.data.tipoUsuario
@@ -67,7 +66,6 @@ const AuthState = props =>{
                 type: LOGIN_EXITOSO,
                 payload: respuesta.data
             })
-            const {documento} = datos;
             usuarioAutenticado();
             // sesionActual();
         } catch (error) {

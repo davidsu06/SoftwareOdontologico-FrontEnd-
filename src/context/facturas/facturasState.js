@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import facturasContext from './facturasContext';
 import facturasReducer from './facturasReducer';
 import clienteAxios from '../../config/axios';
+import Swal from 'sweetalert2';
 
 import { 
     CREAR_FACTURA,
@@ -25,6 +26,11 @@ const FacturasState = props => {
             console.log(facturas);
             const resultado = await clienteAxios.post('/api/facturas', facturas);
             console.log(facturas);
+            Swal.fire(
+                'Correcto',
+                'La factura se agrego correctamente',
+                'success'
+            )
             dispatch({
                 type: CREAR_FACTURA,    
                 payload: resultado.data

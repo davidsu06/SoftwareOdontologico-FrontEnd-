@@ -13,7 +13,7 @@ const Footer = () => {
         <Footer>
             <ul className="navbar justify-content-center" >
                 <li className="nav-item">
-                    <a style={{color: 'white'}}><b>Software Odontológico {year}</b></a>
+                    <a href="#!" style={{color: 'white'}}><b>Software Odontológico {year}</b></a>
                 </li>
             </ul>  
         </Footer> 

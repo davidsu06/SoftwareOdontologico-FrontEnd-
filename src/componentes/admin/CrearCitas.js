@@ -14,6 +14,7 @@ const CrearCitas = () => {
 
     useEffect(() => {
       usuarioAutenticado();
+      // eslint-disable-next-line
     }, [])
 
     const citasContext = useContext(citaContext);

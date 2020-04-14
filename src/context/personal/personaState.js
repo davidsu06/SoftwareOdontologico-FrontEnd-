@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import personaContext from './personaContext';
 import personaReducer from './personaReducer';
 import clienteAxios from '../../config/axios';
+import Swal from 'sweetalert2';
 
 import { LISTAR_PERSONA, PERSONAL_ACTUAL, AGREGAR_PERSONAL, EDITAR_PERSONAL, PERSONA_NULL, ELIMINAR_PERSONA } from '../../types';
 
@@ -49,6 +50,11 @@ const PersonaState = props => {
         try {
             const resultado = await clienteAxios.post('/api/personal', persona);
             console.log(resultado);
+            Swal.fire(
+                'Correcto',
+                'El personal se agrego correctamente',
+                'success'
+            )
             dispatch({
                 type: AGREGAR_PERSONAL,
                 payload: persona
@@ -63,6 +69,11 @@ const PersonaState = props => {
         
         try {
             const resultado = await clienteAxios.put(`/api/personal/${persona._id}`, persona);
+            Swal.fire(
+                'Correcto',
+                'El personal se edito correctamente',
+                'success'
+            )
             dispatch({
                 type: EDITAR_PERSONAL,
                 payload: resultado.data.personal
@@ -75,6 +86,11 @@ const PersonaState = props => {
     const eliminarPersona = async id => {
         try {
             await clienteAxios.delete(`api/personal/${id}`)
+            Swal.fire(
+                'Eliminado!',
+                'El personal se ha eliminado correctamente.',
+                'success'
+              )
             dispatch({
                 type: ELIMINAR_PERSONA,
                 payload: id

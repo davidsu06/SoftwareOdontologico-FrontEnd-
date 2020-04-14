@@ -204,12 +204,12 @@ const FormularioCrearPersonal = () => {
 
             <div className="form-group">
                 <label className="font-weight-bold">CONTRASEÑA</label>
-                <input type="password" className="form-control" name="password" onChange={Guardar} value={personal.password}/>
+                <input type="password" className="form-control" name="password" placeholder="********" onChange={Guardar} value={personal.password}/>
             </div>
             {personal.confpassword !== personal.password ? <Error mensaje={"Las contraseñas no coinciden"}/> : null} 
             <div className="form-group">
                 <label className="font-weight-bold">CONFIRMAR CONTRASEÑA</label>
-                <input type="password" className="form-control" name="confpassword" onChange={Guardar} value={personal.confpassword}/>
+                <input type="password" className="form-control" name="confpassword" placeholder="********" onChange={Guardar} value={personal.confpassword}/>
             </div>
             {error.bandera ? <Error mensaje={error.Mensaje}/> : null}  
             <div className="form-group">

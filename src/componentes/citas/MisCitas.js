@@ -13,7 +13,8 @@ const MisCitas = () => {
     const {  usuario, usuarioAutenticado } = authContext;
 
     useEffect(() => {
-         usuarioAutenticado();
+        usuarioAutenticado();
+        // eslint-disable-next-line
     }, [])
 
     const citasContext = useContext(citaContext);
@@ -22,9 +23,8 @@ const MisCitas = () => {
     useEffect(() => {
         if (usuario != null) {
             listarCitasPaciente(usuario.documento)
-        }else{
         }
-    }, [usuario])
+    }, [usuario, listarCitasPaciente])
 
     return ( 
         <>
@@ -40,41 +40,41 @@ const MisCitas = () => {
 
                     <div className="container mt-4 col-8">
 
-                        <table className="table table-bordered">
+                    {
+                        citasfiltradas.length === 0 
+                        ? 
+                        (<h3 className="text-center">No tiene ninguna cita pendiente</h3>)
+                        :
+                        (
+                            <table className="table table-bordered">
 
-                            <thead>
+                                <thead>
+                                    
+                                    <tr>
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col">Hora</th>
+                                        <th scope="col" className="text-center">Acciones</th>
+                                    </tr>
+
+                                </thead>
+
+                                <tbody>
+
+                                        {
+                                        citasfiltradas.map( citafiltrada => (
+                                            <CitaPaciente 
+                                                key={citafiltrada._id}
+                                                cita={citafiltrada}
+                                            />
+                                        ))
+                                        }
                                 
-                                <tr>
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col">Hora</th>
-                                    <th scope="col">Estado</th>
-                                    <th scope="col">Acciones</th>
-                                </tr>
 
-                            </thead>
+                                </tbody>
 
-                            <tbody>
-
-                            {
-                                citasfiltradas.length === 0 
-                                ? 
-                                (<h3 className="text-center">No existen citas</h3>)
-                                :
-                                (
-                                    citasfiltradas.map( citafiltrada => (
-                                        <CitaPaciente 
-                                            key={citafiltrada._id}
-                                            cita={citafiltrada}
-                                        />
-                                    ))
-                                )
-
-                            }
-
-                            </tbody>
-
-                        </table>
-
+                            </table>
+                        )
+                    }
                     </div>
 
                 </div>

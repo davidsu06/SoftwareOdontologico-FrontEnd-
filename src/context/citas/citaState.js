@@ -2,6 +2,8 @@ import React, { useReducer } from 'react';
 import citaContext from './citaContext';
 import citaReducer from './citaReducer';
 import clienteAxios from '../../config/axios';
+import Swal from 'sweetalert2';
+
 
 import {
     CREAR_CITA,
@@ -12,8 +14,8 @@ import {
     EDITAR_CITA,
     FILTRAR_CITAS,
     CITA_ASIGNADA,
-    ASIGNAR_CITA,
-    CITAS_PACIENTE
+    //ASIGNAR_CITA,
+    CITAS_PACIENTE,
 } from '../../types';
 
 
@@ -47,14 +49,19 @@ const CitaState = props => {
             console.log(cita);
             
             const resultado = await clienteAxios.post('/api/citas', cita);
-             console.log(resultado);
+            console.log(resultado);
+            Swal.fire(
+                'Correcto',
+                'La cita se agrego correctamente',
+                'success'
+            )
             
              dispatch({
                 type: CREAR_CITA,
                 payload: cita
             })
         } catch (error) {
-            console.log(error);                
+            console.log(error.response);                
         }
     }
 
@@ -90,15 +97,17 @@ const CitaState = props => {
 
     const modificarCita = async cita => {
         try {
+            console.log(cita)
             const resultado = await clienteAxios.put(`/api/citas/${cita._id}`, cita);
-            console.log(resultado);
-            
+            console.log(resultado)
+                        
             dispatch({
                 type: EDITAR_CITA,
                 payload: cita
             })
+            listarCitas()
         }catch (error) {
-            console.log(error);
+            console.log(error.response);
             
         }
     }
@@ -106,6 +115,11 @@ const CitaState = props => {
     const eliminarCita = async citaid => {
         try {
             await clienteAxios.delete(`/api/citas/${citaid}`);
+            Swal.fire(
+                'Eliminada!',
+                'La cita se ha eliminado correctamente.',
+                'success'
+              )
             dispatch({
                 type: ELIMINAR_CITA,
                 payload: citaid
@@ -183,4 +197,3 @@ const CitaState = props => {
 }
 
 export default CitaState;
-

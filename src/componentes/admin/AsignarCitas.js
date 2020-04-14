@@ -13,6 +13,7 @@ const AsignarCitas = () => {
 
     useEffect(() => {
       usuarioAutenticado();
+      // eslint-disable-next-line
     }, [])
 
     return (

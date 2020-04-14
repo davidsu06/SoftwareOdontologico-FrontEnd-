@@ -26,6 +26,7 @@ import CrearCitas from './componentes/admin/CrearCitas';
 import CrearFactura from './componentes/admin/CrearFactura';
 import CrearHistoria from './componentes/admin/CrearHistoria';
 import ConsultarHistorias from './componentes/admin/ConsultarHistorias';
+import MiHistorial from './componentes/admin/MiHistorial';
 
 
 //Revisar si se tiene un token

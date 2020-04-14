@@ -1,10 +1,11 @@
-import React,{useState, Fragment, useContext, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import NavbarAdmin from '../layout/NavbarAdmin';
 import MenuAdmin from '../layout/MenuAdmin';
-import ListadoPaciente from '../pacientes/ListadoPaciente';
+import MisHistorias from '../historias/MisHistorias';
 import AuthContext from '../../context/autenticacion/authContext';
 
-const ConsultarPacientes = () => {
+const MiHistorial = () => {
+
     const [bandera,actualizarBandera]=useState(true);
 
     const authContext = useContext(AuthContext);
@@ -15,21 +16,26 @@ const ConsultarPacientes = () => {
       // eslint-disable-next-line
     }, [])
 
-    return ( 
+    return (
         <>
-        <Fragment>
             <div className="d-flex" id="wrapper">
-               {bandera ?  <NavbarAdmin/> : null}
-                <div id="page-content-wrapper">
-                  <MenuAdmin titulo="Consultar Pacientes" actualizarBandera={actualizarBandera} Bandera={bandera}/>
+
+            {bandera ?  <NavbarAdmin/> : null}
+            <div id="page-content-wrapper">
+
+                <MenuAdmin titulo="Mi Historial Clínico" actualizarBandera={actualizarBandera} Bandera={bandera}/>
+
                 <div className="container-fluid">
-                <ListadoPaciente/>
+
+                <MisHistorias/>
+
                 </div>
+
             </div>
-          </div> 
-        </Fragment> 
+
+            </div> 
         </>
-     );
+      );
 }
  
-export default ConsultarPacientes;
+export default MiHistorial;

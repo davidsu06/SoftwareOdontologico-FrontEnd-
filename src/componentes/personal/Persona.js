@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import personaContext from '../../context/personal/personaContext';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 
 const Persona = ({persona}) => {
@@ -10,7 +11,21 @@ const Persona = ({persona}) => {
 
     // Funcion se ejecuta cuando el usuario seleecciona el btn de elimnar persona
     const onClickEliminar = id => {
-        eliminarPersona(id);
+        
+        Swal.fire({
+            title: 'Estas seguro?',
+            text: "No se podrá revertir esta acción!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, eliminar!'
+          }).then((result) => {
+            if (result.value) {
+                eliminarPersona(id);
+              
+            }
+          })
         
     }
 
