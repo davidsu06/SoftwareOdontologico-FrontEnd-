@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import logo from './../../media/Logo.png';
 import personaContext from '../../context/personal/personaContext';
@@ -22,15 +22,14 @@ const NavbarAdmin = () => {
   let cargo;
 
   if(usuario){
-    if(usuario.cargo){
-      cargo = usuario.cargo;
-    }
-
-    else{
-      cargo = 'Paciente';
-    }
-    
+    cargo = usuario.cargo
   }
+
+  // if(usuario){
+  //   if(usuario.cargo){
+  //     cargo = usuario.cargo;
+  //   }
+  // }
 
   return (  
       <>
@@ -45,13 +44,8 @@ const NavbarAdmin = () => {
         <body>
           {cargo === 'Administrador'
             ?
-<<<<<<< HEAD
-              ( */}
-                <div className="menuver border-right negrilla" id="sidebar-wrapper">
-=======
               (
                 <div className="menuver border-right" id="sidebar-wrapper">
->>>>>>> 6200bfe855844cdfffd642f4cdd32743841815b1
                   <div className="sidebar-heading">
                     <img src={logo} alt="logo" className="Logo"></img>
                     <p>Bienvenido {usuario.nombre}</p>
@@ -139,33 +133,22 @@ const NavbarAdmin = () => {
                       <Link to={'/consultar-facturas'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
                         Consultar facturas
                       </Link>
-<<<<<<< HEAD
                     </div>
-
-                    <a className="list-group-item list-group-item-action menuver" data-toggle="collapse" href="#collapse5" role="button" aria-expanded="false" aria-controls="collapseExample" >
-                      Historia clinica
+                    <a className="list-group-item list-group-item-action menuver" data-toggle="collapse" href="#collapse5" role="button" aria-expanded="false" aria-controls="collapseExample">
+                      Getionar Servicios
                     </a>
 
                     <div className="collapse" id="collapse5">
-                      <Link to={'/crear-hist-clinica'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
-                        Crear historia clínica
-                      </Link>
-                    </div>
-
-                    <div className="collapse" id="collapse5">
-                      <Link to={'/consultar-hist-clinica'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
-                        Consultar historia clínica
-                      </Link>
-                    </div>
-                    <a className="list-group-item list-group-item-action menuver" data-toggle="collapse" href="#collapse6" role="button" aria-expanded="false" aria-controls="collapseExample" >
-                      Servicios
-                    </a>
-
-                    <div className="collapse" id="collapse6">
                       <Link to={'/crear-servicio'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
-                        Crear Servicios
-=======
-                    </div>  
+                        Crear servicio
+                      </Link>
+                    </div>
+
+                    <div className="collapse" id="collapse5">
+                      <Link to={'/consultar-servicio'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
+                        Consultar servicios
+                      </Link>
+                    </div>
                   </div>
               </div>
                )
@@ -249,6 +232,14 @@ const NavbarAdmin = () => {
                         Consultar facturas
                       </Link>
                     </div>
+                    <a className="list-group-item list-group-item-action menuver" data-toggle="collapse" href="#collapse5" role="button" aria-expanded="false" aria-controls="collapseExample">
+                      Getionar Servicios
+                    </a>
+                    <div className="collapse" id="collapse5">
+                      <Link to={'/consultar-servicio'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
+                        Consultar servicios
+                      </Link>
+                    </div>
                   </div>
               </div>
               )
@@ -268,7 +259,7 @@ const NavbarAdmin = () => {
                   <div className="list-group list-group-flush menuver">
                     
                     <a className="list-group-item list-group-item-action menuver" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapseExample" >
-                      Gestión de agenda
+                      Citas
                     </a>
 
                     <div className="collapse" id="collapse1">
@@ -290,17 +281,25 @@ const NavbarAdmin = () => {
                     <div className="collapse" id="collapse4">
                       <Link to={'/consultar-facturas'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
                         Mis facturas
->>>>>>> 6200bfe855844cdfffd642f4cdd32743841815b1
                       </Link>
                     </div>
 
-                    <div className="collapse" id="collapse6">
-                      <Link to={'/consultar-serc'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
-                        Consultar Servicios
+                    <a className="list-group-item list-group-item-action menuver" data-toggle="collapse" href="#collapse5" role="button" aria-expanded="false" aria-controls="collapseExample" >
+                      Historia clinica
+                    </a>
+
+                    <div className="collapse" id="collapse5">
+                      <Link to={'/consultar-hist-clinica'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
+                        Consultar historia clínica
                       </Link>
                     </div>
                   </div>
               </div>
+              )
+
+            :null
+          }
+
           <script src="./vendor/jquery/jquery.min.js"></script>
           <script src="./vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         </body>

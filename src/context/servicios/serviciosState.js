@@ -41,6 +41,7 @@ const ServiciosState = props => {
         
         try {
             const resultado = await clienteAxios.get('/api/servicios');
+            console.log(resultado);
             dispatch({
                 type: LISTAR_SERVICIO,     
                 payload: resultado.data.servicio

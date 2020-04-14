@@ -7,6 +7,7 @@ import Login from './componentes/principal/Login'
 import ConsultarPacientes from './componentes/admin/ConsultarPacientes';
 import ConsultarPersonal from './componentes/admin/ConsultarPersonal';
 import ConsultarCitas from './componentes/admin/ConsultarCitas';
+import ConsultarFacturas from './componentes/admin/ConsultarFacturas';
 import CrearServicio from './componentes/admin/CrearServicio';
 import AsignarCitas from './componentes/admin/AsignarCitas';
 import MisCitas from './componentes/citas/MisCitas';
@@ -61,6 +62,9 @@ function App() {
                   <Route exact path="/crear-citas" component={CrearCitas}/>
                   <Route exact path="/editar-citas" component={CrearCitas}/>
                   <Route exact path="/crear-factura" component={CrearFactura}/>
+                  <Route exact path="/crear-servicio" component={CrearServicio}/>
+                  <Route exact path="/consultar-facturas" component={ConsultarFacturas}/>
+                  <Route exact path="/consultar-servicio" component={CrearFactura}/>
                 </Switch>
               </Router>
             </AuthState>

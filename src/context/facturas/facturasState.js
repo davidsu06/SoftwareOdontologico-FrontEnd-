@@ -6,7 +6,6 @@ import clienteAxios from '../../config/axios';
 import { 
     CREAR_FACTURA,
     LISTAR_FACTURA,
-    LISTAR_SERVICIO
  } from '../../types';
  
 const FacturasState = props => {
@@ -49,19 +48,7 @@ const FacturasState = props => {
             console.log(error);                
         }
     }
-    const listarServicios = async () => {
-        
-        try {
-            const resultado = await clienteAxios.get('/api/servicios');
-            console.log(resultado);
-            dispatch({
-                type: LISTAR_SERVICIO,     
-                payload: resultado.data.servicio
-            })
-        } catch (error) {
-            console.log(error);                
-        }
-    }
+    
 
     return (
         <facturasContext.Provider
@@ -70,7 +57,6 @@ const FacturasState = props => {
                 facturaselecionado: state.facturaseleccionado,
                 agregarFacturas,
                 listarFacturas,
-                listarServicios
             }}
         >
             {props.children}

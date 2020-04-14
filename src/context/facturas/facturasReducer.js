@@ -1,7 +1,7 @@
 import { 
     CREAR_FACTURA,
     LISTAR_FACTURA,
-    LISTAR_SERVICIO
+    LISTAR_PACIENTE
  } from '../../types';
 
 
@@ -14,12 +14,14 @@ export default (state, action) => {
                 ...state,
                 facturas: [action.payload, ...state.facturas]
             }
-        case LISTAR_SERVICIO:
+        
+        case LISTAR_PACIENTE:
             
         return {
             ...state,
             facturas: action.payload
         }
+
         case LISTAR_FACTURA:
             
             return {
