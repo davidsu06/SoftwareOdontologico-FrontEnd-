@@ -1,7 +1,7 @@
 import React,{useState, Fragment, useContext, useEffect } from 'react';
 import NavbarAdmin from '../layout/NavbarAdmin';
 import MenuAdmin from '../layout/MenuAdmin';
-import ListadoFacturas from '../Facturas/ListadoFacturas';
+import MisFacturas from '../Facturas/MisFacturas';
 import AuthContext from '../../context/autenticacion/authContext';
 
 const ConsultarFacturas = () => {
@@ -21,9 +21,9 @@ const ConsultarFacturas = () => {
             <div className="d-flex" id="wrapper">
                {bandera ?  <NavbarAdmin/> : null}
                 <div id="page-content-wrapper">
-                  <MenuAdmin titulo="Consultar Facturas" actualizarBandera={actualizarBandera} Bandera={bandera}/>
+                  <MenuAdmin titulo="Mis Facturas" actualizarBandera={actualizarBandera} Bandera={bandera}/>
                 <div className="container-fluid">
-                <ListadoFacturas/>
+                <MisFacturas />
                 </div>
             </div>
           </div> 

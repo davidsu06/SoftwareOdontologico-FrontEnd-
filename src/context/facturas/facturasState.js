@@ -7,13 +7,15 @@ import Swal from 'sweetalert2';
 import { 
     CREAR_FACTURA,
     LISTAR_FACTURA,
+    FACTURA_ACTUAL,
+    FACTURA_NULL
  } from '../../types';
  
 const FacturasState = props => {
     
     const initialState = {
         facturas: [],
-        facturaseleccionado: null
+        facturaseleccionada: null
     }
 
     const [state, dispatch] = useReducer(facturasReducer, initialState);
@@ -23,9 +25,8 @@ const FacturasState = props => {
     const agregarFacturas = async facturas => {
         // console.log(paciente);
         try {
-            console.log(facturas);
             const resultado = await clienteAxios.post('/api/facturas', facturas);
-            console.log(facturas);
+            console.log(resultado);
             Swal.fire(
                 'Correcto',
                 'La factura se agrego correctamente',
@@ -33,7 +34,7 @@ const FacturasState = props => {
             )
             dispatch({
                 type: CREAR_FACTURA,    
-                payload: resultado.data
+                payload: facturas
                 
             })
         } catch (error) {
@@ -54,15 +55,31 @@ const FacturasState = props => {
             console.log(error);                
         }
     }
+
+    const seleccionarFactura = factura =>{
+        dispatch({
+            type: FACTURA_ACTUAL,
+            payload: factura
+        })
+    }
+
+    const facturaNull = () =>{
+        dispatch({
+            type: FACTURA_NULL,
+            payload: null
+        })
+    }
     
 
     return (
         <facturasContext.Provider
             value={{
                 facturas: state.facturas,
-                facturaselecionado: state.facturaseleccionado,
+                facturaseleccionada: state.facturaseleccionada,
                 agregarFacturas,
                 listarFacturas,
+                seleccionarFactura,
+                facturaNull
             }}
         >
             {props.children}

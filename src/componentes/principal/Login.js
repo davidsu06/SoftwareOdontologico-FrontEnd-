@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../media/Logo.png'
-import './Login.css';
 import AlertContext from '../../context/alertas/alertaContext';
 import AuthContext from '../../context/autenticacion/authContext';
 
@@ -49,40 +48,44 @@ const Login = (props) => {
     }
 
     return (
-        <div className="container" style={{marginTop:'4.5cm'}}>
-            <form onSubmit={onSubmit}>
+        <div className="container">
+            <div className="abs_center">
+                <form id="form_login" onSubmit={onSubmit}>
+                    <h1 className="text-white" style={{textAlign:'center'}}> <img src={logo} alt="logo" className="w-25 img-fluid" /> Iniciar Sesión </h1>
+            
+                    {alerta ? <div className="p-3 mb-2 bg-danger text-white">{alerta.msg}</div>  :null}
 
-                <h1 className="text-white" style={{textAlign:'center'}}> <img src={logo} alt="logo" className="w-25 img-fluid" /> Iniciar Sesión </h1>
-        
-                {alerta ? <div className="p-3 mb-2 bg-danger text-white">{alerta.msg}</div>  :null}
+                    <fieldset>
+                        <label id="etiqueta" htmlFor="name" className="text-white">Documento:</label>
+                        <input 
+                            type="text" 
+                            id="name"
+                            className="inputs_login" 
+                            name="documento" 
+                            value={documento} 
+                            onChange={guardarInhtmlFormacion}
+                        />
+                        
+                        <label id="etiqueta" htmlFor="password" className="text-white">Contraseña:</label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            className="inputs_login" 
+                            name="password" 
+                            value={password} 
+                            onChange={guardarInhtmlFormacion}
+                        />
+                    </fieldset>
 
-                <fieldset>
-                    <label id="etiqueta" htmlFor="name" className="text-white">Documento:</label>
-                    <input 
-                        type="text" 
-                        id="name" 
-                        name="documento" 
-                        value={documento} 
-                        onChange={guardarInhtmlFormacion}
-                    />
+                    <button id="boton" type="submit">Ingresar</button>
+
+                    <Link to={'/'} className="btn btn-link text-left font-weight-bold text-white">
+                        Volver a Inicio
+                    </Link>
                     
-                    <label id="etiqueta" htmlFor="password" className="text-white">Contraseña:</label>
-                    <input 
-                        type="password" 
-                        id="password" 
-                        name="password" 
-                        value={password} 
-                        onChange={guardarInhtmlFormacion}
-                    />
-                </fieldset>
-
-                <button id="boton" type="submit">Ingresar</button>
-
-                <Link to={'/'} className="btn btn-link text-left font-weight-bold text-white">
-                    Volver a Inicio
-                </Link>
-                
-            </form>
+                </form>
+            </div>
+            
         </div>
         
      );

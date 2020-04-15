@@ -3,28 +3,32 @@ import facturasContext from '../../context/facturas/facturasContext';
 import pacientesContext from '../../context/pacientes/pacienteContext';
 import authContext from '../../context/autenticacion/authContext';
 import serviciosContext from '../../context/servicios/serviciosContext';
-import MyDocument from './pdf';
-import { PDFViewer } from '@react-pdf/renderer';
+import { Redirect } from 'react-router-dom';
+//import { PDFViewer } from '@react-pdf/renderer';
+//import MyDocument from './pdf';
+
 const FormularioFacturas = () => {
     
     const authsContext = useContext(authContext);
     const {usuario} = authsContext;
-    let facturapdf={
-        valor: '',
-        fecha: '',
-        tratamiento:'',
-        documento_paciente:'',
-        documento_cajero: usuario.documento
+    let documento;
+
+    if(usuario){
+        documento = usuario.documento
     }
+    else{
+        documento = null;
+    }
+    
     //state donde se guarda la factura
-    const [activarFactura,guardarActivarFactura]= useState(false);
     const [factura,guardarfactura]= useState({
         valor: '',
         fecha: ((new Date().getUTCDate())+'/'+(new Date().getMonth()+1)+'/'+(new Date().getFullYear())),
         tratamiento:'',
         documento_paciente:'1152714125-5',
-        documento_cajero: usuario.documento
+        documento_cajero: documento
     });
+
     //llamados a los context
     const servicioContext = useContext(serviciosContext);
     const {servicios,listarServicios} = servicioContext;
@@ -33,7 +37,8 @@ const FormularioFacturas = () => {
     const {pacientes, listarPacientes} = pacienteContext;
     
     const facturaContext = useContext(facturasContext);
-    const {agregarFacturas} = facturaContext;
+    const {facturaseleccionada, agregarFacturas, seleccionarFactura} = facturaContext;
+
     useEffect(() => {
         listarServicios();
         listarPacientes(); 
@@ -42,9 +47,8 @@ const FormularioFacturas = () => {
     //funcion que guarda la factura en la base de datos
     const BotonGuardar= e =>{
         e.preventDefault();
-        console.log(factura);
         agregarFacturas(factura);
-        guardarActivarFactura(true);
+        seleccionarFactura(factura)
     }
 
     //funcion que extrae los valores de los input y los guarda en el state
@@ -62,14 +66,14 @@ const FormularioFacturas = () => {
         
         <form onSubmit={BotonGuardar}>
 
-        <div className="form-group ">
+            <div className="form-group ">
                 <label className="font-weight-bold">DOCUMENTO DEL PACIENTE</label>
                 <select className="form-control selector" id="select" name="documento_paciente" onChange={Guardar} value={factura.documento_paciente}>
                     <option value="primera">Selecione...</option>
                     {pacientes.length === 0
                 ? (<option>no hay servicios</option>  )
                 : pacientes.map(paciente => (
-                <option value={paciente.documento}>{paciente.documento}-{paciente.nombre} {paciente.apellido}</option> 
+                <option key={paciente._id} value={paciente.documento}>{paciente.documento}-{paciente.nombre} {paciente.apellido}</option> 
                     ))
                                 }
                 </select>
@@ -82,7 +86,7 @@ const FormularioFacturas = () => {
                 {servicios.length === 0
                 ? (<option>no hay servicios</option>  )
                 : servicios.map(servicios => (
-                <option value={servicios._id}>{servicios.nombre_servicio}</option> 
+                <option key={servicios._id} value={servicios._id}>{servicios.nombre_servicio}</option> 
                     ))
                                 }
                 </select>
@@ -94,26 +98,31 @@ const FormularioFacturas = () => {
             </div> 
             <div className="form-group">
                 <label className="font-weight-bold">CAJERO</label>
-                <input type="number" className="form-control" name="documento_cajero" value={usuario.documento} disabled/>
+                <input type="number" className="form-control" name="documento_cajero" value={documento} disabled/>
             </div> 
-            
-            <div className="form-group">
-                <input type="submit"
-                className="form-control boton font-weight-bold" 
-                value="Generar Factura"  
-                />
-            </div>  
-            
-                    
+
+            <input 
+                type="submit" 
+                className="form-control boton font-weight-bold"
+                value="Generar Factura"
+            />
+
         </form>
-        {activarFactura
+
+        {facturaseleccionada
+            ?  <Redirect to="/factura-pdf" />
+
+            :  <Redirect to="/crear-factura" />
+        }
+
+        {/*facturaseleccionada
         ? (
         <PDFViewer className="w-75 alturapdf">
             <MyDocument facturas={factura} />
         </PDFViewer>
         )
         : null        
-        }
+        */}
         
     </div>
     </>

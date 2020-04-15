@@ -65,7 +65,7 @@ ul {
   }
   /*Jeferson*/
   .alturapdf{
-    height: 800px;
+    height: 1000px;
   }
   .tamano{
     width: 15px;
@@ -154,4 +154,92 @@ ul {
     #wrapper.toggled #sidebar-wrapper {
       margin-left: -15rem;
     }
+  }
+
+  /* Estilos para el formulario de inicio de sesión */
+  #form_login {
+    max-width: 520px;
+    padding: 10px 20px;
+    background: #196B81;
+    border-radius: 20px;
+    margin: auto;
+    border: 2px solid black;
+  }
+  
+  .abs_center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .titulos_principal {
+    text-align: center;
+    margin-top: 1cm;
+    font-family: 'Arial Black';
+    font-weight: bold;
+  }
+  
+  .inputs_login{
+    background: rgba(255,255,255,0.1);
+    border: none;
+    font-size: 16px;
+    height: auto;
+    margin: 0;
+    outline: 0;
+    padding: 15px;
+    width: 95%;
+    background-color: #e8eeef;
+    color: black;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    margin-bottom: 30px;
+  }
+
+  #boton{
+    padding: 19px 39px 18px 39px;
+    color: #FFF;
+    background-color: #28a745;
+    font-size: 18px;
+    text-align: center;
+    font-style: normal;
+    border-radius: 5px;
+    width: 86%;
+    border: 1px solid #28a745;
+    margin-bottom: 10px;
+  }
+  
+  #etiqueta {
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  /*este css se llama desde los formularios de crear paciente y personal*/
+  .boton{
+    padding: 0px 39px 0px 39px;
+    color: #FFF;
+    background-color: #28a745;
+    font-size: 18px;
+    text-align: center;
+    font-style: normal;
+    border-radius: 5px;
+    width: 86%;
+    border: 1px solid #28a745;
+    border-width: 1px 1px 3px;
+    box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
+    margin-bottom: 10px;
+  }
+  /*css se utiliza en el select de formulario de crear personal*/
+  .selector{
+    background: rgba(255,255,255,0.1);
+    border: none;
+    font-size: 16px;
+    height: auto;
+    margin: 0;
+    outline: 0;
+    padding: 15px;
+    width: 95%;
+    background-color: #e8eeef;
+    color: black;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    margin-bottom: 30px;
   }

@@ -1,7 +1,9 @@
 import { 
     CREAR_FACTURA,
     LISTAR_FACTURA,
-    LISTAR_PACIENTE
+    LISTAR_PACIENTE,
+    FACTURA_ACTUAL,
+    FACTURA_NULL
  } from '../../types';
 
 
@@ -28,6 +30,19 @@ export default (state, action) => {
                 ...state,
                 facturas: action.payload
             }
+
+        case FACTURA_ACTUAL:
+            return{
+                ...state,
+                facturaseleccionada: action.payload
+            }
+
+        case FACTURA_NULL:
+        return{
+            ...state,
+            facturaseleccionada: action.payload
+        }
+
         default:
             return state;
     }

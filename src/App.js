@@ -27,6 +27,8 @@ import CrearFactura from './componentes/admin/CrearFactura';
 import CrearHistoria from './componentes/admin/CrearHistoria';
 import ConsultarHistorias from './componentes/admin/ConsultarHistorias';
 import MiHistorial from './componentes/admin/MiHistorial';
+import MisFacturas from './componentes/admin/MisFacturas';
+import FacturaPDF from './componentes/Facturas/FacturaPDF';
 
 
 //Revisar si se tiene un token
@@ -40,41 +42,50 @@ function App() {
   console.log(process.env.REACT_APP_BACKEND_URL);
   
   return(
-    <CitaState>
-      <PacienteState> 
-        <PersonaState>
-        <FacturasState>
-          <ServiciosState>
-          <AlertaState>
-            <AuthState>
-              <Router>
-                <Switch>
-                  <Route exact path="/" component={MenuPrincipal}/>
-                  <Route exact path="/iniciar-sesion" component={Login}/>
-                  <Route exact path="/gestion-sistema" component={InterfazAdmin}/>
-                  <Route exact path="/consultar-pacientes" component={ConsultarPacientes}/>
-                  <Route exact path="/consultar-personal" component={ConsultarPersonal}/>
-                  <Route exact path="/crear-servicio" component={CrearServicio}/>
-                  <Route exact path="/consultar-citas" component={ConsultarCitas}/>
-                  <Route exact path="/crear-pacientes" component={CrearPacientes}/>
-                  <Route exact path="/editar-pacientes" component={CrearPacientes}/>
-                  <Route exact path="/crear-personal" component={CrearPersonal}/>
-                  <Route exact path="/editar-personal" component={CrearPersonal}/>
-                  <Route exact path="/crear-citas" component={CrearCitas}/>
-                  <Route exact path="/editar-citas" component={CrearCitas}/>
-                  <Route exact path="/crear-factura" component={CrearFactura}/>
-                  <Route exact path="/crear-servicio" component={CrearServicio}/>
-                  <Route exact path="/consultar-facturas" component={ConsultarFacturas}/>
-                  <Route exact path="/consultar-servicio" component={CrearFactura}/>
-                </Switch>
-              </Router>
-            </AuthState>
-          </AlertaState>
-          </ServiciosState>
-        </FacturasState>
-        </PersonaState>
-      </PacienteState> 
-    </CitaState>
+    <AuthState>
+      <CitaState>
+        <PacienteState> 
+          <PersonaState>
+            <FacturasState>
+              <ServiciosState>
+                <AlertaState>
+                  <HistoriaState>
+                    <Router>
+                      <Switch>
+                        <Route exact path="/" component={MenuPrincipal}/>
+                        <Route exact path="/iniciar-sesion" component={Login}/>
+                        <Route exact path="/gestion-sistema" component={InterfazAdmin}/>
+                        <Route exact path="/consultar-pacientes" component={ConsultarPacientes}/>
+                        <Route exact path="/consultar-personal" component={ConsultarPersonal}/>
+                        <Route exact path="/crear-servicio" component={CrearServicio}/>
+                        <Route exact path="/consultar-citas" component={ConsultarCitas}/>
+                        <Route exact path="/crear-pacientes" component={CrearPacientes}/>
+                        <Route exact path="/editar-pacientes" component={CrearPacientes}/>
+                        <Route exact path="/crear-personal" component={CrearPersonal}/>
+                        <Route exact path="/editar-personal" component={CrearPersonal}/>
+                        <Route exact path="/crear-citas" component={CrearCitas}/>
+                        <Route exact path="/editar-citas" component={CrearCitas}/>
+                        <Route exact path="/asignar-citas" component={AsignarCitas}/>
+                        <Route exact path="/mis-citas" component={MisCitas}/>
+                        <Route exact path="/crear-hist-clinica" component={CrearHistoria}/>
+                        <Route exact path="/editar-hist-clinica" component={CrearHistoria}/>
+                        <Route exact path="/consultar-hist-clinica" component={ConsultarHistorias}/>
+                        <Route exact path="/mi-hist-clinica" component={MiHistorial}/>
+                        <Route exact path="/crear-servicio" component={CrearServicio}/>
+                        <Route exact path="/crear-factura" component={CrearFactura}/>
+                        <Route exact path="/consultar-facturas" component={ConsultarFacturas}/>
+                        <Route exact path="/mis-facturas" component={MisFacturas}/>
+                        <Route exact path="/factura-pdf" component={FacturaPDF}/>
+                      </Switch>
+                    </Router>
+                  </HistoriaState>
+                </AlertaState> 
+              </ServiciosState>
+            </FacturasState>
+          </PersonaState>
+        </PacienteState> 
+      </CitaState>
+    </AuthState>
   );
 }
 
