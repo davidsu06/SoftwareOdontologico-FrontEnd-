@@ -10,7 +10,7 @@ const Cita = ({cita}) => {
 
     const authContext = useContext(AuthContext);
     const { usuario } = authContext;
-    let cargo; 
+    let cargo;
 
     if(usuario){
         cargo = usuario.cargo;

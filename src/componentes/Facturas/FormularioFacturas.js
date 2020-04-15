@@ -4,14 +4,20 @@ import pacientesContext from '../../context/pacientes/pacienteContext';
 import authContext from '../../context/autenticacion/authContext';
 import serviciosContext from '../../context/servicios/serviciosContext';
 import MyDocument from './pdf';
-import { Link } from 'react-router-dom';
 import { PDFViewer } from '@react-pdf/renderer';
 const FormularioFacturas = () => {
     
     const authsContext = useContext(authContext);
     const {usuario} = authsContext;
-    
+    let facturapdf={
+        valor: '',
+        fecha: '',
+        tratamiento:'',
+        documento_paciente:'',
+        documento_cajero: usuario.documento
+    }
     //state donde se guarda la factura
+    const [activarFactura,guardarActivarFactura]= useState(false);
     const [factura,guardarfactura]= useState({
         valor: '',
         fecha: ((new Date().getUTCDate())+'/'+(new Date().getMonth()+1)+'/'+(new Date().getFullYear())),
@@ -36,13 +42,9 @@ const FormularioFacturas = () => {
     //funcion que guarda la factura en la base de datos
     const BotonGuardar= e =>{
         e.preventDefault();
+        console.log(factura);
         agregarFacturas(factura);
-        guardarfactura({
-            ...factura,
-            valor:'',
-            documento_paciente:'primera',
-            tratamiento: "primera"
-        })
+        guardarActivarFactura(true);
     }
 
     //funcion que extrae los valores de los input y los guarda en el state
@@ -96,20 +98,23 @@ const FormularioFacturas = () => {
             </div> 
             
             <div className="form-group">
-            <Link to={'/crear-pacientes'}>
                 <input type="submit"
                 className="form-control boton font-weight-bold" 
-                value="Generar Factura"
-                
+                value="Generar Factura"  
                 />
-                </Link>
             </div>  
             
                     
         </form>
+        {activarFactura
+        ? (
         <PDFViewer className="w-75 alturapdf">
             <MyDocument facturas={factura} />
         </PDFViewer>
+        )
+        : null        
+        }
+        
     </div>
     </>
     );

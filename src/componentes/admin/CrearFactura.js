@@ -3,8 +3,6 @@ import NavbarAdmin from '../layout/NavbarAdmin';
 import MenuAdmin from '../layout/MenuAdmin';
 import FormularioFacturas from '../Facturas/FormularioFacturas';
 import AuthContext from '../../context/autenticacion/authContext';
-import MyDocument from '../Facturas/pdf';
-import { PDFViewer } from '@react-pdf/renderer';
 const CrearFactura = () => {
     const [bandera,actualizarBandera]=useState(true);
 
@@ -24,9 +22,6 @@ const CrearFactura = () => {
                   <MenuAdmin titulo={"Crear Factura"} actualizarBandera={actualizarBandera} Bandera={bandera}/>
                 <div className="container-fluid">
                   <FormularioFacturas/>
-                  <div>
-                  
-        </div>
                 </div> 
                 </div> 
             </div> 

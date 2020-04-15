@@ -1,5 +1,7 @@
 import React from 'react';
-import { Page, Document, StyleSheet,Text, Image,Font } from '@react-pdf/renderer';
+import { TreeList, orderBy, filterBy, mapTree, extendDataItem,
+  TreeListTextFilter, TreeListNumericFilter, TreeListDateFilter, TreeListBooleanFilter } from '@progress/kendo-react-treelist';
+import { Page, Document, StyleSheet,Text, Image,Font} from '@react-pdf/renderer';
 
 // Create styles
 Font.register({
@@ -50,9 +52,9 @@ const styles = StyleSheet.create({
 });
 // Create Document Component
 const MyDocument = ({facturas}) => (
-  
   <Document>
-    <Page size="A6" style={styles.margen}>
+    
+    <Page size="A5" style={styles.margen}>
     <Image
         style={styles.image}
         src="./Logo.png"
@@ -63,12 +65,13 @@ const MyDocument = ({facturas}) => (
     <Text style={styles.subtitle}>Nombre del Paciente</Text>
     <Text style={styles.texto}>Jeferson Echavarria Balzan</Text>
     <Text style={styles.subtitle}>Tratamiento</Text>
-    <Text style={styles.texto}>Extraccion Dental</Text>
+    <Text style={styles.texto}>{facturas.tratamiento}</Text>
     <Text style={styles.subtitle}>Valor a Pagar</Text>
-    <Text style={styles.texto}>$ 50.000</Text>
-    <Text style={styles.subtitle}>Valor a Deudar</Text>
-    <Text style={styles.texto}>$ 1.020.000</Text>
-    
+    <Text style={styles.texto}>$ {new Intl.NumberFormat("de-DE").format(facturas.valor)}</Text>
+    <Text style={styles.subtitle}>Fecha</Text>
+    <Text style={styles.texto}>{facturas.fecha}</Text>
+    <Text style={styles.subtitle}>Responsable</Text>
+    <Text style={styles.texto}>{facturas.documento_cajero}</Text>
     </Page>
   </Document>
 );
