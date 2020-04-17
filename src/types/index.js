@@ -20,6 +20,7 @@ export const ELIMINAR_CITA = 'ELIMINAR_CITA';
 export const FILTRAR_CITAS = 'FILTRAR_CITAS';
 export const CITA_ACTUAL = 'CITA_ACTUAL';
 export const CITA_NULL = 'CITA_NULL';
+export const CITA_EXISTENTE = 'CITA_EXISTENTE';
 export const CITA_ASIGNADA = 'CITA_ASIGNADA';
 export const CITAS_PACIENTE= 'CITAS_PACIENTE';
 

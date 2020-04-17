@@ -31,7 +31,14 @@ const ListadoCita = () => {
             month = e.getMonth() + 1;
         }
 
-        const fecha = `${e.getFullYear()}-${month}-${e.getDate()}`;
+        let day = 0;
+        if (e.getDate() < 10) {
+            day = `0${e.getDate()}`
+        }else{
+            day = e.getDate();
+        }
+
+        const fecha = `${e.getFullYear()}-${month}-${day}`;
         filtrarCitas(fecha);
     }
 
@@ -48,6 +55,7 @@ const ListadoCita = () => {
                 <InfiniteCalendar 
                 width={300}
                 height={200}
+                selected = {false}
                 locale={{
                     locale: require('date-fns/locale/es'),
                     headerFormat: 'dddd, D MMM',

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import citaContext from '../../context/citas/citaContext';
 import historiaContext from '../../context/historia/historiaContext';
 import AuthContext from '../../context/autenticacion/authContext';
@@ -10,15 +10,22 @@ const Cita = ({cita}) => {
 
     const authContext = useContext(AuthContext);
     const { usuario } = authContext;
+
+    const citasContext = useContext(citaContext);
+    const { CitaActual, eliminarCita, modificarCita, CitaAsignada, citaExistentePaciente, citaexistente } = citasContext;
+
     let cargo;
 
     if(usuario){
         cargo = usuario.cargo;
     }
 
-    const citasContext = useContext(citaContext);
-    const { CitaActual, eliminarCita, modificarCita, CitaAsignada } = citasContext;
-
+    useEffect(() => {
+        if (usuario != null) {
+            citaExistentePaciente(usuario.documento)
+            
+        }
+    }, [usuario])
     const {HistoriaNull} = useContext(historiaContext);
 
     const { fecha, hora, pacienteId, estado, _id } = cita;
@@ -57,18 +64,27 @@ const Cita = ({cita}) => {
     }
 
     const onClickSolicitar = () => {
-        modificarCita( 
-            {
-                _id, 
-                estado: 'Asignado',
-                pacienteId: usuario.documento
-            } 
-        )
-        Swal.fire(
-            'Correcto',
-            'Su cita se asignó correctamente',
-            'success'
-        )
+        if (citaexistente) {
+            Swal.fire(
+                'Error',
+                'Usted ya cuenta con una cita asignada',
+                'error'
+            )
+        }else{
+            modificarCita( 
+                {
+                    _id, 
+                    estado: 'Asignado',
+                    pacienteId: usuario.documento
+                } 
+            )
+            Swal.fire(
+                'Correcto',
+                'Su cita se asignó correctamente',
+                'success'
+            )
+        }
+
     }
 
     return ( 

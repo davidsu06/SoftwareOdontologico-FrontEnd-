@@ -16,6 +16,7 @@ import {
     CITA_ASIGNADA,
     //ASIGNAR_CITA,
     CITAS_PACIENTE,
+    CITA_EXISTENTE
 } from '../../types';
 
 
@@ -39,7 +40,8 @@ const CitaState = props => {
         citaseleccionada: null,
         citasfiltradas: [],
         searching: false,
-        citasignada:{}
+        citasignada:{},
+        citaexistente: false
     }
 
     const [state,dispatch] = useReducer(citaReducer, initialState);
@@ -77,7 +79,7 @@ const CitaState = props => {
         
         try {
             const resultado = await clienteAxios.get('/api/citas');
-            console.log(resultado);
+            // console.log(resultado);
             
             dispatch({
                 type: LISTAR_CITA,
@@ -85,6 +87,25 @@ const CitaState = props => {
             })
         } catch (error) {
             console.log(error);                
+        }
+    }
+
+    const citaExistentePaciente = async pacienteId => {
+        
+        try {
+            const resultado = await clienteAxios.get(`/api/citas/${pacienteId}`);
+            console.log(resultado.data.cita)
+            let bool = false;
+            if (resultado.data.cita.length > 0) {
+                bool = true;
+            }
+            dispatch({
+                type: CITA_EXISTENTE,
+                payload: bool
+            })
+
+        } catch (error) {
+            console.log(error.response);                
         }
     }
 
@@ -178,9 +199,11 @@ const CitaState = props => {
                 citasfiltradas: state.citasfiltradas,
                 searching: state.searching,
                 citasignada: state.citasignada,
+                citaexistente: state.citaexistente,
                 crearCita,
                 CitaActual,
                 listarCitas,
+                citaExistentePaciente,
                 filtrarCitas,
                 modificarCita,
                 eliminarCita,

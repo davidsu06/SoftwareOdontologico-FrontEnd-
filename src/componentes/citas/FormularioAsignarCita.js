@@ -1,11 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import citaContext from '../../context/citas/citaContext';
 import Swal from 'sweetalert2';
 
 const FormularioAsignarCita = () => {
 
     const citasContext = useContext(citaContext);
-    const { citasignada, modificarCita } = citasContext;
+    const { citasignada, modificarCita, citaExistentePaciente, citaexistente } = citasContext;
     const {fecha, hora, _id} = citasignada;
     // console.log(fecha)
     // console.log(hora)
@@ -22,6 +22,13 @@ const FormularioAsignarCita = () => {
         pacienteId: ''
     })
 
+    useEffect(() => {
+        if (asignarPaciente.pacienteId != null) {
+            citaExistentePaciente(asignarPaciente.pacienteId)
+            
+        }
+    }, [asignarPaciente.pacienteId])
+
     const onChange = e =>{
         guardarasignarPaciente({
             ...asignarPaciente,
@@ -31,27 +38,38 @@ const FormularioAsignarCita = () => {
     }
 
     const Submit = e => {
+
         e.preventDefault();
+            console.log(citaexistente)
+            if(citaexistente){
+                Swal.fire(
+                    'Error',
+                    'El usuario ya cuenta con una cita asignada',
+                    'error'
+                )
+            }else{
+            
+            actualizarIdPaciente({
+                pacienteId: asignarPaciente.pacienteId
+            })
+
+            modificarCita({
+                _id,
+                pacienteId: asignarPaciente.pacienteId,
+                estado: 'Asignado'
+            })
+
+            Swal.fire(
+                'Correcto',
+                'La cita se asignó correctamente',
+                'success'
+            )
+            guardarasignarPaciente({
+                pacienteId: ''
+            })
+
+        }
         
-        actualizarIdPaciente({
-            pacienteId: asignarPaciente.pacienteId
-        })
-
-        modificarCita({
-            _id,
-            pacienteId: asignarPaciente.pacienteId,
-            estado: 'Asignado'
-        })
-
-        Swal.fire(
-            'Correcto',
-            'La cita se asignó correctamente',
-            'success'
-        )
-
-        guardarasignarPaciente({
-            pacienteId: ''
-        })
     }
     return ( 
         <>

@@ -9,6 +9,7 @@ import {
     ASIGNAR_CITA,
     CITA_ASIGNADA,
     CITAS_PACIENTE,
+    CITA_EXISTENTE
 } from '../../types';
 
 export default (state, action) => {
@@ -30,14 +31,21 @@ export default (state, action) => {
         case LISTAR_CITA:
             return{
                 ...state,
+                searching: false,
                 citas: action.payload
+            }
+
+        case CITA_EXISTENTE:
+            return{
+                ...state,
+                citaexistente: action.payload
             }
 
         case FILTRAR_CITAS:
             return{
                 ...state,
                 searching : true,
-                citasfiltradas: state.citas.filter( cita => cita.fecha === action.payload)
+                citasfiltradas: state.citas.filter( cita => cita.fecha.substr(0,10) === action.payload)
             }
 
         case EDITAR_CITA:
