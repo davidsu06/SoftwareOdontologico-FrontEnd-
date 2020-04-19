@@ -42,6 +42,7 @@ const FormularioFacturas = () => {
     useEffect(() => {
         listarServicios();
         listarPacientes(); 
+        // eslint-disable-next-line
     }, []);
     
     //funcion que guarda la factura en la base de datos

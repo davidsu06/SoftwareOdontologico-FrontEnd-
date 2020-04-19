@@ -27,7 +27,7 @@ const FormularioAsignarCita = () => {
             citaExistentePaciente(asignarPaciente.pacienteId)
             
         }
-    }, [asignarPaciente.pacienteId])
+    }, [asignarPaciente.pacienteId, citaExistentePaciente])
 
     const onChange = e =>{
         guardarasignarPaciente({

@@ -36,21 +36,21 @@ const Paciente = ({paciente}) => {
         
     }
 
+    const newfecha = paciente.fnacimiento.substr(0,10)
+
     return ( 
-        <li className="list sombra">
-            <p>{paciente.nombre} </p>
-            <div className="acciones">
-                <Link to={'/editar-pacientes'} type="button" 
-                    className="btn btn-info"
-                    onClick={() => SeleccionarPaciente(paciente)}         
-                >Editar</Link>
-                <button type="button" 
-                    className="btn btn-info"
-                    onClick={() => onClickEliminar(paciente._id)}
-                    
-                >Eliminar</button>
-            </div>
-        </li>
+        <>
+            <td>{paciente.documento}</td>
+            <td>{paciente.nombre}</td>
+            <td>{paciente.apellido}</td>
+            <td>{newfecha}</td>
+            <td>{paciente.direccion}</td>
+            <td>{paciente.telefono}</td>
+            <td className="text-center">            
+                <Link to={'/editar-pacientes'} type="button" className="fas fa-pencil-alt text-decoration-none text-dark mr-2" onClick={() => SeleccionarPaciente(paciente)}></Link>
+                <i type="button" className="fas fa-trash-alt mx-3" onClick={() => onClickEliminar(paciente._id)}></i>  
+            </td>  
+        </>
      );
 }
  

@@ -32,7 +32,7 @@ const CrearPacientes = () => {
                {bandera ?  <NavbarAdmin/> : null}
                 <div id="page-content-wrapper">
                   <MenuAdmin titulo={tituloHead} actualizarBandera={actualizarBandera} Bandera={bandera}/>
-                <div className="container-fluid">
+                <div className="container-fluid" >
                   <FormularioCrearPaciente/>
                 </div> 
                 </div> 

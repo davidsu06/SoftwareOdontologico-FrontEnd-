@@ -42,14 +42,12 @@ const Historia = ({historia, usuario}) => {
                     : 
                     (
                         <td className="text-center">
-                            <div className="container d-flex justify-content-between">
                                 <div className="mr-3">
                                     <Link to={'/editar-hist-clinica'} 
                                         type="button" className="fas fa-pencil-alt text-decoration-none text-dark" 
                                         onClick={() => SeleccionarHistoria(historia)}
                                     ></Link> 
-                                </div>
-                            </div>       
+                                </div>   
                         </td>
                         )
                 }

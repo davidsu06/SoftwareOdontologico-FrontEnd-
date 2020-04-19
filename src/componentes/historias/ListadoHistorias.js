@@ -14,7 +14,7 @@ const ListadoHistorias = () => {
     }, [])
 
     return ( 
-        <div>
+        <div className="col-md-11 col-sm-3">
             {historias.length === 0
                 ? 
                     (<h3 className="text-center">No hay Historias Clínicas disponibles</h3>) 

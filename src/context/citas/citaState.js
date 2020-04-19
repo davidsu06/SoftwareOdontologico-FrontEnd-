@@ -94,7 +94,7 @@ const CitaState = props => {
         
         try {
             const resultado = await clienteAxios.get(`/api/citas/${pacienteId}`);
-            console.log(resultado.data.cita)
+            // console.log(resultado.data.cita)
             let bool = false;
             if (resultado.data.cita.length > 0) {
                 bool = true;

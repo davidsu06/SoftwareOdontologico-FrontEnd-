@@ -24,7 +24,7 @@ const MisCitas = () => {
         if (usuario != null) {
             listarCitasPaciente(usuario.documento)
         }
-    }, [usuario])
+    }, [usuario, listarCitasPaciente])
 
     return ( 
         <>
