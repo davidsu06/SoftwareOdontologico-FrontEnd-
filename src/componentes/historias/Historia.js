@@ -13,7 +13,7 @@ const Historia = ({historia, usuario}) => {
 
     let cargo;
 
-    const SeleccionarHistoria = historia => {   
+    const SeleccionarHistoria = historiabd => {   
         HistoriaActual(historia);
         CitaNull();
     }
@@ -29,32 +29,37 @@ const Historia = ({historia, usuario}) => {
             <tr>
                 <td>{newfecha}</td>
                 <td>{hora}</td>
-                <td>{descripcion}</td>
-                <td>{pacienteId}</td>
 
                 {cargo === 'Paciente'
 
                     ?
                     (
-                        <td>{personalId}</td>
+                        <>
+                            <td>{personalId}</td>
+                            <td>{descripcion}</td>
+                        </>
                     )   
                     
                     : 
                     (
-                        <td className="text-center">
-                                <div className="mr-3">
-                                    <Link to={'/editar-hist-clinica'} 
-                                        type="button" className="fas fa-pencil-alt text-decoration-none text-dark" 
-                                        onClick={() => SeleccionarHistoria(historia)}
-                                    ></Link> 
-                                </div>   
-                        </td>
-                        )
+                        <>
+                            <td>{pacienteId}</td>
+                            <td>{descripcion}</td>
+                            <td className="text-center">
+                                <div className="container d-flex justify-content-between">
+                                    <div className="mr-3">
+                                        <Link to={'/editar-hist-clinica'} 
+                                            type="button" className="fas fa-pencil-alt text-decoration-none text-dark" 
+                                            onClick={() => SeleccionarHistoria(historia)}
+                                        ></Link> 
+                                    </div>
+                                </div>       
+                            </td>
+                        </>
+                    )
                 }
 
-
                 
-
             </tr>
 
         </>

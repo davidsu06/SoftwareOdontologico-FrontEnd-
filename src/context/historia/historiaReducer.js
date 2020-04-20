@@ -3,7 +3,8 @@ import {
     AGREGAR_HISTORIA,
     MODIFICAR_HISTORIA,
     HISTORIA_ACTUAL,
-    HISTORIA_NULL
+    HISTORIA_NULL,
+    HISTORIAS_FILTRADAS
 } from '../../types';
 
 export default (state, action) => {
@@ -17,10 +18,10 @@ export default (state, action) => {
             }
 
         case HISTORIA_ACTUAL:
-        return{
-            ...state,
-            historiaseleccionado: action.payload
-        }
+            return{
+                ...state,
+                historiaseleccionado: action.payload
+            }
 
         case LISTAR_HISTORIA:
             return{
@@ -37,8 +38,16 @@ export default (state, action) => {
         case HISTORIA_NULL:
             return{
                 ...state,
-                historiaseleccionado: action.payload
+                historiaseleccionado: action.payload,
+                historiasfiltradas:[]
             }
+        
+            case HISTORIAS_FILTRADAS:
+                return{
+                    ...state,
+                    historiasfiltradas: action.payload
+                }
+
 
         default:
             return state;

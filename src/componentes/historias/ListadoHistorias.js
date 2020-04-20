@@ -1,11 +1,11 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import historiaContext from '../../context/historia/historiaContext';
 import authContext from '../../context/autenticacion/authContext';
 import Historia from './Historia';
 
 const ListadoHistorias = () => {
 
-    const {historias, listarHistoria} = useContext(historiaContext);
+    const {historias, historiasfiltradas, listarHistoria, filtrarHistorias} = useContext(historiaContext);
     const {usuario} = useContext(authContext);
 
     useEffect(() => {
@@ -13,8 +13,73 @@ const ListadoHistorias = () => {
         // eslint-disable-next-line
     }, [])
 
+    
+    const [filtro, guardarFiltro] = useState({
+        filtropaciente:'',
+        filtrofecha:''
+    });
+
+    const changeFiltro = e =>{
+        guardarFiltro({
+            ...filtro,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const submitFiltro = e =>{
+
+        e.preventDefault();
+
+        let historiasbd;
+        if(filtro.filtropaciente.trim() === '' && filtro.filtrofecha.trim() === ''){
+            historiasbd = [];
+        }
+
+        else{
+            if(filtro.filtropaciente || filtro.filtrofecha){
+                historiasbd = historias.filter(historia => historia.pacienteId === filtro.filtropaciente || historia.fecha.substr(0,10) === filtro.filtrofecha);
+            }
+
+            if (filtro.filtropaciente && filtro.filtrofecha){
+                historiasbd = historias.filter(historia => historia.pacienteId === filtro.filtropaciente && historia.fecha.substr(0,10) === filtro.filtrofecha);
+            }
+            
+        }
+        console.log(historiasbd);
+        filtrarHistorias(historiasbd);   
+    }
+
     return ( 
-        <div className="col-md-11 col-sm-3">
+        <>
+            <form onSubmit={submitFiltro} className="form-group mt-5">
+                <div className="row">
+                    <div className="col-md-5">
+                        <input className="form-control" 
+                            type="text"
+                            name="filtropaciente" 
+                            placeholder="Documento"
+                            onChange={changeFiltro}
+                        />
+                    </div>
+
+                    <div className="col-md-5">
+                        <input className="form-control" 
+                            type="date" 
+                            name="filtrofecha"
+                            placeholder="Fecha Cita"
+                            onChange={changeFiltro}
+                        />
+                    </div>
+
+                    <div className="col-md-1">
+                        <input className="btn btn-info form-control" 
+                            type="submit" 
+                            value="Filtrar" 
+                        />
+                    </div>
+                </div>
+            </form>
+                
             {historias.length === 0
                 ? 
                     (<h3 className="text-center">No hay Historias Clínicas disponibles</h3>) 
@@ -33,22 +98,37 @@ const ListadoHistorias = () => {
                             </thead>
                     
                             <tbody>
-                                {
-                                    historias.map(historia => (
-                                        <Historia
-                                            key={historia._id}
-                                            historia={historia}
-                                            usuario={usuario}
-                                        />
-                                    ))
+                                {historiasfiltradas.length === 0
+
+                                    ?
+                                    (
+                                        historias.map(historia => (
+                                            <Historia
+                                                key={historia._id}
+                                                historia={historia}
+                                                usuario={usuario}
+                                            />
+                                        ))
+                                    )
+
+                                    :
+                                    (
+                                        historiasfiltradas.map(historia => (
+                                            <Historia
+                                                key={historia._id}
+                                                historia={historia}
+                                                usuario={usuario}
+                                            />
+                                        ))
+                                    )
+                                    
                                 }
                             </tbody>
                         </table>
                     )
-                
             }
 
-        </div>
+        </>
      );
 }
  

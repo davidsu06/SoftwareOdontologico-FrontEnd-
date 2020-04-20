@@ -6,6 +6,7 @@ import pacienteContext from '../../context/pacientes/pacienteContext';
 import citaContext from '../../context/citas/citaContext';
 import AuthContext from '../../context/autenticacion/authContext';
 import facturaContext from '../../context/facturas/facturasContext';
+import historiaContext from '../../context/historia/historiaContext'
 
 const NavbarAdmin = () => {
 
@@ -17,6 +18,8 @@ const NavbarAdmin = () => {
 
   const citasContext = useContext(citaContext);
   const { CitaNull } = citasContext;
+
+  const {HistoriaNull} = useContext(historiaContext);
 
   const {facturaNull} = useContext(facturaContext);
 
@@ -91,8 +94,8 @@ const NavbarAdmin = () => {
                 </div>*/}
 
                   <div className="collapse" id="collapse1">
-                    <Link to={'/consultar-hist-clinica'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
-                      Consultar Historial Clínico
+                    <Link to={'/consultar-hist-clinica'} onClick={ () => HistoriaNull() } className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
+                      Consultar Historial Cl.
                     </Link>
                   </div>
                   
@@ -214,7 +217,7 @@ const NavbarAdmin = () => {
                 </div>*/}
 
                   <div className="collapse" id="collapse1">
-                    <Link to={'/consultar-hist-clinica'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
+                    <Link to={'/consultar-hist-clinica'} onClick={ () => HistoriaNull() } className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
                       Consultar Historial Clínico
                     </Link>
                   </div>

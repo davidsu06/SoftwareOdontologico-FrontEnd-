@@ -9,7 +9,8 @@ import {
     AGREGAR_HISTORIA,
     MODIFICAR_HISTORIA,
     HISTORIA_ACTUAL,
-    HISTORIA_NULL
+    HISTORIA_NULL,
+    HISTORIAS_FILTRADAS
 } from '../../types';
 
 
@@ -17,7 +18,8 @@ const HistoriaState = props => {
 
     const initialState = {
         historias: [],
-        historiaseleccionado: null
+        historiaseleccionado: null,
+        historiasfiltradas: []
     }
 
     const [state,dispatch] = useReducer(historiaReducer, initialState);
@@ -84,6 +86,13 @@ const HistoriaState = props => {
         })
     }
 
+    const filtrarHistorias = historias => {
+        dispatch({
+            type: HISTORIAS_FILTRADAS,
+            payload: historias
+        })
+    }
+
     const HistoriaNull = () => {
         dispatch({
             type: HISTORIA_NULL,
@@ -96,11 +105,13 @@ const HistoriaState = props => {
             value={{
                 historias: state.historias,
                 historiaseleccionado: state.historiaseleccionado,
+                historiasfiltradas: state.historiasfiltradas,
                 crearHistoria,
                 listarHistoria,
                 HistoriaActual,
                 HistoriaNull,
-                modificarHistoria
+                modificarHistoria,
+                filtrarHistorias
             }}
         >
             {props.children}
