@@ -51,7 +51,7 @@ const ListadoHistorias = () => {
 
     return ( 
         <>
-            <form onSubmit={submitFiltro} className="form-group mt-5">
+            <form onSubmit={submitFiltro} className="form-group mt-5 container">
                 <div className="row">
                     <div className="col-md-5">
                         <input className="form-control" 
@@ -71,11 +71,11 @@ const ListadoHistorias = () => {
                         />
                     </div>
 
-                    <div className="col-md-1">
-                        <input className="btn btn-info form-control" 
-                            type="submit" 
-                            value="Filtrar" 
-                        />
+                    <div className="col-md-1 ml-auto">
+                        <button 
+                            type="submit"
+                            className="btn btn-info form-control w-75"
+                            ><i className="fas fa-search"></i></button>
                     </div>
                 </div>
             </form>
@@ -86,14 +86,14 @@ const ListadoHistorias = () => {
 
                 : 
                     (
-                        <table className="table table-bordered mt-3">
+                        <table className="table table-bordered mt-3 container">
                             <thead>
                                 <tr>
                                     <th scope="col">Fecha</th>
                                     <th scope="col">Hora</th>
                                     <th scope="col">Descripción</th>
                                     <th scope="col">Paciente ID</th>
-                                    <th scope="col" className="text-center">Acciones</th>
+                                    <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
                     
