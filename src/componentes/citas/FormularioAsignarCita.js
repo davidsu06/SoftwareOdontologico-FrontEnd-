@@ -11,8 +11,9 @@ const FormularioAsignarCita = () => {
     // console.log(hora)
     // console.log(pacienteId)
     // console.log(_id)
+    let newfecha;
 
-    const newfecha = fecha.substr(0,10)
+    if(fecha != undefined) newfecha = fecha.substr(0,10)
 
     const [asignarPaciente, guardarasignarPaciente] = useState({
         pacienteId: ''
@@ -40,7 +41,6 @@ const FormularioAsignarCita = () => {
     const Submit = e => {
 
         e.preventDefault();
-            console.log(citaexistente)
             if(citaexistente){
                 Swal.fire(
                     'Error',

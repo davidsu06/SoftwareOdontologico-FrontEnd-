@@ -25,7 +25,7 @@ const Cita = ({cita}) => {
             citaExistentePaciente(usuario.documento)
             
         }
-    }, [usuario, citaExistentePaciente])
+    }, [usuario])
     const {HistoriaNull} = useContext(historiaContext);
 
     const { fecha, hora, pacienteId, estado, _id } = cita;
