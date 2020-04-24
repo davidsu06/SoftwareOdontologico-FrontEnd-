@@ -5,7 +5,7 @@ import clienteAxios from '../../config/axios';
 
 import { 
     CREAR_SERVICIO,
-    LISTAR_SERVICIO
+    LISTAR_SERVICIOS
  } from '../../types';
  
 const ServiciosState = props => {
@@ -43,7 +43,7 @@ const ServiciosState = props => {
             const resultado = await clienteAxios.get('/api/servicios');
             console.log(resultado);
             dispatch({
-                type: LISTAR_SERVICIO,     
+                type: LISTAR_SERVICIOS,     
                 payload: resultado.data.servicio
             })
         } catch (error) {

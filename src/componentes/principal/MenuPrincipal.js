@@ -3,7 +3,7 @@ import HeaderPrincipal from './HeaderPrincipal';
 import ListadoNoticias from './ListadoNoticias';
 import SaludDental from './SaludDental';
 import Servicios from './Servicios';
-import Contactenos from './Contactenos';
+import Preguntas from './Preguntas';
 import Footer from './Footer';
 import Inicio from './Inicio';
 
@@ -43,8 +43,8 @@ const MenuPrincipal = () => {
             :null
         }
 
-        {navegacion === 'contactenos' 
-            ? <Contactenos />
+        {navegacion === 'preguntas' 
+            ? <Preguntas />
 
             :null
         }

@@ -8,6 +8,7 @@ import ConsultarPacientes from './componentes/admin/ConsultarPacientes';
 import ConsultarPersonal from './componentes/admin/ConsultarPersonal';
 import ConsultarCitas from './componentes/admin/ConsultarCitas';
 import ConsultarFacturas from './componentes/admin/ConsultarFacturas';
+import ConsultarServicios from './componentes/admin/ConsultarServicios';
 import CrearServicio from './componentes/admin/CrearServicio';
 import AsignarCitas from './componentes/admin/AsignarCitas';
 import MisCitas from './componentes/citas/MisCitas';
@@ -29,7 +30,6 @@ import ConsultarHistorias from './componentes/admin/ConsultarHistorias';
 import MiHistorial from './componentes/admin/MiHistorial';
 import MisFacturas from './componentes/admin/MisFacturas';
 import FacturaPDF from './componentes/Facturas/FacturaPDF';
-
 
 //Revisar si se tiene un token
 const token = localStorage.getItem('token');
@@ -58,6 +58,7 @@ function App() {
                         <Route exact path="/consultar-pacientes" component={ConsultarPacientes}/>
                         <Route exact path="/consultar-personal" component={ConsultarPersonal}/>
                         <Route exact path="/crear-servicio" component={CrearServicio}/>
+                        <Route exact path="/consultar-servicios" component={ConsultarServicios}/>
                         <Route exact path="/consultar-citas" component={ConsultarCitas}/>
                         <Route exact path="/crear-pacientes" component={CrearPacientes}/>
                         <Route exact path="/editar-pacientes" component={CrearPacientes}/>

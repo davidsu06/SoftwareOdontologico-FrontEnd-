@@ -9,45 +9,45 @@ const HeaderPrincipal = ({actualizarNavegacion}) => {
 
             <button
                 type="button" 
-                className="btn btn-link" 
+                className="btn btn-link mr-3" 
                 style={{width:'3%'}}
                 onClick={()=> actualizarNavegacion('inicio')}
             ><img src={Logo} alt="Logo Odontología" className="w-100"/></button>
 
             <button 
                 type="button" 
-                className="btn btn-link" 
+                className="btn btn-link mr-3" 
                 style={{color:'white'}}
                 onClick={()=> actualizarNavegacion('inicio')}
-            ><b>Inicio</b></button>
+            ><i className="fas fa-home text-white"></i><br/><b>Inicio</b></button>
 
             <button 
                 type="button" 
-                className="btn btn-link" 
+                className="btn btn-link mr-3" 
                 style={{color:'white'}}
                 onClick={()=> actualizarNavegacion('noticias')}
-            ><b>Noticias</b></button>
+            ><i class="far fa-newspaper text-white"></i><br/><b>Noticias</b></button>
 
             <button 
                 type="button" 
-                className="btn btn-link" 
+                className="btn btn-link mr-3" 
                 style={{color:'white'}}
                 onClick={()=> actualizarNavegacion('servicios')}
-            ><b>Servicios</b></button>
+            ><i class="fas fa-tooth text-white"></i><br/><b>Servicios</b></button>
 
             <button 
                 type="button" 
-                className="btn btn-link" 
+                className="btn btn-link mr-3" 
                 style={{color:'white'}}
                 onClick={()=> actualizarNavegacion('salud')}
-            ><b>Salud Dental</b></button>
+            ><i class="fas fa-heartbeat"></i><br/><b>Salud Dental</b></button>
             
             <button 
                 type="button" 
                 className="btn btn-link" 
                 style={{color:'white'}}
-                onClick={()=> actualizarNavegacion('contactenos')}
-            ><b>Contactenos</b></button>
+                onClick={()=> actualizarNavegacion('preguntas')}
+            ><i class="fas fa-comments text-white"></i><br/><b>Preguntas</b></button>
             
             <Link to={'/iniciar-sesion'} className="btn btn-success my-2 my-sm-0 ml-auto" style={{color:'white'}}>
                 <b>Iniciar Sesión</b>

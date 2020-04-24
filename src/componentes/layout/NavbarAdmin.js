@@ -16,23 +16,21 @@ const NavbarAdmin = () => {
   return (  
       <>
         {cargo === 'Administrador'
-          ?
-            <NavbarAdministrador usuario={usuario}/>
+          ?<NavbarAdministrador usuario={usuario}/>
 
           :null
         } 
 
         {cargo === 'Personal' || cargo === 'Medico'
-          ?
-            <NavbarPersMed usuario={usuario}/>
+          ?<NavbarPersMed usuario={usuario}/>
 
           :null
         }
 
         {cargo === 'Paciente'
-          ?
-          <NavbarPaciente usuario={usuario}/>
-            :null
+          ?<NavbarPaciente usuario={usuario}/>
+
+          :null
         }
       </>
   );

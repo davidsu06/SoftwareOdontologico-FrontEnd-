@@ -27,7 +27,7 @@ const MenuAdmin = ({actualizarBandera,Bandera,titulo}) => {
         <nav className="navbar navbar-expand-lg navbar-light border-bottom navhor">
             <button onClick={esconder} className="btn" id="menu-toggle"><i className="fas fa-align-justify text-white"></i></button>
             <h1 className='ml-auto menuadmti'>{titulo}</h1>
-            <Link to={'/'} onClick={()=>cerrarSesion()} className="btn btn-danger ml-auto"><span>Cerrar Sesión</span></Link>
+            <Link to={'/'} onClick={()=>cerrarSesion()} className="btn btn-danger ml-auto" title="Cerrar Sesión"><i class="fas fa-sign-out-alt text-white"></i></Link>
         </nav>
      );
 }
