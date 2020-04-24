@@ -25,18 +25,21 @@ const FormularioCrearServicio = () => {
         <div className="container mt-4 pfacturas" >
         
         <form onSubmit={BotonGuardar}>
-
+        <div className=" container fondoFormServicio">
+            
+        <div className="container align-content-center formularioservicio">
             <div className="form-group">
                 <label className="font-weight-bold">NOMBRE DEL SERVICIO</label>
                 <input type="text" className="form-control" name="nombre_servicio" onChange={Guardar}/>
             </div> 
-
+            </div>
             <div className="form-group">
                 <input type="submit" 
-                className="form-control boton font-weight-bold" 
+                className="form-control btnFormServicio font-weight-bold" 
                 value="Crear Servicio"
                 />
-            </div>           
+            </div>
+            </div>          
         </form>
     </div>
     </>

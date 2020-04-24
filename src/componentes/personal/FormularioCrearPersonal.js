@@ -125,17 +125,6 @@ const FormularioCrearPersonal = () => {
         }
 
         console.log('enviando paciente.....');
-        // guardarpersonal({
-        //     documento: '',
-        //     nombre: '',
-        //     apellido: '',
-        //     fecha_nacimiento: '',
-        //     direccion: '',
-        //     telefono: '',
-        //     cargo: '',
-        //     password: '',
-        //     confpassword: ''
-        // })
 
         // Revisar si esta editando o agregando
         if(personalseleccionado === null){
@@ -160,41 +149,46 @@ const FormularioCrearPersonal = () => {
     return ( 
         <div className="container mt-4" >
         <form onSubmit={submit}>
-            
+        <div className=" container fondoForm">
+        <div className="container Formularios">
             <div className="form-group">
-                <label className="font-weight-bold">documento DE IDENTIDAD</label>
-                <input type="NUMBER" className="form-control" name="documento" onChange={Guardar} placeholder="ej. 123456789" value={personal.documento}/>
+                <label className="font-weight-bold">DOCUMENTO DE IDENTIDAD</label>
+                <input type="NUMBER" className="form-control col-md-11 justify-content-center" name="documento" onChange={Guardar} placeholder="ej. 123456789" value={personal.documento}/>
             </div>
 
             <div className="form-group">
-                <label className="font-weight-bold">nombre</label>
-                <input type="text" className="form-control" name="nombre" onChange={Guardar} placeholder="ej. Andres Felipe" value={personal.nombre}/>
+                <label className="font-weight-bold">NOMBRE</label>
+                <input type="text" className="form-control col-md-11" name="nombre" onChange={Guardar} placeholder="ej. Andres Felipe" value={personal.nombre}/>
             </div>
 
             <div className="form-group">
-                <label className="font-weight-bold">apellido</label>
-                <input type="text" className="form-control" name="apellido" onChange={Guardar} placeholder="ej. Perez Gonzalez" value={personal.apellido}/>
+                <label className="font-weight-bold">APELLIDO</label>
+                <input type="text" className="form-control col-md-11" name="apellido" onChange={Guardar} placeholder="ej. Perez Gonzalez" value={personal.apellido}/>
             </div>
 
             <div className="form-group">
                 <label className="font-weight-bold">FECHA DE NACIMIENTO</label>
-                <input type="date" className="form-control" name="fecha_nacimiento" onChange={Guardar} placeholder="dd/mm/aaaa" value={personal.fecha_nacimiento}/>
+                <input type="date" className="form-control col-md-11" name="fecha_nacimiento" onChange={Guardar} placeholder="dd/mm/aaaa" value={personal.fecha_nacimiento}/>
             </div>
 
             <div className="form-group">
-                <label className="font-weight-bold">direccion</label>
-                <input type="text" className="form-control" name="direccion" onChange={Guardar} placeholder="ej. Calle 9 #11-01" value={personal.direccion}/>
+                <label className="font-weight-bold">DIRECCION</label>
+                <input type="text" className="form-control col-md-11" name="direccion" onChange={Guardar} placeholder="ej. Calle 9 #11-01" value={personal.direccion}/>
             </div>
 
+        </div>
+        <div className="container Formularios">
+            
+
             <div className="form-group">
-                <label className="font-weight-bold">telefono</label>
-                <input type="number" className="form-control" name="telefono" onChange={Guardar} placeholder="ej. 3003000000" value={personal.telefono}/>
+                <label className="font-weight-bold">TELEFONO</label>
+                <input type="number" className="form-control col-md-11" name="telefono" onChange={Guardar} placeholder="ej. 3003000000" value={personal.telefono}/>
             </div>
 
 
             <div className="form-group ">
-                <label className="font-weight-bold">TIPO EMPLEADO</label>
-                <select className="form-control selector" id="select"name="cargo" onChange={Guardar}>
+                <label className="font-weight-bold ">TIPO EMPLEADO</label>
+                <select className="form-control col-md-11" id="select"name="cargo" onChange={Guardar}>
                     <option value="primera">Selecione...</option>
                     <option>Administrador</option>
                     <option>Personal</option>
@@ -204,17 +198,21 @@ const FormularioCrearPersonal = () => {
 
             <div className="form-group">
                 <label className="font-weight-bold">CONTRASEÑA</label>
-                <input type="password" className="form-control" name="password" placeholder="********" onChange={Guardar} value={personal.password}/>
+                <input type="password" className="form-control col-md-11" name="password" placeholder="********" onChange={Guardar} value={personal.password}/>
             </div>
             {personal.confpassword !== personal.password ? <Error mensaje={"Las contraseñas no coinciden"}/> : null} 
             <div className="form-group">
                 <label className="font-weight-bold">CONFIRMAR CONTRASEÑA</label>
-                <input type="password" className="form-control" name="confpassword" placeholder="********" onChange={Guardar} value={personal.confpassword}/>
+                <input type="password" className="form-control col-md-11" name="confpassword" placeholder="********" onChange={Guardar} value={personal.confpassword}/>
             </div>
-            {error.bandera ? <Error mensaje={error.Mensaje}/> : null}  
-            <div className="form-group">
-                <input type="submit" className="form-control boton font-weight-bold" value= {personalseleccionado ? 'Editar Personal' : 'Agregar Personal'}/>
-            </div>
+            
+            {error.bandera ? <Error mensaje={error.Mensaje}/> : null} 
+            
+        </div>
+        <div className="form-group">
+            <input type="submit" className="form-control btnForm font-weight-bold col-md-11" value= {personalseleccionado ? 'Editar Personal' : 'Agregar Personal'}/>
+        </div> 
+        </div> 
             
         </form>
     </div>

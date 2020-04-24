@@ -95,7 +95,18 @@ ul {
 .negrilla{
   font-weight: bold;
 }
- 
+  .menuver{
+    width: auto;
+    background: rgba(1,95,107,1);
+  background: -moz-linear-gradient(top, rgba(1,95,107,1) 0%, rgba(22,122,135,1) 14%, rgba(82,197,212,1) 53%, rgba(82,197,212,1) 76%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(1,95,107,1)), color-stop(14%, rgba(22,122,135,1)), color-stop(53%, rgba(82,197,212,1)), color-stop(76%, rgba(82,197,212,1)));
+  background: -webkit-linear-gradient(top, rgba(1,95,107,1) 0%, rgba(22,122,135,1) 14%, rgba(82,197,212,1) 53%, rgba(82,197,212,1) 76%);
+  background: -o-linear-gradient(top, rgba(1,95,107,1) 0%, rgba(22,122,135,1) 14%, rgba(82,197,212,1) 53%, rgba(82,197,212,1) 76%);
+  background: -ms-linear-gradient(top, rgba(1,95,107,1) 0%, rgba(22,122,135,1) 14%, rgba(82,197,212,1) 53%, rgba(82,197,212,1) 76%);
+  background: linear-gradient(to bottom, rgba(1,95,107,1) 0%, rgba(22,122,135,1) 14%, rgba(82,197,212,1) 53%, rgba(82,197,212,1) 76%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#015f6b', endColorstr='#52c5d4', GradientType=0 );
+  }
+  
   #sidebar-wrapper .sidebar-heading {
     padding: 0.875rem 1.25rem;
     font-size: 1.2rem;
@@ -200,84 +211,44 @@ ul {
     box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
     margin-bottom: 10px;
   }
+  .largonav{
+    min-height: 515px;
+    min-width: auto;
+  }
+  .navhor{
+    width: auto;
+    border-radius: 20px 20px 20px 20px;
+    background-image: url('./media/circle-blues.png');
+    border: 2px solid black;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-top: 1.5px;
+  }
+  .menuadmti{
+    color: #FAFAFA ;
 
-
-  /* stilos de todos los formularios de la parte de administracion*/
-  .Formularios{
-    width: 400px;
-    min-height: auto;
-    float:left;
   }
-
-  .btnForm{
-    color: #FFF;
-    background-color: #28a745;
-    font-size: 18px;
-    text-align: center;
-    font-style: normal;
-    border-radius: 5px;
-    margin-left: 10px;
-    
-  }
-  .fondoForm{
-    height: auto;
-    width: 880px;
-    border-radius: 20px;
-  }
-  .formularioservicio{
-    width: 400px;
-    min-height: auto;
-    float:center;
-  }
-  .fondoFormServicio{
-    height: auto;
-    width: 400px;
-    border-radius: 20px;
-  }
-  .btnFormServicio{
-    color: #FFF;
-    background-color: #28a745;
-    font-size: 18px;
-    text-align: center;
-    font-style: normal;
-    border-radius: 5px;
-    margin-left: 15px;
-    
-  }
-  .casillaesquina{
-    border-bottom: 5px black;
-    color: #fafafa;
-    border-bottom: white 1px solid;
+  .cabesquina{
+    width: auto;
+    border-radius: 20px 20px 20px 20px;
+    background-image: url('./media/circle-blues.png');
+    border: 2px solid black;
+    margin-left: 0.5px;
   }
   .casilla{
     width: auto;
-    background-color: transparent;
-    border: none;
-    color: #fafafa;
-    font: caption;
-    border-bottom: white 1px solid;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    border-radius: 20px 20px 20px 20px;
+    background-image: url('./media/double-bubble.png');
+    border: 2px solid black;
+    margin-top: 30px;
   }
   .subcasilla{
-    width: auto;
-    background-color: #ffffff;
-    opacity: 0.5;
-    border: none;
-    color: black;
-    font: caption;
-    font-style: italic;
-    margin-bottom: 1px;
-  }
-  .menuver{ 
-    min-height: 800px;
-    border: none;
-    background-image: url('./media/circle-blues.png');
-  }
-  .navhor{
-    color: #fafafa;
-    border: none;
-    height: 100px;
-    background-image: url('./media/circle-blues.png');
+    align-self: center;
+    text-align: center;
+    width: 200px;
+    border-radius: 20px;
+    background-color: rgb(25, 107, 129);
+    border-style: solid;
+    margin-top: 10px;
     
   }

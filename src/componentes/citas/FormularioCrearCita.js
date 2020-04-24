@@ -106,22 +106,24 @@ const FormularioCrearCita = () => {
                 ? <div className="alert alert-danger font-weight-bold">{error.mensaje}</div> 
 
                 : null}
-
+                <div className=" container fondoForm">
+                <div className="container Formularios">
                 <div className="form-group">
-                    <label className="font-weight-bold text-white">Elija una fecha</label>
-                    <input type="date" name="fecha" value={cita.fecha} onChange={onChange}></input>
+                    <label className="font-weight-bold">Elija una fecha</label>
+                    <input type="date" className="form-control col-md-11" name="fecha" value={cita.fecha} onChange={onChange}></input>
                 </div>
-
-                <div className="form-group">
-                    <label className="font-weight-bold text-white">Digite una hora</label>
-                    <input type="time" style={timeStyle}  name="hora" value={cita.hora} onChange={onChange}></input>
                 </div>
-
+                <div className="container Formularios">
                 <div className="form-group">
-                    <input type="submit" className="form-control boton font-weight-bold"
+                    <label className="font-weight-bold">Digite una hora</label>
+                    <input type="time" className="form-control col-md-11" name="hora" value={cita.hora} onChange={onChange}></input>
+                </div>
+                </div>
+                <div className="form-group ">
+                    <input type="submit" className="form-control btnForm font-weight-bold col-md-11"
                     value = { citaseleccionada ? 'Editar cita' : 'Crear cita'}></input>
                 </div>
-                
+                </div>
 
             </form>
 

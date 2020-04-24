@@ -66,10 +66,11 @@ const FormularioFacturas = () => {
         <div className="container mt-4 pfacturas" >
         
         <form onSubmit={BotonGuardar}>
-
+            <div className=" container fondoForm">
+            <div className="container Formularios">
             <div className="form-group ">
                 <label className="font-weight-bold">DOCUMENTO DEL PACIENTE</label>
-                <select className="form-control selector" id="select" name="documento_paciente" onChange={Guardar} value={factura.documento_paciente}>
+                <select className="form-control col-md-11" id="select" name="documento_paciente" onChange={Guardar} value={factura.documento_paciente}>
                     <option value="primera">Selecione...</option>
                     {pacientes.length === 0
                 ? (<option>no hay servicios</option>  )
@@ -82,7 +83,7 @@ const FormularioFacturas = () => {
 
             <div className="form-group">
                 <label className="font-weight-bold" onChange={Guardar}>TRATAMIENTO</label>
-                <select className="form-control selector" id="select" name="tratamiento" onChange={Guardar} value={factura.tratamiento}>
+                <select className="form-control col-md-11" id="select" name="tratamiento" onChange={Guardar} value={factura.tratamiento}>
                 <option value="primera">Selecione...</option>  
                 {servicios.length === 0
                 ? (<option>no hay servicios</option>  )
@@ -92,22 +93,23 @@ const FormularioFacturas = () => {
                                 }
                 </select>
             </div>
-
+            </div>
+            <div className="container Formularios">                
             <div className="form-group">
                 <label className="font-weight-bold">VALOR</label>
-                <input type="number" className="form-control" name="valor" onChange={Guardar} value={factura.valor}/>
+                <input type="number" className="form-control col-md-11" name="valor" onChange={Guardar} value={factura.valor}/>
             </div> 
             <div className="form-group">
                 <label className="font-weight-bold">CAJERO</label>
-                <input type="number" className="form-control" name="documento_cajero" value={documento} disabled/>
+                <input type="number" className="form-control col-md-11" name="documento_cajero" value={documento} disabled/>
             </div> 
-
+            </div>
             <input 
                 type="submit" 
-                className="form-control boton font-weight-bold"
+                className="form-control btnForm font-weight-bold col-md-11"
                 value="Generar Factura"
             />
-
+        </div>
         </form>
 
         {facturaseleccionada
@@ -115,15 +117,6 @@ const FormularioFacturas = () => {
 
             :  <Redirect to="/crear-factura" />
         }
-
-        {/*facturaseleccionada
-        ? (
-        <PDFViewer className="w-75 alturapdf">
-            <MyDocument facturas={factura} />
-        </PDFViewer>
-        )
-        : null        
-        */}
         
     </div>
     </>

@@ -89,31 +89,33 @@ const FormularioCrearHistoria = () => {
         <div className="container mt-4" >
         
             <form onSubmit={submitCrearHistoria}>
-                
+            <div className=" container fondoForm">
+            <div className="container Formularios">
                 <div className="form-group">
                     <label className="font-weight-bold">Documento del Paciente</label>
                     <input type="text" 
-                    className="form-control" name="pacienteId" readOnly="readonly" value={pacienteId}
+                    className="form-control col-md-11" name="pacienteId" readOnly="readonly" value={pacienteId}
                     />
                 </div>
 
                 <div className="form-group">
                     <label className="font-weight-bold">Documento del Personal</label>
                     <input type="text" 
-                    className="form-control" name="personalId" readOnly="readonly" value={personalId}
+                    className="form-control col-md-11" name="personalId" readOnly="readonly" value={personalId}
                     />
                 </div>
-
+                </div>
+                <div className="container Formularios"> 
                 <div className="form-group">
                     <label className="font-weight-bold">Fecha de la cita</label>
-                    <input type="date" className="form-control" name="fecha"  readOnly="readonly" value={fecha}/>
+                    <input type="date" className="form-control col-md-11" name="fecha"  readOnly="readonly" value={fecha}/>
                 </div>
 
                 <div className="form-group">
                     <label className="font-weight-bold">Hora de la cita</label>
-                    <input type="time" className="form-control" name="hora"  readOnly="readonly" value={hora}/>
+                    <input type="time" className="form-control col-md-11" name="hora"  readOnly="readonly" value={hora}/>
                 </div>
-
+                </div>
                 <div className="form-group">
                     <label className="font-weight-bold">Descripción</label>
                     <textarea 
@@ -131,11 +133,11 @@ const FormularioCrearHistoria = () => {
 
                 <div className="form-group">
                     <input type="submit"
-                    className="form-control boton font-weight-bold"
+                    className="form-control boton font-weight-bold ml-3"
                     value={historiaseleccionado ? 'Editar Historia Clínica' :'Crear Historia Clínica'} 
                     />
                 </div>
-                
+                </div>
             </form>
         </div>
      );
