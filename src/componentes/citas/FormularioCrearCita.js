@@ -103,12 +103,12 @@ const FormularioCrearCita = () => {
 
                 {error.mensaje !== '' 
                 
-                ? <div className="alert alert-danger font-weight-bold">{error.mensaje}</div> 
+                ? <div className="col-11 alert alert-danger font-weight-bold text-center">{error.mensaje}</div> 
 
                 : null}
                 <div className=" container fondoForm">
                 <div className="container Formularios">
-                <div className="form-group">
+                <div className="form-group p-0">
                     <label className="font-weight-bold">Elija una fecha</label>
                     <input type="date" className="form-control col-md-11" name="fecha" value={cita.fecha} onChange={onChange}></input>
                 </div>

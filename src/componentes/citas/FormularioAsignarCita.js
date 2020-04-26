@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import citaContext from '../../context/citas/citaContext';
 import Swal from 'sweetalert2';
 
-const FormularioAsignarCita = () => {
+const FormularioAsignarCita = ({redireccion}) => {
 
     const citasContext = useContext(citaContext);
     const { citasignada, modificarCita, citaExistentePaciente, citaexistente } = citasContext;
@@ -11,7 +11,7 @@ const FormularioAsignarCita = () => {
     // console.log(hora)
     // console.log(pacienteId)
     // console.log(_id)
-    let newfecha;
+    let newfecha
 
     if(fecha !== undefined) newfecha = fecha.substr(0,10)
 
@@ -39,8 +39,15 @@ const FormularioAsignarCita = () => {
     }
 
     const Submit = e => {
-
         e.preventDefault();
+
+        if (asignarPaciente.pacienteId.trim() === '') {
+            Swal.fire(
+                'Error',
+                'Por favor ingrese un documento',
+                'error'
+            )
+        }else{
             if(citaexistente){
                 Swal.fire(
                     'Error',
@@ -48,36 +55,38 @@ const FormularioAsignarCita = () => {
                     'error'
                 )
             }else{
-            
-            actualizarIdPaciente({
-                pacienteId: asignarPaciente.pacienteId
-            })
+                actualizarIdPaciente({
+                    pacienteId: asignarPaciente.pacienteId
+                })
 
-            modificarCita({
-                _id,
-                pacienteId: asignarPaciente.pacienteId,
-                estado: 'Asignado'
-            })
+                modificarCita({
+                    _id,
+                    pacienteId: asignarPaciente.pacienteId,
+                    estado: 'Asignado'
+                })
 
-            Swal.fire(
-                'Correcto',
-                'La cita se asignó correctamente',
-                'success'
-            )
-            guardarasignarPaciente({
-                pacienteId: ''
-            })
+                Swal.fire(
+                    'Correcto',
+                    'La cita se asignó correctamente',
+                    'success'
+                )
+                guardarasignarPaciente({
+                    pacienteId: ''
+                })
+                redireccion(true);
+            }
 
         }
         
     }
+
     return ( 
         <>
             <div className="container">
                 
-                <div className="row mt-3">
+                <div className="row mt-3 justify-content-around">
 
-                    <div className="col-md-3 p-0">
+                    <div>
 
                         <div className="card bg-light shadow" style={{ borderWidth: 2}}>
                             
@@ -103,7 +112,7 @@ const FormularioAsignarCita = () => {
 
                     </div>
                     
-                    <div className="col-md-9 p-0">
+                    <div>
 
                         <h3 className="text-center mb-4">Digite el documento del paciente</h3>
 
@@ -117,7 +126,7 @@ const FormularioAsignarCita = () => {
 
                             <div className="form-group">
 
-                                <input type="submit" className="form-control boton font-weight-bold" value="Asignar cita"></input>
+                                <input type="submit" className="form-control btn btn-success font-weight-bold" value="Asignar cita"></input>
 
                             </div>
 

@@ -4,12 +4,20 @@ import MenuAdmin from '../layout/MenuAdmin';
 import FormularioAsignarCita from '../citas/FormularioAsignarCita';
 import AuthContext from '../../context/autenticacion/authContext';
 
-const AsignarCitas = () => {
+const AsignarCitas = (props) => {
 
     const [bandera,actualizarBandera]=useState(true);
+    const [ redirect, actualizarRedirect ] = useState(false)
+
 
     const authContext = useContext(AuthContext);
     const { usuarioAutenticado } = authContext;
+
+    useEffect(() => {
+
+      if(redirect) props.history.push('/consultar-citas')  
+      
+    }, [redirect])
 
     useEffect(() => {
       usuarioAutenticado();
@@ -27,7 +35,7 @@ const AsignarCitas = () => {
 
                 <div className="container-fluid">
 
-                <FormularioAsignarCita/>
+                <FormularioAsignarCita redireccion={ actualizarRedirect }/>
 
                 </div>
 

@@ -100,7 +100,7 @@ const ListadoHistorias = () => {
 
                 : 
                     (
-                        <table className="table table-bordered mt-3 container">
+                        <table className="table table-bordered mt-3 ">
                             <thead>
                                 <tr>
                                     <th scope="col">Fecha</th>
