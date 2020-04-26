@@ -25,8 +25,12 @@ const NavbarPaciente = ({usuario}) => {
     <>
       <div className="menuver border-right negrilla" id="sidebar-wrapper">
           <div className="sidebar-heading casillaesquina">
-            <img src={logo} alt="logo" className="Logo"></img>
-            <p>Bienvenido {usuario.nombre}</p>
+              <div className="d-flex justify-content-center">
+                <img src={logo} alt="logo" className="Logo"></img>
+              </div>
+              <div className="d-flex justify-content-center text-align-center">
+                <p>Bienvenido {usuario.nombre.split(" ", 1)}</p>
+              </div>
           </div>
 
           <div className="list-group list-group-flush">   

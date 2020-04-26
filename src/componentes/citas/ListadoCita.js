@@ -45,7 +45,7 @@ const ListadoCita = () => {
 
     // Paginacion
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage] = useState(3);
+    const [postsPerPage] = useState(5);
 
     // Get current posts
     const indexOfLastPost = currentPage * postsPerPage;
