@@ -4,6 +4,7 @@ import MenuAdmin from '../layout/MenuAdmin';
 import citaContext from '../../context/citas/citaContext';
 import CitaPaciente from './CitaPaciente';
 import AuthContext from '../../context/autenticacion/authContext';
+import Pagination from '../layout/paginacion';
 
 const MisCitas = () => {
 
@@ -25,6 +26,19 @@ const MisCitas = () => {
             listarCitasPaciente(usuario.documento)
         }
     }, [usuario, listarCitasPaciente])
+
+    // Paginacion
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(2);
+
+    // Get current posts
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = citasfiltradas.slice(indexOfFirstPost, indexOfLastPost);
+    console.log(currentPosts);
+
+    // Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
 
     return ( 
         <>
@@ -61,7 +75,7 @@ const MisCitas = () => {
                                 <tbody>
 
                                         {
-                                        citasfiltradas.map( citafiltrada => (
+                                        currentPosts.map( citafiltrada => (
                                             <CitaPaciente 
                                                 key={citafiltrada._id}
                                                 cita={citafiltrada}
@@ -82,6 +96,11 @@ const MisCitas = () => {
             </div>
 
         </div> 
+        <Pagination
+            postsPerPage={postsPerPage}
+            totalPosts={citasfiltradas.length}
+            paginate={paginate}
+         />      
 
         </>
      );

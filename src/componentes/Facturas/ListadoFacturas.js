@@ -1,12 +1,25 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import facturasContext from '../../context/facturas/facturasContext';
 import Factura from './Factura';
+import Pagination from '../layout/paginacion';
 
 const ListadoFacturas = () => {
     // Funcion para listar pacientes
 
     const facturaContext = useContext(facturasContext);
     const {listarFacturas, facturas} = facturaContext;
+
+    // Paginacion
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(6);
+
+    // Get current posts
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = facturas.slice(indexOfFirstPost, indexOfLastPost);
+
+    // Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
 
     useEffect(() => {
         listarFacturas();   
@@ -34,7 +47,7 @@ const ListadoFacturas = () => {
                     
                             <tbody>
                                 {
-                                    facturas.map(factura => (
+                                    currentPosts.map(factura => (
                                         <tr>
                                             <Factura 
                                                 key={factura._id}
@@ -47,7 +60,12 @@ const ListadoFacturas = () => {
                         </table>
                     )
                 }  
-            </div>   
+            </div> 
+            <Pagination
+                postsPerPage={postsPerPage}
+                totalPosts={facturas.length}
+                paginate={paginate}
+            />  
         </>
      );
 }

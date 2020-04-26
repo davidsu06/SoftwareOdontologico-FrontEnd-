@@ -32,6 +32,7 @@ const FormularioCrearPaciente = () => {
                 telefono:'',
                 direccion:'',
                 password:'',
+                confpassword:'' ,                
                 cargo: 'Paciente'
             })
         }
@@ -125,7 +126,8 @@ const FormularioCrearPaciente = () => {
             fnacimiento:'',
             telefono:'',
             direccion:'',
-            password:''
+            password:'',
+            confpassword:''  
         })
 
 
@@ -143,7 +145,8 @@ const FormularioCrearPaciente = () => {
             fnacimiento:'',        
             telefono:'',
             direccion:'',
-            password:''     
+            password:'' ,
+            confpassword:''      
         })
 
         // guardarpaciente({

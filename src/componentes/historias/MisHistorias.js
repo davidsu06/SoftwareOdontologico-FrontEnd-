@@ -1,8 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import historiaContext from '../../context/historia/historiaContext';
 import authContext from '../../context/autenticacion/authContext';
 import Historia from './Historia';
 import img1 from '../../media/Logo.png';
+import Pagination from '../layout/paginacion';
 
 const ListadoHistorias = () => {
 
@@ -22,8 +23,21 @@ const ListadoHistorias = () => {
         historiasPaciente = [];
     }
     
+    // Paginacion
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(3);
+
+    // Get current posts
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = historiasPaciente.slice(indexOfFirstPost, indexOfLastPost);
+
+    // Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+
     return ( 
-        <div className="container mt-5">
+        <>
+        <div className="col-md-11 col-sm-3 mt-5">
             <div className="card">
                 <div className="card-header">
                     {usuario
@@ -67,7 +81,7 @@ const ListadoHistorias = () => {
                         
                                 <tbody>
                                     {
-                                        historiasPaciente.map(historia => (
+                                        currentPosts.map(historia => (
                                             <Historia
                                                 key={historia._id}
                                                 historia={historia}
@@ -88,6 +102,12 @@ const ListadoHistorias = () => {
 
             </div>
         </div>
+        <Pagination
+                postsPerPage={postsPerPage}
+                totalPosts={historiasPaciente.length}
+                paginate={paginate}
+            />
+        </>
      );
 }
  

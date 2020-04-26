@@ -1,9 +1,10 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import citaContext from '../../context/citas/citaContext';
 import AuthContext from '../../context/autenticacion/authContext';
 import Cita from './Cita';
 import InfiniteCalendar from 'react-infinite-calendar';
 import 'react-infinite-calendar/styles.css'; 
+import Pagination from '../layout/paginacion';
 
 const ListadoCita = () => {
 
@@ -42,7 +43,18 @@ const ListadoCita = () => {
         filtrarCitas(fecha);
     }
 
-    
+    // Paginacion
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(3);
+
+    // Get current posts
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = citas.slice(indexOfFirstPost, indexOfLastPost);
+    const currentPosts2 = citasfiltradas.slice(indexOfFirstPost, indexOfLastPost);
+
+    // Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
 
     return ( 
         <>
@@ -72,12 +84,12 @@ const ListadoCita = () => {
 
                 <div className="col-md-8">
                     {
-                        // searching && citasfiltradas.length === 0
+                         searching && citasfiltradas.length === 0
 
-                        // ? 
-                        // (<h3 className="text-center">No hay citas disponibles para el día seleccionado</h3>)
+                         ? 
+                        (<h3 className="text-center">No hay citas disponibles para el día seleccionado</h3>)
 
-                        // :
+                         :
                         ( citas.length === 0
                             ? (<h3 className="text-center">No hay disponibilidad de citas</h3>) 
                             : 
@@ -114,7 +126,7 @@ const ListadoCita = () => {
                                             ))
                                         )
                                         :
-                                        (citas.map(cita => (
+                                        (currentPosts.map(cita => (
                                             <Cita
                                             key={cita._id}
                                             cita={cita}
@@ -134,7 +146,20 @@ const ListadoCita = () => {
             </div>
 
         </div>
-            
+        {currentPosts2.length === 0 
+                ?
+                    <Pagination
+                        postsPerPage={postsPerPage}
+                        totalPosts={citas.length}
+                        paginate={paginate}
+                    /> 
+                :
+                    <Pagination
+                        postsPerPage={postsPerPage}
+                        totalPosts={citasfiltradas.length}
+                        paginate={paginate}
+                  />
+        } 
         </>
     );
 }

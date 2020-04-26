@@ -1,13 +1,27 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Persona from './Persona';
 import personaContext from '../../context/personal/personaContext';
-
+import Pagination from '../layout/paginacion';
 const ListadoPersona = () => {
-
-    // Funcion para listar personas
 
     const personalContext = useContext(personaContext);
     const {listarPersonal, personal} = personalContext;
+
+    // Paginacion
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(3);
+
+    // Get current posts
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = personal.slice(indexOfFirstPost, indexOfLastPost);
+
+    // Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+
+    // Funcion para listar personas
+
+    
 
     useEffect(() => {
          listarPersonal();   
@@ -39,7 +53,7 @@ const ListadoPersona = () => {
                     
                             <tbody>
                                 {
-                                    personal.map(persona => (
+                                    currentPosts.map(persona => (
                                         <tr>
                                             <Persona
                                                 key={persona._id}
@@ -54,6 +68,11 @@ const ListadoPersona = () => {
                     )
                 }                                         
             </div>
+            <Pagination
+                postsPerPage={postsPerPage}
+                totalPosts={personal.length}
+                paginate={paginate}
+            />
         </>
      );
 }

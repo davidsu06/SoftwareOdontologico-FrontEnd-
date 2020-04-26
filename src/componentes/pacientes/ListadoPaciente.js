@@ -1,15 +1,28 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Paciente from './Paciente';
 import pacienteContext from '../../context/pacientes/pacienteContext';
+import Pagination from '../layout/paginacion';
 
 const ListadoPaciente = () => {
 
-    
-
-    // Funcion para listar pacientes
-
     const PacientesContext = useContext(pacienteContext);
     const {listarPacientes, pacientes} = PacientesContext;
+
+    // Paginacion
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(3);
+
+    // Get current posts
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = pacientes.slice(indexOfFirstPost, indexOfLastPost);
+
+    // Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+
+    
+    // Funcion para listar pacientes
+    
 
     useEffect(() => {
          listarPacientes();   
@@ -26,7 +39,7 @@ const ListadoPaciente = () => {
                     : 
                     (
                     <div className="container d-flex justify-content-between">
-                        <table className="table table-bordered mt-3">
+                         <table className="table table-bordered mt-3">
                             <thead>
                                 <tr>
                                     <th scope="col">Documento</th>
@@ -41,7 +54,7 @@ const ListadoPaciente = () => {
                     
                             <tbody>
                                 {
-                                    pacientes.map(paciente => (
+                                    currentPosts.map(paciente => (
                                         <tr>
                                             <Paciente
                                                 key={paciente._id}
@@ -51,11 +64,16 @@ const ListadoPaciente = () => {
                                     ))
                                 }
                             </tbody>
-                        </table>
+                        </table> 
                     </div> 
                     )
                 }                                         
             </div>    
+            <Pagination
+                postsPerPage={postsPerPage}
+                totalPosts={pacientes.length}
+                paginate={paginate}
+            />
         </>
      );
 }

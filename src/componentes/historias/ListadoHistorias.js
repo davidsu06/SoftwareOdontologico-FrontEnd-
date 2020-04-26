@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import historiaContext from '../../context/historia/historiaContext';
 import authContext from '../../context/autenticacion/authContext';
 import Historia from './Historia';
+import Pagination from '../layout/paginacion';
 
 const ListadoHistorias = () => {
 
@@ -49,11 +50,24 @@ const ListadoHistorias = () => {
         filtrarHistorias(historiasbd);   
     }
 
+    // Paginacion
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(3);
+
+    // Get current posts
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = historias.slice(indexOfFirstPost, indexOfLastPost);
+    const currentPosts2 = historiasfiltradas.slice(indexOfFirstPost, indexOfLastPost);
+    // Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+
     return ( 
         <>
-            <form onSubmit={submitFiltro} className="form-group mt-5 container">
+        <div className="col-md-11 col-sm-3 mt-5" >
+            <form onSubmit={submitFiltro} className="form-group mt-5 container" >
                 <div className="row">
-                    <div className="col-md-5">
+                    <div className="col-md-4">
                         <input className="form-control" 
                             type="text"
                             name="filtropaciente" 
@@ -71,7 +85,7 @@ const ListadoHistorias = () => {
                         />
                     </div>
 
-                    <div className="col-md-1 ml-auto">
+                    <div className="col-md-1 ">
                         <button 
                             type="submit"
                             className="btn btn-info form-control w-75"
@@ -98,11 +112,13 @@ const ListadoHistorias = () => {
                             </thead>
                     
                             <tbody>
-                                {historiasfiltradas.length === 0
+                                {currentPosts2.length === 0
 
                                     ?
+                                    
                                     (
-                                        historias.map(historia => (
+                                        
+                                        currentPosts.map(historia => (
                                             <Historia
                                                 key={historia._id}
                                                 historia={historia}
@@ -113,7 +129,7 @@ const ListadoHistorias = () => {
 
                                     :
                                     (
-                                        historiasfiltradas.map(historia => (
+                                        currentPosts2.map(historia => (
                                             <Historia
                                                 key={historia._id}
                                                 historia={historia}
@@ -127,7 +143,21 @@ const ListadoHistorias = () => {
                         </table>
                     )
             }
-
+        </div>    
+            {currentPosts2.length === 0 
+                ?
+                    <Pagination
+                        postsPerPage={postsPerPage}
+                        totalPosts={historias.length}
+                        paginate={paginate}
+                    /> 
+                :
+                    <Pagination
+                        postsPerPage={postsPerPage}
+                        totalPosts={historiasfiltradas.length}
+                        paginate={paginate}
+                    />
+            }
         </>
      );
 }

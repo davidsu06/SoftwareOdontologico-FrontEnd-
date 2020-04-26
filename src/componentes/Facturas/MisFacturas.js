@@ -1,7 +1,8 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import facturasContext from '../../context/facturas/facturasContext';
 import AuthContext from '../../context/autenticacion/authContext';
 import Factura from './Factura';
+import Pagination from '../layout/paginacion';
 
 const MisFacturas = () => {
 
@@ -24,8 +25,22 @@ const MisFacturas = () => {
         MisFacturas = [];
     }
 
+    // Paginacion
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(3);
+
+    // Get current posts
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = MisFacturas.slice(indexOfFirstPost, indexOfLastPost);
+
+    // Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+
     return ( 
         <>
+        <div className="col-md-11 col-sm-3">
+
             {MisFacturas.length === 0
                 ? 
                     (<h3 className="text-center">No hay Facturas</h3>) 
@@ -44,7 +59,7 @@ const MisFacturas = () => {
                     
                             <tbody>
                                 {
-                                    MisFacturas.map(factura => (
+                                    currentPosts.map(factura => (
                                         <tr>
                                             <Factura 
                                                 key={factura._id}
@@ -57,7 +72,13 @@ const MisFacturas = () => {
                         </table>
                     )
                 
-            }   
+            }  
+        </div>  
+        <Pagination
+                postsPerPage={postsPerPage}
+                totalPosts={MisFacturas.length}
+                paginate={paginate}
+            />
         </>
      );
 }

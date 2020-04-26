@@ -13,7 +13,7 @@ const FormularioAsignarCita = () => {
     // console.log(_id)
     let newfecha;
 
-    if(fecha != undefined) newfecha = fecha.substr(0,10)
+    if(fecha !== undefined) newfecha = fecha.substr(0,10)
 
     const [asignarPaciente, guardarasignarPaciente] = useState({
         pacienteId: ''
