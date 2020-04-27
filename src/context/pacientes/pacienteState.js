@@ -10,7 +10,8 @@ import {
     ELIMINAR_PACIENTE,
     AGREGAR_PACIENTE,
     PACIENTE_NULL,
-    PACIENTE_ACTUAL 
+    PACIENTE_ACTUAL,
+    OBTENER_PACIENTE
 } from '../../types';
 
 
@@ -80,6 +81,13 @@ const PacienteState = props => {
         }
     }
 
+    const obtenerPaciente = documento => {
+        dispatch({
+            type: OBTENER_PACIENTE,
+            payload: documento
+        })
+    }
+
     // Seleccionar un paciente
     const PacienteActual = paciente => {
         dispatch({
@@ -130,8 +138,8 @@ const PacienteState = props => {
                 agregarPacientes,
                 PacienteActual,
                 PacienteNull,
-                modificarPaciente
-                
+                modificarPaciente,
+                obtenerPaciente
             }}
         >
             {props.children}

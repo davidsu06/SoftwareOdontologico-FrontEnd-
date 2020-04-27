@@ -41,7 +41,12 @@ const ListadoServicios = () => {
                                 <tr>
                                     <th scope="col">Id. Servicio</th>
                                     <th scope="col">Nombre Servicio</th>
-                                    <th scope="col">Acciones</th>
+                                    {usuario
+                                        ? <> {usuario.cargo === 'Administrador' ? (<th scope="col">Acciones</th>) : null} </>
+                                    
+                                        : null
+                                    }
+                                    
                                 </tr>
                             </thead>
                     

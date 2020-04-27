@@ -29,7 +29,7 @@ import CrearHistoria from './componentes/admin/CrearHistoria';
 import ConsultarHistorias from './componentes/admin/ConsultarHistorias';
 import MiHistorial from './componentes/admin/MiHistorial';
 import MisFacturas from './componentes/admin/MisFacturas';
-import FacturaPDF from './componentes/Facturas/FacturaPDF';
+import FacturaPDF from './componentes/admin/FacturaPDF';
 
 //Revisar si se tiene un token
 const token = localStorage.getItem('token');

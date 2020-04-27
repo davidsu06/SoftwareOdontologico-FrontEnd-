@@ -35,7 +35,7 @@ const AsignarCitas = (props) => {
 
                 <div className="container-fluid">
 
-                <FormularioAsignarCita redireccion={ actualizarRedirect }/>
+                  <FormularioAsignarCita redireccion={ actualizarRedirect }/>
 
                 </div>
 

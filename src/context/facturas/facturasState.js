@@ -22,19 +22,14 @@ const FacturasState = props => {
 
     // Funciones
 
-    const agregarFacturas = async facturas => {
-        // console.log(paciente);
+    const agregarFacturas = async factura => {
+        console.log(factura)
         try {
-            const resultado = await clienteAxios.post('/api/facturas', facturas);
+            const resultado = await clienteAxios.post('/api/facturas', factura);
             console.log(resultado);
-            Swal.fire(
-                'Correcto',
-                'La factura se agrego correctamente',
-                'success'
-            )
             dispatch({
                 type: CREAR_FACTURA,    
-                payload: facturas
+                payload: factura
                 
             })
         } catch (error) {

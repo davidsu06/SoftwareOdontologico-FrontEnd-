@@ -32,10 +32,26 @@ const Servicio = ({servicio,usuario}) => {
         <tr>
             <td>{servicio._id}</td>
             <td>{servicio.nombre_servicio}</td>
-            <td className="text-center">            
-                <Link to={'/editar-servicio'} type="button" className="fas fa-pencil-alt text-decoration-none text-dark mr-2" onClick={() => SeleccionarServicio(servicio)}></Link>
-                <i type="button" className="fas fa-trash-alt mx-3" onClick={() => onClickEliminar(servicio._id)}></i>  
-            </td> 
+               
+            {usuario
+                ?(
+                    <>
+                        {usuario.cargo === 'Paciente'
+                            ? null
+                            :(
+                                <td className="text-center">
+                                    <Link to={'/editar-servicio'} type="button" className="fas fa-pencil-alt text-decoration-none text-dark mr-2" onClick={() => SeleccionarServicio(servicio)}></Link>
+                                    <i type="button" className="fas fa-trash-alt mx-3" onClick={() => onClickEliminar(servicio._id)}></i>  
+                                </td>
+                            )
+                        }
+                    </> 
+                )
+
+                : null
+            }         
+                
+            
         </tr>
     )
 }

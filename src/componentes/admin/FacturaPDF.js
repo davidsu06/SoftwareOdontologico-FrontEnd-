@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import NavbarAdmin from '../layout/NavbarAdmin';
 import MenuAdmin from '../layout/MenuAdmin';
-import MisHistorias from '../historias/MisHistorias';
+import PDF from '../Facturas/VistaPDF';
 import AuthContext from '../../context/autenticacion/authContext';
 
 const MiHistorial = () => {
@@ -23,12 +23,10 @@ const MiHistorial = () => {
             {bandera ?  <NavbarAdmin/> : null}
             <div id="page-content-wrapper">
 
-                <MenuAdmin titulo="Mi Historial Clínico" actualizarBandera={actualizarBandera} Bandera={bandera}/>
+                <MenuAdmin titulo="Visualización Factura" actualizarBandera={actualizarBandera} Bandera={bandera}/>
 
                 <div className="container-fluid">
-
-                  <MisHistorias/>
-
+                    <PDF/>
                 </div>
 
             </div>

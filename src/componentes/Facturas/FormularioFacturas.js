@@ -7,7 +7,7 @@ import { Redirect } from 'react-router-dom';
 //import { PDFViewer } from '@react-pdf/renderer';
 //import MyDocument from './pdf';
 
-const FormularioFacturas = () => {
+const FormularioFacturas = ({redireccion}) => {
     
     const authsContext = useContext(authContext);
     const {usuario} = authsContext;
@@ -25,7 +25,7 @@ const FormularioFacturas = () => {
         valor: '',
         fecha: ((new Date().getUTCDate())+'/'+(new Date().getMonth()+1)+'/'+(new Date().getFullYear())),
         tratamiento:'',
-        documento_paciente:'1152714125-5',
+        documento_paciente:'',
         documento_cajero: documento
     });
 
@@ -34,22 +34,25 @@ const FormularioFacturas = () => {
     const {servicios,listarServicios} = servicioContext;
 
     const pacienteContext= useContext(pacientesContext);
-    const {pacientes, listarPacientes} = pacienteContext;
+    const {pacientes, listarPacientes, obtenerPaciente} = pacienteContext;
     
     const facturaContext = useContext(facturasContext);
-    const {facturaseleccionada, agregarFacturas, seleccionarFactura} = facturaContext;
+    const {seleccionarFactura, agregarFacturas} = facturaContext;
 
     useEffect(() => {
         listarServicios();
         listarPacientes(); 
+        
         // eslint-disable-next-line
     }, []);
     
     //funcion que guarda la factura en la base de datos
     const BotonGuardar= e =>{
         e.preventDefault();
+        seleccionarFactura(factura);
         agregarFacturas(factura);
-        seleccionarFactura(factura)
+        obtenerPaciente(factura.documento_paciente);
+        redireccion(true);
     }
 
     //funcion que extrae los valores de los input y los guarda en el state
@@ -58,7 +61,6 @@ const FormularioFacturas = () => {
             ...factura,
             [e.target.name]: e.target.value
         })
-        console.log(factura);
     }
 
     return (  
@@ -88,7 +90,7 @@ const FormularioFacturas = () => {
                 {servicios.length === 0
                 ? (<option>no hay servicios</option>  )
                 : servicios.map(servicios => (
-                <option key={servicios._id} value={servicios._id}>{servicios.nombre_servicio}</option> 
+                <option key={servicios._id} value={servicios.nombre_servicio}>{servicios.nombre_servicio}</option> 
                     ))
                                 }
                 </select>
@@ -101,7 +103,7 @@ const FormularioFacturas = () => {
             </div> 
             <div className="form-group">
                 <label className="font-weight-bold">CAJERO</label>
-                <input type="number" className="form-control col-md-11" name="documento_cajero" value={documento} disabled/>
+                <input type="number" className="form-control col-md-11" name="documento_cajero" value={documento} readOnly="readonly" />
             </div> 
             </div>
             <input 
@@ -110,14 +112,7 @@ const FormularioFacturas = () => {
                 value="Generar Factura"
             />
         </div>
-        </form>
-
-        {facturaseleccionada
-            ?  <Redirect to="/factura-pdf" />
-
-            :  <Redirect to="/crear-factura" />
-        }
-        
+        </form>     
     </div>
     </>
     );
