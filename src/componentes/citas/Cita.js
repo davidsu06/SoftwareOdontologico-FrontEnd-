@@ -22,9 +22,9 @@ const Cita = ({cita}) => {
 
     useEffect(() => {
         if (usuario != null) {
-            citaExistentePaciente(usuario.documento)
-            // eslint-disable-next-line
+            citaExistentePaciente(usuario.documento) 
         }
+        // eslint-disable-next-line
     }, [usuario])
     const {HistoriaNull} = useContext(historiaContext);
 

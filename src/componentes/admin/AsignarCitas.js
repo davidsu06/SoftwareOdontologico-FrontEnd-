@@ -16,7 +16,7 @@ const AsignarCitas = (props) => {
     useEffect(() => {
 
       if(redirect) props.history.push('/consultar-citas')  
-      
+      // eslint-disable-next-line
     }, [redirect])
 
     useEffect(() => {

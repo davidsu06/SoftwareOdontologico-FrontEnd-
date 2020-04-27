@@ -13,6 +13,7 @@ import {
     CITA_NULL,
     EDITAR_CITA,
     FILTRAR_CITAS,
+    CITAS_PACIENTE_CALENDARIO,
     CITA_ASIGNADA,
     //ASIGNAR_CITA,
     CITAS_PACIENTE,
@@ -39,6 +40,8 @@ const CitaState = props => {
         ],
         citaseleccionada: null,
         citasfiltradas: [],
+        citasPaciente:[],
+        citasfiltradasPaciente:[],
         searching: false,
         citasignada:{},
         citaexistente: false
@@ -112,6 +115,13 @@ const CitaState = props => {
     const filtrarCitas = fecha => {
         dispatch({
             type: FILTRAR_CITAS,
+            payload: fecha
+        })
+    }
+
+    const CitasPacienteCalendario = fecha => {
+        dispatch({
+            type: CITAS_PACIENTE_CALENDARIO,
             payload: fecha
         })
     }
@@ -197,6 +207,8 @@ const CitaState = props => {
                 citas: state.citas,
                 citaseleccionada: state.citaseleccionada,
                 citasfiltradas: state.citasfiltradas,
+                citasPaciente: state.citasPaciente,
+                citasfiltradasPaciente: state.citasfiltradasPaciente,
                 searching: state.searching,
                 citasignada: state.citasignada,
                 citaexistente: state.citaexistente,
@@ -205,6 +217,7 @@ const CitaState = props => {
                 listarCitas,
                 citaExistentePaciente,
                 filtrarCitas,
+                CitasPacienteCalendario,
                 modificarCita,
                 eliminarCita,
                 CitaNull,

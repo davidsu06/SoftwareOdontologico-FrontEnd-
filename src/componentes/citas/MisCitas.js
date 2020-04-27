@@ -12,7 +12,8 @@ const MisCitas = () => {
 
     const authContext = useContext(AuthContext);
     const {  usuario, usuarioAutenticado } = authContext;
-
+    
+    
     useEffect(() => {
         usuarioAutenticado();
         // eslint-disable-next-line
@@ -25,7 +26,8 @@ const MisCitas = () => {
         if (usuario != null) {
             listarCitasPaciente(usuario.documento)
         }
-    }, [usuario, listarCitasPaciente])
+        // eslint-disable-next-line
+    }, [usuario])
 
     // Paginacion
     const [currentPage, setCurrentPage] = useState(1);
@@ -35,7 +37,7 @@ const MisCitas = () => {
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPosts = citasfiltradas.slice(indexOfFirstPost, indexOfLastPost);
-    console.log(currentPosts);
+
 
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);

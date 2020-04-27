@@ -9,20 +9,29 @@ import Pagination from '../layout/paginacion';
 const ListadoCita = () => {
 
     const authContext = useContext(AuthContext);
-    const { usuario } = authContext;
+    const { usuario, usuarioAutenticado } = authContext;
     let cargo; 
+
+    useEffect(() => {
+        usuarioAutenticado();
+        // eslint-disable-next-line
+    }, [])
 
     if(usuario){
         cargo = usuario.cargo;
-    }
+    } 
+
 
     const citasContext = useContext(citaContext);
-    const { listarCitas, citas, filtrarCitas, citasfiltradas, searching } = citasContext;
+    const { listarCitas, citas, filtrarCitas, CitasPacienteCalendario,
+         citasfiltradas, citasPaciente, citasfiltradasPaciente, searching } = citasContext;
 
     useEffect(() => {
-        listarCitas();
+        if (usuario != null) {
+            listarCitas()
+        }
         // eslint-disable-next-line
-    }, [])
+    }, [usuario])
 
     const SelectDate = e => {
         let month = 0;
@@ -40,7 +49,12 @@ const ListadoCita = () => {
         }
 
         const fecha = `${e.getFullYear()}-${month}-${day}`;
-        filtrarCitas(fecha);
+        if (cargo !== 'Paciente') {
+            filtrarCitas(fecha) 
+        } else {
+            CitasPacienteCalendario(fecha)
+        }
+        
     }
 
     // Paginacion
@@ -52,7 +66,9 @@ const ListadoCita = () => {
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPosts = citas.slice(indexOfFirstPost, indexOfLastPost);
     const currentPosts2 = citasfiltradas.slice(indexOfFirstPost, indexOfLastPost);
-
+    const currentPosts3 = citasPaciente.slice(indexOfFirstPost, indexOfLastPost);
+    const currentPosts4 = citasfiltradasPaciente.slice(indexOfFirstPost, indexOfLastPost);
+    
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
@@ -84,7 +100,7 @@ const ListadoCita = () => {
 
                 <div className="col-md-8">
                     {
-                         searching && citasfiltradas.length === 0
+                         searching && (citasfiltradas.length === 0 && citasfiltradasPaciente.length === 0 )
 
                          ? 
                         (<h3 className="text-center">No hay citas disponibles para el día seleccionado</h3>)
@@ -116,22 +132,38 @@ const ListadoCita = () => {
                                 <tbody>
                                     {
                                         searching 
-                                        ? (
-                                            citasfiltradas.map(citafiltrada => (
+                                        ? (  cargo !== 'Paciente' ?
+                                            (currentPosts2.map(citafiltrada => (
                                                 <Cita
                                                 
                                                 key={citafiltrada._id}
                                                 cita={citafiltrada}
                                                 />
-                                            ))
+                                            ))) : 
+                                            (currentPosts4.map(citafiltrada => (
+                                                <Cita
+                                                
+                                                key={citafiltrada._id}
+                                                cita={citafiltrada}
+                                                />
+                                            )))
                                         )
-                                        :
-                                        (currentPosts.map(cita => (
-                                            <Cita
-                                            key={cita._id}
-                                            cita={cita}
-                                            />
-                                        )))
+                                        : (cargo !== 'Paciente' 
+                                            ?
+                                                (currentPosts.map(cita => (
+                                                    <Cita
+                                                    key={cita._id}
+                                                    cita={cita}
+                                                    />
+                                                )))
+                                            :
+                                                (currentPosts3.map(cita => (
+                                                    <Cita
+                                                    key={cita._id}
+                                                    cita={cita}
+                                                    />
+                                                )))
+                                            )
                                     }
         
                                 </tbody>
@@ -146,7 +178,9 @@ const ListadoCita = () => {
             </div>
 
         </div>
-        {currentPosts2.length === 0 
+        {cargo !== 'Paciente' 
+            ?
+            (currentPosts2.length === 0 
                 ?
                     <Pagination
                         postsPerPage={postsPerPage}
@@ -158,7 +192,21 @@ const ListadoCita = () => {
                         postsPerPage={postsPerPage}
                         totalPosts={citasfiltradas.length}
                         paginate={paginate}
-                  />
+                    />
+            )
+            : currentPosts4.length === 0 
+                ?
+                    <Pagination
+                            postsPerPage={postsPerPage}
+                            totalPosts={citasPaciente.length}
+                            paginate={paginate}
+                    /> 
+                : 
+                    <Pagination
+                        postsPerPage={postsPerPage}
+                        totalPosts={citasfiltradasPaciente.length}
+                        paginate={paginate}
+                    />                    
         } 
         </>
     );

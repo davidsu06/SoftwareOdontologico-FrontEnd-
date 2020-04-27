@@ -6,6 +6,7 @@ import {
     EDITAR_CITA,
     CITA_NULL,
     FILTRAR_CITAS,
+    CITAS_PACIENTE_CALENDARIO,
     ASIGNAR_CITA,
     CITA_ASIGNADA,
     CITAS_PACIENTE,
@@ -32,7 +33,8 @@ export default (state, action) => {
             return{
                 ...state,
                 searching: false,
-                citas: action.payload
+                citas: action.payload,
+                citasPaciente:  state.citas.filter( cita => cita.estado === 'Sin asignar')
             }
 
         case CITA_EXISTENTE:
@@ -47,6 +49,13 @@ export default (state, action) => {
                 searching : true,
                 citasfiltradas: state.citas.filter( cita => cita.fecha.substr(0,10) === action.payload)
             }
+            
+        case CITAS_PACIENTE_CALENDARIO:
+            return{
+                ...state,
+                searching : true,
+                citasfiltradasPaciente: state.citasPaciente.filter( cita => cita.fecha.substr(0,10) === action.payload)
+            }    
 
         case EDITAR_CITA:
             return{
