@@ -106,6 +106,7 @@ const ListadoHistorias = () => {
                                     <th scope="col">Fecha</th>
                                     <th scope="col">Hora</th>
                                     <th scope="col">Descripción</th>
+                                    <th scope="col">Tratamiento</th>
                                     <th scope="col">Paciente ID</th>
                                     <th scope="col">Acciones</th>
                                 </tr>

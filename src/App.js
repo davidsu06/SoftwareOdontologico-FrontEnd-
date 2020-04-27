@@ -58,6 +58,7 @@ function App() {
                         <Route exact path="/consultar-pacientes" component={ConsultarPacientes}/>
                         <Route exact path="/consultar-personal" component={ConsultarPersonal}/>
                         <Route exact path="/crear-servicio" component={CrearServicio}/>
+                        <Route exact path="/editar-servicio" component={CrearServicio}/>
                         <Route exact path="/consultar-servicios" component={ConsultarServicios}/>
                         <Route exact path="/consultar-citas" component={ConsultarCitas}/>
                         <Route exact path="/crear-pacientes" component={CrearPacientes}/>

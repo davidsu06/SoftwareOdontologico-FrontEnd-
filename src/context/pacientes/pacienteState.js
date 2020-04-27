@@ -98,7 +98,7 @@ const PacienteState = props => {
     // Modifica un paciente
 
     const modificarPaciente = async paciente => {
-        
+        console.log(paciente)
         try {
             const resultado = await clienteAxios.put(`/api/pacientes/${paciente._id}`, paciente);
             console.log(resultado);

@@ -8,12 +8,12 @@ const Historia = ({historia, usuario}) => {
     const { HistoriaActual } = useContext(historiaContext);
     const {CitaNull} = useContext(citaContext);
 
-    const { fecha, hora, pacienteId, personalId, descripcion } = historia;
+    const { fecha, hora, pacienteId, personalId, descripcion, servicio } = historia;
     const newfecha = fecha.substr(0,10)
 
     let cargo;
 
-    const SeleccionarHistoria = historiabd => {   
+    const SeleccionarHistoria = historia => {   
         HistoriaActual(historia);
         CitaNull();
     }
@@ -37,6 +37,7 @@ const Historia = ({historia, usuario}) => {
                         <>
                             <td>{personalId}</td>
                             <td>{descripcion}</td>
+                            <td>{servicio}</td>
                         </>
                     )   
                     
@@ -44,6 +45,7 @@ const Historia = ({historia, usuario}) => {
                     (
                         <>
                             <td>{descripcion}</td>
+                            <td>{servicio}</td>
                             <td>{pacienteId}</td>
                             <td className="text-center" style={{width:'2cm'}}>
                                 <Link to={'/editar-hist-clinica'} 

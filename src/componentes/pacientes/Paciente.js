@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 
-
 const Paciente = ({paciente}) => {
 
     const pacientesContext = useContext(pacienteContext);
@@ -23,7 +22,6 @@ const Paciente = ({paciente}) => {
           }).then((result) => {
             if (result.value) {
                 eliminarPaciente(id);
-              
             }
           })
         

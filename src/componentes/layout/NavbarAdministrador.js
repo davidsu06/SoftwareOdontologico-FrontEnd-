@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React,{useContext, useCallback} from 'react';
 import { Link } from 'react-router-dom';
 import logo from './../../media/Logo.png';
 import personaContext from '../../context/personal/personaContext';
@@ -6,6 +6,8 @@ import pacienteContext from '../../context/pacientes/pacienteContext';
 import citaContext from '../../context/citas/citaContext';
 import facturaContext from '../../context/facturas/facturasContext';
 import historiaContext from '../../context/historia/historiaContext'
+import servicioContext from '../../context/servicios/serviciosContext';
+
 const NavbarAdministrador = ({usuario}) => {
     const personalContext = useContext(personaContext);
   const { PersonaNull } = personalContext;
@@ -19,6 +21,8 @@ const NavbarAdministrador = ({usuario}) => {
   const {HistoriaNull} = useContext(historiaContext);
 
   const {facturaNull} = useContext(facturaContext);
+
+  const {ServicioNull} = useContext(servicioContext);
 
   return ( 
     <>
@@ -121,8 +125,8 @@ const NavbarAdministrador = ({usuario}) => {
               </a>
 
               <div className="collapse subcasilla" id="collapse6">
-                <Link to={'/crear-servicio'} className="d-block p-3 btn text-decoration-none text-dark">
-                  Crear Servicios
+                <Link to={'/crear-servicio'} onClick={ () => ServicioNull() } className="d-block p-3 btn text-decoration-none text-dark">
+                  Crear Servicio
                 </Link>
               </div>  
 

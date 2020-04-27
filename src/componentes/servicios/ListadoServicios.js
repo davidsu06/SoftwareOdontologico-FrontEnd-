@@ -1,11 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Servicio from './Servicio';
 import servicioState from '../../context/servicios/serviciosContext';
+import authState from '../../context/autenticacion/authContext';
 import Pagination from '../layout/paginacion';
 
 const ListadoServicios = () => {
 
     const {servicios, listarServicios} = useContext(servicioState)
+    const {usuario} = useContext(authState)
 
     // Paginacion
     const [currentPage, setCurrentPage] = useState(1);
@@ -39,17 +41,22 @@ const ListadoServicios = () => {
                                 <tr>
                                     <th scope="col">Id. Servicio</th>
                                     <th scope="col">Nombre Servicio</th>
+                                    <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
                     
                             <tbody>
-                                {
-                                    currentPosts.map(servicio => ( 
+                                {usuario
+                                    ? (currentPosts.map(servicio => ( 
                                         <Servicio
                                             key={servicio._id}
                                             servicio={servicio}
+                                            usuario={usuario}
                                         />
-                                    ))
+                                        ))
+                                    )
+
+                                    : null
                                 }
                             </tbody>
                         </table>

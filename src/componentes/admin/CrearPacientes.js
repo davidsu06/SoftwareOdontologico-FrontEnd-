@@ -20,7 +20,7 @@ const CrearPacientes = () => {
     const { pacienteseleccionado } = pacientesContext;
     let tituloHead;
 
-    if(pacienteseleccionado != null){
+    if(pacienteseleccionado !== null){
         tituloHead = "Editar Paciente";
     }else{
         tituloHead = "Crear Paciente";

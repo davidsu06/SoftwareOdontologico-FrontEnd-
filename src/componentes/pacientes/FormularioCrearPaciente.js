@@ -157,8 +157,7 @@ const FormularioCrearPaciente = () => {
         //     Direccion:'',
         //     Telefono:''
         // })
-
-}
+    }
   
     return (  
     <div className="container mt-4" >

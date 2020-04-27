@@ -21,7 +21,7 @@ const ConsultarServicios = () => {
              <div className="d-flex" id="wrapper">
                {bandera ?  <NavbarAdmin/> : null}
                 <div id="page-content-wrapper">
-                  <MenuAdmin titulo="Consultar Personal" actualizarBandera={actualizarBandera} Bandera={bandera}/>
+                  <MenuAdmin titulo="Consultar Servicios" actualizarBandera={actualizarBandera} Bandera={bandera}/>
                 <div className="container-fluid">
                 <ListadoServicios/>
                 </div>
