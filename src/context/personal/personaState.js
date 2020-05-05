@@ -52,7 +52,7 @@ const PersonaState = props => {
             console.log(resultado);
             Swal.fire(
                 'Correcto',
-                'El personal se agrego correctamente',
+                'El personal se ha creado correctamente',
                 'success'
             )
             dispatch({
@@ -71,7 +71,7 @@ const PersonaState = props => {
             const resultado = await clienteAxios.put(`/api/personal/${persona._id}`, persona);
             Swal.fire(
                 'Correcto',
-                'El personal se edito correctamente',
+                'El personal se ha modificado correctamente',
                 'success'
             )
             dispatch({

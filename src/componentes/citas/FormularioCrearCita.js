@@ -76,7 +76,7 @@ const FormularioCrearCita = () => {
             modificarCita(cita)
             Swal.fire(
                 'Correcto',
-                'La cita se editó correctamente',
+                'La cita se ha modificado correctamente',
                 'success'
             ) 
         }

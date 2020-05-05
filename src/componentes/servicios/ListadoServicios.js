@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, Fragment } from 'react';
 import Servicio from './Servicio';
 import servicioState from '../../context/servicios/serviciosContext';
 import authState from '../../context/autenticacion/authContext';
@@ -37,19 +37,16 @@ const ListadoServicios = () => {
                     (
                     <div className="container d-flex justify-content-between">
                         <table className="table table-bordered mt-3">
-                            <thead>
+                            <thead className="text-center">
                                 <tr>
                                     <th scope="col">Id. Servicio</th>
                                     <th scope="col">Nombre Servicio</th>
-                                    {usuario
-                                        ? <> {usuario.cargo === 'Administrador' ? (<th scope="col">Acciones</th>) : null} </>
-                                    
-                                        : null
-                                    }
-                                    
+                                    <th scope="col">Valor Servicio</th>
+                                    <th scope="col">Cantidad Citas</th>
+                                    <Fragment> {usuario && <> {usuario.cargo === 'Administrador' && <th scope="col">Acciones</th>} </>} </Fragment>   
                                 </tr>
-                            </thead>
-                    
+                            </thead> 
+                            
                             <tbody>
                                 {usuario
                                     ? (currentPosts.map(servicio => ( 

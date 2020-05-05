@@ -55,12 +55,10 @@ const ListadoPaciente = () => {
                             <tbody>
                                 {
                                     currentPosts.map(paciente => (
-                                        <tr>
-                                            <Paciente
-                                                key={paciente._id}
-                                                paciente={paciente}
-                                            />
-                                        </tr>
+                                        <Paciente
+                                            key={paciente._id}
+                                            paciente={paciente}
+                                        /> 
                                     ))
                                 }
                             </tbody>

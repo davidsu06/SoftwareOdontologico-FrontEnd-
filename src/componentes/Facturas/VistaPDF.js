@@ -1,8 +1,6 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import { PDFViewer, Document, Page, Text, StyleSheet,Image,Font, View } from '@react-pdf/renderer';
-import facturaState from '../../context/facturas/facturasContext';
-import pacienteState from '../../context/pacientes/pacienteContext';
-import authState from '../../context/autenticacion/authContext';
+import facturaContext from '../../context/facturas/facturasContext';
 import logo from '../../media/Logo.png'
 
 
@@ -54,14 +52,11 @@ const styles = StyleSheet.create({
   }
 });
 
-
 // Create Document Component
 const MyDocument = () => {
 
-  const {facturaseleccionada} = useContext(facturaState);
-  const {usuario} = useContext(authState);
-  const {pacienteseleccionado} = useContext(pacienteState);
-  const {valor, fecha, tratamiento} = facturaseleccionada;
+  const {facturaseleccionada} = useContext(facturaContext);
+  const {documento_paciente, nombre_paciente, documento_cajero, nombre_cajero, valor, fecha, tratamiento} = facturaseleccionada;
 
   return (
     <>
@@ -73,8 +68,10 @@ const MyDocument = () => {
                   <Page size="A6" style={styles.margen}>
                       <Image style={styles.image} src={logo}/>
                       
+                      <Text style={styles.subtitle}>Documento del Paciente</Text>
+                      <Text style={styles.texto}>{documento_paciente}</Text> 
                       <Text style={styles.subtitle}>Nombre del Paciente</Text>
-                      <Text style={styles.texto}>{pacienteseleccionado[0].nombre + " " + pacienteseleccionado[0].apellido}</Text> 
+                      <Text style={styles.texto}>{nombre_paciente}</Text>
                       <Text style={styles.subtitle}>Tratamiento</Text>
                       <Text style={styles.texto}>{tratamiento}</Text>
                       <Text style={styles.subtitle}>Valor a Pagar</Text>
@@ -82,7 +79,9 @@ const MyDocument = () => {
                       <Text style={styles.subtitle}>Fecha</Text>
                       <Text style={styles.texto}>{fecha}</Text>
                       <Text style={styles.subtitle}>Documento del Responsable</Text>
-                      <Text style={styles.texto}>{usuario.nombre + " " + usuario.apellido}</Text>
+                      <Text style={styles.subtitle}>{documento_cajero}</Text>
+                      <Text style={styles.subtitle}>Nombre del Responsable</Text>
+                      <Text style={styles.texto}>{nombre_cajero}</Text>
                   </Page>
                 </Document>
               </PDFViewer>

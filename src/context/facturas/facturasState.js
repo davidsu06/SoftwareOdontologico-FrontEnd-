@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { 
     CREAR_FACTURA,
     LISTAR_FACTURA,
+    CAMBIAR_ESTADO_FACTURA,
     FACTURA_ACTUAL,
     FACTURA_NULL
  } from '../../types';
@@ -27,6 +28,11 @@ const FacturasState = props => {
         try {
             const resultado = await clienteAxios.post('/api/facturas', factura);
             console.log(resultado);
+            Swal.fire(
+                'Correcto',
+                'La factura se ha creado correctamente',
+                'success'
+            )
             dispatch({
                 type: CREAR_FACTURA,    
                 payload: factura
@@ -39,7 +45,6 @@ const FacturasState = props => {
 
 
     const listarFacturas = async () => {
-        
         try {
             const resultado = await clienteAxios.get('/api/facturas');
             dispatch({
@@ -48,6 +53,27 @@ const FacturasState = props => {
             })
         } catch (error) {
             console.log(error);                
+        }
+    }
+
+    const modificarEstadoFactura = async nuevafactura => {
+        console.log(nuevafactura)
+        try {
+            const resultado = await clienteAxios.put(`/api/facturas/${nuevafactura._id}`, nuevafactura);
+            console.log(resultado);
+            Swal.fire(
+                'Correcto',
+                'El estado de la factura se ha modificado correctamente',
+                'success'
+            )
+            
+            dispatch({
+                type: CAMBIAR_ESTADO_FACTURA,
+                payload: nuevafactura
+            })
+        }catch (error) {
+            console.log(error);
+            
         }
     }
 
@@ -73,6 +99,7 @@ const FacturasState = props => {
                 facturaseleccionada: state.facturaseleccionada,
                 agregarFacturas,
                 listarFacturas,
+                modificarEstadoFactura,
                 seleccionarFactura,
                 facturaNull
             }}

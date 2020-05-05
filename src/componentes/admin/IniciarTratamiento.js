@@ -1,23 +1,29 @@
 import React,{Fragment,useState, useContext, useEffect} from 'react';
 import NavbarAdmin from '../layout/NavbarAdmin';
 import MenuAdmin from '../layout/MenuAdmin';
-import FormularioFacturas from '../Facturas/FormularioFacturas';
+import FormularioTratamiento from '../tratamientos/formularioIniciarTratamiento';
+import TratamientoContext from '../../context/tratamientos/tratamientoContext';
 import AuthContext from '../../context/autenticacion/authContext';
 
-const CrearFactura = (props) => {
+const CrearFactura = () => {
 
     const [bandera,actualizarBandera]=useState(true);
-    const [ redirect, actualizarRedirect ] = useState(false)
 
     const authContext = useContext(AuthContext);
     const { usuarioAutenticado } = authContext;
+
+    const { tratamientoseleccionado } = useContext(TratamientoContext);
+    let header;
+
+    if (tratamientoseleccionado !== null) {
+      header = "Editar Tratamiento"
+    }
+
+    else{
+      header = "Iniciar Tratamiento"
+    }
+
     
-    /*useEffect(() => {
-
-      if(redirect) props.history.push('/factura-pdf')  
-      // eslint-disable-next-line
-    }, [redirect])*/
-
     useEffect(() => {
       usuarioAutenticado();
       // eslint-disable-next-line
@@ -28,9 +34,9 @@ const CrearFactura = (props) => {
              <div className="d-flex" id="wrapper">
                {bandera ?  <NavbarAdmin/> : null}
                 <div id="page-content-wrapper">
-                  <MenuAdmin titulo={"Crear Factura"} actualizarBandera={actualizarBandera} Bandera={bandera}/>
+                  <MenuAdmin titulo={header} actualizarBandera={actualizarBandera} Bandera={bandera}/>
                   <div className="container-fluid">
-                    <FormularioFacturas /*redireccion={ actualizarRedirect }*/ />
+                    <FormularioTratamiento />
                   </div> 
                 </div> 
             </div> 

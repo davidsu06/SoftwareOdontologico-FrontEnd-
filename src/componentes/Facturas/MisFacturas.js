@@ -51,21 +51,24 @@ const MisFacturas = () => {
                             <thead>
                                 <tr>
                                     <th scope="col">Fecha</th>
-                                    <th scope="col">Mi Documento</th>
+                                    <th scope="col">Documento Paciente</th>
+                                    <th scope="col">Nombre Paciente</th>
                                     <th scope="col">Valor</th>
                                     <th scope="col">Documento Médico</th>
+                                    <th scope="col">Nombre Médico</th>
+                                    <th scope="col">Tratamiento</th>
+                                    <th scope="col">Estado Factura</th>
                                 </tr>
                             </thead>
                     
                             <tbody>
                                 {
                                     currentPosts.map(factura => (
-                                        <tr>
-                                            <Factura 
-                                                key={factura._id}
-                                                factura={factura}
-                                            />
-                                        </tr>
+                                        <Factura 
+                                            key={factura._id}
+                                            factura={factura}
+                                            usuario={usuario}
+                                        />
                                     ))
                                 }
                             </tbody>

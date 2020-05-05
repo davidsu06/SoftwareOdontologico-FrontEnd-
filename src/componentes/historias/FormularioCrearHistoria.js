@@ -2,14 +2,19 @@ import React, {useState, useContext, useEffect} from 'react';
 import historiaContext from '../../context/historia/historiaContext';
 import authContext from '../../context/autenticacion/authContext';
 import citaContext from '../../context/citas/citaContext';
-import servicioContext from '../../context/servicios/serviciosContext'
+import servicioContext from '../../context/servicios/serviciosContext';
+import tratamientoContext from '../../context/tratamientos/tratamientoContext';
+import Swal from 'sweetalert2';
 
-const FormularioCrearHistoria = (props) => {
+const FormularioCrearHistoria = () => {
 
     const {historiaseleccionado, crearHistoria, modificarHistoria} = useContext(historiaContext);
     const {usuario} = useContext(authContext);
     const {citaseleccionada, modificarCita} = useContext(citaContext);
-    const {servicios,listarServicios} = useContext(servicioContext);
+    const {servicios, listarServicios} = useContext(servicioContext);
+    const {tratamientos, listarTratamientos, actualizarTratamiento} = useContext(tratamientoContext);
+
+    const [tratamiento, guardarTratamiento] = useState({});
 
     const [historia, guardarHistoria] = useState({
         pacienteId: '',
@@ -30,7 +35,7 @@ const FormularioCrearHistoria = (props) => {
 
     const {pacienteId, personalId, fecha, hora, descripcion, servicio} = historia;
 
-    useEffect(()=>{
+    useEffect( () => {
         let newfecha;
         if(usuario && citaseleccionada){
             newfecha = citaseleccionada.fecha.substr(0,10)
@@ -50,6 +55,10 @@ const FormularioCrearHistoria = (props) => {
                 hora,
                 estado:'Cumplida'
             });
+
+            listarServicios();
+            listarTratamientos();
+            guardarTratamiento(tratamientos.filter( tratamiento =>  tratamiento.pacienteId === historia.pacienteId && tratamiento.estado === 'En Proceso')[0]);
         }
 
         else if(historiaseleccionado){
@@ -63,7 +72,7 @@ const FormularioCrearHistoria = (props) => {
                 servicio: historiaseleccionado.servicio
              });
         }
-        listarServicios();
+        // eslint-disable-next-line
     },[usuario, citaseleccionada, historiaseleccionado]);
 
     const changeHistoria = e => {
@@ -75,13 +84,44 @@ const FormularioCrearHistoria = (props) => {
 
     const submitCrearHistoria = e =>{
         e.preventDefault();
-        if (pacienteId.trim()==='' || personalId.trim()==='' || fecha.trim()==='' || hora.trim()==='' || descripcion.trim()==='') {
-            console.log('Error al mandar la Información')
+        if (pacienteId.trim()==='' || personalId.trim()==='' || fecha.trim()==='' || hora.trim()==='' || descripcion.trim()==='' || servicio.trim() === '') {
+            Swal.fire(
+                'Error',
+                'Todos los campos son obligatorios',
+                'error'
+            )
         }
 
         if(citaseleccionada){
             crearHistoria(historia);
             modificarCita(asignarPaciente);
+
+            const {_id, pacienteId, pacienteNombre, servicio, citasVistas, cuotas, saldoAbonado, estado } = tratamiento;
+            let nuevoestado;
+            let nuevacitasvistas;
+
+            nuevacitasvistas = citasVistas + 1;
+
+            if( nuevacitasvistas === servicios.filter( servicio => servicio.nombre_servicio === tratamiento.servicio)[0].cantidadCitas ){
+                nuevoestado = 'Finalizado';
+            }
+            
+            else{
+                nuevoestado = estado;
+            }
+
+            const nuevotratamiento = {
+                _id, 
+                pacienteId,
+                pacienteNombre,
+                servicio,
+                citasVistas: nuevacitasvistas,
+                cuotas,
+                saldoAbonado,
+                estado: nuevoestado
+            }
+
+            actualizarTratamiento(nuevotratamiento);
         }
 
         else if(historiaseleccionado){
@@ -124,18 +164,23 @@ const FormularioCrearHistoria = (props) => {
 
                     <div className="form-group ml-3">
                         <label className="font-weight-bold">Tratamiento</label>
-                        <select className="form-control col-md-11" name="servicio" onChange={changeHistoria} value={servicio}>
-                            <option value="">{historiaseleccionado ? (servicio) : ("Seleccione....")}</option>
-                            {servicios.length === 0
-                                ? (<option>No Hay Servicios disponibles</option>)
+                        {!historiaseleccionado
+                            ?(
+                                <select className="form-control col-md-11" name="servicio" onChange={changeHistoria} value={servicio}>
+                                    <option value="">Seleccione....</option>
+                                    {!tratamiento
+                                        ? ( <option>No Hay Tratamientos disponibles</option> )
 
-                                :(
-                                    servicios.map(servicio => (
-                                        <option key={servicio._id} value={servicio.nombre_servicio}>{servicio.nombre_servicio}</option>
-                                    ))
-                                )
-                            }
-                        </select >
+                                        : ( <option key={tratamiento._id} value={tratamiento.servicio}>{tratamiento.servicio}</option> )
+                                    }
+                                </select >
+                            )
+
+                            :(
+                                <input className="form-control col-md-11" name="servicio" readOnly="readonly" value={servicio}/>
+                            )
+                        }
+                        
                     </div>
 
                     <div className="form-group ml-3">
@@ -151,15 +196,13 @@ const FormularioCrearHistoria = (props) => {
                         </textarea>
                     </div>
 
-                    {/*error.bandera ? <Error mensaje={error.Mensaje}/> : null className="form-control boton font-weight-bold ml-3"*/}
-
-                        <div className="form-group">
-                            <input type="submit"
-                                className="btn btn-success form-control text-center font-weight-bold ml-3"
-                                style={{width:'90.5%'}}
-                                value={historiaseleccionado ? 'Editar Historia Clínica' :'Crear Historia Clínica'} 
-                            />
-                        </div>
+                    <div className="form-group">
+                        <input type="submit"
+                            className="btn btn-success form-control text-center font-weight-bold ml-3"
+                            style={{width:'90.5%'}}
+                            value={historiaseleccionado ? 'Editar Historia Clínica' :'Crear Historia Clínica'} 
+                        />
+                    </div>
                 </div>
             </form>
         </div>

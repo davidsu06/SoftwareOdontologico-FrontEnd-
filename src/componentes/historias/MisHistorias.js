@@ -76,6 +76,7 @@ const ListadoHistorias = () => {
                                         <th scope="col">Hora</th>
                                         <th scope="col">Documento Médico</th>
                                         <th scope="col">Descripción</th>
+                                        <th scope="col">Tratamiento</th>
                                     </tr>
                                 </thead>
                         

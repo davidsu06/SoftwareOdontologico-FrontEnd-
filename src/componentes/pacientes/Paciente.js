@@ -37,7 +37,7 @@ const Paciente = ({paciente}) => {
     const newfecha = paciente.fnacimiento.substr(0,10)
 
     return ( 
-        <>
+        <tr>
             <td>{paciente.documento}</td>
             <td>{paciente.nombre}</td>
             <td>{paciente.apellido}</td>
@@ -48,7 +48,7 @@ const Paciente = ({paciente}) => {
                 <Link to={'/editar-pacientes'} type="button" className="fas fa-pencil-alt text-decoration-none text-dark mr-2" onClick={() => SeleccionarPaciente(paciente)}></Link>
                 <i type="button" className="fas fa-trash-alt mx-3" onClick={() => onClickEliminar(paciente._id)}></i>  
             </td>  
-        </>
+        </tr>
      );
 }
  

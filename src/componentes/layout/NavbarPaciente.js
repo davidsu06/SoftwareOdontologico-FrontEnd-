@@ -1,25 +1,8 @@
-import React,{useContext} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from './../../media/Logo.png';
-import personaContext from '../../context/personal/personaContext';
-import pacienteContext from '../../context/pacientes/pacienteContext';
-import citaContext from '../../context/citas/citaContext';
-import facturaContext from '../../context/facturas/facturasContext';
-import historiaContext from '../../context/historia/historiaContext'
 
 const NavbarPaciente = ({usuario}) => {
-    const personalContext = useContext(personaContext);
-  const { PersonaNull } = personalContext;
-
-  const pacientesContext = useContext(pacienteContext);
-  const { PacienteNull } = pacientesContext;
-
-  const citasContext = useContext(citaContext);
-  const { CitaNull } = citasContext;
-
-  const {HistoriaNull} = useContext(historiaContext);
-
-  const {facturaNull} = useContext(facturaContext);
 
   return( 
     <>

@@ -32,7 +32,7 @@ const HistoriaState = props => {
             console.log(respuesta)
             Swal.fire(
                 'Correcto',
-                'La historia se agrego correctamente',
+                'La historia se ha creado correctamente',
                 'success'
             )
             dispatch({
@@ -65,7 +65,7 @@ const HistoriaState = props => {
             console.log(resultado);
             Swal.fire(
                 'Correcto',
-                'La historia se edito correctamente',
+                'La historia se ha modificado correctamente',
                 'success'
             )
             

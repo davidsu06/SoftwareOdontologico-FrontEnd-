@@ -80,7 +80,7 @@ const Cita = ({cita}) => {
             )
             Swal.fire(
                 'Correcto',
-                'Su cita se asignó correctamente',
+                'Su cita se ha asignado correctamente',
                 'success'
             )
         }

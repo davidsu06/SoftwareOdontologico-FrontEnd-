@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const Servicio = ({servicio,usuario}) => {
-    const {eliminarServicio,ServicioActual} = useContext(servicioState);
+    const {eliminarServicio, ServicioActual} = useContext(servicioState);
 
     // Funcion se ejecuta cuando el usuario selecciona el btn de elimnar Servicio
     const onClickEliminar = id => {
@@ -30,8 +30,11 @@ const Servicio = ({servicio,usuario}) => {
 
     return (
         <tr>
+            
             <td>{servicio._id}</td>
             <td>{servicio.nombre_servicio}</td>
+            <td>{new Intl.NumberFormat("de-DE").format(servicio.precioTotal)}</td>
+            <td>{servicio.cantidadCitas}</td>
                
             {usuario
                 ?(
@@ -49,9 +52,7 @@ const Servicio = ({servicio,usuario}) => {
                 )
 
                 : null
-            }         
-                
-            
+            }           
         </tr>
     )
 }

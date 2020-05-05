@@ -57,7 +57,7 @@ const CitaState = props => {
             console.log(resultado);
             Swal.fire(
                 'Correcto',
-                'La cita se agrego correctamente',
+                'La cita se ha creado correctamente',
                 'success'
             )
             

@@ -54,12 +54,10 @@ const ListadoPersona = () => {
                             <tbody>
                                 {
                                     currentPosts.map(persona => (
-                                        <tr>
                                             <Persona
                                                 key={persona._id}
                                                 persona={persona}
                                             />
-                                        </tr>
                                     ))
                                 }
                             </tbody>

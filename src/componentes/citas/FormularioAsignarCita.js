@@ -1,11 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
 import citaContext from '../../context/citas/citaContext';
+import tratamientoContext from '../../context/tratamientos/tratamientoContext';
 import Swal from 'sweetalert2';
 
 const FormularioAsignarCita = ({redireccion}) => {
 
     const citasContext = useContext(citaContext);
     const { citasignada, modificarCita, citaExistentePaciente, citaexistente } = citasContext;
+    const { tratamientos, listarTratamientos } = useContext(tratamientoContext);
     const {fecha, hora, _id} = citasignada;
     // console.log(fecha)
     // console.log(hora)
@@ -23,11 +25,13 @@ const FormularioAsignarCita = ({redireccion}) => {
         pacienteId: ''
     })
 
-    useEffect(() => {
+    useEffect( () => {
         if (asignarPaciente.pacienteId != null) {
-            citaExistentePaciente(asignarPaciente.pacienteId)
-            
+            citaExistentePaciente(asignarPaciente.pacienteId)    
         }
+
+        listarTratamientos();
+        // eslint-disable-next-line
     }, [asignarPaciente.pacienteId, citaExistentePaciente])
 
     const onChange = e =>{
@@ -51,7 +55,13 @@ const FormularioAsignarCita = ({redireccion}) => {
             if(citaexistente){
                 Swal.fire(
                     'Error',
-                    'El usuario ya cuenta con una cita asignada',
+                    'El paciente digitado ya cuenta con una cita asignada',
+                    'error'
+                )
+            }else if(!tratamientos.filter( tratamiento => tratamiento.pacienteId === asignarPaciente.pacienteId && tratamiento.estado === 'En Proceso' )[0]){
+                Swal.fire(
+                    'Error',
+                    'El Paciente digitado actualmente no se encuentra en un tratamiento o no se encuentra registrado en el sistema',
                     'error'
                 )
             }else{
@@ -67,7 +77,7 @@ const FormularioAsignarCita = ({redireccion}) => {
 
                 Swal.fire(
                     'Correcto',
-                    'La cita se asignó correctamente',
+                    'La cita se ha asignado correctamente',
                     'success'
                 )
                 guardarasignarPaciente({

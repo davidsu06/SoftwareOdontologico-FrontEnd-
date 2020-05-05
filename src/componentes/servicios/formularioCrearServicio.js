@@ -7,7 +7,9 @@ const FormularioCrearServicio = () => {
     const {servicioseleccionado,agregarServicios, modificarServicio} = servicioContext;
 
     const [servicio,guardarservicio]= useState({
-        nombre_servicio : ''
+        nombre_servicio : '',
+        precioTotal: 0,
+        cantidadCitas: ''
     });
 
     useEffect(()=>{
@@ -16,7 +18,9 @@ const FormularioCrearServicio = () => {
         }
         else{
             guardarservicio({
-                nombre_servicio : ''
+                nombre_servicio : '',
+                precioTotal: 0,
+                cantidadCitas: 0
             });
         }
     },[servicioseleccionado]);
@@ -24,7 +28,7 @@ const FormularioCrearServicio = () => {
     const BotonGuardar= e =>{
         e.preventDefault();
 
-        if(servicio.nombre_servicio.trim() === ''){
+        if(servicio.nombre_servicio.trim() === '' || servicio.precioTotal <= 0 || servicio.cantidadCitas <= 0){
             return;
         }
 
@@ -55,8 +59,22 @@ const FormularioCrearServicio = () => {
                         
                         <div className="container align-content-center formularioservicio">
                             <div className="form-group">
-                                <label className="font-weight-bold">Nombre Servicio</label>
+                                <label className="font-weight-bold">Nombre del Servicio</label>
                                 <input type="text" className="form-control" name="nombre_servicio" value={servicio.nombre_servicio} onChange={Guardar}/>
+                            </div> 
+                        </div>
+
+                        <div className="container align-content-center formularioservicio">
+                            <div className="form-group">
+                                <label className="font-weight-bold">Precio Total del Servicio</label>
+                                <input type="number" className="form-control" name="precioTotal" value={servicio.precioTotal} onChange={Guardar}/>
+                            </div> 
+                        </div>
+
+                        <div className="container align-content-center formularioservicio">
+                            <div className="form-group">
+                                <label className="font-weight-bold">Cantidad Citas del Servicio</label>
+                                <input type="text" className="form-control" name="cantidadCitas" value={servicio.cantidadCitas} onChange={Guardar}/>
                             </div> 
                         </div>
 

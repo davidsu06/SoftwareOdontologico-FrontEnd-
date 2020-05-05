@@ -33,7 +33,7 @@ const PacienteState = props => {
             console.log(resultado)
             Swal.fire(
                 'Correcto',
-                'El paciente se agrego correctamente',
+                'El paciente se ha creado correctamente',
                 'success'
             )
             
@@ -112,7 +112,7 @@ const PacienteState = props => {
             console.log(resultado);
             Swal.fire(
                 'Correcto',
-                'El paciente se edito correctamente',
+                'El paciente se ha modificado correctamente',
                 'success'
             )
             

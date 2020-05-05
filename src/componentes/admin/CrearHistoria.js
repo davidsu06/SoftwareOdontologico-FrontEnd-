@@ -20,7 +20,7 @@ const AsignarCitas = () => {
       // eslint-disable-next-line
     }, [])
 
-    if (historiaseleccionado != null) {
+    if (historiaseleccionado !== null) {
         tituloHead = 'Editar Historia Clínica';
     }else{
         tituloHead = 'Crear Historia Clínica';

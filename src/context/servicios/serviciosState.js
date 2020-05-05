@@ -30,6 +30,11 @@ const ServiciosState = props => {
             console.log(servicio);
             const resultado = await clienteAxios.post('/api/servicios', servicio);
              console.log(resultado);
+             Swal.fire(
+                'Correcto',
+                'El Servicio se ha creado correctamente',
+                'success'
+            )
             
             dispatch({
                 type: CREAR_SERVICIO,    

@@ -36,7 +36,7 @@ const Persona = ({persona}) => {
 
     const newfecha = persona.fecha_nacimiento.substr(0,10)
     return ( 
-        <>
+        <tr>
             <td>{persona.documento}</td>
             <td>{persona.nombre}</td>
             <td>{persona.apellido}</td>
@@ -47,7 +47,7 @@ const Persona = ({persona}) => {
                 <Link to={'/editar-personal'} type="button" className="fas fa-pencil-alt text-decoration-none text-dark mr-2" onClick={() => SeleccionarPersona(persona)}></Link>
                 <i type="button" className="fas fa-trash-alt mx-3" onClick={() => onClickEliminar(persona._id)}></i>  
             </td> 
-        </>   
+        </tr>   
      );
       
 }

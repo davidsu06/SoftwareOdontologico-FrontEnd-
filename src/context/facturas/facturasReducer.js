@@ -1,7 +1,7 @@
 import { 
     CREAR_FACTURA,
     LISTAR_FACTURA,
-    LISTAR_PACIENTE,
+    CAMBIAR_ESTADO_FACTURA,
     FACTURA_ACTUAL,
     FACTURA_NULL
  } from '../../types';
@@ -11,24 +11,21 @@ export default (state, action) => {
     switch(action.type) {
 
         case CREAR_FACTURA:
-            
             return {
                 ...state,
                 facturas: [action.payload, ...state.facturas]
             }
-        
-        case LISTAR_PACIENTE:
-            
-        return {
-            ...state,
-            facturas: action.payload
-        }
 
         case LISTAR_FACTURA:
-            
             return {
                 ...state,
                 facturas: action.payload
+            }
+
+        case CAMBIAR_ESTADO_FACTURA:
+            return{
+                ...state,
+                facturas: state.facturas.filter( factura => factura._id === action.payload._id)
             }
 
         case FACTURA_ACTUAL:
