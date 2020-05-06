@@ -7,16 +7,8 @@ import AuthContext from '../../context/autenticacion/authContext';
 const CrearFactura = (props) => {
 
     const [bandera,actualizarBandera]=useState(true);
-    const [ redirect, actualizarRedirect ] = useState(false)
-
     const authContext = useContext(AuthContext);
     const { usuarioAutenticado } = authContext;
-    
-    /*useEffect(() => {
-
-      if(redirect) props.history.push('/factura-pdf')  
-      // eslint-disable-next-line
-    }, [redirect])*/
 
     useEffect(() => {
       usuarioAutenticado();

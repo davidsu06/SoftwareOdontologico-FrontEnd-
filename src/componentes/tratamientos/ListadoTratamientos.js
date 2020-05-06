@@ -55,7 +55,7 @@ const ListadoServicios = () => {
                                             key={tratamiento._id}
                                             tratamiento={tratamiento}
                                         />
-                                        ))
+                                    ))
                                 }
                             </tbody>
                         </table>

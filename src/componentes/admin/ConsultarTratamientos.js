@@ -24,13 +24,9 @@ const AsignarCitas = () => {
             <div id="page-content-wrapper">
 
                 <MenuAdmin titulo="Consultar Tratamientos" actualizarBandera={actualizarBandera} Bandera={bandera}/>
-
                     <div className="container-fluid">
-
                         <ListadoTratamientos/>
-
                     </div>
-
             </div>
 
             </div> 

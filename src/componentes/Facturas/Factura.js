@@ -1,4 +1,4 @@
-import React, { useContext, Fragment, useState } from 'react';
+import React, { useContext, Fragment } from 'react';
 import Swal from 'sweetalert2';
 import {Link} from 'react-router-dom';
 import facturaContext from '../../context/facturas/facturasContext';
@@ -10,7 +10,12 @@ const Factura = ({factura, tratamiento, servicio, usuario}) => {
     const {actualizarTratamiento} = useContext(tratamientoContext);
 
     const generarFacturaPDF = factura =>{
-        seleccionarFactura(factura)
+        try {
+            seleccionarFactura(factura);
+        } catch (error) {
+            console.log(error);
+        }
+        
     }
 
     const onClickModificarEstadoPagada = (factura, tratamiento, servicio) => {

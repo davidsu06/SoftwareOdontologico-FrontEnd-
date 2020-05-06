@@ -11,22 +11,29 @@ const FormularioCrearServicio = () => {
     const {servicios, listarServicios} = useContext(serviciosContext);
     let pacienteNombre;
 
-    const [tratamiento, guardarTratamiento]= useState({});
+    const [tratamiento, guardarTratamiento]= useState({
+        pacienteId: '',
+        servicio: '',
+        citasVistas: 0,
+        cuotas: 0,
+        saldoAbonado: 0,
+        estado: ''
+    });
 
     useEffect(()=>{
         if(tratamientoseleccionado){
-            guardarTratamiento(tratamientoseleccionado)
+            guardarTratamiento(tratamientoseleccionado);
         }
 
         else{
             guardarTratamiento({
-                pacienteId : '',
+                pacienteId: '',
                 servicio: '',
                 citasVistas: 0,
                 cuotas: 0,
                 saldoAbonado: 0,
                 estado:'En Proceso'
-            })
+            });
         }
 
         listarPacientes();
@@ -94,45 +101,42 @@ const FormularioCrearServicio = () => {
             
                 <form onSubmit={submitTratamiento}>
                     <div className=" container fondoFormServicio">
-                        
-                        <div className="container align-content-center formularioservicio">
-                            <div className="form-group">
-                                <label className="font-weight-bold">Documento del Paciente</label>
-                                {tratamientoseleccionado
-                                    ? <input type="text" className="form-control" name="pacienteId" readOnly="readonly" value={pacienteId} onChange={changeTratamiento}/>
 
-                                    : <input type="text" className="form-control" name="pacienteId" placeholder="Digite el documento del paciente" value={pacienteId} onChange={changeTratamiento}/>
-                                }
-                                
-                            </div> 
-                        </div>
-
-                        <div className="container align-content-center formularioservicio">
-                            <div className="form-group">
-                                <label className="font-weight-bold">Servicio</label>
-                                <select className="form-control" name="servicio" value={servicio} onChange={changeTratamiento}>
-                                    <option>Seleccione....</option>
-                                    {servicios
-                                        ? <>{servicios.map(servicio => (
-                                            <option key={servicio._id} value={servicio.nombre_servicio}>{servicio.nombre_servicio}</option>
-                                        ))}</>
-
-                                        : <option>No hay Servicios Disponibles</option>
-                                    }
-                                </select>
-                            </div> 
-                        </div>
-
-                        <div className="container align-content-center formularioservicio">
-                            <div className="form-group">
-                                <label className="font-weight-bold">Cuotas para pago del Tratamiento</label>
-                                <input type="number" className="form-control" name="cuotas" placeholder="Digite la cantidad de cuotas" value={cuotas} onChange={changeTratamiento}/>
-                            </div> 
+                        <div className="form-group">
+                            <label className="font-weight-bold">Documento del Paciente</label>
+                            <input type="text" 
+                                className="form-control col-md-11"
+                                name="pacienteId" 
+                                placeholder="Digite el documento del paciente"
+                                readOnly={tratamientoseleccionado ? true :null } 
+                                value={pacienteId}
+                                onChange={changeTratamiento}
+                            />
                         </div>
 
                         <div className="form-group">
+                            <label className="font-weight-bold">Servicio</label>
+                            <select className="form-control col-md-11" name="servicio" value={servicio} onChange={changeTratamiento}>
+                                <option>Seleccione....</option>
+                                {servicios
+                                    ? <>{servicios.map(servicio => (
+                                        <option key={servicio._id} value={servicio.nombre_servicio}>{servicio.nombre_servicio}</option>
+                                    ))}</>
+
+                                    : <option>No hay Servicios Disponibles</option>
+                                }
+                            </select>
+                        </div> 
+                        
+                        <div className="form-group">
+                            <label className="font-weight-bold">Cuotas para pago del Tratamiento</label>
+                            <input type="number" className="form-control col-md-11" name="cuotas" placeholder="Digite la cantidad de cuotas" value={cuotas} onChange={changeTratamiento}/>
+                        </div> 
+                        
+
+                        <div className="form-group mt-3">
                             <input type="submit" 
-                            className="form-control btnFormServicio font-weight-bold" 
+                            className="form-control font-weight-bold btn-success col-md-11" 
                             value= {tratamientoseleccionado ? "Editar Tratamiento" : "Iniciar Tratamiento"}
                             />
                         </div>

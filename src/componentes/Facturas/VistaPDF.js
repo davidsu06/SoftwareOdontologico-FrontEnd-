@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import { PDFViewer, Document, Page, Text, StyleSheet,Image,Font, View } from '@react-pdf/renderer';
+import { PDFViewer, Document, Page, Text, StyleSheet,Image,Font} from '@react-pdf/renderer';
 import facturaContext from '../../context/facturas/facturasContext';
 import logo from '../../media/Logo.png'
 
@@ -65,9 +65,8 @@ const MyDocument = () => {
           <div className="mt-5 container">
               <PDFViewer className="w-100 alturapdf">
                 <Document orientation="landscape">
-                  <Page size="A6" style={styles.margen}>
+                  <Page size="A5" style={styles.margen}>
                       <Image style={styles.image} src={logo}/>
-                      
                       <Text style={styles.subtitle}>Documento del Paciente</Text>
                       <Text style={styles.texto}>{documento_paciente}</Text> 
                       <Text style={styles.subtitle}>Nombre del Paciente</Text>

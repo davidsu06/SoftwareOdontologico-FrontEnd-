@@ -59,8 +59,7 @@ const ListadoFacturas = () => {
                             </thead>
                     
                             <tbody>
-                                {
-                                    currentPosts.map(factura => (
+                                {currentPosts.map(factura => (
                                         <Factura 
                                             key={factura._id}
                                             factura={factura}
