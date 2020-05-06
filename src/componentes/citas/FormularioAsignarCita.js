@@ -58,7 +58,7 @@ const FormularioAsignarCita = ({redireccion}) => {
                     'El paciente digitado ya cuenta con una cita asignada',
                     'error'
                 )
-            }else if(!tratamientos.filter( tratamiento => tratamiento.pacienteId === asignarPaciente.pacienteId && tratamiento.estado === 'En Proceso' )[0]){
+            }else if(!tratamientos.filter( tratamiento => tratamiento.pacienteId === asignarPaciente.pacienteId && tratamiento.estado !== 'Finalizado')[0]){
                 Swal.fire(
                     'Error',
                     'El Paciente digitado actualmente no se encuentra en un tratamiento o no se encuentra registrado en el sistema',

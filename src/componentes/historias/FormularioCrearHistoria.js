@@ -58,7 +58,7 @@ const FormularioCrearHistoria = () => {
 
             listarServicios();
             listarTratamientos();
-            guardarTratamiento(tratamientos.filter( tratamiento =>  tratamiento.pacienteId === historia.pacienteId && tratamiento.estado === 'En Proceso')[0]);
+            guardarTratamiento(tratamientos.filter( tratamiento =>  tratamiento.pacienteId === historia.pacienteId && tratamiento.estado !== 'Finalizado')[0]);
         }
 
         else if(historiaseleccionado){
@@ -99,11 +99,16 @@ const FormularioCrearHistoria = () => {
             const {_id, pacienteId, pacienteNombre, servicio, citasVistas, cuotas, saldoAbonado, estado } = tratamiento;
             let nuevoestado;
             let nuevacitasvistas;
+            let servicioPaciente = servicios.filter( servicio => servicio.nombre_servicio === tratamiento.servicio)[0];
 
             nuevacitasvistas = citasVistas + 1;
 
-            if( nuevacitasvistas === servicios.filter( servicio => servicio.nombre_servicio === tratamiento.servicio)[0].cantidadCitas ){
+            if( nuevacitasvistas === servicioPaciente.cantidadCitas && saldoAbonado === servicioPaciente.precioTotal){
                 nuevoestado = 'Finalizado';
+            }
+
+            else if(nuevacitasvistas === servicioPaciente.cantidadCitas && saldoAbonado !== servicioPaciente.precioTotal){
+                nuevoestado = 'Pagos Pendientes';
             }
             
             else{

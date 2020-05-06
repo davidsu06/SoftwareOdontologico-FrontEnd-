@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import facturaContext from '../../context/facturas/facturasContext';
 import tratamientoContext from '../../context/tratamientos/tratamientoContext';
 
-const Factura = ({factura, tratamiento, usuario}) => {
+const Factura = ({factura, tratamiento, servicio, usuario}) => {
 
     const {modificarEstadoFactura, seleccionarFactura} = useContext(facturaContext);
     const {actualizarTratamiento} = useContext(tratamientoContext);
@@ -13,7 +13,7 @@ const Factura = ({factura, tratamiento, usuario}) => {
         seleccionarFactura(factura)
     }
 
-    const onClickModificarEstadoPagada = (factura, tratamiento) => {
+    const onClickModificarEstadoPagada = (factura, tratamiento, servicio) => {
         
         Swal.fire({
             title: '¿Estas seguro?',
@@ -38,6 +38,20 @@ const Factura = ({factura, tratamiento, usuario}) => {
                 });
 
                 let saldoAbonado = Number.parseInt(tratamiento.saldoAbonado, 10) + Number.parseInt(factura.valor, 10);
+                let nuevoestado;
+
+                if(tratamiento.citasVistas === servicio.cantidadCitas && saldoAbonado === servicio.precioTotal){
+                    nuevoestado = 'Finalizado';
+                }
+    
+                else if(tratamiento.citasVistas !== servicio.cantidadCitas && saldoAbonado === servicio.precioTotal){
+                    nuevoestado = 'Citas Pendientes';
+                }
+                
+                else{
+                    nuevoestado = tratamiento.estado;
+                }
+
                 actualizarTratamiento({
                     _id: tratamiento._id,
                     pacienteId: tratamiento.pacienteId,
@@ -46,7 +60,7 @@ const Factura = ({factura, tratamiento, usuario}) => {
                     citasVistas: tratamiento.citasVistas,
                     cuotas: tratamiento.cuotas,
                     saldoAbonado,
-                    estado: tratamiento.estado 
+                    estado: nuevoestado 
                 });
             }
         })   
@@ -106,7 +120,7 @@ const Factura = ({factura, tratamiento, usuario}) => {
                                                 </Link>
 
                                                 <i type="button" className="fas fa-dollar-sign font-weight-bold mr-3" 
-                                                    onClick={ () => onClickModificarEstadoPagada(factura, tratamiento) }>
+                                                    onClick={ () => onClickModificarEstadoPagada(factura, tratamiento, servicio) }>
                                                 </i>
 
                                                 <i type="button" className="fas fa-ban font-weight-bold"

@@ -69,7 +69,7 @@ const FormularioFacturas = () => {
             )
         }
 
-        else if(!tratamientos.filter( tratamiento => tratamiento.pacienteId === factura.documento_paciente && tratamiento.estado === 'En Proceso' )[0]){
+        else if(!tratamientos.filter( tratamiento => tratamiento.pacienteId === factura.documento_paciente && tratamiento.estado !== 'Finalizado' )[0]){
             Swal.fire(
                 'Error',
                 'El Paciente digitado actualmente no se encuentra en un tratamiento o no se encuentra registrado en el sistema',
@@ -90,7 +90,7 @@ const FormularioFacturas = () => {
         {
             const {fecha, documento_paciente, documento_cajero, nombre_cajero, estado} = factura
 
-            let tratamientoPaciente = tratamientos.filter( tratamiento => tratamiento.pacienteId === documento_paciente && tratamiento.estado === 'En Proceso' )[0];
+            let tratamientoPaciente = tratamientos.filter( tratamiento => tratamiento.pacienteId === documento_paciente && tratamiento.estado !== 'Finalizado' )[0];
             
             let valor = servicios.filter( servicio => servicio.nombre_servicio === tratamientoPaciente.servicio)[0].precioTotal / tratamientoPaciente.cuotas;
             let nombre_paciente = tratamientos.filter( tratamiento => tratamiento.pacienteId === documento_paciente )[0].pacienteNombre;

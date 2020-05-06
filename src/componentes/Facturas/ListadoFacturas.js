@@ -66,6 +66,7 @@ const ListadoFacturas = () => {
                                             factura={factura}
                                             usuario={usuario}
                                             tratamiento={tratamientos.filter(tratamiento => tratamiento.pacienteId === factura.documento_paciente && tratamiento.servicio === factura.tratamiento)[0]}
+                                            servicio={servicios.filter( servicio => servicio.nombre_servicio === factura.tratamiento)[0]}
                                         />   
                                     ))
                                 }
