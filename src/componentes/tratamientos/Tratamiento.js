@@ -38,7 +38,9 @@ const Servicio = ({tratamiento}) => {
             <td>{tratamiento.cuotas}</td>
             <td>{new Intl.NumberFormat("de-DE").format(tratamiento.saldoAbonado)}</td>
             <td className="text-center" style={{width:'75px'}}>
-                <Link to={'/editar-tratamiento'} type="button" className="fas fa-pencil-alt text-decoration-none text-dark mr-2" onClick={() => SeleccionarTratamiento(tratamiento)}></Link>
+                {tratamiento.citasVistas === 0 && tratamiento.saldoAbonado === 0
+                    && <Link to={'/editar-tratamiento'} type="button" className="fas fa-pencil-alt text-decoration-none text-dark mr-2" onClick={() => SeleccionarTratamiento(tratamiento)}></Link>
+                }
                 <i type="button" className="fas fa-trash-alt mx-3" onClick={() => onClickEliminar(tratamiento._id)}></i>  
             </td>          
         </tr>

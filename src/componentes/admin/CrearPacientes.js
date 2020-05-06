@@ -5,7 +5,7 @@ import FormularioCrearPaciente from '../pacientes/FormularioCrearPaciente';
 import pacienteContext from '../../context/pacientes/pacienteContext';
 import AuthContext from '../../context/autenticacion/authContext';
 
-const CrearPacientes = () => {
+const CrearPacientes = (props) => {
     const [bandera,actualizarBandera]=useState(true);
 
     const authContext = useContext(AuthContext);
@@ -33,7 +33,7 @@ const CrearPacientes = () => {
                 <div id="page-content-wrapper">
                   <MenuAdmin titulo={tituloHead} actualizarBandera={actualizarBandera} Bandera={bandera}/>
                 <div className="container-fluid" >
-                  <FormularioCrearPaciente/>
+                  <FormularioCrearPaciente props={props} />
                 </div> 
                 </div> 
             </div> 

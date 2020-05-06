@@ -6,7 +6,7 @@ import servicioContext from '../../context/servicios/serviciosContext';
 import tratamientoContext from '../../context/tratamientos/tratamientoContext';
 import Swal from 'sweetalert2';
 
-const FormularioCrearHistoria = () => {
+const FormularioCrearHistoria = ({props}) => {
 
     const {historiaseleccionado, crearHistoria, modificarHistoria} = useContext(historiaContext);
     const {usuario} = useContext(authContext);
@@ -132,7 +132,9 @@ const FormularioCrearHistoria = () => {
         else if(historiaseleccionado){
             const {_id} = historiaseleccionado
             modificarHistoria({_id, historia});
-        }     
+        }
+        
+        props.history.push('/consultar-hist-clinica');
     }
 
     return ( 

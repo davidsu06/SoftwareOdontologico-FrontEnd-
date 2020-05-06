@@ -5,7 +5,7 @@ import serviciosContext from '../../context/servicios/serviciosContext';
 import tratamientoContext from '../../context/tratamientos/tratamientoContext';
 import Swal from 'sweetalert2';
 
-const FormularioFacturas = () => {
+const FormularioFacturas = ({props}) => {
     
     //llamados a los context
     const authsContext = useContext(authContext);
@@ -97,6 +97,8 @@ const FormularioFacturas = () => {
             let tratamiento = tratamientoPaciente.servicio;
 
             agregarFacturas({valor, fecha, documento_paciente, nombre_paciente, documento_cajero, nombre_cajero, tratamiento, estado});
+            props.history.push('/consultar-facturas');
+            window.location.reload(true);
         }
 
     }

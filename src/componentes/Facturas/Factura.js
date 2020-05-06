@@ -67,8 +67,9 @@ const Factura = ({factura, tratamiento, servicio, usuario}) => {
                     saldoAbonado,
                     estado: nuevoestado 
                 });
+                window.location.reload(true); 
             }
-        })   
+        })
     }
 
     const onClickModificarEstadoCancelada = (factura) => {
@@ -93,8 +94,9 @@ const Factura = ({factura, tratamiento, servicio, usuario}) => {
                     nombre_cajero: factura.nombre_cajero, 
                     estado:'Cancelada'
                 });
+                window.location.reload(true); 
             }
-        })   
+        })  
     }
 
     return ( 

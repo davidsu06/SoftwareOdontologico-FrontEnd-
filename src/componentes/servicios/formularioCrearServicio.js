@@ -1,7 +1,7 @@
 import React,{useState,useContext, useEffect} from 'react';
 import serviciosContext from '../../context/servicios/serviciosContext';
 
-const FormularioCrearServicio = () => {
+const FormularioCrearServicio = ({props}) => {
 
     const servicioContext = useContext(serviciosContext);
     const {servicioseleccionado,agregarServicios, modificarServicio} = servicioContext;
@@ -41,6 +41,8 @@ const FormularioCrearServicio = () => {
                 agregarServicios(servicio);
             }
         }
+
+        props.history.push('/consultar-servicios');
     }
 
     const Guardar = e =>{

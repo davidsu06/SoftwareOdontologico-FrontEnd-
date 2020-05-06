@@ -5,7 +5,7 @@ import FormularioCrearHistoria from '../historias/FormularioCrearHistoria';
 import AuthContext from '../../context/autenticacion/authContext';
 import HistoriaContext from '../../context/historia/historiaContext';
 
-const AsignarCitas = () => {
+const AsignarCitas = (props) => {
 
     const [bandera,actualizarBandera]=useState(true);
 
@@ -37,7 +37,7 @@ const AsignarCitas = () => {
 
                 <div className="container-fluid">
 
-                <FormularioCrearHistoria/>
+                <FormularioCrearHistoria props={props} />
 
                 </div>
 

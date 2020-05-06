@@ -37,7 +37,7 @@ const TratamientoState = props => {
             
             dispatch({
                 type: INICIAR_TRATAMIENTO,    
-                payload: resultado.data
+                payload: tratamiento
             })
         } catch (error) {
             console.log(error);                

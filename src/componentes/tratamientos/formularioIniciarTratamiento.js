@@ -4,7 +4,7 @@ import pacienteContext from '../../context/pacientes/pacienteContext';
 import serviciosContext from '../../context/servicios/serviciosContext';
 import Swal from 'sweetalert2';
 
-const FormularioCrearServicio = () => {
+const FormularioCrearServicio = ({props}) => {
 
     const {tratamientos,tratamientoseleccionado, listarTratamientos, iniciarTratamiento, actualizarTratamiento} = useContext(tratamientoContext);
     const {pacientes, listarPacientes} = useContext(pacienteContext);
@@ -92,7 +92,7 @@ const FormularioCrearServicio = () => {
             }
             
         }
-    
+        props.history.push('/consultar-tratamientos');
     }
     
     return (  

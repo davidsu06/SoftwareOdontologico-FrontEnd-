@@ -5,7 +5,7 @@ import AuthContext from '../../context/autenticacion/authContext'
 import FormularioCrearServicio from '../servicios/formularioCrearServicio';
 import servicioState from '../../context/servicios/serviciosContext';
 
-const CrearServicio = () => {
+const CrearServicio = (props) => {
     const [bandera,actualizarBandera]=useState(true);
 
     const authContext = useContext(AuthContext);
@@ -33,7 +33,7 @@ const CrearServicio = () => {
                 <div id="page-content-wrapper">
                   <MenuAdmin titulo={tituloHead} actualizarBandera={actualizarBandera} Bandera={bandera}/>
                 <div className="container-fluid">
-                    <FormularioCrearServicio/>
+                    <FormularioCrearServicio props={props} />
                 </div>
             </div>
           </div> 

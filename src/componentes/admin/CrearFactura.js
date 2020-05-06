@@ -22,7 +22,7 @@ const CrearFactura = (props) => {
                 <div id="page-content-wrapper">
                   <MenuAdmin titulo={"Crear Factura"} actualizarBandera={actualizarBandera} Bandera={bandera}/>
                   <div className="container-fluid">
-                    <FormularioFacturas /*redireccion={ actualizarRedirect }*/ />
+                    <FormularioFacturas props={props} />
                   </div> 
                 </div> 
             </div> 

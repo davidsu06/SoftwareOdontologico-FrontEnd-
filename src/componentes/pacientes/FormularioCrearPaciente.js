@@ -2,7 +2,8 @@ import React,{useState, useContext, useEffect} from 'react';
 // import styled from '@emotion/styled';
 import Error from './../admin/Error';
 import pacienteContext from '../../context/pacientes/pacienteContext';
-const FormularioCrearPaciente = () => {
+
+const FormularioCrearPaciente = ({props}) => {
     const [paciente,guardarpaciente]= useState({
         documento:'',
         nombre: '',
@@ -157,6 +158,8 @@ const FormularioCrearPaciente = () => {
         //     Direccion:'',
         //     Telefono:''
         // })
+
+        props.history.push('/consultar-pacientes');
     }
   
     return (  

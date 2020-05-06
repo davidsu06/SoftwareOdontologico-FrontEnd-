@@ -2,7 +2,7 @@ import React,{useState, useContext, useEffect} from 'react';
 import Error from './../admin/Error';
 import personaContext from '../../context/personal/personaContext';
 
-const FormularioCrearPersonal = () => {
+const FormularioCrearPersonal = ({props}) => {
     
     const [personal,guardarpersonal]= useState({
         documento: '',
@@ -143,6 +143,8 @@ const FormularioCrearPersonal = () => {
             password: '',
             confpassword: ''
         })
+
+        props.history.push('/consultar-personal');
     }
     
     

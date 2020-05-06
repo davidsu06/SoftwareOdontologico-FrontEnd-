@@ -5,7 +5,7 @@ import FormularioCrearPersonal from '../personal/FormularioCrearPersonal';
 import personaContext from '../../context/personal/personaContext';
 import AuthContext from '../../context/autenticacion/authContext';
 
-const CrearPaciente = () => {
+const CrearPaciente = (props) => {
     const [bandera,actualizarBandera]=useState(true);
 
     const authContext = useContext(AuthContext);
@@ -34,7 +34,7 @@ const CrearPaciente = () => {
                 <div id="page-content-wrapper">
                   <MenuAdmin titulo={tituloHead} actualizarBandera={actualizarBandera} Bandera={bandera}/>
                 <div className="container-fluid">
-                <FormularioCrearPersonal/>
+                <FormularioCrearPersonal props={props} />
                 </div>
             </div>
           </div> 

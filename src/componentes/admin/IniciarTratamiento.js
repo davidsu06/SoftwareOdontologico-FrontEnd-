@@ -5,7 +5,7 @@ import FormularioTratamiento from '../tratamientos/formularioIniciarTratamiento'
 import TratamientoContext from '../../context/tratamientos/tratamientoContext';
 import AuthContext from '../../context/autenticacion/authContext';
 
-const CrearFactura = () => {
+const CrearFactura = (props) => {
 
     const [bandera,actualizarBandera]=useState(true);
 
@@ -36,7 +36,7 @@ const CrearFactura = () => {
                 <div id="page-content-wrapper">
                   <MenuAdmin titulo={header} actualizarBandera={actualizarBandera} Bandera={bandera}/>
                   <div className="container-fluid">
-                    <FormularioTratamiento />
+                    <FormularioTratamiento props={props} />
                   </div> 
                 </div> 
             </div> 
