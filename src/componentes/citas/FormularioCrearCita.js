@@ -7,20 +7,20 @@ const FormularioCrearCita = () => {
     const citasContext = useContext(citaContext);
     const { citaseleccionada, crearCita, modificarCita } = citasContext;
 
-    const timeStyle = {
-        background: 'rgba(255,255,255,0.1)',
-        border: 'none',
-        fontSize: '16px',
-        height: 'auto',
-        margin: '0',
-        outline: '0',
-        padding: '15px',
-        width: '95%',
-        backgroundColor: '#e8eeef',
-        color: 'black',
-        boxShadow: '0 1px 0 rgba(0,0,0,0.03) inset',
-        marginBottom: '30px'
-    }
+    // const timeStyle = {
+    //     background: 'rgba(255,255,255,0.1)',
+    //     border: 'none',
+    //     fontSize: '16px',
+    //     height: 'auto',
+    //     margin: '0',
+    //     outline: '0',
+    //     padding: '15px',
+    //     width: '95%',
+    //     backgroundColor: '#e8eeef',
+    //     color: 'black',
+    //     boxShadow: '0 1px 0 rgba(0,0,0,0.03) inset',
+    //     marginBottom: '30px'
+    // }
 
     const [cita, guardarCita] = useState({
         fecha: '',

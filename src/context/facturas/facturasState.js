@@ -2,7 +2,6 @@ import React, { useReducer } from 'react';
 import facturasContext from './facturasContext';
 import facturasReducer from './facturasReducer';
 import clienteAxios from '../../config/axios';
-import {Redirect} from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 import { 

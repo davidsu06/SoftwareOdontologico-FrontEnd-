@@ -71,6 +71,7 @@ ul {
     width: 15px;
   }
   body {
+    min-height: 100vh;
     overflow-x: hidden;
     background-image: url("./media/nice_snow.png");
   }
@@ -82,7 +83,6 @@ ul {
     align-content: center;
   }
   #sidebar-wrapper {
-    height: 100%;
     margin-left: -15rem;
     -webkit-transition: margin .25s ease-out;
     -moz-transition: margin .25s ease-out;
@@ -256,8 +256,8 @@ ul {
     color: #fafafa;
     font: caption;
     border-bottom: white 1px solid;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
   }
   .subcasilla{
     width: auto;
@@ -270,7 +270,7 @@ ul {
     margin-bottom: 1px;
   }
   .menuver{ 
-    min-height: 800px;
+    min-height: 100vh;
     border: none;
     background-image: url('./media/circle-blues.png');
   }
