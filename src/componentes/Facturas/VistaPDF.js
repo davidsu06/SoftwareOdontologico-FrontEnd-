@@ -23,10 +23,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#39aa88',
   },
   texto2:{
-    paddingLeft: 80,
+    paddingLeft: 5,
+    paddingRight: 50
   },
   texto2q:{
-    paddingLeft: 50,
+    paddingLeft: 5,
+    paddingRight: 50
   },
   header:{
     flexDirection: 'row',
@@ -40,12 +42,12 @@ const styles = StyleSheet.create({
   textoheader:{
     fontSize: 12,
     paddingTop: 6,
-    borderBottom: 1,
+    borderBottom: 3,
     borderColor: "#39aa88"
   },
   textosubheader:{
     paddingTop: 10,
-    paddingLeft: 95
+    paddingLeft: 30
   },
   imagen:{
     width: 100,
@@ -84,7 +86,7 @@ const styles = StyleSheet.create({
 const MyDocument = () => {
 
   const {facturaseleccionada} = useContext(facturaContext);
-  const {documento_paciente, nombre_paciente, documento_cajero, nombre_cajero, valor, fecha, tratamiento} = facturaseleccionada;
+  const {_id, documento_paciente, nombre_paciente, documento_cajero, nombre_cajero, valor, fecha, tratamiento} = facturaseleccionada;
   
   return (
     <>
@@ -99,30 +101,30 @@ const MyDocument = () => {
                       <Image style={styles.imagen} src={logo} />
                       <Text style={styles.titulo}>CONSULTORIO ODONTOLOGICO</Text>
                       <View style={styles.textosubheader}>
-                        <Text style={styles.textoheader}>Numero de factura: 0 </Text>
-                        <Text style={styles.textoheader}>Fecha: {fecha}</Text>
-                        <Text style={styles.textoheader}>Fecha Vencimiento: {fecha}</Text>
+                        <Text style={styles.textoheader}>Numero de factura:{_id} </Text>
+                        <Text style={styles.textoheader}>Fecha Generación: {fecha}</Text>
+                        <Text style={styles.textoheader}>Fecha Vencimiento:{fecha}</Text>
                       </View>
                     </View>
 
                     <View style={styles.fila1dec2}>
                         <View style={styles.fila1dec2}>
-                          <Text style={styles.texto11}>Documento Paciente: </Text>
-                          <Text style={styles.texto2}>{documento_paciente}  </Text>
+                          <Text style={styles.texto11}>Documento Paciente:</Text>
+                          <Text style={styles.texto2}>{documento_paciente}</Text>
                         </View>
                         <View style={styles.fila1dec2}>
-                          <Text style={styles.texto11}>Nombre Paciente: </Text>
+                          <Text style={styles.texto11}>Nombre Paciente:</Text>
                           <Text style={styles.texto2q}>{nombre_paciente}</Text>
                         </View>
                     </View>
 
                     <View style={styles.fila1dec2}>
                         <View style={styles.fila1dec2}>
-                          <Text style={styles.texto11}>Documento Cajero: </Text>
-                          <Text style={styles.texto2}>{documento_cajero}  </Text>
+                          <Text style={styles.texto11}>Documento Cajero:</Text>
+                          <Text style={styles.texto2}>{documento_cajero}</Text>
                         </View>
                         <View style={styles.fila1dec2}>
-                          <Text style={styles.texto11}>Nombre Cajero: </Text>
+                          <Text style={styles.texto11}>Nombre Cajero:</Text>
                           <Text style={styles.texto2q}>{nombre_cajero}</Text>
                         </View>
                     </View>
@@ -153,12 +155,12 @@ const MyDocument = () => {
                       </View>
                     </View>
                     <Text>
-                      En cumplimiento de lo establecido en la ley estatutaria 1581 del 2012 de protecccion
-                      de datos de caracter personal, le comunicamos que los datos 
-                      que usted nos facilite quedaran incorporados y seran tratados 
-                      en los ficheros titularidad de (nombre del responsable del fichero)
-                      con el fin de poderle prestar nuestros servicios, asi como para 
-                      mantenerle informado sobre cuestiones relativas nuestros servicios.
+                        En cumplimiento de lo establecido en la ley estatutaria 1581 del 2012 de protecccion
+                        de datos de caracter personal, le comunicamos que los datos 
+                        que usted nos facilite quedaran incorporados y seran tratados 
+                        en los ficheros titularidad de (nombre del responsable del fichero)
+                        con el fin de poderle prestar nuestros servicios, asi como para 
+                        mantenerle informado sobre cuestiones relativas nuestros servicios.
                     </Text>
                   </Page>
                 </Document>
