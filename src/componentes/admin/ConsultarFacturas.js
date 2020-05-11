@@ -4,7 +4,7 @@ import MenuAdmin from '../layout/MenuAdmin';
 import ListadoFacturas from '../Facturas/ListadoFacturas';
 import AuthContext from '../../context/autenticacion/authContext';
 
-const ConsultarFacturas = () => {
+const ConsultarFacturas = (props) => {
     const [bandera,actualizarBandera]=useState(true);
 
     const authContext = useContext(AuthContext);
@@ -19,7 +19,7 @@ const ConsultarFacturas = () => {
         <>
         <Fragment>
             <div className="d-flex" id="wrapper">
-               {bandera ?  <NavbarAdmin/> : null}
+               {bandera ?  <NavbarAdmin /> : null}
                 <div id="page-content-wrapper">
                   <MenuAdmin titulo="Consultar Facturas" actualizarBandera={actualizarBandera} Bandera={bandera}/>
                 <div className="container-fluid">

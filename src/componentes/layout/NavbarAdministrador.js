@@ -1,5 +1,6 @@
 import React,{useContext} from 'react';
 import { Link } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import logo from './../../media/Logo.png';
 import personaContext from '../../context/personal/personaContext';
 import pacienteContext from '../../context/pacientes/pacienteContext';
@@ -27,6 +28,12 @@ const NavbarAdministrador = ({usuario}) => {
 
   const {tratamientoNull} = useContext(tratamientoContext);
 
+  const mostrarFacturas = () =>{
+    const history = createBrowserHistory();
+    history.push('/consultar-facturas');
+    window.location.reload(true); 
+  }
+  
   return ( 
     <>
           <div className="menuver border-right negrilla" id="sidebar-wrapper">
@@ -133,10 +140,10 @@ const NavbarAdministrador = ({usuario}) => {
                 </Link>
               </div>
 
-              <div className="collapse subcasilla" id="collapse5">
-                <Link to={'/consultar-facturas'} className="d-block btn p-3 text-decoration-none text-dark">
+              <div className="collapse subcasilla text-center" id="collapse5">
+                <button onClick={mostrarFacturas} className="btn btn-link p-3 text-decoration-none text-dark">
                   Consultar facturas
-                </Link>
+                </button>
               </div>
               
               <a className="list-group-item list-group-item-action casilla py-3" data-toggle="collapse" href="#collapse6" role="button" aria-expanded="false" aria-controls="collapseExample" >

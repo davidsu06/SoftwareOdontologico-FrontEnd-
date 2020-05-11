@@ -9,7 +9,7 @@ const Factura = ({factura, tratamiento, servicio, usuario}) => {
     const {modificarEstadoFactura, seleccionarFactura} = useContext(facturaContext);
     const {actualizarTratamiento} = useContext(tratamientoContext);
 
-    const generarFacturaPDF = factura =>{
+    const generarFacturaPDF = factura =>{ 
         try {
             seleccionarFactura(factura);
         } catch (error) {
