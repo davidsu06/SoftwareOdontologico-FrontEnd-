@@ -23,7 +23,7 @@ import CitaState from './context/citas/citaState';
 import HistoriaState from './context/historia/historiaState';
 import CrearPacientes from './componentes/admin/CrearPacientes';
 import CrearPersonal from './componentes/admin/CrearPersonal';
-import InterfazAdmin from './componentes/layout/InterfazAdmin';
+import InterfazAdmin from './componentes/admin/InterfazAdmin';
 import CrearCitas from './componentes/admin/CrearCitas';
 import CrearFactura from './componentes/admin/CrearFactura';
 import CrearHistoria from './componentes/admin/CrearHistoria';

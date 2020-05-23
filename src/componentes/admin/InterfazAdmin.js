@@ -1,6 +1,6 @@
 import React,{useState, Fragment, useContext, useEffect} from 'react';
-import NavbarAdmin from './NavbarAdmin';
-import MenuAdmin from './MenuAdmin';
+import NavbarAdmin from '../layout/NavbarAdmin';
+import MenuAdmin from '../layout/MenuAdmin';
 import AuthContext from '../../context/autenticacion/authContext';
 
 const InterfazAdmin = () => {

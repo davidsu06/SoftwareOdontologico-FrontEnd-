@@ -42,13 +42,13 @@ const Servicio = ({tratamiento}) => {
             <td className="text-center" style={{width:'75px'}}>
                 {tratamiento.citasVistas === 0 && tratamiento.saldoAbonado === 0
                     && (
-                        <Tooltip placement="top" overlay="Editar Tratamiento" overlayClassName="font-weight-bold text-white">
+                        <Tooltip placement="top" overlay="Editar Tratamiento" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
                             <Link to={'/editar-tratamiento'} type="button" className="fas fa-pencil-alt text-decoration-none text-dark mr-2" onClick={() => SeleccionarTratamiento(tratamiento)}></Link>
                         </Tooltip>
                     )
                 
                 }
-                <Tooltip placement="top" overlay="Eliminar Tratamiento" overlayClassName="font-weight-bold text-white">
+                <Tooltip placement="top" overlay="Eliminar Tratamiento" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
                     <i type="button" className="fas fa-trash-alt mx-3" onClick={() => onClickEliminar(tratamiento._id)}></i>  
                 </Tooltip>
                 

@@ -175,12 +175,12 @@ const Cita = ({cita, tratamiento, servicios}) => {
                                 :
                                 (
                                     <>
-                                        <Tooltip placement="top" overlay="Crear Historia" overlayClassName="font-weight-bold text-white">
+                                        <Tooltip placement="top" overlay="Crear Historia" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
                                             <Link to={'/crear-hist-clinica'} type="button" className="far fa-address-book text-dark mr-3 ml-2" onClick={() => onClickCrearHistoria(cita)}></Link>
                                         </Tooltip>
 
 
-                                        <Tooltip placement="top" overlay="Detalles Cita" overlayClassName="font-weight-bold text-white">
+                                        <Tooltip placement="top" overlay="Detalles Cita" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
                                             <i type="button" onClick={handleOpen} className="fas fa-info-circle mr-3"></i>
                                         </Tooltip>   
                                        
@@ -192,7 +192,7 @@ const Cita = ({cita, tratamiento, servicios}) => {
                                 ? null
                                 :
                                 (
-                                    <Tooltip placement="top" overlay="Editar Cita" overlayClassName="font-weight-bold text-white">
+                                    <Tooltip placement="top" overlay="Editar Cita" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
                                         <Link to={'/editar-citas'} type="button" className="fas fa-pencil-alt text-decoration-none text-dark mr-2" onClick={() => SeleccionarCita(cita)}></Link>
                                     </Tooltip>
                                 )
@@ -203,7 +203,7 @@ const Cita = ({cita, tratamiento, servicios}) => {
                                 ? null
                                 :
                                 (
-                                    <Tooltip placement="top" overlay="Eliminar Cita" overlayClassName="font-weight-bold text-white">
+                                    <Tooltip placement="top" overlay="Eliminar Cita" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
                                         <i type="button" className="fas fa-trash-alt mx-3" onClick={() => onClickEliminar(cita._id)}></i>
                                     </Tooltip>   
                                 )

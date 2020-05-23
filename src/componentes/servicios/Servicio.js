@@ -45,10 +45,10 @@ const Servicio = ({servicio,usuario}) => {
                             ? null
                             :(
                                 <td className="text-center">
-                                    <Tooltip placement="top" overlay="Editar Servicio" overlayClassName="font-weight-bold text-white">
+                                    <Tooltip placement="top" overlay="Editar Servicio" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
                                         <Link to={'/editar-servicio'} type="button" className="fas fa-pencil-alt text-decoration-none text-dark mr-2" onClick={() => SeleccionarServicio(servicio)}></Link>
                                     </Tooltip>
-                                    <Tooltip placement="top" overlay="Eliminar Servicio" overlayClassName="font-weight-bold text-white">
+                                    <Tooltip placement="top" overlay="Eliminar Servicio" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
                                         <i type="button" className="fas fa-trash-alt mx-3" onClick={() => onClickEliminar(servicio._id)}></i>
                                     </Tooltip>   
                                 </td>

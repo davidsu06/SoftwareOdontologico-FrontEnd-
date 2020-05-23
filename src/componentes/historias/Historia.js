@@ -50,7 +50,7 @@ const Historia = ({historia, usuario}) => {
                             <td>{servicio}</td>
                             <td>{pacienteId}</td>
                             <td className="text-center" style={{width:'2cm'}}>
-                                <Tooltip placement="top" overlay="Editar Historia" overlayClassName="font-weight-bold text-white">
+                                <Tooltip placement="top" overlay="Editar Historia" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
                                     <Link to={'/editar-hist-clinica'} 
                                         type="button" className="fas fa-pencil-alt text-decoration-none text-dark" 
                                         onClick={() => SeleccionarHistoria(historia)}

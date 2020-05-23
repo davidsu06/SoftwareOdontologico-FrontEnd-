@@ -1,11 +1,10 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, {useState, useEffect, useContext} from 'react';
 import logo from '../../media/Logo.png'
+import { Link } from 'react-router-dom';
 import AlertContext from '../../context/alertas/alertaContext';
 import AuthContext from '../../context/autenticacion/authContext';
 
 const Login = (props) => {
-
     //Extraer valores del context
     const {alerta, mostrarAlerta} = useContext(AlertContext);
     const {mensaje, autenticado, iniciarSesion} = useContext(AuthContext);
@@ -47,54 +46,30 @@ const Login = (props) => {
         iniciarSesion({documento, password});
     }
 
-    return (
-        <div className="container">
-            <div className="abs_center">
-                <form id="form_login" className="justify-content-center" onSubmit={onSubmit}>
-                    <div className="rounded-pill py-3 mb-2" style={{backgroundColor:'rgba(40,35,90,1)'}}>
-                        <p className="text-center"><img src={logo} alt="logo" className="img-fluid" style={{width:'20%'}}/></p>
-                        <h1 className="text-white text-center font-weight-bold">Inicio de Sesión</h1>
-                    </div>
-                    
-            
-                    {alerta ? <div className="bg-danger text-center text-white font-weight-bold mb-2" style={{padding:'20px'}} >{alerta.msg}</div>  :null}
+    return ( 
+        <div id="fondo_inicio">
+            {alerta ? <div className="bg-danger text-center text-white font-weight-bold" style={{padding:'30px 0'}} >{alerta.msg}</div>  :null}
+            <div className="mobile-screen">
+                <div className="header">
+                    <h1 id="h1Login" className="font-weight-bold text-white"><img  src={logo} alt="Logo odontología" className="w-25"/> Inicio de Sesión</h1>
+                </div>
+                
+                <form id="formLogin" onSubmit={onSubmit}>
+                    <label className="labelLogin text-white font-weight-bold">Documento:</label>
+                    <input className="inputLogin" type="text" name="documento" placeholder="Digite su Documento" value={documento} onChange={guardarInhtmlFormacion} />
 
-                    <fieldset>
-                        <label id="etiqueta" htmlFor="name" className="text-white font-weight-bold">Documento:</label>
-                        <input 
-                            type="text" 
-                            id="name"
-                            className="inputs_login" 
-                            name="documento" 
-                            placeholder="Digite el Documento"
-                            value={documento} 
-                            onChange={guardarInhtmlFormacion}
-                        />
-                        
-                        <label id="etiqueta" htmlFor="password" className="text-white font-weight-bold">Contraseña:</label>
-                        <input 
-                            type="password" 
-                            id="password" 
-                            className="inputs_login" 
-                            name="password" 
-                            placeholder="Digite la contraseña"
-                            value={password} 
-                            onChange={guardarInhtmlFormacion}
-                        />
-                    </fieldset>
+                    <label className="labelLogin text-white font-weight-bold">Contraseña:</label>
+                    <input className="inputLogin" type="password" name="password" placeholder="Digite su Contraseña" value={password} onChange={guardarInhtmlFormacion} />
 
-                    <button id="boton" type="submit">Ingresar</button>
-
-                    <Link to={'/'} className="btn btn-link text-left font-weight-bold text-white">
-                        Volver a Inicio
-                    </Link>
-                    
+                    <button type="submit" className="login-btn font-weight-bold">Iniciar Sesión</button>
                 </form>
+                
+                <div className="other-options">
+                    <div id="option" ><p id="option-text"><i className="fas fa-arrow-circle-left font-weight-bold mr-2"></i><Link to={'/'} className="font-weight-bold text-white">Ir a Inicio</Link></p></div>
+                </div>
             </div>
-            
         </div>
-        
-     );
+    );
 }
  
 export default Login;

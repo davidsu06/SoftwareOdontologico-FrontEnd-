@@ -24,11 +24,11 @@ const MenuAdmin = ({actualizarBandera,Bandera,titulo}) => {
 
     return ( 
         <nav className="navbar navbar-expand-lg navbar-light border-bottom navhor">
-            <Tooltip placement="bottomLeft" overlay={Bandera ? 'Ocultar Menú' : 'Mostrar Menú'} overlayClassName="font-weight-bold text-white">
+            <Tooltip placement="bottomLeft" overlay={Bandera ? 'Ocultar Menú' : 'Mostrar Menú'} overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
                 <button onClick={esconder} className="btn" id="menu-toggle"><i className="fas fa-align-justify text-white"></i></button>
             </Tooltip>
             <h1 className='ml-auto menuadmti'>{titulo}</h1>
-            <Tooltip placement="bottomRight" overlay="Cerrar Sesión" overlayClassName="font-weight-bold text-white">
+            <Tooltip placement="bottomRight" overlay="Cerrar Sesión" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
                 <Link to={'/'} onClick={()=>cerrarSesion()} className="btn btn-danger ml-auto"><i className="fas fa-sign-out-alt text-white"></i></Link>
             </Tooltip>
             

@@ -124,19 +124,19 @@ const Factura = ({factura, tratamiento, servicio, usuario}) => {
             
                                         :( 
                                             <td className="text-center">
-                                                <Tooltip placement="top" overlay="Generar Factura" overlayClassName="font-weight-bold text-white">
+                                                <Tooltip placement="top" overlay="Generar Factura" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
                                                     <Link to={'/factura-pdf'} type="button" className="fas fa-print text-dark font-weight-bold mr-3" 
                                                         onClick={() => generarFacturaPDF(factura)}>
                                                     </Link>  
                                                 </Tooltip>
 
-                                                <Tooltip placement="top" overlay="Cancelar Pago" overlayClassName="font-weight-bold text-white">
+                                                <Tooltip placement="top" overlay="Cancelar Pago" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
                                                     <i type="button" className="fas fa-dollar-sign font-weight-bold mr-3" 
                                                         onClick={ () => onClickModificarEstadoPagada(factura, tratamiento, servicio) }>
                                                     </i> 
                                                 </Tooltip>
 
-                                                <Tooltip placement="top" overlay="Anular Factura" overlayClassName="font-weight-bold text-white">
+                                                <Tooltip placement="top" overlay="Anular Factura" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
                                                     <i type="button" className="fas fa-ban font-weight-bold"
                                                         onClick={ () => onClickModificarEstadoCancelada(factura) }>
                                                     </i> 

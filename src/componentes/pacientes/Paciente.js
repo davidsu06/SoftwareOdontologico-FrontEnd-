@@ -46,10 +46,10 @@ const Paciente = ({paciente}) => {
             <td>{paciente.direccion}</td>
             <td>{paciente.telefono}</td>
             <td className="text-center">    
-                <Tooltip placement="top" overlay="Editar Paciente" overlayClassName="font-weight-bold text-white">
+                <Tooltip placement="top" overlay="Editar Paciente" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
                     <Link to={'/editar-pacientes'} type="button" className="fas fa-pencil-alt text-decoration-none text-dark mr-2" onClick={() => SeleccionarPaciente(paciente)}></Link>
                 </Tooltip>
-                <Tooltip placement="top" overlay="Eliminar Paciente" overlayClassName="font-weight-bold text-white">
+                <Tooltip placement="top" overlay="Eliminar Paciente" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
                     <i type="button" className="fas fa-trash-alt mx-3" onClick={() => onClickEliminar(paciente._id)}></i>  
                 </Tooltip>        
             </td>  
