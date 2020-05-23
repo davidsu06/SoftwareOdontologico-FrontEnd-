@@ -2,8 +2,8 @@ import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import tokenAuth from './config/token';
 
-import MenuPrincipal from './componentes/principal/MenuPrincipal'
-import Login from './componentes/principal/Login'
+import MenuPrincipal from './componentes/principal/MenuPrincipal';
+import Login from './componentes/auth/Login';
 import ConsultarPacientes from './componentes/admin/ConsultarPacientes';
 import ConsultarPersonal from './componentes/admin/ConsultarPersonal';
 import ConsultarCitas from './componentes/admin/ConsultarCitas';

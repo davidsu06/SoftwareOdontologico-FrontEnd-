@@ -29,8 +29,7 @@ const PacienteState = props => {
     const agregarPacientes = async paciente => {
         // console.log(paciente);
         try {
-            const resultado = await clienteAxios.post('/api/pacientes', paciente);
-            console.log(resultado)
+            await clienteAxios.post('/api/pacientes', paciente);
             Swal.fire(
                 'Correcto',
                 'El paciente se ha creado correctamente',
@@ -62,7 +61,6 @@ const PacienteState = props => {
     }
 
     const eliminarPaciente = async pacienteId => {
-        console.log(pacienteId);
         try {
             
             await clienteAxios.delete(`/api/pacientes/${pacienteId}`);
@@ -106,10 +104,8 @@ const PacienteState = props => {
     // Modifica un paciente
 
     const modificarPaciente = async paciente => {
-        console.log(paciente)
         try {
-            const resultado = await clienteAxios.put(`/api/pacientes/${paciente._id}`, paciente);
-            console.log(resultado);
+            await clienteAxios.put(`/api/pacientes/${paciente._id}`, paciente);
             Swal.fire(
                 'Correcto',
                 'El paciente se ha modificado correctamente',

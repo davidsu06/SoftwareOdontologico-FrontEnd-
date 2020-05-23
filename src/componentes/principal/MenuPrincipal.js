@@ -1,8 +1,8 @@
 import React, { useState, Fragment } from 'react';
 import HeaderPrincipal from './HeaderPrincipal';
-import ListadoNoticias from './ListadoNoticias';
+import ListadoNoticias from './Noticias/ListadoNoticias';
 import SaludDental from './SaludDental';
-import Servicios from './Servicios';
+import Servicios from './Servicios/ListadoServicios';
 import Preguntas from './Preguntas';
 import Footer from './Footer';
 import Inicio from './Inicio';

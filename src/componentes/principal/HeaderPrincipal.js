@@ -50,7 +50,7 @@ const HeaderPrincipal = ({actualizarNavegacion}) => {
             ><i className="fas fa-comments text-white"></i><br/><b>Preguntas</b></button>
             
             <Link to={'/iniciar-sesion'} className="btn btn-success my-2 my-sm-0 ml-auto" style={{color:'white'}}>
-                <b>Iniciar Sesión</b>
+                <b> <i className="fas fa-users mr-1"></i> Iniciar Sesión</b>
             </Link>    
 
         </nav>     

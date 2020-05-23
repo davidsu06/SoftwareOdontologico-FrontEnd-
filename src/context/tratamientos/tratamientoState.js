@@ -27,8 +27,7 @@ const TratamientoState = props => {
     //Inicia un Tratamiento
     const iniciarTratamiento = async tratamiento => {
         try {
-            const resultado = await clienteAxios.post('/api/tratamientos', tratamiento);
-             console.log(resultado);
+            await clienteAxios.post('/api/tratamientos', tratamiento);
              Swal.fire(
                 'Correcto',
                 'El Tratamiento se ha creado correctamente',
@@ -49,7 +48,6 @@ const TratamientoState = props => {
         
         try {
             const resultado = await clienteAxios.get('/api/tratamientos');
-            console.log(resultado);
             dispatch({
                 type: LISTAR_TRATAMIENTOS,     
                 payload: resultado.data.tratamientos
@@ -61,10 +59,8 @@ const TratamientoState = props => {
 
     //Actualiza un tratamiento
     const actualizarTratamiento = async tratamiento => {
-        console.log(tratamiento)
         try {
-            const resultado = await clienteAxios.put(`/api/tratamientos/${tratamiento._id}`, tratamiento);
-            console.log(resultado);
+            await clienteAxios.put(`/api/tratamientos/${tratamiento._id}`, tratamiento);
             
             dispatch({
                 type: ACTUALIZAR_TRATAMIENTO,
@@ -78,9 +74,7 @@ const TratamientoState = props => {
 
     //Elimina un Tratamiento
     const eliminarTratamiento = async tratamientoId => {
-        console.log(tratamientoId);
         try {
-            
             await clienteAxios.delete(`/api/tratamientos/${tratamientoId}`);
             Swal.fire(
                 'Eliminado!',

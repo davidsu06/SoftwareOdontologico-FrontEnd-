@@ -48,8 +48,7 @@ const PersonaState = props => {
     const agregarPersonal = async persona => {
         
         try {
-            const resultado = await clienteAxios.post('/api/personal', persona);
-            console.log(resultado);
+            await clienteAxios.post('/api/personal', persona);
             Swal.fire(
                 'Correcto',
                 'El personal se ha creado correctamente',

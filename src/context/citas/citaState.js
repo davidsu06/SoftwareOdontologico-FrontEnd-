@@ -24,20 +24,7 @@ import {
 const CitaState = props => {
 
     const initialState = {
-        citas: [
-            // {
-            //     id: '1',
-            //     fecha: '2020-04-10',
-            //     hora: '10:00',
-            //     paciente: ''
-            // },
-            // {
-            //     id: '2',
-            //     fecha: '2020-05-20',
-            //     hora: '12:00',
-            //     paciente: ''
-            // }
-        ],
+        citas: [],
         citaseleccionada: null,
         citasfiltradas: [],
         citasPaciente:[],
@@ -51,10 +38,7 @@ const CitaState = props => {
 
     const crearCita = async cita => {
         try {
-            console.log(cita);
-            
-            const resultado = await clienteAxios.post('/api/citas', cita);
-            console.log(resultado);
+            await clienteAxios.post('/api/citas', cita);
             Swal.fire(
                 'Correcto',
                 'La cita se ha creado correctamente',
@@ -82,7 +66,6 @@ const CitaState = props => {
         
         try {
             const resultado = await clienteAxios.get('/api/citas');
-            // console.log(resultado);
             
             dispatch({
                 type: LISTAR_CITA,
@@ -97,7 +80,6 @@ const CitaState = props => {
         
         try {
             const resultado = await clienteAxios.get(`/api/citas/${pacienteId}`);
-            // console.log(resultado.data.cita)
             let bool = false;
             if (resultado.data.cita.length > 0) {
                 bool = true;
@@ -128,9 +110,7 @@ const CitaState = props => {
 
     const modificarCita = async cita => {
         try {
-            console.log(cita)
-            const resultado = await clienteAxios.put(`/api/citas/${cita._id}`, cita);
-            console.log(resultado)
+            await clienteAxios.put(`/api/citas/${cita._id}`, cita);
                         
             dispatch({
                 type: EDITAR_CITA,
@@ -184,22 +164,6 @@ const CitaState = props => {
             payload: pacienteId
         })
     }
-
-    // const asignarCita = async cita => {
-        
-    //     try {
-    //         const resultado = await clienteAxios.put(`/api/citas/${cita._id}`, cita);
-    //         console.log(resultado);
-            
-    //         dispatch({
-    //             type: ASIGNAR_CITA,
-    //             payload: cita
-    //         })
-    //     }catch (error) {
-    //         console.log(error);
-            
-    //     }
-    // }
 
     return(
         <citaContext.Provider

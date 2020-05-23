@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
 import citaContext from '../../context/citas/citaContext';
 import AuthContext from '../../context/autenticacion/authContext';
+import tratamientoContext from '../../context/tratamientos/tratamientoContext';
+import serviciosContext from '../../context/servicios/serviciosContext';
 import Cita from './Cita';
 import InfiniteCalendar from 'react-infinite-calendar';
 import 'react-infinite-calendar/styles.css'; 
@@ -10,6 +12,10 @@ const ListadoCita = () => {
 
     const authContext = useContext(AuthContext);
     const { usuario, usuarioAutenticado } = authContext;
+    const {tratamientos, listarTratamientos} = useContext(tratamientoContext);
+    const {servicios, listarServicios} = useContext(serviciosContext);
+    const citasContext = useContext(citaContext);
+    const { listarCitas, citas, filtrarCitas, CitasPacienteCalendario,citasfiltradas, citasPaciente, citasfiltradasPaciente, searching } = citasContext;
     let cargo; 
 
     useEffect(() => {
@@ -21,14 +27,11 @@ const ListadoCita = () => {
         cargo = usuario.cargo;
     } 
 
-
-    const citasContext = useContext(citaContext);
-    const { listarCitas, citas, filtrarCitas, CitasPacienteCalendario,
-         citasfiltradas, citasPaciente, citasfiltradasPaciente, searching } = citasContext;
-
     useEffect(() => {
         if (usuario != null) {
-            listarCitas()
+            listarCitas();
+            listarTratamientos();
+            listarServicios();
         }
         // eslint-disable-next-line
     }, [usuario])
@@ -71,6 +74,8 @@ const ListadoCita = () => {
     
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
+
+    if(!citas) return null
 
     return ( 
         <>
@@ -135,16 +140,20 @@ const ListadoCita = () => {
                                         ? (  cargo !== 'Paciente' ?
                                             (currentPosts2.map(citafiltrada => (
                                                 <Cita
-                                                
-                                                key={citafiltrada._id}
-                                                cita={citafiltrada}
+                                                    key={citafiltrada._id}
+                                                    cita={citafiltrada}
+                                                    tratamiento={tratamientos.filter( tratamiento => tratamiento.pacienteId === citafiltrada.pacienteId)[0]}
+                                                    servicios={servicios}
+
                                                 />
                                             ))) : 
                                             (currentPosts4.map(citafiltrada => (
                                                 <Cita
-                                                
-                                                key={citafiltrada._id}
-                                                cita={citafiltrada}
+                                                    key={citafiltrada._id}
+                                                    cita={citafiltrada}
+                                                    tratamiento={tratamientos.filter( tratamiento => tratamiento.pacienteId === citafiltrada.pacienteId)[0]}
+                                                    servicios={servicios}
+
                                                 />
                                             )))
                                         )
@@ -152,15 +161,20 @@ const ListadoCita = () => {
                                             ?
                                                 (currentPosts.map(cita => (
                                                     <Cita
-                                                    key={cita._id}
-                                                    cita={cita}
+                                                        key={cita._id}
+                                                        cita={cita}
+                                                        tratamiento={tratamientos.filter( tratamiento => tratamiento.pacienteId === cita.pacienteId)[0]}
+                                                        servicios={servicios}
+
                                                     />
                                                 )))
                                             :
                                                 (currentPosts3.map(cita => (
                                                     <Cita
-                                                    key={cita._id}
-                                                    cita={cita}
+                                                        key={cita._id}
+                                                        cita={cita}
+                                                        tratamiento={tratamientos.filter( tratamiento => tratamiento.pacienteId === cita.pacienteId)[0]}
+                                                        servicios={servicios}
                                                     />
                                                 )))
                                             )

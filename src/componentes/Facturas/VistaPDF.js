@@ -88,6 +88,8 @@ const MyDocument = () => {
   const {facturaseleccionada} = useContext(facturaContext);
   const {_id, documento_paciente, nombre_paciente, documento_cajero, nombre_cajero, valor, fecha, tratamiento} = facturaseleccionada;
   
+  if(!facturaseleccionada) return null
+
   return (
     <>
       {facturaseleccionada

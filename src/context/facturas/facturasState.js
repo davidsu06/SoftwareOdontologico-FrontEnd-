@@ -26,8 +26,7 @@ const FacturasState = props => {
     const agregarFacturas = async factura => {
         console.log(factura)
         try {
-            const resultado = await clienteAxios.post('/api/facturas', factura);
-            console.log(resultado);
+            await clienteAxios.post('/api/facturas', factura);
             
             dispatch({
                 type: CREAR_FACTURA,    
@@ -55,8 +54,7 @@ const FacturasState = props => {
     const modificarEstadoFactura = async nuevafactura => {
         console.log(nuevafactura)
         try {
-            const resultado = await clienteAxios.put(`/api/facturas/${nuevafactura._id}`, nuevafactura);
-            console.log(resultado);
+            await clienteAxios.put(`/api/facturas/${nuevafactura._id}`, nuevafactura);
             Swal.fire(
                 'Correcto',
                 'El estado de la factura se ha modificado correctamente',

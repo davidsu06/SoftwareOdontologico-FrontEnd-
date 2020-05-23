@@ -2,6 +2,8 @@ import React, { useContext } from 'react'
 import servicioState from '../../context/servicios/serviciosContext';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import Tooltip from 'rc-tooltip';
+import 'rc-tooltip/assets/bootstrap.css';
 
 const Servicio = ({servicio,usuario}) => {
     const {eliminarServicio, ServicioActual} = useContext(servicioState);
@@ -43,8 +45,12 @@ const Servicio = ({servicio,usuario}) => {
                             ? null
                             :(
                                 <td className="text-center">
-                                    <Link to={'/editar-servicio'} type="button" className="fas fa-pencil-alt text-decoration-none text-dark mr-2" onClick={() => SeleccionarServicio(servicio)}></Link>
-                                    <i type="button" className="fas fa-trash-alt mx-3" onClick={() => onClickEliminar(servicio._id)}></i>  
+                                    <Tooltip placement="top" overlay="Editar Servicio" overlayClassName="font-weight-bold text-white">
+                                        <Link to={'/editar-servicio'} type="button" className="fas fa-pencil-alt text-decoration-none text-dark mr-2" onClick={() => SeleccionarServicio(servicio)}></Link>
+                                    </Tooltip>
+                                    <Tooltip placement="top" overlay="Eliminar Servicio" overlayClassName="font-weight-bold text-white">
+                                        <i type="button" className="fas fa-trash-alt mx-3" onClick={() => onClickEliminar(servicio._id)}></i>
+                                    </Tooltip>   
                                 </td>
                             )
                         }

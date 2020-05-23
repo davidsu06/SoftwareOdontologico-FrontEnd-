@@ -27,9 +27,7 @@ const ServiciosState = props => {
     //Agrega un Servicio
     const agregarServicios = async servicio => {
         try {
-            console.log(servicio);
             const resultado = await clienteAxios.post('/api/servicios', servicio);
-             console.log(resultado);
              Swal.fire(
                 'Correcto',
                 'El Servicio se ha creado correctamente',
@@ -100,10 +98,8 @@ const ServiciosState = props => {
 
     // Modifica un Servicio
     const modificarServicio = async servicio => {
-        console.log(servicio)
         try {
-            const resultado = await clienteAxios.put(`/api/servicios/${servicio._id}`, servicio);
-            console.log(resultado);
+            await clienteAxios.put(`/api/servicios/${servicio._id}`, servicio);
             Swal.fire(
                 'Correcto',
                 'El Servicio se ha modificado correctamente',

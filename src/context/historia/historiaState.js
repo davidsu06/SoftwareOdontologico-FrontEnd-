@@ -27,9 +27,7 @@ const HistoriaState = props => {
     //Funciones
     const crearHistoria = async historia =>{
         try {
-            console.log(historia)
-            const respuesta = await clienteAxios.post('/api/historias', historia);
-            console.log(respuesta)
+            await clienteAxios.post('/api/historias', historia);
             Swal.fire(
                 'Correcto',
                 'La historia se ha creado correctamente',
@@ -61,8 +59,7 @@ const HistoriaState = props => {
     const modificarHistoria = async historial => {
         try {
             const {_id, historia} = historial;
-            const resultado = await clienteAxios.put(`/api/historias/${_id}`, historia);
-            console.log(resultado);
+            await clienteAxios.put(`/api/historias/${_id}`, historia);
             Swal.fire(
                 'Correcto',
                 'La historia se ha modificado correctamente',

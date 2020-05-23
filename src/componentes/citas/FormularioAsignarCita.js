@@ -9,10 +9,6 @@ const FormularioAsignarCita = ({redireccion}) => {
     const { citasignada, modificarCita, citaExistentePaciente, citaexistente } = citasContext;
     const { tratamientos, listarTratamientos } = useContext(tratamientoContext);
     const {fecha, hora, _id} = citasignada;
-    // console.log(fecha)
-    // console.log(hora)
-    // console.log(pacienteId)
-    // console.log(_id)
     let newfecha
 
     if(fecha !== undefined) newfecha = fecha.substr(0,10)

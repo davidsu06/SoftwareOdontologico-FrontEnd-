@@ -26,8 +26,7 @@ const AuthState = props =>{
 
     const regisrarPaciente = async datos => {
         try {
-            const respuesta = await clienteAxios.post('/api/usuarios', datos);
-            console.log(respuesta);
+            await clienteAxios.post('/api/usuarios', datos);
             dispatch({
                 type: REGISTRO_EXITOSO
             })
@@ -61,13 +60,11 @@ const AuthState = props =>{
     const iniciarSesion = async datos =>{
         try {
             const respuesta = await clienteAxios.post('/api/auth', datos);
-            console.log(respuesta)
             dispatch({
                 type: LOGIN_EXITOSO,
                 payload: respuesta.data
             })
             usuarioAutenticado();
-            // sesionActual();
         } catch (error) {
             const alerta ={
                 msg: error.response.data.msg,
@@ -88,7 +85,6 @@ const AuthState = props =>{
 
         try {
             const respuesta = await clienteAxios.get(`/api/auth`);
-            console.log(respuesta)
             dispatch({
                 type: OBTENER_USUARIO,
                 payload: respuesta.data

@@ -2,6 +2,8 @@ import React, { useContext } from 'react'
 import {Link} from 'react-router-dom';
 import tratamientoContext from '../../context/tratamientos/tratamientoContext';
 import Swal from 'sweetalert2';
+import Tooltip from 'rc-tooltip';
+import 'rc-tooltip/assets/bootstrap.css';
 
 const Servicio = ({tratamiento}) => {
     const {eliminarTratamiento, tratamientoActual} = useContext(tratamientoContext);
@@ -39,9 +41,17 @@ const Servicio = ({tratamiento}) => {
             <td>{new Intl.NumberFormat("de-DE").format(tratamiento.saldoAbonado)}</td>
             <td className="text-center" style={{width:'75px'}}>
                 {tratamiento.citasVistas === 0 && tratamiento.saldoAbonado === 0
-                    && <Link to={'/editar-tratamiento'} type="button" className="fas fa-pencil-alt text-decoration-none text-dark mr-2" onClick={() => SeleccionarTratamiento(tratamiento)}></Link>
+                    && (
+                        <Tooltip placement="top" overlay="Editar Tratamiento" overlayClassName="font-weight-bold text-white">
+                            <Link to={'/editar-tratamiento'} type="button" className="fas fa-pencil-alt text-decoration-none text-dark mr-2" onClick={() => SeleccionarTratamiento(tratamiento)}></Link>
+                        </Tooltip>
+                    )
+                
                 }
-                <i type="button" className="fas fa-trash-alt mx-3" onClick={() => onClickEliminar(tratamiento._id)}></i>  
+                <Tooltip placement="top" overlay="Eliminar Tratamiento" overlayClassName="font-weight-bold text-white">
+                    <i type="button" className="fas fa-trash-alt mx-3" onClick={() => onClickEliminar(tratamiento._id)}></i>  
+                </Tooltip>
+                
             </td>          
         </tr>
     )

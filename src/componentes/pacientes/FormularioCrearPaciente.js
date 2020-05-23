@@ -150,15 +150,6 @@ const FormularioCrearPaciente = ({props}) => {
             confpassword:''      
         })
 
-        // guardarpaciente({
-        //     Documento:'',
-        //     Nombre: '',
-        //     Apellidos:'',
-        //     Fnacimiento:'',
-        //     Direccion:'',
-        //     Telefono:''
-        // })
-
         props.history.push('/consultar-pacientes');
     }
   

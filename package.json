@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
+    "@material-ui/core": "^4.9.14",
     "@react-pdf/renderer": "^1.6.8",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -13,6 +14,7 @@
     "init": "^0.1.2",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.28",
+    "rc-tooltip": "^4.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-infinite-calendar": "^2.3.1",

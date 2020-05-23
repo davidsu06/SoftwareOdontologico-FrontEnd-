@@ -3,6 +3,8 @@ import Swal from 'sweetalert2';
 import {Link} from 'react-router-dom';
 import facturaContext from '../../context/facturas/facturasContext';
 import tratamientoContext from '../../context/tratamientos/tratamientoContext';
+import Tooltip from 'rc-tooltip';
+import 'rc-tooltip/assets/bootstrap.css';
 
 const Factura = ({factura, tratamiento, servicio, usuario}) => {
 
@@ -122,17 +124,23 @@ const Factura = ({factura, tratamiento, servicio, usuario}) => {
             
                                         :( 
                                             <td className="text-center">
-                                                <Link to={'/factura-pdf'} type="button" className="fas fa-print text-dark font-weight-bold mr-3" 
-                                                    onClick={() => generarFacturaPDF(factura)}>
-                                                </Link>
+                                                <Tooltip placement="top" overlay="Generar Factura" overlayClassName="font-weight-bold text-white">
+                                                    <Link to={'/factura-pdf'} type="button" className="fas fa-print text-dark font-weight-bold mr-3" 
+                                                        onClick={() => generarFacturaPDF(factura)}>
+                                                    </Link>  
+                                                </Tooltip>
 
-                                                <i type="button" className="fas fa-dollar-sign font-weight-bold mr-3" 
-                                                    onClick={ () => onClickModificarEstadoPagada(factura, tratamiento, servicio) }>
-                                                </i>
+                                                <Tooltip placement="top" overlay="Cancelar Pago" overlayClassName="font-weight-bold text-white">
+                                                    <i type="button" className="fas fa-dollar-sign font-weight-bold mr-3" 
+                                                        onClick={ () => onClickModificarEstadoPagada(factura, tratamiento, servicio) }>
+                                                    </i> 
+                                                </Tooltip>
 
-                                                <i type="button" className="fas fa-ban font-weight-bold"
-                                                    onClick={ () => onClickModificarEstadoCancelada(factura) }>
-                                                </i>
+                                                <Tooltip placement="top" overlay="Anular Factura" overlayClassName="font-weight-bold text-white">
+                                                    <i type="button" className="fas fa-ban font-weight-bold"
+                                                        onClick={ () => onClickModificarEstadoCancelada(factura) }>
+                                                    </i> 
+                                                </Tooltip> 
                                             </td>    
                                         )
                                     }

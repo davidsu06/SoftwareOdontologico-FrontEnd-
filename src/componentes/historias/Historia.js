@@ -1,4 +1,6 @@
 import React, {useContext} from 'react';
+import Tooltip from 'rc-tooltip';
+import 'rc-tooltip/assets/bootstrap.css';
 import historiaContext from '../../context/historia/historiaContext';
 import citaContext from '../../context/citas/citaContext';
 import { Link } from 'react-router-dom';
@@ -48,10 +50,12 @@ const Historia = ({historia, usuario}) => {
                             <td>{servicio}</td>
                             <td>{pacienteId}</td>
                             <td className="text-center" style={{width:'2cm'}}>
-                                <Link to={'/editar-hist-clinica'} 
-                                    type="button" className="fas fa-pencil-alt text-decoration-none text-dark" 
-                                    onClick={() => SeleccionarHistoria(historia)}
-                                ></Link>      
+                                <Tooltip placement="top" overlay="Editar Historia" overlayClassName="font-weight-bold text-white">
+                                    <Link to={'/editar-hist-clinica'} 
+                                        type="button" className="fas fa-pencil-alt text-decoration-none text-dark" 
+                                        onClick={() => SeleccionarHistoria(historia)}
+                                    ></Link>
+                                </Tooltip>
                             </td>
                         </>
                     )

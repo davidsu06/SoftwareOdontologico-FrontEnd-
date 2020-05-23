@@ -5,6 +5,8 @@ const Preguntas = () => {
         <>
             <h1 className="titulos_principal">Preguntas Frecuentes</h1>
 
+            
+
             <div className="container" >
                 <div class="accordion" id="accordionExample">
                     <h3 className="h3 mt-5"><b>Servicios</b></h3>

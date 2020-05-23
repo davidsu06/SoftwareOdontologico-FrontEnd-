@@ -38,19 +38,6 @@ const CrearPacientes = (props) => {
                 </div> 
             </div> 
         </Fragment>
-            /* <NavbarGestion titulo={tituloHead}/>
-            <div className="container-fluid fondo">
-                <div className="row">
-
-                    <SidebarGestion/>
-                        <div className="col-9 mt-12">
-                
-                            <FormularioCrearPaciente/>
-
-                        </div>                                        
-                </div>
-            </div> */
-
     );
 }
  

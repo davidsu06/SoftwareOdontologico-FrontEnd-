@@ -90,23 +90,11 @@ const NavbarAdministrador = ({usuario}) => {
                 </Link>
               </div>
 
-              {/* <div className="collapse" id="collapse1">
-                <Link to={'/asignar-citas'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
-                  Asignar citas
-                </Link>
-              </div> */}
-
               <div className="collapse subcasilla" id="collapse3">
                 <Link to={'/consultar-citas'} className="d-block p-3 btn text-decoration-none text-dark">
                   Consultar Citas
                 </Link>
               </div> 
-
-              {/*<div className="collapse" id="collapse1">
-                <Link to={'/crear-hist-clinica'} className="d-block bg-light text-left font-weight-bold p-3 text-decoration-none">
-                  Crear historia clínica
-                </Link>
-            </div>*/}
 
               <div className="collapse subcasilla" id="collapse3">
                 <Link to={'/consultar-hist-clinica'} onClick={ () => HistoriaNull() } className="d-block p-3 btn text-decoration-none text-dark">

@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import personaContext from '../../context/personal/personaContext';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
-
+import Tooltip from 'rc-tooltip';
+import 'rc-tooltip/assets/bootstrap.css';
 
 const Persona = ({persona}) => {
 
@@ -43,9 +44,13 @@ const Persona = ({persona}) => {
             <td>{newfecha}</td>
             <td>{persona.direccion}</td>
             <td>{persona.telefono}</td>
-            <td className="text-center">            
-                <Link to={'/editar-personal'} type="button" className="fas fa-pencil-alt text-decoration-none text-dark mr-2" onClick={() => SeleccionarPersona(persona)}></Link>
-                <i type="button" className="fas fa-trash-alt mx-3" onClick={() => onClickEliminar(persona._id)}></i>  
+            <td className="text-center">  
+                <Tooltip placement="top" overlay="Editar Personal" overlayClassName="font-weight-bold text-white">
+                    <Link to={'/editar-personal'} type="button" className="fas fa-pencil-alt text-decoration-none text-dark mr-2" onClick={() => SeleccionarPersona(persona)}></Link>
+                </Tooltip>  
+                <Tooltip placement="top" overlay="Eliminar Personal" overlayClassName="font-weight-bold text-white">
+                    <i type="button" className="fas fa-trash-alt mx-3" onClick={() => onClickEliminar(persona._id)}></i>  
+                </Tooltip>     
             </td> 
         </tr>   
      );
