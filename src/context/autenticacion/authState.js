@@ -31,7 +31,6 @@ const AuthState = props =>{
                 type: REGISTRO_EXITOSO
             })
         } catch (error) {
-            console.log(error);
             dispatch({
                 type: REGISTRO_ERROR
             })

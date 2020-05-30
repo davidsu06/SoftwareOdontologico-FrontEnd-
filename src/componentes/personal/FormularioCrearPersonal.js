@@ -124,8 +124,6 @@ const FormularioCrearPersonal = ({props}) => {
             return;
         }
 
-        console.log('enviando paciente.....');
-
         // Revisar si esta editando o agregando
         if(personalseleccionado === null){
             agregarPersonal(personal);

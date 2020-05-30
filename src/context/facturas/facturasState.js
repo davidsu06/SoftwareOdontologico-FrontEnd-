@@ -24,7 +24,7 @@ const FacturasState = props => {
     // Funciones
 
     const agregarFacturas = async factura => {
-        console.log(factura)
+       
         try {
             await clienteAxios.post('/api/facturas', factura);
             
@@ -52,7 +52,7 @@ const FacturasState = props => {
     }
 
     const modificarEstadoFactura = async nuevafactura => {
-        console.log(nuevafactura)
+       
         try {
             await clienteAxios.put(`/api/facturas/${nuevafactura._id}`, nuevafactura);
             Swal.fire(

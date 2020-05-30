@@ -46,7 +46,6 @@ const ListadoHistorias = () => {
             }
             
         }
-        console.log(historiasbd);
         filtrarHistorias(historiasbd);   
     }
 

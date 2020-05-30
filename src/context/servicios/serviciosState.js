@@ -49,7 +49,6 @@ const ServiciosState = props => {
         
         try {
             const resultado = await clienteAxios.get('/api/servicios');
-            console.log(resultado);
             dispatch({
                 type: LISTAR_SERVICIOS,     
                 payload: resultado.data.servicio
@@ -61,7 +60,6 @@ const ServiciosState = props => {
 
     //Elimina un Servicio
     const eliminarServicio = async servicioId => {
-        console.log(servicioId);
         try {
             
             await clienteAxios.delete(`/api/servicios/${servicioId}`);

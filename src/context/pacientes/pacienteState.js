@@ -27,7 +27,7 @@ const PacienteState = props => {
     // Funciones
 
     const agregarPacientes = async paciente => {
-        // console.log(paciente);
+        
         try {
             await clienteAxios.post('/api/pacientes', paciente);
             Swal.fire(

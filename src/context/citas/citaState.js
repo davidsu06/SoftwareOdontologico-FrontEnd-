@@ -15,7 +15,6 @@ import {
     FILTRAR_CITAS,
     CITAS_PACIENTE_CALENDARIO,
     CITA_ASIGNADA,
-    //ASIGNAR_CITA,
     CITAS_PACIENTE,
     CITA_EXISTENTE
 } from '../../types';

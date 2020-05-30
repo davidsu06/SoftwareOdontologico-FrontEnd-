@@ -59,7 +59,6 @@ const FormularioCrearPaciente = ({props}) => {
     const submit= e =>{
         e.preventDefault();
         let tamano=paciente.documento.length;
-        console.log(paciente);
         if(paciente.documento.trim()=== "" || tamano <8 || tamano > 12 ){
             guardarError({
                 Mensaje: 'el campo documento debe tener entre 8 y 12 numeros',
@@ -82,7 +81,6 @@ const FormularioCrearPaciente = ({props}) => {
             return;
         }
         if(paciente.fnacimiento.trim()=== "" || paciente.fnacimiento.length !== 10){
-            console.log(paciente.fnacimiento);
             guardarError({
                 Mensaje: 'el campo FECHA DE NACIMIENTO  no tiene el formato requerido',
                 bandera: true
@@ -117,8 +115,6 @@ const FormularioCrearPaciente = ({props}) => {
             })
             return
         }
-
-        console.log('enviando paciente.....');
 
         guardarError({
             documento:'',
