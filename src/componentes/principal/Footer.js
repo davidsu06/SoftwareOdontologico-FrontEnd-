@@ -4,7 +4,7 @@ import Styled from '@emotion/styled';
 const Footer = () => {
     
     const Footer = Styled.footer`
-        background-color: #196B81;
+        background-color: #006e9c;
         margin-top: 1cm;
     `;
     let year = new Date().getFullYear();

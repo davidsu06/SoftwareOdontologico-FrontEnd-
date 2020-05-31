@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from 'react';
-import HeaderPrincipal from './HeaderPrincipal';
+import NavPrincipal from './NavPrincipal';
 import ListadoNoticias from './Noticias/ListadoNoticias';
 import SaludDental from './SaludDental';
 import Servicios from './Servicios/ListadoServicios';
@@ -15,8 +15,9 @@ const MenuPrincipal = () => {
     return ( 
 
     <Fragment>
-        <HeaderPrincipal 
+        <NavPrincipal 
             actualizarNavegacion={actualizarNavegacion}
+            navegacion={navegacion}
         />
 
         {navegacion === 'inicio' 

@@ -2,6 +2,8 @@ import React, { useContext} from 'react';
 import citaContext from '../../context/citas/citaContext';
 import AuthContext from '../../context/autenticacion/authContext';
 import Swal from 'sweetalert2';
+import Tooltip from 'rc-tooltip';
+import 'rc-tooltip/assets/bootstrap.css';
 
 const CitaPaciente = ({cita}) => {
 
@@ -11,7 +13,7 @@ const CitaPaciente = ({cita}) => {
     const citasContext = useContext(citaContext);
     const { modificarCita, listarCitasPaciente } = citasContext;
 
-    const { fecha, hora } = cita;
+    const { fecha, hora, tipo } = cita;
     const newfecha = fecha.substr(0,10)
 
     const onClickCancelar = cita => {
@@ -31,6 +33,7 @@ const CitaPaciente = ({cita}) => {
                 await modificarCita({
                     _id : cita._id,
                     estado: 'Sin asignar',
+                    tipo: 'No Definida',
                     pacienteId: '0'
                 })   
                 await listarCitasPaciente(usuario.documento);
@@ -47,8 +50,11 @@ const CitaPaciente = ({cita}) => {
             <tr>
                 <td>{newfecha}</td>
                 <td>{hora}</td>
+                <td>{tipo}</td>
                 <td className="text-center">
-                    <a href="#!" type="button" className="text-info" onClick={ () => onClickCancelar(cita) }>Cancelar cita</a>
+                    <Tooltip placement="top" overlay="Cancelar Cita" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
+                        <i type="button" className="fas fa-ban font-weight-bold" style={{fontSize:'20px'}} onClick={ () => onClickCancelar(cita) }></i>
+                    </Tooltip>                   
                 </td>
             </tr>
         </>

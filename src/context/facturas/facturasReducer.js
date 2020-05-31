@@ -25,7 +25,7 @@ export default (state, action) => {
         case CAMBIAR_ESTADO_FACTURA:
             return{
                 ...state,
-                facturas: state.facturas.filter( factura => factura._id === action.payload._id)
+                facturas: state.facturas.map( factura => factura._id === action.payload._id ?action.payload :factura)
             }
 
         case FACTURA_ACTUAL:

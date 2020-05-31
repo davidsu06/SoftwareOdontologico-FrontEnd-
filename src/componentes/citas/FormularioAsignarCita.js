@@ -14,7 +14,8 @@ const FormularioAsignarCita = ({redireccion}) => {
     if(fecha !== undefined) newfecha = fecha.substr(0,10)
 
     const [asignarPaciente, guardarasignarPaciente] = useState({
-        pacienteId: ''
+        pacienteId: '',
+        tipo: ''
     });
 
     const [idPaciente, actualizarIdPaciente] = useState({
@@ -22,13 +23,13 @@ const FormularioAsignarCita = ({redireccion}) => {
     })
 
     useEffect( () => {
-        if (asignarPaciente.pacienteId != null) {
-            citaExistentePaciente(asignarPaciente.pacienteId)    
+        if (asignarPaciente.pacienteId && asignarPaciente.tipo) {
+            citaExistentePaciente(asignarPaciente.pacienteId, asignarPaciente.tipo)    
         }
 
         listarTratamientos();
         // eslint-disable-next-line
-    }, [asignarPaciente.pacienteId, citaExistentePaciente])
+    }, [asignarPaciente.pacienteId, asignarPaciente.tipo, citaExistentePaciente])
 
     const onChange = e =>{
         guardarasignarPaciente({
@@ -41,26 +42,35 @@ const FormularioAsignarCita = ({redireccion}) => {
     const Submit = e => {
         e.preventDefault();
 
-        if (asignarPaciente.pacienteId.trim() === '') {
+        if (asignarPaciente.pacienteId.trim() === '' || asignarPaciente.tipo.trim() === '') {
             Swal.fire(
                 'Error',
-                'Por favor ingrese un documento',
+                'Por favor ingrese el documento y tipo de cita para asignar',
                 'error'
             )
-        }else{
-            if(citaexistente){
+        }
+        
+        else
+        {
+            if(citaexistente)
+            {
                 Swal.fire(
                     'Error',
                     'El paciente digitado ya cuenta con una cita asignada',
                     'error'
                 )
-            }else if(!tratamientos.filter( tratamiento => tratamiento.pacienteId === asignarPaciente.pacienteId && tratamiento.estado !== 'Finalizado')[0]){
+            }
+
+            else if(!tratamientos.filter( tratamiento => tratamiento.pacienteId === asignarPaciente.pacienteId && tratamiento.estado !== 'Finalizado')[0]){
                 Swal.fire(
                     'Error',
                     'El Paciente digitado actualmente no se encuentra en un tratamiento o no se encuentra registrado en el sistema',
                     'error'
                 )
-            }else{
+            }
+
+            else 
+            {
                 actualizarIdPaciente({
                     pacienteId: asignarPaciente.pacienteId
                 })
@@ -68,7 +78,8 @@ const FormularioAsignarCita = ({redireccion}) => {
                 modificarCita({
                     _id,
                     pacienteId: asignarPaciente.pacienteId,
-                    estado: 'Asignado'
+                    estado: 'Asignado',
+                    tipo: asignarPaciente.tipo
                 })
 
                 Swal.fire(
@@ -76,14 +87,15 @@ const FormularioAsignarCita = ({redireccion}) => {
                     'La cita se ha asignado correctamente',
                     'success'
                 )
+
                 guardarasignarPaciente({
-                    pacienteId: ''
+                    pacienteId: '',
+                    tipo: ''
                 })
+
                 redireccion(true);
             }
-
-        }
-        
+        }   
     }
 
     return ( 
@@ -125,9 +137,18 @@ const FormularioAsignarCita = ({redireccion}) => {
                         <form onSubmit={Submit}>
 
                             <div className="form-group">
-
+                                <label>Documento:</label>
                                 <input type="text" className="form-control" name="pacienteId" placeholder="Documento" onChange={onChange} value={asignarPaciente.pacienteId}></input>
 
+                            </div>
+
+                            <div className="form-group">
+                                <label>Tipo Cita:</label>
+                                <select className="form-control" name="tipo" onChange={onChange} value={asignarPaciente.tipo}>
+                                    <option value="">Seleccione....</option>
+                                    <option value="Tratamiento">Tratamiento</option>
+                                    <option value="Consulta General">Consulta General</option>
+                                </select>
                             </div>
 
                             <div className="form-group">

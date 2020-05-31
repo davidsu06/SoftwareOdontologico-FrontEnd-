@@ -44,45 +44,49 @@ const Factura = ({factura, tratamiento, servicio, usuario}) => {
                     estado:'Pagada'
                 });
 
-                let saldoAbonado = Number.parseInt(tratamiento.saldoAbonado, 10) + Number.parseInt(factura.valor, 10);
+                let saldoAbonado;
                 let nuevoestado;
 
-                if(tratamiento.citasVistas === servicio.cantidadCitas && saldoAbonado === servicio.precioTotal){
-                    nuevoestado = 'Finalizado';
-                }
-    
-                else if(tratamiento.citasVistas !== servicio.cantidadCitas && saldoAbonado === servicio.precioTotal){
-                    nuevoestado = 'Citas Pendientes';
+                if(tratamiento !== undefined && servicio !== undefined){
+                    saldoAbonado = Number.parseInt(tratamiento.saldoAbonado, 10) + Number.parseInt(factura.valor, 10);
+
+                    if(tratamiento.citasVistas === servicio.cantidadCitas && saldoAbonado === servicio.precioTotal){
+                        nuevoestado = 'Finalizado';
+                    }
+        
+                    else if(tratamiento.citasVistas !== servicio.cantidadCitas && saldoAbonado === servicio.precioTotal){
+                        nuevoestado = 'Citas Pendientes';
+                    }
+
+                    else{
+                        nuevoestado = tratamiento.estado;
+                    }
+
+                    actualizarTratamiento({
+                        _id: tratamiento._id,
+                        pacienteId: tratamiento.pacienteId,
+                        pacienteNombre: tratamiento.pacienteNombre,
+                        servicio: tratamiento.servicio,
+                        citasVistas: tratamiento.citasVistas,
+                        cuotas: tratamiento.cuotas,
+                        saldoAbonado,
+                        estado: nuevoestado 
+                    });
                 }
                 
-                else{
-                    nuevoestado = tratamiento.estado;
-                }
-
-                actualizarTratamiento({
-                    _id: tratamiento._id,
-                    pacienteId: tratamiento.pacienteId,
-                    pacienteNombre: tratamiento.pacienteNombre,
-                    servicio: tratamiento.servicio,
-                    citasVistas: tratamiento.citasVistas,
-                    cuotas: tratamiento.cuotas,
-                    saldoAbonado,
-                    estado: nuevoestado 
-                });
-                window.location.reload(true); 
             }
         })
     }
 
     const onClickModificarEstadoCancelada = (factura) => {
         Swal.fire({
-            title: '¿Estas seguro de cancelar la factura?',
+            title: '¿Estas seguro de anular la factura?',
             text: "No se podrá revertir esta acción!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, Cancelar!'
+            confirmButtonText: 'Si, Anular!'
         }).then((result) => {
             if (result.value) {
                 modificarEstadoFactura({
@@ -94,9 +98,9 @@ const Factura = ({factura, tratamiento, servicio, usuario}) => {
                     nombre_paciente: factura.nombre_paciente, 
                     documento_cajero: factura.documento_cajero, 
                     nombre_cajero: factura.nombre_cajero, 
-                    estado:'Cancelada'
+                    estado:'Anulada'
                 });
-                window.location.reload(true); 
+               
             }
         })  
     }
@@ -104,8 +108,16 @@ const Factura = ({factura, tratamiento, servicio, usuario}) => {
     return ( 
         <tr>
             <td>{factura.fecha}</td>
-            <td>{factura.documento_paciente}</td>
-            <td>{factura.nombre_paciente}</td>
+            {usuario &&
+                <>
+                    {usuario.cargo !== 'Paciente' &&
+                        <>
+                            <td>{factura.documento_paciente}</td>
+                            <td>{factura.nombre_paciente}</td>
+                        </>
+                    }
+                </>
+            }
             <td>{new Intl.NumberFormat("de-DE").format(factura.valor)}</td>
             <td>{factura.documento_cajero}</td>
             <td>{factura.nombre_cajero}</td>
@@ -119,18 +131,25 @@ const Factura = ({factura, tratamiento, servicio, usuario}) => {
 
                             :(
                                 <>
-                                    {factura.estado === 'Pagada' || factura.estado === 'Cancelada' 
-                                        ? ( <td className="text-center"><i className="far fa-calendar-check font-weight-bold mr-2"></i>Validada</td> )
+                                    {factura.estado === 'Pagada' || factura.estado === 'Anulada' 
+                                    
+                                        ? ( 
+                                            <td className="text-center">
+                                                <Tooltip placement="top" overlay="Factura Verificada" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
+                                                    <i className="fas fa-check font-weight-bold mr-2"></i>
+                                                </Tooltip>     
+                                            </td> 
+                                        )                                  
             
                                         :( 
                                             <td className="text-center">
-                                                <Tooltip placement="top" overlay="Generar Factura" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
+                                                <Tooltip placement="top" overlay="Ver Factura" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
                                                     <Link to={'/factura-pdf'} type="button" className="fas fa-print text-dark font-weight-bold mr-3" 
                                                         onClick={() => generarFacturaPDF(factura)}>
                                                     </Link>  
                                                 </Tooltip>
 
-                                                <Tooltip placement="top" overlay="Cancelar Pago" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
+                                                <Tooltip placement="top" overlay="Efectuar Pago" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
                                                     <i type="button" className="fas fa-dollar-sign font-weight-bold mr-3" 
                                                         onClick={ () => onClickModificarEstadoPagada(factura, tratamiento, servicio) }>
                                                     </i> 

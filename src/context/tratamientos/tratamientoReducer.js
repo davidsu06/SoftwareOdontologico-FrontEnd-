@@ -32,7 +32,7 @@ export default (state, action) => {
         case ACTUALIZAR_TRATAMIENTO:
             return {
                 ...state,
-                tratamientos: state.tratamientos.filter(tratamiento => tratamiento._id === action.payload._id)
+                tratamientos: state.tratamientos.map( tratamiento => tratamiento._id === action.payload._id ?action.payload :tratamiento)
             }  
         
         case TRATAMIENTO_NULL:

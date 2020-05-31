@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import historiaContext from '../../context/historia/historiaContext';
+import tratamientoContext from '../../context/tratamientos/tratamientoContext';
 import authContext from '../../context/autenticacion/authContext';
 import Historia from './Historia';
 import img1 from '../../media/Logo.png';
@@ -8,11 +9,13 @@ import Pagination from '../layout/paginacion';
 const ListadoHistorias = () => {
 
     const {historias, listarHistoria} = useContext(historiaContext);
+    const {tratamientos, listarTratamientos} = useContext(tratamientoContext);
     const {usuario} = useContext(authContext);
     let historiasPaciente;
     
     useEffect(() => {
         listarHistoria();
+        listarTratamientos();
         // eslint-disable-next-line
     }, [])
 
@@ -63,7 +66,7 @@ const ListadoHistorias = () => {
                                     <p> <b>Documento:</b> {usuario.documento}</p>
                                     <p> <b>Teléfono:</b> {usuario.telefono}</p>
                                     <p> <b>Dirección:</b> {usuario.direccion}</p>
-                                    
+                                    <p> <b>Tratamiento Actual:</b> {tratamientos.filter(tratamiento => tratamiento.pacienteId === usuario.documento && tratamiento.estado !== 'Finalizado')[0].servicio} </p>
                                 </div>
 
                                 <div className="col">
@@ -109,6 +112,12 @@ const ListadoHistorias = () => {
                         )   
                     }
 
+                    <Pagination
+                        postsPerPage={postsPerPage}
+                        totalPosts={historiasPaciente.length}
+                        paginate={paginate}
+                    />
+
                 </div>
 
                 <div className="card-footer text-center">
@@ -117,11 +126,7 @@ const ListadoHistorias = () => {
 
             </div>
         </div>
-        <Pagination
-                postsPerPage={postsPerPage}
-                totalPosts={historiasPaciente.length}
-                paginate={paginate}
-            />
+        
         </>
      );
 }

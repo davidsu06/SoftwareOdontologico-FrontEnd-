@@ -10,7 +10,8 @@ import {
     ASIGNAR_CITA,
     CITA_ASIGNADA,
     CITAS_PACIENTE,
-    CITA_EXISTENTE
+    CITA_EXISTENTE,
+    SOLICITAR_CITA
 } from '../../types';
 
 export default (state, action) => {
@@ -60,7 +61,13 @@ export default (state, action) => {
         case EDITAR_CITA:
             return{
                 ...state,
-                citas: state.citas.filter( cita => cita._id === action.payload._id)
+                citas: state.citas.filter( cita => cita._id === action.payload._id )
+            }
+
+        case SOLICITAR_CITA:
+            return{
+                ...state,
+                citas: state.citas.map( cita => cita._id === action.payload._id ?action.payload :cita)
             }
 
         case ELIMINAR_CITA:
@@ -78,7 +85,7 @@ export default (state, action) => {
         case ASIGNAR_CITA:
             return{
                 ...state,
-                citas: state.citas.filter( cita => cita._id === action.payload._id)
+                citas: state.citas.filter( cita => cita._id === action.payload._id )
             } 
 
         case CITA_ASIGNADA:

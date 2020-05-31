@@ -90,9 +90,10 @@ const FormularioCrearServicio = ({props}) => {
                 ' ' + pacientes.filter( paciente => paciente.documento === tratamiento.pacienteId)[0].apellido;
                 iniciarTratamiento({pacienteId, pacienteNombre, servicio, citasVistas, cuotas, saldoAbonado, estado});
             }
-            
+
+            props.history.push('/consultar-tratamientos');
         }
-        props.history.push('/consultar-tratamientos');
+       
     }
     
     return (  

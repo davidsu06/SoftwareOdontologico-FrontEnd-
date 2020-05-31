@@ -65,6 +65,7 @@ const FormularioCrearCita = () => {
         }
         else{
             cita.estado = 'Sin asignar'
+            cita.tipo = 'No Definida'
             crearCita(cita);
         }
 

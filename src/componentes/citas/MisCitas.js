@@ -83,6 +83,7 @@ const MisCitas = () => {
                                     <tr>
                                         <th scope="col">Fecha</th>
                                         <th scope="col">Hora</th>
+                                        <th scope="col">Tipo Cita</th>
                                         <th scope="col" className="text-center">Acciones</th>
                                     </tr>
 

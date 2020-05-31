@@ -1,5 +1,6 @@
 import React,{useState,useContext,useEffect} from 'react';
 import facturasContext from '../../context/facturas/facturasContext';
+import pacienteContext from '../../context/pacientes/pacienteContext';
 import authContext from '../../context/autenticacion/authContext';
 import serviciosContext from '../../context/servicios/serviciosContext';
 import tratamientoContext from '../../context/tratamientos/tratamientoContext';
@@ -18,6 +19,8 @@ const FormularioFacturas = ({props}) => {
     const {agregarFacturas} = facturaContext;
 
     const {tratamientos, listarTratamientos} = useContext(tratamientoContext);
+
+    const {pacientes, listarPacientes} = useContext(pacienteContext);
 
     let documentoPersonal;
     let nombrePersonal;
@@ -42,10 +45,13 @@ const FormularioFacturas = ({props}) => {
         nombre_cajero: nombrePersonal,
         estado: 'Pendiente'
     });
+
+    const [tipocita, guardarTipoCita] = useState('');
     
     useEffect(() => {
         listarServicios();
         listarTratamientos();
+        listarPacientes();
         // eslint-disable-next-line
     }, []);
 
@@ -61,7 +67,7 @@ const FormularioFacturas = ({props}) => {
     const BotonGuardar= e =>{
         e.preventDefault();
 
-        if(factura.documento_paciente.trim() === ''){
+        if(factura.documento_paciente.trim() === '' || tipocita.trim() === ''){
             Swal.fire(
                 'Error',
                 'Todos los campos son obligatorios',
@@ -69,38 +75,49 @@ const FormularioFacturas = ({props}) => {
             )
         }
 
-        else if(!tratamientos.filter( tratamiento => tratamiento.pacienteId === factura.documento_paciente && tratamiento.estado !== 'Finalizado' )[0]){
-            Swal.fire(
-                'Error',
-                'El Paciente digitado actualmente no se encuentra en un tratamiento o no se encuentra registrado en el sistema',
-                'error'
-            )
+        const {fecha, documento_paciente, documento_cajero, nombre_cajero, estado} = factura
+
+        if(tipocita === 'Tratamiento'){
+            if(!tratamientos.filter( tratamiento => tratamiento.pacienteId === factura.documento_paciente && tratamiento.estado !== 'Finalizado' )[0]){
+                Swal.fire(
+                    'Error',
+                    'El Paciente digitado actualmente no se encuentra en un tratamiento o no se encuentra registrado en el sistema',
+                    'error'
+                )
+            }
+    
+            else if(tratamientos.filter( tratamiento => tratamiento.pacienteId === factura.documento_paciente
+                 && tratamiento.saldoAbonado === servicios.filter(servicio => servicio.nombre_servicio === tratamiento.servicio)[0].precioTotal)[0]){
+                Swal.fire(
+                    'Error',
+                    'El Paciente digitado ya ha acabado con su tratamiento correspondiente',
+                    'error'
+                )
+            }
+    
+            else
+            {
+                let tratamientoPaciente = tratamientos.filter( tratamiento => tratamiento.pacienteId === documento_paciente && tratamiento.estado !== 'Finalizado' )[0];
+                
+                let valor = servicios.filter( servicio => servicio.nombre_servicio === tratamientoPaciente.servicio)[0].precioTotal / tratamientoPaciente.cuotas;
+                let nombre_paciente = tratamientos.filter( tratamiento => tratamiento.pacienteId === documento_paciente )[0].pacienteNombre;
+                let tratamiento = tratamientoPaciente.servicio;
+    
+                agregarFacturas({valor, fecha, documento_paciente, nombre_paciente, documento_cajero, nombre_cajero, tratamiento, estado});
+                props.history.push('/consultar-facturas');
+                window.location.reload(true);
+            }
         }
 
-        else if(tratamientos.filter( tratamiento => tratamiento.pacienteId === factura.documento_paciente
-             && tratamiento.saldoAbonado === servicios.filter(servicio => servicio.nombre_servicio === tratamiento.servicio)[0].precioTotal)[0]){
-            Swal.fire(
-                'Error',
-                'El Paciente digitado ya ha acabado con su tratamiento correspondiente',
-                'error'
-            )
+        else{
+                let valor = 52500;
+                let nombre_paciente = pacientes.filter( paciente => paciente.documento === documento_paciente)[0].nombre + ' ' + pacientes.filter( paciente => paciente.documento === documento_paciente)[0].apellido;
+                let tratamiento = "Consulta General";
+    
+                agregarFacturas({valor, fecha, documento_paciente, nombre_paciente, documento_cajero, nombre_cajero, tratamiento, estado});
+                props.history.push('/consultar-facturas');
+                window.location.reload(true);
         }
-
-        else
-        {
-            const {fecha, documento_paciente, documento_cajero, nombre_cajero, estado} = factura
-
-            let tratamientoPaciente = tratamientos.filter( tratamiento => tratamiento.pacienteId === documento_paciente && tratamiento.estado !== 'Finalizado' )[0];
-            
-            let valor = servicios.filter( servicio => servicio.nombre_servicio === tratamientoPaciente.servicio)[0].precioTotal / tratamientoPaciente.cuotas;
-            let nombre_paciente = tratamientos.filter( tratamiento => tratamiento.pacienteId === documento_paciente )[0].pacienteNombre;
-            let tratamiento = tratamientoPaciente.servicio;
-
-            agregarFacturas({valor, fecha, documento_paciente, nombre_paciente, documento_cajero, nombre_cajero, tratamiento, estado});
-            props.history.push('/consultar-facturas');
-            window.location.reload(true);
-        }
-
     }
 
     return (  
@@ -123,11 +140,21 @@ const FormularioFacturas = ({props}) => {
                     </div> 
                 </div>
 
+                <div className="form-group ml-3" >
+                    <label className="font-weight-bold">Tipo Cita</label>
+                    <select className="form-control" name="tipocita" style={{width:'92%'}} onChange={(e) => guardarTipoCita(e.target.value)} value={tipocita}>
+                        <option value="">Seleccione....</option>
+                        <option value="Tratamiento">Tratamiento</option>
+                        <option value="Consulta General">Consulta General</option>
+                    </select>
+                </div> 
+
                 <input 
                     type="submit" 
                     className="form-control btnForm font-weight-bold col-md-11"
                     value="Generar Factura"
                 />
+
             </div>
         </form>     
     </div>

@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const Servicio = ({servicio, imagen}) =>{
+const Servicio = ({servicio}) =>{
 
     const [modalStyle] = useState(getModalStyle);
     const [open, setOpen] = useState(false);
@@ -34,14 +34,14 @@ const Servicio = ({servicio, imagen}) =>{
     };
     
     const handleClose = () => {
-    setOpen(false);
+        setOpen(false);
     };
 
     return (
         <div className="card" style={{width: '19rem', margin: '1cm'}}>
-            <img src={imagen.img} className="card-img-top" alt={imagen.nombre} />
+            <img src={servicio.img} className="card-img-top" alt={servicio.nombre} />
             <div className="card-body">
-                <h5 className="card-title">{servicio.nombre_servicio}</h5>
+                <h5 className="card-title">{servicio.nombre}</h5>
             </div>
             <div className="card-footer justify-content-center">
                 <div className="text-center">
@@ -58,12 +58,12 @@ const Servicio = ({servicio, imagen}) =>{
                 <div style={modalStyle} className={classes.paper}>
                 <h1 id="simple-modal-title">Detalles del Servicio</h1>
                     <div className="text-left">
-                        <figure class="figure border border-dark">
-                            <img src={imagen.img} className="figure-img img-fluid rounded" alt={imagen.nombre} />
+                        <figure className="figure border border-dark">
+                            <img src={servicio.img} className="figure-img img-fluid rounded" alt={servicio.nombre} />
                         </figure>
-                        <p><b>Nombre:</b> {servicio.nombre_servicio} </p>
-                        <p><b>Costo Tratamiento:</b> ${new Intl.NumberFormat("de-DE").format(servicio.precioTotal)}</p>
-                        <p><b>Plan de Citas:</b> {servicio.cantidadCitas}</p>
+                        <p><b>Nombre:</b> {servicio.nombre} </p>
+                        {/* <p><b>Costo Tratamiento:</b> ${new Intl.NumberFormat("de-DE").format(servicio.precioTotal)}</p>
+                        <p><b>Plan de Citas:</b> {servicio.cantidadCitas}</p> */}
                     </div>
                 </div>
             </Modal>

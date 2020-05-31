@@ -65,8 +65,6 @@ const MisFacturas = () => {
                             <thead>
                                 <tr>
                                     <th scope="col">Fecha</th>
-                                    <th scope="col">Documento Paciente</th>
-                                    <th scope="col">Nombre Paciente</th>
                                     <th scope="col">Valor</th>
                                     <th scope="col">Documento Médico</th>
                                     <th scope="col">Nombre Médico</th>

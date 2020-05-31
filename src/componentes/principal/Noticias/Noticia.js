@@ -4,7 +4,7 @@ import Styled from '@emotion/styled';
 const Tarjeta = Styled.div `
     margin: 50px;
     max-width: 350px;
-    max-height: 580px;
+    max-height: 620px;
 `;
 
 const NotiWeb = Styled.a `
@@ -31,8 +31,8 @@ const Noticia = ({noticia}) => {
                 
                 <div className="card-body">
                     <h5 className="card-title">{noticia.title}</h5>
-                    <p className="card-text">{noticia.description}</p>
-                    <NotiWeb href={noticia.url} className="btn btn-primary">Ver Noticia</NotiWeb>
+                    <p className="card-text" style={{maxHeight:'150px'}}>{noticia.description}</p>
+                    <NotiWeb href={noticia.url} className="btn btn-primary mt-3">Ver Noticia</NotiWeb>
                 </div>
             </div>    
         </Tarjeta>

@@ -107,9 +107,11 @@ const FormularioCrearServicio = ({props}) => {
                                 <input type="text" className="form-control" name="cantidadCitas" value={servicio.cantidadCitas} onChange={Guardar}/>
                             </div> 
                         </div>
+
                         <div className="form-group pl-3">
                             {error.bandera ? <Error mensaje={error.Mensaje}/> : null}
                         </div> 
+
                         <div className="form-group">
                         
                             <input type="submit" 

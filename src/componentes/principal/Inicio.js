@@ -87,10 +87,8 @@ const Inicio = ({actualizarNavegacion}) => {
             </TarjetaInicio>
 
             <EtiquetaDiseño className="navbar">
-                <h5 style={{color:'white'}}>Iconos Diseñados por:</h5>
-                <div className="ml-auto">
-                    <button href="https://www.flaticon.es/autores/good-ware" className="btn btn-link" style={{color:'white'}}>Good Ware</button>
-                    <button href="https://www.flaticon.es/autores/freepik" className="btn btn-link" style={{color:'white'}}>Freepik</button>
+                <div className="text-white ml-auto">
+                    <h5 >"La odontología es una profesión que descubre sonrisas"</h5>
                 </div>
             </EtiquetaDiseño>
 

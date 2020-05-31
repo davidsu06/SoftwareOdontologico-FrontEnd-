@@ -30,10 +30,10 @@ export default (state, action) => {
             }
 
         case MODIFICAR_HISTORIA:
-        return{
-            ...state,
-            historias: state.historias.filter( historia => historia._id === action.payload._id)
-        }
+            return{
+                ...state,
+                historias: state.historias.map( historia => historia._id === action.payload._id ?action.payload :historia)
+            }
 
         case HISTORIA_NULL:
             return{

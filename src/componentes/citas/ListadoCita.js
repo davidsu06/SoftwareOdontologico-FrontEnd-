@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from 'react';
 import citaContext from '../../context/citas/citaContext';
 import AuthContext from '../../context/autenticacion/authContext';
 import tratamientoContext from '../../context/tratamientos/tratamientoContext';
-import serviciosContext from '../../context/servicios/serviciosContext';
 import Cita from './Cita';
 import InfiniteCalendar from 'react-infinite-calendar';
 import 'react-infinite-calendar/styles.css'; 
@@ -13,7 +12,6 @@ const ListadoCita = () => {
     const authContext = useContext(AuthContext);
     const { usuario, usuarioAutenticado } = authContext;
     const {tratamientos, listarTratamientos} = useContext(tratamientoContext);
-    const {servicios, listarServicios} = useContext(serviciosContext);
     const citasContext = useContext(citaContext);
     const { listarCitas, citas, filtrarCitas, CitasPacienteCalendario,citasfiltradas, citasPaciente, citasfiltradasPaciente, searching } = citasContext;
     let cargo; 
@@ -31,7 +29,6 @@ const ListadoCita = () => {
         if (usuario != null) {
             listarCitas();
             listarTratamientos();
-            listarServicios();
         }
         // eslint-disable-next-line
     }, [usuario])
@@ -125,6 +122,7 @@ const ListadoCita = () => {
                                             ? <th scope="col">Paciente ID</th>
                                             : null
                                         }
+                                        <th scope="col">Tipo Cita</th>
                                         {
                                             cargo !== 'Paciente'
                                             ? <th scope="col">Estado</th>
@@ -142,18 +140,15 @@ const ListadoCita = () => {
                                                 <Cita
                                                     key={citafiltrada._id}
                                                     cita={citafiltrada}
-                                                    tratamiento={tratamientos.filter( tratamiento => tratamiento.pacienteId === citafiltrada.pacienteId)[0]}
-                                                    servicios={servicios}
-
+                                                    tratamiento={tratamientos.filter( tratamiento => tratamiento.pacienteId === citafiltrada.pacienteId && tratamiento.estado === 'En Proceso' )[0]
+                                                                }
                                                 />
                                             ))) : 
                                             (currentPosts4.map(citafiltrada => (
                                                 <Cita
                                                     key={citafiltrada._id}
                                                     cita={citafiltrada}
-                                                    tratamiento={tratamientos.filter( tratamiento => tratamiento.pacienteId === citafiltrada.pacienteId)[0]}
-                                                    servicios={servicios}
-
+                                                    tratamiento={tratamientos.filter( tratamiento => tratamiento.pacienteId === usuario.documento && tratamiento.estado === 'En Proceso')[0]}
                                                 />
                                             )))
                                         )
@@ -163,9 +158,7 @@ const ListadoCita = () => {
                                                     <Cita
                                                         key={cita._id}
                                                         cita={cita}
-                                                        tratamiento={tratamientos.filter( tratamiento => tratamiento.pacienteId === cita.pacienteId)[0]}
-                                                        servicios={servicios}
-
+                                                        tratamiento={tratamientos.filter( tratamiento => tratamiento.pacienteId === cita.pacienteId && tratamiento.estado === 'En Proceso')[0]}
                                                     />
                                                 )))
                                             :
@@ -173,8 +166,7 @@ const ListadoCita = () => {
                                                     <Cita
                                                         key={cita._id}
                                                         cita={cita}
-                                                        tratamiento={tratamientos.filter( tratamiento => tratamiento.pacienteId === cita.pacienteId)[0]}
-                                                        servicios={servicios}
+                                                        tratamiento={tratamientos.filter( tratamiento => tratamiento.pacienteId === usuario.documento && tratamiento.estado === 'En Proceso')[0]}
                                                     />
                                                 )))
                                             )

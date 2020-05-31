@@ -16,7 +16,8 @@ import {
     CITAS_PACIENTE_CALENDARIO,
     CITA_ASIGNADA,
     CITAS_PACIENTE,
-    CITA_EXISTENTE
+    CITA_EXISTENTE,
+    SOLICITAR_CITA
 } from '../../types';
 
 
@@ -75,10 +76,9 @@ const CitaState = props => {
         }
     }
 
-    const citaExistentePaciente = async pacienteId => {
-        
+    const citaExistentePaciente = async (pacienteId, tipo) => {
         try {
-            const resultado = await clienteAxios.get(`/api/citas/${pacienteId}`);
+            const resultado = await clienteAxios.get(`/api/citas/${pacienteId}/${tipo}`);
             let bool = false;
             if (resultado.data.cita.length > 0) {
                 bool = true;
@@ -113,6 +113,21 @@ const CitaState = props => {
                         
             dispatch({
                 type: EDITAR_CITA,
+                payload: cita
+            })
+            listarCitas()
+        }catch (error) {
+            console.log(error.response);
+            
+        }
+    }
+
+    const solicitarCita = async cita => {
+        try {
+            await clienteAxios.put(`/api/citas/${cita._id}`, cita);
+                        
+            dispatch({
+                type: SOLICITAR_CITA,
                 payload: cita
             })
             listarCitas()
@@ -186,6 +201,7 @@ const CitaState = props => {
                 CitaNull,
                 CitaAsignada,
                 listarCitasPaciente,
+                solicitarCita
                 // asignarCita
             }}
         >

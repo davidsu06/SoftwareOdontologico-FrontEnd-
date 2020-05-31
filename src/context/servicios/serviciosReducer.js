@@ -32,7 +32,7 @@ export default (state, action) => {
         case EDITAR_SERVICIO:
             return {
                 ...state,
-                servicios: state.servicios.filter(servicio => servicio._id === action.payload._id)
+                servicios: state.servicios.map( servicio => servicio._id === action.payload._id ?action.payload :servicio)
             }  
         
         case SERVICIO_NULL:

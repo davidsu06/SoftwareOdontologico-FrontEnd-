@@ -33,7 +33,7 @@ export default (state, action) => {
         case EDITAR_PERSONAL:
             return {
                 ...state,
-                personal: state.personal.filter(personal => personal._id === action.payload._id)
+                personal: state.personal.map( personal => personal._id === action.payload._id ?action.payload :personal)
         }  
 
         case ELIMINAR_PERSONA:

@@ -35,7 +35,7 @@ export default (state, action) => {
         case EDITAR_PACIENTE:
             return {
                 ...state,
-                pacientes: state.pacientes.filter(paciente => paciente._id === action.payload._id)
+                pacientes: state.pacientes.map( paciente => paciente._id === action.payload._id ?action.payload :paciente)
             }  
         
         case PACIENTE_NULL:

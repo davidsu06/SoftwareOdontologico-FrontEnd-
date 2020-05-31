@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import citaContext from '../../context/citas/citaContext';
 import historiaContext from '../../context/historia/historiaContext';
 import AuthContext from '../../context/autenticacion/authContext';
@@ -32,19 +32,22 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const Cita = ({cita, tratamiento, servicios}) => {
+const Cita = ({cita, tratamiento}) => {
 
     const authContext = useContext(AuthContext);
     const { usuario } = authContext;
 
     const citasContext = useContext(citaContext);
-    const { CitaActual, eliminarCita, modificarCita, CitaAsignada, citaExistentePaciente, citaexistente } = citasContext;
+    const { CitaActual, eliminarCita, solicitarCita, CitaAsignada, citaExistentePaciente, citaexistente } = citasContext;
 
     const {HistoriaNull} = useContext(historiaContext);
 
     const [modalStyle] = useState(getModalStyle);
     const [open, setOpen] = useState(false);
     const classes = useStyles();
+
+    const [solicitud, actualizarSolicitud] = useState('');
+    const [habilitado, actualizarHabilitado] = useState(false)
     
     let cargo;
 
@@ -53,16 +56,14 @@ const Cita = ({cita, tratamiento, servicios}) => {
     }
 
     useEffect(() => {
-        if (usuario != null) {
-            citaExistentePaciente(usuario.documento)
+        if(usuario.documento && solicitud){
+            citaExistentePaciente(usuario.documento, solicitud);
         }
+    }, [usuario.documento, solicitud, citaExistentePaciente])
 
-        // eslint-disable-next-line
-    }, [usuario])
+    const { fecha, hora, pacienteId, estado, _id, tipo } = cita;
 
-    const { fecha, hora, pacienteId, estado, _id } = cita;
-
-    const newfecha = fecha.substr(0,10)
+    let newfecha = fecha.substr(0,10)
 
     const SeleccionarCita = cita => {   
         CitaActual(cita);        
@@ -81,7 +82,6 @@ const Cita = ({cita, tratamiento, servicios}) => {
           }).then((result) => {
             if (result.value) {
                 eliminarCita(id);
-              
             }
           })
     }
@@ -92,27 +92,41 @@ const Cita = ({cita, tratamiento, servicios}) => {
     }
 
     const onClickSolicitar = () => {
-        if (citaexistente) {
+
+        if(solicitud.trim() === ''){
             Swal.fire(
                 'Error',
-                'Usted ya cuenta con una cita asignada',
+                'Seleccione un tipo de cita para asiganr',
                 'error'
             )
-        }else{
-            modificarCita( 
-                {
-                    _id, 
-                    estado: 'Asignado',
-                    pacienteId: usuario.documento
-                } 
-            )
-            Swal.fire(
-                'Correcto',
-                'Su cita se ha asignado correctamente',
-                'success'
-            )
         }
-    }
+
+        else{
+            if (citaexistente) {
+                Swal.fire(
+                    'Error',
+                    'Usted ya cuenta con una cita asignada',
+                    'error'
+                )
+            }else{
+                solicitarCita( 
+                    {
+                        _id, 
+                        estado: 'Asignado',
+                        tipo: solicitud,
+                        pacienteId: usuario.documento
+                    } 
+                )
+                    Swal.fire(
+                        'Correcto',
+                        'Su cita se ha asignado correctamente',
+                        'success'
+                    )
+                }
+            }
+        }
+
+        
 
     const handleOpen = () => {
         setOpen(true);
@@ -122,12 +136,13 @@ const Cita = ({cita, tratamiento, servicios}) => {
     setOpen(false);
     };
 
-
     return ( 
         <>
         {
             cargo === 'Paciente' && estado === 'Asignado'
+
             ? null
+
             :
             <tr>
                 <td>{newfecha}</td>
@@ -137,6 +152,8 @@ const Cita = ({cita, tratamiento, servicios}) => {
                     ? <td>{pacienteId === '0' ? 'No asignado' : pacienteId}</td>
                     : null
                 }
+
+                <td>{tipo}</td>
 
                 {
                     cargo !== 'Paciente'
@@ -157,9 +174,22 @@ const Cita = ({cita, tratamiento, servicios}) => {
                             (
                                 cargo === 'Paciente'
                                 ? 
-                                <div>
-                                    <a href="#!" type="button" className="text-info" onClick={ () => onClickSolicitar()}>Solicitar</a>
+                            
+                                    
+                                <div  className="ml-auto" style={{display:'flex'}}>
+                                    <Tooltip placement="top" overlay="Solicitar Cita" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
+                                        <button href="#!"  className="ml-3 btn btn-link" onClick={() => onClickSolicitar()} disabled={!habilitado ? true : false}><i className="fas fa-calendar-day text-dark font-weight-bold"></i></button>
+                                    </Tooltip>
+                                   
+                                    <select name="tipo" style={{width:'250px'}} disabled={!habilitado ? true : false} onChange={e =>actualizarSolicitud(e.target.value)}>
+                                        <option value="">Seleccione....</option>
+                                        <option value="Tratamiento">Tratamiento</option>
+                                        <option value="Consulta General">Consulta General</option>
+                                    </select>
+
+                                    <input type="checkbox" className="ml-3 mt-2" name="habilitado" onChange={e => actualizarHabilitado(e.target.checked)} value={habilitado}/>
                                 </div>
+                           
                                 :
                                 <div>
                                     <Link to={'/asignar-citas'} className=" text-info" onClick={()=>CitaAsignada(cita)}>Asignar</Link>
@@ -219,8 +249,8 @@ const Cita = ({cita, tratamiento, servicios}) => {
 
         }
 
-        {tratamiento
-            && (
+        {tratamiento || cita
+            ? (
                 <Modal
                     open={open}
                     onClose={handleClose}
@@ -233,17 +263,36 @@ const Cita = ({cita, tratamiento, servicios}) => {
                             </div>
                             <div className="col">
                                 <div className='text-left' style={{marginTop:'90px'}} >
-                                    <p><b>Paciente:</b> {tratamiento.pacienteNombre} </p>
-                                    <p><b>Documento:</b> {tratamiento.pacienteId}</p>
-                                    <p><b>Tratamiento:</b> {tratamiento.servicio}</p>
-                                    <p><b>Cita N°:</b> {tratamiento.citasVistas + 1}</p>
-                                    {/*<p>Costo Cita: ${new Intl.NumberFormat("de-DE").format(servicio.precioTotal / tratamiento.cuotas)}</p>*/}
+                                    {tratamiento !== undefined && cita.tipo === 'Tratamiento'
+                                        &&
+                                            <>
+                                                <p><b>Paciente:</b> {tratamiento.pacienteNombre} </p>
+                                                <p><b>Documento:</b> {tratamiento.pacienteId}</p>
+                                                <p><b>Motivo Cita:</b> {cita.tipo}</p>
+                                                <p><b>Servicio:</b> {tratamiento.servicio}</p>
+                                                <p><b>Cita N°:</b> {tratamiento.citasVistas + 1}</p>
+                                            </>
+                                    }
+                                    
+                                    {cita.tipo === 'Consulta General'
+                                        &&
+                                            <>
+                                                <p><b>Paciente:</b> {cita.pacienteId} </p>
+                                                <p><b>Motivo Cita:</b> {cita.tipo}</p>
+                                                <p><b>Fecha:</b> {newfecha} </p>
+                                                <p><b>Hora:</b> {cita.hora} </p>
+                                            </>
+                                    }
+                                    
                                 </div>
                             </div>
                         </div> 
                     </div>
                 </Modal>
             )
+            
+            : null
+
             }
             
         </>
