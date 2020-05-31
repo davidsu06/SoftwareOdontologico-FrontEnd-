@@ -2,6 +2,7 @@ import React,{useState, useContext, useEffect} from 'react';
 // import styled from '@emotion/styled';
 import Error from './../admin/Error';
 import pacienteContext from '../../context/pacientes/pacienteContext';
+import Swal from 'sweetalert2';
 
 const FormularioCrearPaciente = ({props}) => {
     const [paciente,guardarpaciente]= useState({
@@ -23,7 +24,11 @@ const FormularioCrearPaciente = ({props}) => {
     useEffect(() => {
         if (pacienteseleccionado !== null){
             pacienteseleccionado.fnacimiento = pacienteseleccionado.fnacimiento.substr(0,10)
-            guardarpaciente(pacienteseleccionado)
+            guardarpaciente({
+                ...pacienteseleccionado,
+                password : '',
+                confpassword : ''
+            })
         }else{
             guardarpaciente({
                 documento:'',
@@ -59,58 +64,68 @@ const FormularioCrearPaciente = ({props}) => {
     const submit= e =>{
         e.preventDefault();
         let tamano=paciente.documento.length;
+
+        if (paciente.documento.trim()=== "" && paciente.nombre.trim()=== "" && paciente.apellido.trim()=== "" && paciente.fnacimiento.trim()=== "" && paciente.direccion.trim()=== "" && paciente.telefono.trim()=== "" && paciente.password.trim()=== "" && paciente.confpassword.trim()=== "") {
+            Swal.fire(
+                'Error',
+                'Todos los campos son obligatorios',
+                'error'
+            );
+            return;
+        }
+
         if(paciente.documento.trim()=== "" || tamano <8 || tamano > 12 ){
             guardarError({
-                Mensaje: 'el campo documento debe tener entre 8 y 12 numeros',
+                Mensaje: 'El campo documento debe tener entre 8 y 12 numeros',
                 bandera: true
             })
             return;
         }
         if(paciente.nombre.trim()=== ""){
             guardarError({
-                Mensaje: 'el campo nombre es obligatorio',
+                Mensaje: 'El campo nombre es obligatorio',
                 bandera: true
             })
             return;
         }
         if(paciente.apellido.trim()=== ""){
             guardarError({
-                Mensaje: 'el campo apellido es obligatorio',
+                Mensaje: 'El campo apellido es obligatorio',
                 bandera: true
             })
             return;
         }
         if(paciente.fnacimiento.trim()=== "" || paciente.fnacimiento.length !== 10){
             guardarError({
-                Mensaje: 'el campo FECHA DE NACIMIENTO  no tiene el formato requerido',
+                Mensaje: 'El campo fecha de nacimiento  no tiene el formato requerido',
                 bandera: true
             })
             return;
         }
         if(paciente.direccion.trim()=== ""){
             guardarError({
-                Mensaje: 'el campo  DIRECCION es obligatorio',
+                Mensaje: 'El campo dirección es obligatorio',
                 bandera: true
             })
             return;
         }
         if(paciente.telefono.trim()=== ""){
             guardarError({
-                Mensaje: 'el campo TELEFONO es obligatorio',
+                Mensaje: 'El campo teléfono es obligatorio',
                 bandera: true
             })
             return;
         }
         if(paciente.password.trim()=== ""){
             guardarError({
-                Mensaje: 'el campo CONTRASEÑA es obligatorio',
+                Mensaje: 'El campo contraseña es obligatorio',
                 bandera: true
             })
             return;
         }
         if(paciente.password !== paciente.confpassword){
             guardarError({
-                Mensaje: 'las CONTRASEÑAS no coinciden',
+                Mensaje: 'Las contraseñas no coinciden',
                 bandera: true
             })
             return

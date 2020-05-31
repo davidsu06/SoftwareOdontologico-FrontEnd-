@@ -1,13 +1,33 @@
 import React, {useContext} from 'react';
+import { useHistory } from 'react-router-dom';
 import AuthContext from '../../context/autenticacion/authContext';
-import { Link } from 'react-router-dom';
 import Tooltip from 'rc-tooltip';
+import Swal from 'sweetalert2';
 import 'rc-tooltip/assets/bootstrap.css';
 
 const MenuAdmin = ({actualizarBandera,Bandera,titulo}) => {
 
     // Extraer context de Auth
     const {cerrarSesion} = useContext(AuthContext);
+
+    const history = useHistory();
+
+    const Logout = () => {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "La sesión se cerrará",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, cerrar sesión'
+          }).then((result) => {
+            if (result.value) {
+                cerrarSesion();
+                history.push('/')
+            }
+          })
+    }
     
     const esconder = ()=>{
         
@@ -29,7 +49,7 @@ const MenuAdmin = ({actualizarBandera,Bandera,titulo}) => {
             </Tooltip>
             <h1 className='ml-auto menuadmti'>{titulo}</h1>
             <Tooltip placement="bottomRight" overlay="Cerrar Sesión" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
-                <Link to={'/'} onClick={()=>cerrarSesion()} className="btn btn-danger ml-auto"><i className="fas fa-sign-out-alt text-white"></i></Link>
+                <button onClick={()=> Logout()} className="btn btn-danger ml-auto"><i className="fas fa-sign-out-alt text-white"></i></button>
             </Tooltip>
             
         </nav>

@@ -1,6 +1,7 @@
 import React,{useState, useContext, useEffect} from 'react';
 import Error from './../admin/Error';
 import personaContext from '../../context/personal/personaContext';
+import Swal from 'sweetalert2';
 
 const FormularioCrearPersonal = ({props}) => {
     
@@ -22,7 +23,11 @@ const FormularioCrearPersonal = ({props}) => {
     useEffect(() => {
         if (personalseleccionado != null) {
             personalseleccionado.fecha_nacimiento = personalseleccionado.fecha_nacimiento.substr(0,10)
-            guardarpersonal(personalseleccionado);
+            guardarpersonal({
+                ...personalseleccionado,
+                password : '',
+                confpassword : ''
+            });
         }else{
             guardarpersonal({
                 documento: '',
@@ -59,45 +64,54 @@ const FormularioCrearPersonal = ({props}) => {
     const submit= e =>{
         e.preventDefault();
         let tamano=personal.documento.length;
+
+        if (personal.documento.trim()=== "" && personal.nombre.trim()=== "" && personal.apellido.trim()=== "" && personal.fecha_nacimiento.trim()=== "" && personal.direccion.trim()=== "" && personal.telefono.trim()=== "" && ( personal.cargo.trim()=== "Seleccione..." || personal.cargo.trim()=== "" ) && personal.password.trim()=== "" && personal.confpassword.trim()=== "") {
+            Swal.fire(
+                'Error',
+                'Todos los campos son obligatorios',
+                'error'
+            );
+            return;
+        }
         
         if(personal.documento.trim()=== "" || tamano <8 || tamano > 12 ){
             guardarError({
-                Mensaje: 'el campo DOCUMENTO debe tener entre 8 y 12 numeros',
+                Mensaje: 'El campo documento debe tener entre 8 y 12 numeros',
                 bandera: true
             })
             return;
         }
         if(personal.nombre.trim()=== ""){
             guardarError({
-                Mensaje: 'el campo nombre es obligatorio',
+                Mensaje: 'El campo nombre es obligatorio',
                 bandera: true
             })
             return;
         }
         if(personal.apellido.trim()=== ""){
             guardarError({
-                Mensaje: 'el campo apellido es obligatorio',
+                Mensaje: 'El campo apellido es obligatorio',
                 bandera: true
             })
             return;
         }
         if(personal.fecha_nacimiento.trim()=== "" || personal.fecha_nacimiento.length !== 10){
             guardarError({
-                Mensaje: 'el campo FECHA DE NACIMIENTO  no tiene el formato requerido',
+                Mensaje: 'El campo fecha de nacimiento  no tiene el formato requerido',
                 bandera: true
             })
             return;
         }
         if(personal.direccion.trim()=== ""){
             guardarError({
-                Mensaje: 'el campo  DIRECCION es obligatorio',
+                Mensaje: 'El campo dirección es obligatorio',
                 bandera: true
             })
             return;
         }
         if(personal.telefono.trim()=== ""){
             guardarError({
-                Mensaje: 'el campo  TELEFONO es obligatorio',
+                Mensaje: 'El campo teléfono es obligatorio',
                 bandera: true
             })
             return;
@@ -111,14 +125,14 @@ const FormularioCrearPersonal = ({props}) => {
         }
         if(personal.password.trim()=== ""){
             guardarError({
-                Mensaje: 'el campo CONTRASEÑA es obligatorio',
+                Mensaje: 'El campo contraseña es obligatorio',
                 bandera: true
             })
             return;
         }
         if(personal.password !== personal.confpassword){
             guardarError({
-                Mensaje: 'las CONTRASEÑAS no coinciden',
+                Mensaje: 'Las contraseñas no coinciden',
                 bandera: true
             })
             return;
@@ -189,7 +203,7 @@ const FormularioCrearPersonal = ({props}) => {
             <div className="form-group ">
                 <label className="font-weight-bold ">TIPO EMPLEADO</label>
                 <select className="form-control col-md-11" id="select"name="cargo" onChange={Guardar}>
-                    <option value="primera">Selecione...</option>
+                    <option value="primera">Seleccione...</option>
                     <option>Administrador</option>
                     <option>Personal</option>
                     <option>Medico</option>

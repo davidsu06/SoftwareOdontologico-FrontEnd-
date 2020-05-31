@@ -27,11 +27,6 @@ const FormularioCrearCita = () => {
     }, [citaseleccionada])
 
 
-    const [error, guardarError] = useState({
-        mensaje: ''
-    });
-
-
     const onChange = e =>{
         guardarCita({
             ...cita,
@@ -44,15 +39,13 @@ const FormularioCrearCita = () => {
         e.preventDefault();
 
         if (cita.fecha.trim() === '' || cita.hora.trim() === '') {
-            guardarError({
-                mensaje: 'Todos los campos son obligatorios'
-            })
+            Swal.fire(
+                'Error',
+                'Todos los campos son obligatorios',
+                'error'
+            );
             return;
-        }else{
-            guardarError({
-                mensaje: ''
-            })
-        }
+        }else
 
         if (citaseleccionada != null) 
         {
@@ -84,11 +77,6 @@ const FormularioCrearCita = () => {
 
             <form onSubmit={Submit}>
 
-                {error.mensaje !== '' 
-                
-                ? <div className="col-11 alert alert-danger font-weight-bold text-center">{error.mensaje}</div> 
-
-                : null}
                 <div className=" container fondoForm">
                 <div className="container Formularios">
                 <div className="form-group p-0">

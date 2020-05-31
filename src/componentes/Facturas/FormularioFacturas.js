@@ -72,7 +72,8 @@ const FormularioFacturas = ({props}) => {
                 'Error',
                 'Todos los campos son obligatorios',
                 'error'
-            )
+            );
+            return;
         }
 
         const {fecha, documento_paciente, documento_cajero, nombre_cajero, estado} = factura

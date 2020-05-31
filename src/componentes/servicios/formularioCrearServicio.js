@@ -1,6 +1,7 @@
 import React,{useState,useContext, useEffect} from 'react';
 import serviciosContext from '../../context/servicios/serviciosContext';
 import Error from './../admin/Error';
+import Swal from 'sweetalert2';
 
 const FormularioCrearServicio = ({props}) => {
 
@@ -20,23 +21,33 @@ const FormularioCrearServicio = ({props}) => {
 
     const submit= e =>{
         e.preventDefault();
+
+        if (servicio.nombre_servicio.trim()=== "" && servicio.precioTotal <= 0 && servicio.cantidadCitas <= 0) {
+            Swal.fire(
+                'Error',
+                'Todos los campos son obligatorios',
+                'error'
+            );
+            return;
+        }
+
         if(servicio.nombre_servicio.trim()=== ""){
             guardarError({
-                Mensaje: 'Ingrese el campo NOMBRE',
+                Mensaje: 'Ingrese el nombre',
                 bandera: true
             })
             return;
         }
         if(servicio.precioTotal <= 0){
             guardarError({
-                Mensaje: 'Ingrese el campo PRECIO TOTAL',
+                Mensaje: 'Ingrese un precio total válido',
                 bandera: true
             })
             return;
         }
         if(servicio.cantidadCitas <= 0){
             guardarError({
-                Mensaje: 'Ingrese el campo CANTIDAD DE CITAS',
+                Mensaje: 'Ingrese una cantidad de citas válida',
                 bandera: true
             })
             return;
