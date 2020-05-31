@@ -41,6 +41,7 @@ const Login = (props) => {
 
         if(documento.trim() === '' || password.trim() === ''){
             mostrarAlerta('Todos los campos son obligatorios', 'alerta-error');
+            return;
         }
 
         iniciarSesion({documento, password});
