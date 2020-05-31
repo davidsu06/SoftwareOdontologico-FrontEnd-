@@ -75,7 +75,6 @@ function App() {
                           <Route exact path="/editar-hist-clinica" component={CrearHistoria}/>
                           <Route exact path="/consultar-hist-clinica" component={ConsultarHistorias}/>
                           <Route exact path="/mi-hist-clinica" component={MiHistorial}/>
-                          <Route exact path="/crear-servicio" component={CrearServicio}/>
                           <Route exact path="/crear-factura" component={CrearFactura}/>
                           <Route exact path="/consultar-facturas" component={ConsultarFacturas}/>
                           <Route exact path="/mis-facturas" component={MisFacturas}/>

@@ -33,7 +33,6 @@ const Servicio = ({servicio,usuario}) => {
     return (
         <tr>
             
-            <td>{servicio._id}</td>
             <td>{servicio.nombre_servicio}</td>
             <td>{new Intl.NumberFormat("de-DE").format(servicio.precioTotal)}</td>
             <td>{servicio.cantidadCitas}</td>

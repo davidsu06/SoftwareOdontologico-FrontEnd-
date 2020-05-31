@@ -35,6 +35,20 @@ const ListadoHistorias = () => {
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
+    // Protecting component
+    const styleNotAuth = {
+        display: 'flex',
+        padding: '1rem 0rem 2rem 1rem',
+        justifyContent: 'center'
+      }
+  
+    if (typeof window !== 'undefined') {
+        const item = localStorage.getItem('token');
+        if (!item) {
+            return <h3 style={styleNotAuth}>No autorizado</h3>
+        }
+    }
+
     return ( 
         <>
         <div className="col-md-11 col-sm-3 mt-5">

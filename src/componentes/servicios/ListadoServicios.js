@@ -40,7 +40,6 @@ const ListadoServicios = () => {
                             <thead className="text-center">
                                 {usuario && 
                                     <tr>
-                                        <th scope="col">Id. Servicio</th>
                                         <th scope="col">Nombre Servicio</th>
                                         <th scope="col">Valor Servicio</th>
                                         <th scope="col">Cantidad Citas</th>

@@ -17,7 +17,7 @@ const NavbarPaciente = ({usuario}) => {
           </div>
 
           <div className="list-group list-group-flush">   
-            <a className="list-group-item list-group-item-action casilla" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapseExample" >
+            <a className="list-group-item list-group-item-action casilla py-3" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapseExample" >
               <i className="fas fa-calendar-alt text-white mr-2"></i>Gestión de Agenda
             </a>
 
@@ -39,7 +39,7 @@ const NavbarPaciente = ({usuario}) => {
               </Link>
             </div>
 
-            <a className="list-group-item list-group-item-action casilla" data-toggle="collapse" href="#collapse4" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <a className="list-group-item list-group-item-action casilla py-3" data-toggle="collapse" href="#collapse4" role="button" aria-expanded="false" aria-controls="collapseExample">
               <i className="fas fa-file-invoice-dollar text-white mr-2"></i>Facturas
             </a>
 
@@ -49,7 +49,7 @@ const NavbarPaciente = ({usuario}) => {
               </Link>
             </div>
 
-            <a className="list-group-item list-group-item-action casilla" data-toggle="collapse" href="#collapse6" role="button" aria-expanded="false" aria-controls="collapseExample" >
+            <a className="list-group-item list-group-item-action casilla py-3" data-toggle="collapse" href="#collapse6" role="button" aria-expanded="false" aria-controls="collapseExample" >
               <i className="fas fa-tooth text-white mr-2"></i>Servicios
             </a>
 

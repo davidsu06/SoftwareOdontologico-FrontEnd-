@@ -87,6 +87,20 @@ const MyDocument = () => {
 
   const {facturaseleccionada} = useContext(facturaContext);
   const {_id, documento_paciente, nombre_paciente, documento_cajero, nombre_cajero, valor, fecha, tratamiento} = facturaseleccionada;
+
+  // Protecting component
+  const styleNotAuth = {
+    display: 'flex',
+    padding: '1rem 0rem 2rem 1rem',
+    justifyContent: 'center'
+  }
+
+  if (typeof window !== 'undefined') {
+      const item = localStorage.getItem('token');
+      if (!item) {
+          return <h3 style={styleNotAuth}>No autorizado</h3>
+      }
+  }
   
   if(!facturaseleccionada) return null
 
