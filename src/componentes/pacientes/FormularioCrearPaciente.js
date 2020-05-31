@@ -157,7 +157,7 @@ const FormularioCrearPaciente = ({props}) => {
             <div className="container Formularios">
             <div className="form-group">
                 <label className="font-weight-bold">DOCUMENTO DE IDENTIDAD</label>
-                <input type="NUMBER" 
+                <input type="NUMBER" id="documento"
                 className="form-control col-md-11" name="documento" onChange={Guardar} placeholder="ej. 123456789" 
                 value={paciente.documento}
                 />
@@ -165,43 +165,47 @@ const FormularioCrearPaciente = ({props}) => {
 
             <div className="form-group">
                 <label className="font-weight-bold">NOMBRE</label>
-                <input type="text" className="form-control col-md-11" name="nombre"  onChange={Guardar} placeholder="ej. Andres Felipe" value={paciente.nombre}/>
+                <input type="text" id="nombre" className="form-control col-md-11" name="nombre"  onChange={Guardar} placeholder="ej. Andres Felipe" value={paciente.nombre}/>
             </div>
 
             <div className="form-group">
                 <label className="font-weight-bold">APELLIDOS</label>
-                <input type="text" className="form-control col-md-11" name="apellido" onChange={Guardar} placeholder="ej. Perez Gonzalez" value={paciente.apellido}/>
+                <input type="text" id="apellidos" className="form-control col-md-11" name="apellido" onChange={Guardar} placeholder="ej. Perez Gonzalez" value={paciente.apellido}/>
             </div>
 
             <div className="form-group">
                 <label className="font-weight-bold">FECHA DE NACIMIENTO</label>
-                <input type="date" className="form-control col-md-11" name="fnacimiento"  onChange={Guardar} placeholder="dd/mm/aaaa" value={paciente.fnacimiento}/>
+                <input type="date" id="nacimiento" className="form-control col-md-11" name="fnacimiento"  onChange={Guardar} placeholder="dd/mm/aaaa" value={paciente.fnacimiento}/>
             </div>
             </div>
             <div className="container Formularios">
             <div className="form-group">
                 <label className="font-weight-bold">DIRECCION</label>
-                <input type="text" className="form-control col-md-11" name="direccion" onChange={Guardar} placeholder="ej. Calle 9 #11-01" value={paciente.direccion}/>
+                <input type="text" id="direccion" className="form-control col-md-11" name="direccion" onChange={Guardar} placeholder="ej. Calle 9 #11-01" value={paciente.direccion}/>
             </div>
 
             <div className="form-group">
                 <label className="font-weight-bold">TELEFONO</label>
-                <input type="number" className="form-control col-md-11" name="telefono" onChange={Guardar} placeholder="ej. 3003000000" value={paciente.telefono}/>
+                <input type="number" id="telefono" className="form-control col-md-11" name="telefono" onChange={Guardar} placeholder="ej. 3003000000" value={paciente.telefono}/>
             </div>
             <div className="form-group">
                 <label className="font-weight-bold">CONTRASEÑA</label>
-                <input type="password" className="form-control col-md-11" name="password" onChange={Guardar} placeholder="********" value={paciente.password}/>
+                <input type="password" id="contrasena" className="form-control col-md-11" name="password" onChange={Guardar} placeholder="********" value={paciente.password}/>
             </div>
-            {paciente.confpassword !== paciente.password ? <Error mensaje={"Las contraseñas no coinciden"}/> : null}
+            <div className="form-group pr-50 ErrorCpaciente">
+                {paciente.confpassword !== paciente.password ? <Error mensaje={"Las contraseñas no coinciden"}/> : null}
+            </div>
             <div className="form-group">
                 <label className="font-weight-bold">CONFIRMAR CONTRASEÑA</label>
-                <input type="password" className="form-control col-md-11" name="confpassword" placeholder="********" onChange={Guardar} value={paciente.confpassword}/>
+                <input type="password" id="confContrasena" className="form-control col-md-11" name="confpassword" placeholder="********" onChange={Guardar} value={paciente.confpassword}/>
+            </div>
+            <div className="form-group pr-50 ErrorCpaciente" >
+                {error.bandera ? <Error mensaje={error.Mensaje}/> : null}
+            </div>
             </div>
             
-            {error.bandera ? <Error mensaje={error.Mensaje}/> : null}  
-            </div>
             <div className="form-group">
-                <input type="submit"
+                <input type="submit" id="guardarPaciente"
                 className="form-control btnForm font-weight-bold col-md-11" 
                 value={pacienteseleccionado ? 'Editar Paciente' : 'Agregar Paciente'}
                 />

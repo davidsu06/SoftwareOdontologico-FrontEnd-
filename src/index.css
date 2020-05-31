@@ -443,3 +443,11 @@ ul {
     transform: scale3d(1, 1, 1);
   }
 }
+
+.Error{
+  width: 100%;
+}
+
+.ErrorCpaciente{
+  padding-right: 40px;
+}

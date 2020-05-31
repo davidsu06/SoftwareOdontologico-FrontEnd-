@@ -48,34 +48,34 @@ const NavbarAdministrador = ({usuario}) => {
 
             <div className="list-group list-group-flush">
         
-              <a className="list-group-item list-group-item-action casilla py-3" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapseExample" >
+              <a className="list-group-item list-group-item-action casilla py-3" id="gestionPacienteq" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapseExample" >
                 <i className="fas fa-user-alt text-white mr-2"></i>Gestión de Pacientes
               </a>
   
               <div className="collapse subcasilla" id="collapse1">
-                <Link to={'/crear-pacientes'} onClick={ () => PacienteNull() } className="d-block p-3 btn border-bottom-dark text-decoration-none text-dark">
+                <Link to={'/crear-pacientes'} id="crearPaciente" onClick={ () => PacienteNull() } className="d-block p-3 btn border-bottom-dark text-decoration-none text-dark">
                   Crear paciente
                 </Link>
               </div>
 
               <div className="collapse subcasilla" id="collapse1">
-                <Link to={'/consultar-pacientes'}  className="d-block p-3 btn text-decoration-none">
+                <Link to={'/consultar-pacientes'} id="consultarPaciente" className="d-block p-3 btn text-decoration-none">
                   Consultar paciente
                 </Link>
               </div>
               
-              <a className="list-group-item list-group-item-action casilla py-3" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapseExample" >
+              <a className="list-group-item list-group-item-action casilla py-3" id="gestionTratamientos" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapseExample" >
                 <i className="fas fa-clinic-medical mr-2"></i>Gestión Tratamientos
               </a>
 
               <div className="collapse subcasilla" id="collapse2">
-                <Link to={'/iniciar-tratamiento'} onClick={ () => tratamientoNull() } className="d-block p-3 btn border-bottom-dark text-decoration-none text-dark">
+                <Link to={'/iniciar-tratamiento'} id="iniciarTratamiento" onClick={ () => tratamientoNull() } className="d-block p-3 btn border-bottom-dark text-decoration-none text-dark">
                   Iniciar tratamiento
                 </Link>
               </div>
 
               <div className="collapse subcasilla" id="collapse2">
-                <Link to={'/consultar-tratamientos'}  className="d-block p-3 btn text-decoration-none">
+                <Link to={'/consultar-tratamientos'} id="consultarTratamiento" className="d-block p-3 btn text-decoration-none">
                   Consultar tratamientos
                 </Link>
               </div>

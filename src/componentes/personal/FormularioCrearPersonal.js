@@ -200,14 +200,16 @@ const FormularioCrearPersonal = ({props}) => {
                 <label className="font-weight-bold">CONTRASEÑA</label>
                 <input type="password" className="form-control col-md-11" name="password" placeholder="********" onChange={Guardar} value={personal.password}/>
             </div>
-            {personal.confpassword !== personal.password ? <Error mensaje={"Las contraseñas no coinciden"}/> : null} 
+            <div className="form-group pr-50 ErrorCpaciente">
+                {personal.confpassword !== personal.password ? <Error mensaje={"Las contraseñas no coinciden"}/> : null} 
+            </div>
             <div className="form-group">
                 <label className="font-weight-bold">CONFIRMAR CONTRASEÑA</label>
                 <input type="password" className="form-control col-md-11" name="confpassword" placeholder="********" onChange={Guardar} value={personal.confpassword}/>
             </div>
-            
+            <div className="form-group pr-50 ErrorCpaciente">
             {error.bandera ? <Error mensaje={error.Mensaje}/> : null} 
-            
+            </div>
         </div>
         <div className="form-group">
             <input type="submit" className="form-control btnForm font-weight-bold col-md-11" value= {personalseleccionado ? 'Editar Personal' : 'Agregar Personal'}/>

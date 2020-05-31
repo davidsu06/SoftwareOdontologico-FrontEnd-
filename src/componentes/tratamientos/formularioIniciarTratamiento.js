@@ -106,6 +106,7 @@ const FormularioCrearServicio = ({props}) => {
                             <label className="font-weight-bold">Documento del Paciente</label>
                             <input type="text" 
                                 className="form-control col-md-11"
+                                id="Documento"
                                 name="pacienteId" 
                                 placeholder="Digite el documento del paciente"
                                 readOnly={tratamientoseleccionado ? true :null } 
@@ -117,7 +118,7 @@ const FormularioCrearServicio = ({props}) => {
                         <div className="form-group">
                             <label className="font-weight-bold">Servicio</label>
                             <select className="form-control col-md-11" name="servicio" value={servicio} onChange={changeTratamiento}>
-                                <option>Seleccione....</option>
+                                <option id="ServicioPaciente">Seleccione....</option>
                                 {servicios
                                     ? <>{servicios.map(servicio => (
                                         <option key={servicio._id} value={servicio.nombre_servicio}>{servicio.nombre_servicio}</option>
@@ -130,12 +131,12 @@ const FormularioCrearServicio = ({props}) => {
                         
                         <div className="form-group">
                             <label className="font-weight-bold">Cuotas para pago del Tratamiento</label>
-                            <input type="number" className="form-control col-md-11" name="cuotas" placeholder="Digite la cantidad de cuotas" value={cuotas} onChange={changeTratamiento}/>
+                            <input type="number" id="CuotasPago" className="form-control col-md-11" name="cuotas" placeholder="Digite la cantidad de cuotas" value={cuotas} onChange={changeTratamiento}/>
                         </div> 
                         
 
                         <div className="form-group mt-3">
-                            <input type="submit" 
+                            <input type="submit" id="GuardarIniciarTratamiento"
                             className="form-control font-weight-bold btn-success col-md-11" 
                             value= {tratamientoseleccionado ? "Editar Tratamiento" : "Iniciar Tratamiento"}
                             />

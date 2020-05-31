@@ -1,5 +1,6 @@
 import React,{useState,useContext, useEffect} from 'react';
 import serviciosContext from '../../context/servicios/serviciosContext';
+import Error from './../admin/Error';
 
 const FormularioCrearServicio = ({props}) => {
 
@@ -12,23 +13,32 @@ const FormularioCrearServicio = ({props}) => {
         cantidadCitas: ''
     });
 
-    useEffect(()=>{
-        if(servicioseleccionado){
-            guardarservicio(servicioseleccionado);
-        }
-        else{
-            guardarservicio({
-                nombre_servicio : '',
-                precioTotal: 0,
-                cantidadCitas: 0
-            });
-        }
-    },[servicioseleccionado]);
-    
-    const BotonGuardar= e =>{
-        e.preventDefault();
+    const [error,guardarError]=useState({
+        Mensaje: 'Hubo Error',
+        bandera: false
+    }); 
 
-        if(servicio.nombre_servicio.trim() === '' || servicio.precioTotal <= 0 || servicio.cantidadCitas <= 0){
+    const submit= e =>{
+        e.preventDefault();
+        if(servicio.nombre_servicio.trim()=== ""){
+            guardarError({
+                Mensaje: 'Ingrese el campo NOMBRE',
+                bandera: true
+            })
+            return;
+        }
+        if(servicio.precioTotal <= 0){
+            guardarError({
+                Mensaje: 'Ingrese el campo PRECIO TOTAL',
+                bandera: true
+            })
+            return;
+        }
+        if(servicio.cantidadCitas <= 0){
+            guardarError({
+                Mensaje: 'Ingrese el campo CANTIDAD DE CITAS',
+                bandera: true
+            })
             return;
         }
 
@@ -45,10 +55,28 @@ const FormularioCrearServicio = ({props}) => {
         props.history.push('/consultar-servicios');
     }
 
+    useEffect(()=>{
+        if(servicioseleccionado){
+            guardarservicio(servicioseleccionado);
+        }
+        else{
+            guardarservicio({
+                nombre_servicio : '',
+                precioTotal: 0,
+                cantidadCitas: 0
+            });
+        }
+    },[servicioseleccionado]);
+    
+
     const Guardar = e =>{
         guardarservicio({
             ...servicio,
             [e.target.name]: e.target.value
+        })
+        guardarError({
+            Mensaje: 'Hubo Error',
+            bandera: false
         })
     }
     
@@ -56,7 +84,7 @@ const FormularioCrearServicio = ({props}) => {
         <>
             <div className="container mt-4 pfacturas" >
             
-                <form onSubmit={BotonGuardar}>
+                <form onSubmit={submit}>
                     <div className=" container fondoFormServicio">
                         
                         <div className="container align-content-center formularioservicio">
@@ -79,8 +107,11 @@ const FormularioCrearServicio = ({props}) => {
                                 <input type="text" className="form-control" name="cantidadCitas" value={servicio.cantidadCitas} onChange={Guardar}/>
                             </div> 
                         </div>
-
+                        <div className="form-group pl-3">
+                            {error.bandera ? <Error mensaje={error.Mensaje}/> : null}
+                        </div> 
                         <div className="form-group">
+                        
                             <input type="submit" 
                             className="form-control btnFormServicio font-weight-bold" 
                             value={servicioseleccionado ?("Editar Servicio") :("Crear Servicio")}

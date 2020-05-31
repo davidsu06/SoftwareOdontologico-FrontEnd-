@@ -56,12 +56,12 @@ const Login = (props) => {
                 
                 <form id="formLogin" onSubmit={onSubmit}>
                     <label className="labelLogin text-white font-weight-bold">Documento:</label>
-                    <input className="inputLogin" type="text" name="documento" placeholder="Digite su Documento" value={documento} onChange={guardarInhtmlFormacion} />
+                    <input className="inputLogin" id="Documento" type="text" name="documento" placeholder="Digite su Documento" value={documento} onChange={guardarInhtmlFormacion} />
 
                     <label className="labelLogin text-white font-weight-bold">Contraseña:</label>
-                    <input className="inputLogin" type="password" name="password" placeholder="Digite su Contraseña" value={password} onChange={guardarInhtmlFormacion} />
+                    <input className="inputLogin" id="Contrasena" type="password" name="password" placeholder="Digite su Contraseña" value={password} onChange={guardarInhtmlFormacion} />
 
-                    <button type="submit" className="login-btn font-weight-bold">Iniciar Sesión</button>
+                    <button type="submit" id="Ingresar" className="login-btn font-weight-bold">Iniciar Sesión</button>
                 </form>
                 
                 <div className="other-options">
