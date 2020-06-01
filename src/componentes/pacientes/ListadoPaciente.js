@@ -2,11 +2,22 @@ import React, { useContext, useState, useEffect } from 'react';
 import Paciente from './Paciente';
 import pacienteContext from '../../context/pacientes/pacienteContext';
 import Pagination from '../layout/paginacion';
+import { MetroSpinner } from 'react-spinners-kit';
 
 const ListadoPaciente = () => {
 
     const PacientesContext = useContext(pacienteContext);
     const {listarPacientes, pacientes} = PacientesContext;
+    const [ load, setLoad ] = useState(true);
+    let loadPacientes;
+
+    useEffect(() => {
+        // eslint-disable-next-line
+        loadPacientes = pacientes;
+        if (loadPacientes !== undefined) {
+            setLoad(false)    
+        }
+    }, [pacientes])
 
     // Paginacion
     const [currentPage, setCurrentPage] = useState(1);
@@ -25,16 +36,23 @@ const ListadoPaciente = () => {
     
 
     useEffect(() => {
-         listarPacientes();   
+         listarPacientes(); 
         // eslint-disable-next-line
     }, []);
+
+    if (pacientes.length === 0 && loadPacientes !== undefined) {
+        return <h3 className="text-center">No hay Pacientes</h3>
+    }
 
     return ( 
         <>
             <div className="col-md-11 col-sm-3">
+                
                 {pacientes.length === 0
                     ? 
-                    (<h3 className="text-center">No hay Pacientes</h3>) 
+                    (
+                        <div className="container d-flex justify-content-center mt-1"> <MetroSpinner size={100} color="#000" loading={load} /> </div>
+                    ) 
 
                     : 
                     (

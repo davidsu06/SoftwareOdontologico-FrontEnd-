@@ -3,6 +3,7 @@ import facturasContext from '../../context/facturas/facturasContext';
 import AuthContext from '../../context/autenticacion/authContext';
 import Factura from './Factura';
 import Pagination from '../layout/paginacion';
+import { MetroSpinner } from 'react-spinners-kit';
 
 const MisFacturas = () => {
 
@@ -12,6 +13,17 @@ const MisFacturas = () => {
     const {facturas, listarFacturas} = facturaContext;
     const {usuario} = useContext(AuthContext)
     let MisFacturas;
+
+    const [ load, setLoad ] = useState(true);
+    let loadMisFacturas;
+
+    useEffect(() => {
+        // eslint-disable-next-line
+        loadMisFacturas = MisFacturas;
+        if (loadMisFacturas !== undefined) {
+            setLoad(false)    
+        }
+    }, [MisFacturas])
 
     useEffect(() => {
         listarFacturas();   
@@ -51,13 +63,19 @@ const MisFacturas = () => {
         }
     }
 
+    if (MisFacturas.length === 0 && loadMisFacturas !== undefined) {
+        return <h3 className="text-center">No hay Facturas</h3>
+    }
+
     return ( 
         <>
         <div className="col-md-11 col-sm-3">
 
             {MisFacturas.length === 0
                 ? 
-                    (<h3 className="text-center">No hay Facturas</h3>) 
+                    (
+                        <div className="container d-flex justify-content-center mt-1"> <MetroSpinner size={100} color="#000" loading={load} /> </div>
+                    ) 
 
                 : 
                     (

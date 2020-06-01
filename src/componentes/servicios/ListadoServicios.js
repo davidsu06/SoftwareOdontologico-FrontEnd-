@@ -3,11 +3,23 @@ import Servicio from './Servicio';
 import servicioState from '../../context/servicios/serviciosContext';
 import authState from '../../context/autenticacion/authContext';
 import Pagination from '../layout/paginacion';
+import { MetroSpinner } from 'react-spinners-kit';
 
 const ListadoServicios = () => {
 
     const {servicios, listarServicios} = useContext(servicioState)
     const {usuario} = useContext(authState)
+
+    const [ load, setLoad ] = useState(true);
+    let loadServicios;
+
+    useEffect(() => {
+        // eslint-disable-next-line
+        loadServicios = servicios;
+        if (loadServicios !== undefined) {
+            setLoad(false)    
+        }
+    }, [servicios])
 
     // Paginacion
     const [currentPage, setCurrentPage] = useState(1);
@@ -24,14 +36,21 @@ const ListadoServicios = () => {
     useEffect(() => {
         listarServicios();
         // eslint-disable-next-line
-    }, [])
+    }, []);
+
+    if (servicios.length === 0 && loadServicios !== undefined) {
+        return <h3 className="text-center">No hay Servicios</h3>
+    }
+
 
     return (
         <>
             <div className="col-md-11 col-sm-3">
                 {servicios.length === 0
                     ? 
-                    (<h3 className="text-center">No hay Servicios</h3>) 
+                    (
+                        <div className="container d-flex justify-content-center mt-1"> <MetroSpinner size={100} color="#000" loading={load} /> </div>
+                    ) 
 
                     : 
                     (

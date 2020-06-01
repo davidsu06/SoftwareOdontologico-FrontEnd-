@@ -6,6 +6,7 @@ import Cita from './Cita';
 import InfiniteCalendar from 'react-infinite-calendar';
 import 'react-infinite-calendar/styles.css'; 
 import Pagination from '../layout/paginacion';
+import { MetroSpinner } from 'react-spinners-kit';
 
 const ListadoCita = () => {
 
@@ -20,6 +21,17 @@ const ListadoCita = () => {
         usuarioAutenticado();
         // eslint-disable-next-line
     }, [])
+
+    const [ load, setLoad ] = useState(true);
+    let loadCitas;
+
+    useEffect(() => {
+        // eslint-disable-next-line
+        loadCitas = citas;
+        if (loadCitas !== undefined) {
+            setLoad(false)    
+        }
+    }, [citas])
 
     if(usuario){
         cargo = usuario.cargo;
@@ -74,6 +86,10 @@ const ListadoCita = () => {
 
     if(!citas) return null
 
+    if (citas.length === 0 && loadCitas !== undefined) {
+        return <h3 className="text-center">No hay disponibilidad de citas</h3>
+    }
+
     return ( 
         <>
 
@@ -109,7 +125,10 @@ const ListadoCita = () => {
 
                          :
                         ( citas.length === 0
-                            ? (<h3 className="text-center">No hay disponibilidad de citas</h3>) 
+                            ? 
+                            (
+                                <div className="container d-flex justify-content-center mt-1"> <MetroSpinner size={100} color="#000" loading={load} /> </div>         
+                            ) 
                             : 
                             <table className="table table-bordered mt-3">
         

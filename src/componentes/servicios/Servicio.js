@@ -40,7 +40,7 @@ const Servicio = ({servicio,usuario}) => {
             {usuario
                 ?(
                     <>
-                        {usuario.cargo === 'Paciente'
+                        {usuario.cargo !== 'Administrador'
                             ? null
                             :(
                                 <td className="text-center">

@@ -5,6 +5,7 @@ import Factura from './Factura';
 import Pagination from '../layout/paginacion';
 import tratamientoContext from '../../context/tratamientos/tratamientoContext';
 import servicioContext from '../../context/servicios/serviciosContext';
+import { MetroSpinner } from 'react-spinners-kit';
 
 const ListadoFacturas = () => {
 
@@ -14,6 +15,17 @@ const ListadoFacturas = () => {
     const {usuario} = useContext(authContext);
     const {tratamientos, listarTratamientos} = useContext(tratamientoContext);
     const {servicios, listarServicios} = useContext(servicioContext); 
+
+    const [ load, setLoad ] = useState(true);
+    let loadFacturas;
+
+    useEffect(() => {
+        // eslint-disable-next-line
+        loadFacturas = facturas;
+        if (loadFacturas !== undefined) {
+            setLoad(false)    
+        }
+    }, [facturas])
 
     // Paginacion
     const [currentPage, setCurrentPage] = useState(1);
@@ -34,12 +46,18 @@ const ListadoFacturas = () => {
         // eslint-disable-next-line
     }, []);
 
+    if (facturas.length === 0 && loadFacturas !== undefined) {
+        return <h3 className="text-center">No hay Facturas</h3>
+    }
+
     return ( 
         <>                       
             <div className="col-md-11 col-sm-3">
                 {facturas.length === 0
                     ? 
-                    (<h3 className="text-center">No hay Facturas</h3>) 
+                    (
+                        <div className="container d-flex justify-content-center mt-1"> <MetroSpinner size={100} color="#000" loading={load} /> </div>
+                    ) 
 
                     : 
                     (

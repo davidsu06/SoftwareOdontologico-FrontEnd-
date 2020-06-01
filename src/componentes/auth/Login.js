@@ -3,6 +3,7 @@ import logo from '../../media/Logo.png'
 import { Link } from 'react-router-dom';
 import AlertContext from '../../context/alertas/alertaContext';
 import AuthContext from '../../context/autenticacion/authContext';
+import { MetroSpinner } from 'react-spinners-kit';
 
 const Login = (props) => {
     //Extraer valores del context
@@ -15,13 +16,16 @@ const Login = (props) => {
         password: ''
     });
 
+    const [ load, setLoad ] = useState(false);
 
     useEffect( () =>{
         if(autenticado){
+            setLoad(false);
             props.history.push('/gestion-sistema');
         }
 
         if(mensaje){
+            setLoad(false);
             mostrarAlerta(mensaje.msg, mensaje.categoria);
         }
         // eslint-disable-next-line
@@ -44,12 +48,24 @@ const Login = (props) => {
             return;
         }
 
+        if (!mensaje) setLoad(true);
+
         iniciarSesion({documento, password});
+
     }
 
     return ( 
         <div id="fondo_inicio">
+
             {alerta ? <div className="bg-danger text-center text-white font-weight-bold" style={{padding:'30px 0'}} >{alerta.msg}</div>  :null}
+
+            {
+                load && 
+                (
+                    <div className="container d-flex justify-content-center mt-2"> <MetroSpinner size={100} color="#fff" loading={load} /> </div>
+                )
+            }
+
             <div className="mobile-screen">
                 <div className="header">
                     <h1 id="h1Login" className="font-weight-bold text-white"><img  src={logo} alt="Logo odontología" className="w-25"/> Inicio de Sesión</h1>

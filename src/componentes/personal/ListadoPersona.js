@@ -2,6 +2,8 @@ import React, { useContext, useState, useEffect } from 'react';
 import Persona from './Persona';
 import personaContext from '../../context/personal/personaContext';
 import Pagination from '../layout/paginacion';
+import { MetroSpinner } from 'react-spinners-kit';
+
 const ListadoPersona = () => {
 
     const personalContext = useContext(personaContext);
@@ -21,19 +23,34 @@ const ListadoPersona = () => {
 
     // Funcion para listar personas
 
-    
+    const [ load, setLoad ] = useState(true);
+    let loadPersonal;
+
+    useEffect(() => {
+        // eslint-disable-next-line
+        loadPersonal = personal;
+        if (loadPersonal !== undefined) {
+            setLoad(false)    
+        }
+    }, [personal])
 
     useEffect(() => {
          listarPersonal();   
         // eslint-disable-next-line
     }, []);
 
+    if (personal.length === 0 && loadPersonal !== undefined) {
+        return <h3 className="text-center">No hay Personal</h3>
+    }
+
     return ( 
         <> 
             <div className="col-md-11 col-sm-3">
                 {personal.length === 0
                     ? 
-                    (<h3 className="text-center">No hay Personal</h3>) 
+                    (
+                        <div className="container d-flex justify-content-center mt-1"> <MetroSpinner size={100} color="#000" loading={load} /> </div>    
+                    ) 
 
                     : 
                     (
