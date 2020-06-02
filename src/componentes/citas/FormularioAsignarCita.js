@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import citaContext from '../../context/citas/citaContext';
 import tratamientoContext from '../../context/tratamientos/tratamientoContext';
 import Swal from 'sweetalert2';
+import Error from './../admin/Error';
 
 const FormularioAsignarCita = ({redireccion}) => {
 
@@ -21,6 +22,11 @@ const FormularioAsignarCita = ({redireccion}) => {
     const [idPaciente, actualizarIdPaciente] = useState({
         pacienteId: ''
     })
+
+    const [error,guardarError]=useState({
+        Mensaje: 'Hubo Error',
+        bandera: false
+    }); 
 
     useEffect( () => {
         if (asignarPaciente.pacienteId && asignarPaciente.tipo) {
@@ -42,12 +48,27 @@ const FormularioAsignarCita = ({redireccion}) => {
     const Submit = e => {
         e.preventDefault();
 
-        if (asignarPaciente.pacienteId.trim() === '' || asignarPaciente.tipo.trim() === '') {
+        if (asignarPaciente.pacienteId.trim() === '' && asignarPaciente.tipo.trim() === '') {
             Swal.fire(
                 'Error',
-                'Por favor ingrese el documento y tipo de cita para asignar',
+                'Todos los campos son obligatorios',
                 'error'
             )
+            return;
+        }
+        if(asignarPaciente.pacienteId.trim() === ''){
+            guardarError({
+                Mensaje: 'Ingrese el documento del paciente',
+                bandera: true
+            })
+            return;
+        }
+        if(asignarPaciente.tipo.trim() === ''){
+            guardarError({
+                Mensaje: 'Ingrese el tipo de cita',
+                bandera: true
+            })
+            return;
         }
         
         else
@@ -137,13 +158,13 @@ const FormularioAsignarCita = ({redireccion}) => {
                         <form onSubmit={Submit}>
 
                             <div className="form-group">
-                                <label>Documento:</label>
+                                <label className="font-weight-bold">Documento:</label>
                                 <input type="text" className="form-control" name="pacienteId" placeholder="Documento" onChange={onChange} value={asignarPaciente.pacienteId}></input>
 
                             </div>
 
                             <div className="form-group">
-                                <label>Tipo Cita:</label>
+                                <label className="font-weight-bold">Tipo Cita:</label>
                                 <select className="form-control" name="tipo" onChange={onChange} value={asignarPaciente.tipo}>
                                     <option value="">Seleccione....</option>
                                     <option value="Tratamiento">Tratamiento</option>
@@ -151,10 +172,12 @@ const FormularioAsignarCita = ({redireccion}) => {
                                 </select>
                             </div>
 
+                            <div className="form-group" style={{width:'96.5%'}}>
+                                {error.bandera ? <Error mensaje={error.Mensaje}/> : null}
+                            </div> 
+
                             <div className="form-group">
-
                                 <input type="submit" className="form-control btn btn-success font-weight-bold" value="Asignar cita"></input>
-
                             </div>
 
                         </form>

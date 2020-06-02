@@ -5,6 +5,7 @@ import citaContext from '../../context/citas/citaContext';
 import servicioContext from '../../context/servicios/serviciosContext';
 import tratamientoContext from '../../context/tratamientos/tratamientoContext';
 import Swal from 'sweetalert2';
+import Error from './../admin/Error';
 
 const FormularioCrearHistoria = ({props}) => {
 
@@ -32,6 +33,11 @@ const FormularioCrearHistoria = ({props}) => {
         hora: '',
         estado: ''
     });
+
+    const [error,guardarError]=useState({
+        Mensaje: 'Hubo Error',
+        bandera: false
+    }); 
 
     const {pacienteId, personalId, fecha, hora, descripcion, servicio} = historia;
 
@@ -84,57 +90,74 @@ const FormularioCrearHistoria = ({props}) => {
 
     const submitCrearHistoria = e =>{
         e.preventDefault();
-        if (pacienteId.trim()==='' || personalId.trim()==='' || fecha.trim()==='' || hora.trim()==='' || descripcion.trim()==='' || servicio.trim() === '') {
+        if (servicio.trim() ==='' && descripcion.trim() === '') {
             Swal.fire(
                 'Error',
                 'Todos los campos son obligatorios',
                 'error'
             )
+            return;
+        }
+        if(servicio.trim() === ''){
+            guardarError({
+                Mensaje: 'Ingrese el tratamiento del paciente',
+                bandera: true
+            })
+            return;
+        }
+        if(descripcion.trim() === ''){
+            guardarError({
+                Mensaje: 'Ingrese la descripcón de la cita seleccionada',
+                bandera: true
+            })
+            return;
         }
 
-        if(citaseleccionada){
-            crearHistoria(historia);
-            modificarCita(asignarPaciente);
-
-            const {_id, pacienteId, pacienteNombre, servicio, citasVistas, cuotas, saldoAbonado, estado } = tratamiento;
-            let nuevoestado;
-            let nuevacitasvistas;
-            let servicioPaciente = servicios.filter( servicio => servicio.nombre_servicio === tratamiento.servicio)[0];
-
-            nuevacitasvistas = citasVistas + 1;
-
-            if( nuevacitasvistas === servicioPaciente.cantidadCitas && saldoAbonado === servicioPaciente.precioTotal){
-                nuevoestado = 'Finalizado';
+        else{
+            if(citaseleccionada){
+                crearHistoria(historia);
+                modificarCita(asignarPaciente);
+    
+                const {_id, pacienteId, pacienteNombre, servicio, citasVistas, cuotas, saldoAbonado, estado } = tratamiento;
+                let nuevoestado;
+                let nuevacitasvistas;
+                let servicioPaciente = servicios.filter( servicio => servicio.nombre_servicio === tratamiento.servicio)[0];
+    
+                nuevacitasvistas = citasVistas + 1;
+    
+                if( nuevacitasvistas === servicioPaciente.cantidadCitas && saldoAbonado === servicioPaciente.precioTotal){
+                    nuevoestado = 'Finalizado';
+                }
+    
+                else if(nuevacitasvistas === servicioPaciente.cantidadCitas && saldoAbonado !== servicioPaciente.precioTotal){
+                    nuevoestado = 'Pagos Pendientes';
+                }
+                
+                else{
+                    nuevoestado = estado;
+                }
+    
+                const nuevotratamiento = {
+                    _id, 
+                    pacienteId,
+                    pacienteNombre,
+                    servicio,
+                    citasVistas: nuevacitasvistas,
+                    cuotas,
+                    saldoAbonado,
+                    estado: nuevoestado
+                }
+    
+                actualizarTratamiento(nuevotratamiento);
             }
-
-            else if(nuevacitasvistas === servicioPaciente.cantidadCitas && saldoAbonado !== servicioPaciente.precioTotal){
-                nuevoestado = 'Pagos Pendientes';
+    
+            else if(historiaseleccionado){
+                const {_id} = historiaseleccionado
+                modificarHistoria({_id, historia});
             }
             
-            else{
-                nuevoestado = estado;
-            }
-
-            const nuevotratamiento = {
-                _id, 
-                pacienteId,
-                pacienteNombre,
-                servicio,
-                citasVistas: nuevacitasvistas,
-                cuotas,
-                saldoAbonado,
-                estado: nuevoestado
-            }
-
-            actualizarTratamiento(nuevotratamiento);
-        }
-
-        else if(historiaseleccionado){
-            const {_id} = historiaseleccionado
-            modificarHistoria({_id, historia});
-        }
-        
-        props.history.push('/consultar-hist-clinica');
+            props.history.push('/consultar-hist-clinica');
+        }  
     }
 
     return ( 
@@ -202,6 +225,10 @@ const FormularioCrearHistoria = ({props}) => {
                             onChange={changeHistoria}>
                         </textarea>
                     </div>
+
+                    <div className="form-group pl-3" style={{width:'88.5%'}}>
+                        {error.bandera ? <Error mensaje={error.Mensaje}/> : null}
+                    </div> 
 
                     <div className="form-group">
                         <input type="submit"

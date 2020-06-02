@@ -5,6 +5,7 @@ import authContext from '../../context/autenticacion/authContext';
 import serviciosContext from '../../context/servicios/serviciosContext';
 import tratamientoContext from '../../context/tratamientos/tratamientoContext';
 import Swal from 'sweetalert2';
+import Error from './../admin/Error';
 
 const FormularioFacturas = ({props}) => {
     
@@ -47,6 +48,11 @@ const FormularioFacturas = ({props}) => {
     });
 
     const [tipocita, guardarTipoCita] = useState('');
+
+    const [error,guardarError]=useState({
+        Mensaje: 'Hubo Error',
+        bandera: false
+    }); 
     
     useEffect(() => {
         listarServicios();
@@ -67,7 +73,7 @@ const FormularioFacturas = ({props}) => {
     const BotonGuardar= e =>{
         e.preventDefault();
 
-        if(factura.documento_paciente.trim() === '' || tipocita.trim() === ''){
+        if(factura.documento_paciente.trim() === '' && tipocita.trim() === ''){
             Swal.fire(
                 'Error',
                 'Todos los campos son obligatorios',
@@ -75,49 +81,65 @@ const FormularioFacturas = ({props}) => {
             );
             return;
         }
-
-        const {fecha, documento_paciente, documento_cajero, nombre_cajero, estado} = factura
-
-        if(tipocita === 'Tratamiento'){
-            if(!tratamientos.filter( tratamiento => tratamiento.pacienteId === factura.documento_paciente && tratamiento.estado !== 'Finalizado' )[0]){
-                Swal.fire(
-                    'Error',
-                    'El Paciente digitado actualmente no se encuentra en un tratamiento o no se encuentra registrado en el sistema',
-                    'error'
-                )
-            }
-    
-            else if(tratamientos.filter( tratamiento => tratamiento.pacienteId === factura.documento_paciente
-                 && tratamiento.saldoAbonado === servicios.filter(servicio => servicio.nombre_servicio === tratamiento.servicio)[0].precioTotal)[0]){
-                Swal.fire(
-                    'Error',
-                    'El Paciente digitado ya ha acabado con su tratamiento correspondiente',
-                    'error'
-                )
-            }
-    
-            else
-            {
-                let tratamientoPaciente = tratamientos.filter( tratamiento => tratamiento.pacienteId === documento_paciente && tratamiento.estado !== 'Finalizado' )[0];
-                
-                let valor = servicios.filter( servicio => servicio.nombre_servicio === tratamientoPaciente.servicio)[0].precioTotal / tratamientoPaciente.cuotas;
-                let nombre_paciente = tratamientos.filter( tratamiento => tratamiento.pacienteId === documento_paciente )[0].pacienteNombre;
-                let tratamiento = tratamientoPaciente.servicio;
-    
-                agregarFacturas({valor, fecha, documento_paciente, nombre_paciente, documento_cajero, nombre_cajero, tratamiento, estado});
-                props.history.push('/consultar-facturas');
-                window.location.reload(true);
-            }
+        if(factura.documento_paciente.trim() === ''){
+            guardarError({
+                Mensaje: 'Ingrese el documento del paciente',
+                bandera: true
+            })
+            return;
+        }
+        if(tipocita.trim() === ''){
+            guardarError({
+                Mensaje: 'Ingrese el tipo de la cita del paciente',
+                bandera: true
+            })
+            return;
         }
 
         else{
-                let valor = 52500;
-                let nombre_paciente = pacientes.filter( paciente => paciente.documento === documento_paciente)[0].nombre + ' ' + pacientes.filter( paciente => paciente.documento === documento_paciente)[0].apellido;
-                let tratamiento = "Consulta General";
+            const {fecha, documento_paciente, documento_cajero, nombre_cajero, estado} = factura
+
+            if(tipocita === 'Tratamiento'){
+                if(!tratamientos.filter( tratamiento => tratamiento.pacienteId === factura.documento_paciente && tratamiento.estado !== 'Finalizado' )[0]){
+                    Swal.fire(
+                        'Error',
+                        'El Paciente digitado actualmente no se encuentra en un tratamiento o no se encuentra registrado en el sistema',
+                        'error'
+                    )
+                }
+        
+                else if(tratamientos.filter( tratamiento => tratamiento.pacienteId === factura.documento_paciente
+                     && tratamiento.saldoAbonado === servicios.filter(servicio => servicio.nombre_servicio === tratamiento.servicio)[0].precioTotal)[0]){
+                    Swal.fire(
+                        'Error',
+                        'El Paciente digitado ya ha acabado con su tratamiento correspondiente',
+                        'error'
+                    )
+                }
+        
+                else
+                {
+                    let tratamientoPaciente = tratamientos.filter( tratamiento => tratamiento.pacienteId === documento_paciente && tratamiento.estado !== 'Finalizado' )[0];
+                    
+                    let valor = servicios.filter( servicio => servicio.nombre_servicio === tratamientoPaciente.servicio)[0].precioTotal / tratamientoPaciente.cuotas;
+                    let nombre_paciente = tratamientos.filter( tratamiento => tratamiento.pacienteId === documento_paciente )[0].pacienteNombre;
+                    let tratamiento = tratamientoPaciente.servicio;
+        
+                    agregarFacturas({valor, fecha, documento_paciente, nombre_paciente, documento_cajero, nombre_cajero, tratamiento, estado});
+                    props.history.push('/consultar-facturas');
+                    window.location.reload(true);
+                }
+            }
     
-                agregarFacturas({valor, fecha, documento_paciente, nombre_paciente, documento_cajero, nombre_cajero, tratamiento, estado});
-                props.history.push('/consultar-facturas');
-                window.location.reload(true);
+            else{
+                    let valor = 52500;
+                    let nombre_paciente = pacientes.filter( paciente => paciente.documento === documento_paciente)[0].nombre + ' ' + pacientes.filter( paciente => paciente.documento === documento_paciente)[0].apellido;
+                    let tratamiento = "Consulta General";
+        
+                    agregarFacturas({valor, fecha, documento_paciente, nombre_paciente, documento_cajero, nombre_cajero, tratamiento, estado});
+                    props.history.push('/consultar-facturas');
+                    window.location.reload(true);
+            }
         }
     }
 
@@ -148,13 +170,21 @@ const FormularioFacturas = ({props}) => {
                         <option value="Tratamiento">Tratamiento</option>
                         <option value="Consulta General">Consulta General</option>
                     </select>
+                </div>
+
+                <div className="form-group pl-3" style={{width:'88.5%'}}>
+                    {error.bandera ? <Error mensaje={error.Mensaje}/> : null}
                 </div> 
 
-                <input 
-                    type="submit" 
-                    className="form-control btnForm font-weight-bold col-md-11"
-                    value="Generar Factura"
-                />
+                <div className="ml-2">
+                    <input 
+                        type="submit" 
+                        className="form-control btnForm font-weight-bold"
+                        value="Generar Factura"
+                        style={{width:'91.2%'}}
+                    />
+                </div>
+                
 
             </div>
         </form>     

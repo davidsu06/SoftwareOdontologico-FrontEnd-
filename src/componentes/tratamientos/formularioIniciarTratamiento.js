@@ -3,6 +3,7 @@ import tratamientoContext from '../../context/tratamientos/tratamientoContext';
 import pacienteContext from '../../context/pacientes/pacienteContext';
 import serviciosContext from '../../context/servicios/serviciosContext';
 import Swal from 'sweetalert2';
+import Error from './../admin/Error';
 
 const FormularioCrearServicio = ({props}) => {
 
@@ -19,6 +20,11 @@ const FormularioCrearServicio = ({props}) => {
         saldoAbonado: 0,
         estado: ''
     });
+
+    const [error,guardarError]=useState({
+        Mensaje: 'Hubo Error',
+        bandera: false
+    }); 
 
     useEffect(()=>{
         if(tratamientoseleccionado){
@@ -54,12 +60,34 @@ const FormularioCrearServicio = ({props}) => {
     const submitTratamiento= e =>{
         e.preventDefault();
 
-        if(pacienteId.trim() === '' || servicio.trim() === '' || cuotas <= 0){
+        if(pacienteId.trim() === '' && servicio.trim() === '' && cuotas <= 0){
             Swal.fire(
                 'Error',
                 'Todos los campos son obligatorios',
                 'error'
             )
+            return;
+        }
+        if(pacienteId.trim() === ''){
+            guardarError({
+                Mensaje: 'Ingrese el documento del paciente',
+                bandera: true
+            })
+            return;
+        }
+        if(servicio.trim() === ''){
+            guardarError({
+                Mensaje: 'Ingrese el servicio a realizar para el paciente',
+                bandera: true
+            })
+            return;
+        }
+        if(cuotas <= 0){
+            guardarError({
+                Mensaje: 'Ingrese una cantidad de cuotas valida',
+                bandera: true
+            })
+            return;
         }
 
         else if(tratamientos.filter( tratamiento => tratamiento.pacienteId === pacienteId && tratamiento.estado === 'En Proceso' )[0] && !tratamientoseleccionado ){
@@ -101,45 +129,59 @@ const FormularioCrearServicio = ({props}) => {
             <div className="container mt-4 pfacturas" >
             
                 <form onSubmit={submitTratamiento}>
-                    <div className=" container fondoFormServicio">
+                    <div className="container fondoFormServicio">
 
-                        <div className="form-group">
-                            <label className="font-weight-bold">Documento del Paciente</label>
-                            <input type="text" 
-                                className="form-control col-md-11"
-                                id="Documento"
-                                name="pacienteId" 
-                                placeholder="Digite el documento del paciente"
-                                readOnly={tratamientoseleccionado ? true :null } 
-                                value={pacienteId}
-                                onChange={changeTratamiento}
-                            />
+                        <div className="container align-content-center formularioservicio">
+                            <div className="form-group">
+                                <label className="font-weight-bold">Documento del Paciente</label>
+                                <input type="text" 
+                                    className="form-control"
+                                    name="pacienteId" 
+                                    placeholder="Digite el documento del paciente"
+                                    readOnly={tratamientoseleccionado ? true :null } 
+                                    value={pacienteId}
+                                    onChange={changeTratamiento}
+                                />
+                            </div> 
                         </div>
 
-                        <div className="form-group">
-                            <label className="font-weight-bold">Servicio</label>
-                            <select className="form-control col-md-11" name="servicio" value={servicio} onChange={changeTratamiento}>
-                                <option id="ServicioPaciente">Seleccione....</option>
-                                {servicios
-                                    ? <>{servicios.map(servicio => (
-                                        <option key={servicio._id} value={servicio.nombre_servicio}>{servicio.nombre_servicio}</option>
-                                    ))}</>
+                        <div className="container align-content-center formularioservicio">
+                            <div className="form-group">
+                                <label className="font-weight-bold">Servicio</label>
+                                <select className="form-control" name="servicio" value={servicio} onChange={changeTratamiento}>
+                                    <option value="">Seleccione....</option>
+                                    {servicios
+                                        ? <>{servicios.map(servicio => (
+                                            <option key={servicio._id} value={servicio.nombre_servicio}>{servicio.nombre_servicio}</option>
+                                        ))}</>
 
-                                    : <option>No hay Servicios Disponibles</option>
-                                }
-                            </select>
-                        </div> 
-                        
-                        <div className="form-group">
-                            <label className="font-weight-bold">Cuotas para pago del Tratamiento</label>
-                            <input type="number" id="CuotasPago" className="form-control col-md-11" name="cuotas" placeholder="Digite la cantidad de cuotas" value={cuotas} onChange={changeTratamiento}/>
-                        </div> 
-                        
+                                        : <option>No hay Servicios Disponibles</option>
+                                    }
+                                </select>
+                            </div> 
+                        </div>
 
-                        <div className="form-group mt-3">
+                        <div className="container align-content-center formularioservicio">
+                            <div className="form-group">
+                                <label className="font-weight-bold">Cuotas para pago del Tratamiento</label>
+                                <input type="number"
+                                    className="form-control" 
+                                    name="cuotas" 
+                                    placeholder="Digite la cantidad de cuotas" 
+                                    value={cuotas} 
+                                    onChange={changeTratamiento}/>
+                            </div> 
+                        </div>
+                        
+                        
+                        <div className="form-group pl-3">
+                            {error.bandera ? <Error mensaje={error.Mensaje}/> : null}
+                        </div> 
+
+                        <div className="form-group">
                             <input type="submit" id="GuardarIniciarTratamiento"
-                            className="form-control font-weight-bold btn-success col-md-11" 
-                            value= {tratamientoseleccionado ? "Editar Tratamiento" : "Iniciar Tratamiento"}
+                                className="form-control btnFormServicio font-weight-bold"
+                                value= {tratamientoseleccionado ? "Editar Tratamiento" : "Iniciar Tratamiento"}
                             />
                         </div>
                     </div>          

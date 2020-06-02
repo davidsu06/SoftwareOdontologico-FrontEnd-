@@ -37,7 +37,7 @@ const FormularioCrearServicio = ({props}) => {
     const submit= e =>{
         e.preventDefault();
 
-        if (servicio.nombre_servicio.trim()=== "" && servicio.precioTotal <= 0 && servicio.cantidadCitas <= 0) {
+        if (servicio.nombre_servicio.trim() === "" && servicio.precioTotal <= 0 && servicio.cantidadCitas <= 0 && file === null) {
             Swal.fire(
                 'Error',
                 'Todos los campos son obligatorios',
@@ -63,6 +63,13 @@ const FormularioCrearServicio = ({props}) => {
         if(servicio.cantidadCitas <= 0){
             guardarError({
                 Mensaje: 'Ingrese una cantidad de citas válida',
+                bandera: true
+            })
+            return;
+        }
+        if(file === null){
+            guardarError({
+                Mensaje: 'Adjunte una imagen para el servicio',
                 bandera: true
             })
             return;
