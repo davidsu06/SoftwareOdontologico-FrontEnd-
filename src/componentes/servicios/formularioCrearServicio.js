@@ -130,8 +130,8 @@ const FormularioCrearServicio = ({props}) => {
 
                         <div className="container align-content-center formularioservicio">
                             <div className="form-group">
-                                <label className="font-weight-bold">Cantidad Citas del Servicio</label>
-                                <input type="file" className="form-control" name="cantidadCitas" onChange={handleChangeFile}/>
+                                <label className="font-weight-bold">Imagen Servicio</label>
+                                <input type="file" className="form-control" name="file" accept="image/*" onChange={handleChangeFile}/>
                             </div> 
                         </div>
 
