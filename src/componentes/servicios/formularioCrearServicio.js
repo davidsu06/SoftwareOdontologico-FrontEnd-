@@ -1,4 +1,4 @@
-import React,{useState,useContext, useEffect} from 'react';
+import React, {useState,useContext, useEffect} from 'react';
 import serviciosContext from '../../context/servicios/serviciosContext';
 import Error from './../admin/Error';
 import Swal from 'sweetalert2';
@@ -11,13 +11,28 @@ const FormularioCrearServicio = ({props}) => {
     const [servicio,guardarservicio]= useState({
         nombre_servicio : '',
         precioTotal: 0,
-        cantidadCitas: ''
+        cantidadCitas: '',
     });
+
+    const [file, guardarFile] = useState(null);
 
     const [error,guardarError]=useState({
         Mensaje: 'Hubo Error',
         bandera: false
     }); 
+
+    useEffect(()=>{
+        if(servicioseleccionado){
+            guardarservicio(servicioseleccionado);
+        }
+        else{
+            guardarservicio({
+                nombre_servicio : '',
+                precioTotal: 0,
+                cantidadCitas: 0
+            });
+        }
+    },[servicioseleccionado]);
 
     const submit= e =>{
         e.preventDefault();
@@ -54,31 +69,20 @@ const FormularioCrearServicio = ({props}) => {
         }
 
         else{
+            servicio.imagen = `${file.name}`;
+            const formData = new FormData(); formData.append('file', file);
+
             if(servicioseleccionado){
-                modificarServicio(servicio)
+                modificarServicio(servicio, formData);
             }
 
             else{
-                agregarServicios(servicio);
+                agregarServicios(servicio, formData);
             }
         }
 
         props.history.push('/consultar-servicios');
     }
-
-    useEffect(()=>{
-        if(servicioseleccionado){
-            guardarservicio(servicioseleccionado);
-        }
-        else{
-            guardarservicio({
-                nombre_servicio : '',
-                precioTotal: 0,
-                cantidadCitas: 0
-            });
-        }
-    },[servicioseleccionado]);
-    
 
     const Guardar = e =>{
         guardarservicio({
@@ -90,7 +94,12 @@ const FormularioCrearServicio = ({props}) => {
             bandera: false
         })
     }
-    
+
+    const handleChangeFile = (e) => {
+        const file = e.target.files[0]; 
+        guardarFile(file);
+    }
+        
     return (  
         <>
             <div className="container mt-4 pfacturas" >
@@ -119,6 +128,13 @@ const FormularioCrearServicio = ({props}) => {
                             </div> 
                         </div>
 
+                        <div className="container align-content-center formularioservicio">
+                            <div className="form-group">
+                                <label className="font-weight-bold">Cantidad Citas del Servicio</label>
+                                <input type="file" className="form-control" name="cantidadCitas" onChange={handleChangeFile}/>
+                            </div> 
+                        </div>
+
                         <div className="form-group pl-3">
                             {error.bandera ? <Error mensaje={error.Mensaje}/> : null}
                         </div> 
@@ -136,5 +152,4 @@ const FormularioCrearServicio = ({props}) => {
         </>
     );
 }
- 
 export default FormularioCrearServicio;

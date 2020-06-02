@@ -9,7 +9,7 @@ const Servicio = ({servicio,usuario}) => {
     const {eliminarServicio, ServicioActual} = useContext(servicioState);
 
     // Funcion se ejecuta cuando el usuario selecciona el btn de elimnar Servicio
-    const onClickEliminar = id => {
+    const onClickEliminar = () => {
         Swal.fire({
             title: '¿Estas seguro?',
             text: "No se podrá revertir esta acción!",
@@ -20,7 +20,7 @@ const Servicio = ({servicio,usuario}) => {
             confirmButtonText: 'Si, eliminar!'
           }).then((result) => {
             if (result.value) {
-                eliminarServicio(id);  
+                eliminarServicio(servicio);  
             }
           })  
     }

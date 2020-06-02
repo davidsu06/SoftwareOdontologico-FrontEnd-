@@ -25,9 +25,15 @@ const ServiciosState = props => {
     // Funciones
 
     //Agrega un Servicio
-    const agregarServicios = async servicio => {
+    const agregarServicios = async (servicio, formData) => {
+
         try {
-            const resultado = await clienteAxios.post('/api/servicios', servicio);
+
+            await Promise.all([
+                clienteAxios.post('/api/servicios', servicio),
+                clienteAxios.post('/api/archivos', formData)
+            ]);
+            
              Swal.fire(
                 'Correcto',
                 'El Servicio se ha creado correctamente',
@@ -36,8 +42,7 @@ const ServiciosState = props => {
             
             dispatch({
                 type: CREAR_SERVICIO,    
-                payload: resultado.data
-                
+                payload: servicio
             })
         } catch (error) {
             console.log(error);                
@@ -59,10 +64,13 @@ const ServiciosState = props => {
     }
 
     //Elimina un Servicio
-    const eliminarServicio = async servicioId => {
+    const eliminarServicio = async servicio => {
         try {
-            
-            await clienteAxios.delete(`/api/servicios/${servicioId}`);
+            await Promise.all([
+                clienteAxios.delete(`/api/servicios/${servicio._id}`),
+                clienteAxios.delete(`/api/archivos/${servicio.imagen}`)
+            ]);
+
             Swal.fire(
                 'Eliminado!',
                 'El Servicio se ha eliminado correctamente.',
@@ -70,7 +78,7 @@ const ServiciosState = props => {
               )
             dispatch({
                 type: ELIMINAR_SERVICIO,
-                payload: servicioId
+                payload: servicio._id
             })
         }catch (error) {
             console.log(error);
@@ -95,9 +103,14 @@ const ServiciosState = props => {
     }
 
     // Modifica un Servicio
-    const modificarServicio = async servicio => {
+    const modificarServicio = async (servicio, formData) => {
         try {
-            await clienteAxios.put(`/api/servicios/${servicio._id}`, servicio);
+            await Promise.all([
+                clienteAxios.put(`/api/servicios/${servicio._id}`, servicio),
+                clienteAxios.post('/api/archivos', formData)
+            ]);
+
+
             Swal.fire(
                 'Correcto',
                 'El Servicio se ha modificado correctamente',

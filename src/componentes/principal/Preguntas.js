@@ -8,9 +8,9 @@ const Preguntas = () => {
             
 
             <div className="container" >
-                <div class="accordion" id="accordionExample">
+                <div className="accordion" id="accordionExample">
                     <h3 className="h3 mt-5"><b>Servicios</b></h3>
-                    <div class="card">
+                    <div className="card">
                         <div className="card-header" id="headingOne" style={{backgroundColor:'#196B81'}}>
                             <h2 className="mb-0">
                                 <button className="btn btn-link text-white collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">

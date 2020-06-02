@@ -23,12 +23,14 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+
 const Servicio = ({servicio}) =>{
 
     const [modalStyle] = useState(getModalStyle);
     const [open, setOpen] = useState(false);
     const classes = useStyles();
-    
+    const url_imagen = "https://stark-dusk-34785.herokuapp.com/api/archivos";
+
     const handleOpen = () => {
         setOpen(true);
     };
@@ -39,9 +41,9 @@ const Servicio = ({servicio}) =>{
 
     return (
         <div className="card" style={{width: '19rem', margin: '1cm'}}>
-            <img src={servicio.img} className="card-img-top" alt={servicio.nombre} />
+            <img src={`${url_imagen}/${servicio.imagen}`} className="card-img-top" alt={servicio.nombre_servicio} />
             <div className="card-body">
-                <h5 className="card-title">{servicio.nombre}</h5>
+                <h5 className="card-title">{servicio.nombre_servicio}</h5>
             </div>
             <div className="card-footer justify-content-center">
                 <div className="text-center">
@@ -59,11 +61,11 @@ const Servicio = ({servicio}) =>{
                 <h1 id="simple-modal-title">Detalles del Servicio</h1>
                     <div className="text-left">
                         <figure className="figure border border-dark">
-                            <img src={servicio.img} className="figure-img img-fluid rounded" alt={servicio.nombre} />
+                            <img src={`${url_imagen}/${servicio.imagen}`} className="figure-img img-fluid rounded" alt={servicio.nombre_servicio} />
                         </figure>
-                        <p><b>Nombre:</b> {servicio.nombre} </p>
-                        {/* <p><b>Costo Tratamiento:</b> ${new Intl.NumberFormat("de-DE").format(servicio.precioTotal)}</p>
-                        <p><b>Plan de Citas:</b> {servicio.cantidadCitas}</p> */}
+                        <p><b>Nombre:</b> {servicio.nombre_servicio} </p>
+                        <p><b>Costo Tratamiento:</b> ${new Intl.NumberFormat("de-DE").format(servicio.precioTotal)}</p>
+                        <p><b>Plan de Citas:</b> {servicio.cantidadCitas}</p>
                     </div>
                 </div>
             </Modal>
