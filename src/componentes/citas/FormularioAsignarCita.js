@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import citaContext from '../../context/citas/citaContext';
 import tratamientoContext from '../../context/tratamientos/tratamientoContext';
+import pacienteContext from '../../context/pacientes/pacienteContext';
 import Swal from 'sweetalert2';
 import Error from './../admin/Error';
 
@@ -9,6 +10,7 @@ const FormularioAsignarCita = ({redireccion}) => {
     const citasContext = useContext(citaContext);
     const { citasignada, modificarCita, citaExistentePaciente, citaexistente } = citasContext;
     const { tratamientos, listarTratamientos } = useContext(tratamientoContext);
+    const { pacientes, listarPacientes } = useContext(pacienteContext);
     const {fecha, hora, _id} = citasignada;
     let newfecha
 
@@ -34,6 +36,7 @@ const FormularioAsignarCita = ({redireccion}) => {
         }
 
         listarTratamientos();
+        listarPacientes();
         // eslint-disable-next-line
     }, [asignarPaciente.pacienteId, asignarPaciente.tipo, citaExistentePaciente])
 
@@ -71,52 +74,62 @@ const FormularioAsignarCita = ({redireccion}) => {
             return;
         }
         
-        else
-        {
-            if(citaexistente)
-            {
+        else{
+            if(!pacientes.filter( paciente => paciente.documento === asignarPaciente.pacienteId)[0]){
+                Swal.fire(
+                    'Error',
+                    'El Paciente digitado no se encuentra registrado en el sistema',
+                    'error'
+                )
+                return;
+            }
+
+            else if(citaexistente){
                 Swal.fire(
                     'Error',
                     'El paciente digitado ya cuenta con una cita asignada',
                     'error'
                 )
+                return;
             }
 
-            else if(!tratamientos.filter( tratamiento => tratamiento.pacienteId === asignarPaciente.pacienteId && tratamiento.estado !== 'Finalizado')[0]){
-                Swal.fire(
-                    'Error',
-                    'El Paciente digitado actualmente no se encuentra en un tratamiento o no se encuentra registrado en el sistema',
-                    'error'
-                )
-            }
+            else{
+                if(asignarPaciente.tipo === 'Tratamiento'){
+                    if(!tratamientos.filter( tratamiento => tratamiento.pacienteId === asignarPaciente.pacienteId && tratamiento.estado !== 'Finalizado')[0]){
+                        Swal.fire(
+                            'Error',
+                            'El Paciente digitado actualmente no se encuentra en un tratamiento',
+                            'error'
+                        )
+                        return;
+                    }
+                }
 
-            else 
-            {
                 actualizarIdPaciente({
                     pacienteId: asignarPaciente.pacienteId
                 })
-
+    
                 modificarCita({
                     _id,
                     pacienteId: asignarPaciente.pacienteId,
                     estado: 'Asignado',
                     tipo: asignarPaciente.tipo
                 })
-
+    
                 Swal.fire(
                     'Correcto',
                     'La cita se ha asignado correctamente',
                     'success'
                 )
-
+    
                 guardarasignarPaciente({
                     pacienteId: '',
                     tipo: ''
                 })
-
+    
                 redireccion(true);
-            }
-        }   
+            }    
+        }
     }
 
     return ( 
