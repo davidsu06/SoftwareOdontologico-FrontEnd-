@@ -193,15 +193,22 @@ const FormularioCrearHistoria = ({props}) => {
                     </div>
 
                     <div className="form-group ml-3">
-                        <label className="font-weight-bold">Tratamiento</label>
+                        <label className="font-weight-bold">Motivo</label>
                         {!historiaseleccionado
                             ?(
                                 <select className="form-control col-md-11" name="servicio" onChange={changeHistoria} value={servicio}>
                                     <option value="">Seleccione....</option>
                                     {!tratamiento
-                                        ? ( <option>No Hay Tratamientos disponibles</option> )
+                                        ? ( 
+                                            <option value = "Consulta General">Consulta General</option>
+                                        )
 
-                                        : ( <option key={tratamiento._id} value={tratamiento.servicio}>{tratamiento.servicio}</option> )
+                                        : (
+                                            <> 
+                                                <option value={tratamiento.servicio}>{tratamiento.servicio}</option>
+                                                <option value = "Consulta General">Consulta General</option>
+                                            </>
+                                        )
                                     }
                                 </select >
                             )

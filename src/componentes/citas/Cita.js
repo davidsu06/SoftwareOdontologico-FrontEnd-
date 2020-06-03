@@ -205,11 +205,12 @@ const Cita = ({cita, tratamiento}) => {
                                 :
                                 (
                                     <>
+                                     
                                         <Tooltip placement="top" overlay="Crear Historia" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
                                             <Link to={'/crear-hist-clinica'} type="button" className="far fa-address-book text-dark mr-3 ml-2" onClick={() => onClickCrearHistoria(cita)}></Link>
                                         </Tooltip>
-
-
+                                     
+                                        
                                         <Tooltip placement="top" overlay="Detalles Cita" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
                                             <i type="button" onClick={handleOpen} className="fas fa-info-circle mr-3"></i>
                                         </Tooltip>   
