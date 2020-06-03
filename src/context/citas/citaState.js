@@ -69,7 +69,7 @@ const CitaState = props => {
             
             dispatch({
                 type: LISTAR_CITA,
-                payload: resultado.data.citas.filter(cita => cita.estado !== 'Cumplida')
+                payload: resultado.data.citas.filter(cita => cita.estado !== 'Cumplida' && cita.tipo === 'Tratamiento')
             })
         } catch (error) {
             console.log(error);                
