@@ -12,6 +12,7 @@ const ListadoHistorias = () => {
     const {tratamientos, listarTratamientos} = useContext(tratamientoContext);
     const {usuario} = useContext(authContext);
     let historiasPaciente;
+    let tratamientosPaciente;
     
     useEffect(() => {
         listarHistoria();
@@ -21,9 +22,11 @@ const ListadoHistorias = () => {
 
     if(usuario){
         historiasPaciente = historias.filter(historia => historia.pacienteId === usuario.documento);
+        tratamientosPaciente = tratamientos.filter(tratamiento => tratamiento.pacienteId === usuario.documento)
     }
     else{
         historiasPaciente = [];
+        tratamientosPaciente = [];
     }
     
     // Paginacion
@@ -58,7 +61,7 @@ const ListadoHistorias = () => {
             <div className="card">
                 <div className="card-header">
                     {usuario
-                        ?
+                        &&
                         (
                             <div className="row">
                                 <div className="col">
@@ -66,7 +69,9 @@ const ListadoHistorias = () => {
                                     <p> <b>Documento:</b> {usuario.documento}</p>
                                     <p> <b>Teléfono:</b> {usuario.telefono}</p>
                                     <p> <b>Dirección:</b> {usuario.direccion}</p>
-                                    <p> <b>Tratamiento Actual:</b> {tratamientos.filter(tratamiento => tratamiento.pacienteId === usuario.documento && tratamiento.estado !== 'Finalizado')[0].servicio} </p>
+                                    <p> <b>Tratamientos Realizados:</b> {''} {tratamientosPaciente.map( tratamiento => tratamiento.servicio)} {'  '}</p>
+                                    <p> <b>Tratamiento Actual:</b>{' '}{tratamientosPaciente.map( tratamiento => tratamiento.estado !== 'Finalizado' && tratamiento.servicio) }</p>
+                                        
                                 </div>
 
                                 <div className="col">
@@ -76,8 +81,6 @@ const ListadoHistorias = () => {
 
                             
                         )
-
-                        :null
                     }
                 </div>
                 

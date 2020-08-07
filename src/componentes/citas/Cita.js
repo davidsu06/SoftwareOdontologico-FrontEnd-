@@ -69,6 +69,16 @@ const Cita = ({cita, tratamiento}) => {
         CitaActual(cita);        
     }
 
+    const selectCita = e =>{
+        actualizarSolicitud(e.target.value);
+
+        if(e.target.value === ''){
+            actualizarHabilitado(false);
+        } else {
+            actualizarHabilitado(true);
+        }     
+    }
+
     const onClickEliminar = id => {
         
         Swal.fire({
@@ -176,18 +186,18 @@ const Cita = ({cita, tratamiento}) => {
                                 ? 
                             
                                     
-                                <div  className="ml-auto" style={{display:'flex'}}>
-                                    <Tooltip placement="top" overlay="Solicitar Cita" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
-                                        <button href="#!"  className="ml-3 btn btn-link" onClick={() => onClickSolicitar()} disabled={!habilitado ? true : false}><i className="fas fa-calendar-day text-dark font-weight-bold"></i></button>
-                                    </Tooltip>
+                                <div  className="ml-auto" style={{display:'flex', alignItems:'center'}}>
                                    
-                                    <select name="tipo" style={{width:'250px'}} disabled={!habilitado ? true : false} onChange={e =>actualizarSolicitud(e.target.value)}>
-                                        <option value="">Seleccione....</option>
+                                    <select name="tipo" onChange={selectCita} style={{width:'250px', height:'100%'}}>
+                                        <option value="">Seleccionar Tipo Cita...</option>
                                         <option value="Tratamiento">Tratamiento</option>
                                         <option value="Consulta General">Consulta General</option>
                                     </select>
 
-                                    <input type="checkbox" className="ml-3 mt-2" name="habilitado" onChange={e => actualizarHabilitado(e.target.checked)} value={habilitado}/>
+                                    
+                                    <Tooltip placement="top" overlay="Solicitar Cita" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
+                                        <button href="#!"  className="ml-3 btn btn-primary" onClick={() => onClickSolicitar()} disabled={!habilitado} >Solicitar Cita</button>
+                                    </Tooltip>
                                 </div>
                            
                                 :
