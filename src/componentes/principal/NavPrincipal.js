@@ -32,13 +32,13 @@ const NavPrincipal = ({navegacion, actualizarNavegacion}) => {
                         </a>
                     </li>
 
-                    {/* <li className={navegacion === 'noticias' ?`${claseNav} active` :claseNav}>
+                    <li className={navegacion === 'noticias' ?`${claseNav} active` :claseNav}>
                         <a className="nav-link" href="#!"
                                 style={{fontSize:'18px'}}
                                 onClick={()=> actualizarNavegacion('noticias')}
                             ><i className="far fa-newspaper mr-1"></i>Noticias
                         </a>
-                    </li> */}
+                    </li>
 
                     <li className={navegacion === 'servicios' ?`${claseNav} active` :claseNav}>
                         <a className="nav-link" href="#!"

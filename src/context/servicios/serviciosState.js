@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import serviciosContext from './serviciosContext';
 import serviciosReducer from './serviciosReducer';
 import clienteAxios from '../../config/axios';
+import axios from 'axios'
 import Swal from 'sweetalert2';
 
 import { 
@@ -21,19 +22,17 @@ const ServiciosState = props => {
     }
 
     const [state, dispatch] = useReducer(serviciosReducer, initialState);
+    const urlCloudinary = 'https://api.cloudinary.com/v1_1/dibu3geyp';
 
     // Funciones
-
     //Agrega un Servicio
     const agregarServicios = async (servicio, formData) => {
 
         try {
+            const archivo = await axios.post(`${urlCloudinary}/image/upload`, formData);
+            servicio.imagen = archivo.data.url;
+            await clienteAxios.post('/api/servicios', servicio);
 
-            await Promise.all([
-                clienteAxios.post('/api/servicios', servicio),
-                clienteAxios.post('/api/archivos', formData)
-            ]);
-            
              Swal.fire(
                 'Correcto',
                 'El Servicio se ha creado correctamente',
@@ -66,10 +65,27 @@ const ServiciosState = props => {
     //Elimina un Servicio
     const eliminarServicio = async servicio => {
         try {
-            await Promise.all([
-                clienteAxios.delete(`/api/servicios/${servicio._id}`),
-                clienteAxios.delete(`/api/archivos/${servicio.imagen}`)
-            ]);
+            const api_key = '588615657265518';
+            const api_secret = 'iK--dWYgcBT3ndMpHyr06iWd8PM';
+            
+            const nameFile = servicio.imagen.substring( servicio.imagen.lastIndexOf('/') + 1);
+            const lengthFormato = servicio.imagen.substring(servicio.imagen.lastIndexOf('.')).length;
+            const public_id = `odontoapp/${nameFile.substring( 0 , nameFile.length - lengthFormato)}`
+
+            await clienteAxios.delete(`/api/servicios/${servicio._id}`);
+            const response = await axios.delete(`${urlCloudinary}/resources/image/upload`, {
+                withCredentials: false,
+                headers:{
+                    'Access-Control-Allow-Origin' : '*',
+                    'Access-Control-Allow-Methods':'DELETE',
+                    'Authorization' : `Basic ${btoa(api_key + ":" + api_secret)}`
+                },
+                params: {
+                   public_ids: public_id
+                }
+            })
+           
+            console.log(response.data)
 
             Swal.fire(
                 'Eliminado!',
@@ -109,7 +125,6 @@ const ServiciosState = props => {
                 clienteAxios.put(`/api/servicios/${servicio._id}`, servicio),
                 clienteAxios.post('/api/archivos', formData)
             ]);
-
 
             Swal.fire(
                 'Correcto',

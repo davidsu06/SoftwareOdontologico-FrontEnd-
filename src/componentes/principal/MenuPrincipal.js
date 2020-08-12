@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import NavPrincipal from './NavPrincipal';
-// import ListadoNoticias from './Noticias/ListadoNoticias';
+import ListadoNoticias from './Noticias/ListadoNoticias';
 import SaludDental from './SaludDental';
 import Servicios from './Servicios/ListadoServicios';
 import Preguntas from './Preguntas';
@@ -26,11 +26,11 @@ const MenuPrincipal = () => {
             :null
         }
 
-        {/* {navegacion === 'noticias' 
+        {navegacion === 'noticias' 
             ? <ListadoNoticias />
 
             :null
-        } */}
+        }
 
         {navegacion === 'servicios' 
             ? <Servicios />

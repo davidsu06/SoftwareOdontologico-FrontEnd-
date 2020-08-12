@@ -2,6 +2,7 @@ import React from 'react';
 import im1 from '../../media/imagenes inicio/dental1.jpg'
 import im2 from '../../media/imagenes inicio/dental2.jpg'
 import im3 from '../../media/imagenes inicio/dental3.jpg'
+import im4 from '../../media/imagenes inicio/hilo-dental.jpg'
 import Styled from '@emotion/styled';
 
 const SaludDental = () => {
@@ -80,18 +81,15 @@ const SaludDental = () => {
                 </section>
 
                 <section className="col-md-3 bg-success text-white p-3">
-                    <iframe src="https://www.youtube.com/embed/jK5imyP1VQ4" 
-                        frameBorder="0"
-                        title="Uso correcto de la seda dental" 
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                        allowFullScreen
-                        className="w-100 h-50"
-                        style={{marginTop:'1cm'}}>
-                    </iframe>
+                    <img 
+                        src={im4}
+                        alt="Seda dental" 
+                        className="w-100 h-50 mb-3"
+                        style={{marginTop:'1cm'}}
+                    />
                     <h5 className="h5"><b>Uso correcto de la seda dental</b></h5>
                     <p>¡Limpiate los dientes de la mejor manera!<br/>
-                        En el vídeo se explica como lavarse los dientes de la mejor manera empleando la seda dental.<br/><br/>
-                        Elaborado por: Consejo General de Dentistas de España
+                        Para una mejor higiene emplea siempre el hilo dental.<br/><br/>
                     </p>
                 </section>
 

@@ -76,8 +76,10 @@ const FormularioCrearServicio = ({props}) => {
         }
 
         else{
-            servicio.imagen = `${file.name}`;
-            const formData = new FormData(); formData.append('file', file);
+            const formData = new FormData()
+			formData.append("file", file)
+			formData.append("upload_preset", "ztn5fijc")
+			formData.append("cloud_name", "dibu3geyp")
 
             if(servicioseleccionado){
                 modificarServicio(servicio, formData);

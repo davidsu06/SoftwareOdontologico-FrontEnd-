@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import Noticia from './Noticia';
 
 const ListadoNoticias = () => {
@@ -12,8 +11,10 @@ const ListadoNoticias = () => {
                 const key = 'ce2e173795f641ef89021a8e418b4dfb';
                 const url = `https://newsapi.org/v2/top-headlines?country=co&category=health&apiKey=${key}`;
 
-                const respuesta = await axios.get(url);
-                guardarNoticias(respuesta.data.articles);
+                const result = await fetch( url, { credentials: 'omit' } );
+                const response = await result.json();
+
+                guardarNoticias(response.articles);
                 
             } catch (error) {
                 console.log(error)
