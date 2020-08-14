@@ -67,7 +67,7 @@ const FormularioCrearServicio = ({props}) => {
             })
             return;
         }
-        if(file === null){
+        if(file === null && !servicioseleccionado){
             guardarError({
                 Mensaje: 'Adjunte una imagen para el servicio',
                 bandera: true
@@ -76,17 +76,12 @@ const FormularioCrearServicio = ({props}) => {
         }
 
         else{
-            const formData = new FormData()
-			formData.append("file", file)
-			formData.append("upload_preset", "ztn5fijc")
-			formData.append("cloud_name", "dibu3geyp")
-
             if(servicioseleccionado){
-                modificarServicio(servicio, formData);
+                modificarServicio(servicio, file);
             }
 
             else{
-                agregarServicios(servicio, formData);
+                agregarServicios(servicio, file);
             }
         }
 
