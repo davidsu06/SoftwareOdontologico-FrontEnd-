@@ -33,6 +33,7 @@ import MisFacturas from './componentes/admin/MisFacturas';
 import FacturaPDF from './componentes/admin/FacturaPDF';
 import IniciarTratamiento from './componentes/admin/IniciarTratamiento';
 import ConsultarTratamiento from './componentes/admin/ConsultarTratamientos';
+import JenkinsEmail from './componentes/jenkins/JenkinsEmail';
 
 //Revisar si se tiene un token
 const token = localStorage.getItem('token');
@@ -82,6 +83,7 @@ function App() {
                           <Route exact path="/iniciar-tratamiento" component={IniciarTratamiento}/>
                           <Route exact path="/editar-tratamiento" component={IniciarTratamiento}/>
                           <Route exact path="/consultar-tratamientos" component={ConsultarTratamiento}/>
+                          <Route exact path="/jenkins-email" component={JenkinsEmail}/>
                         </Switch>
                       </Router>
                     </TratamientoState>
