@@ -3,7 +3,7 @@ import historiaContext from '../../context/historia/historiaContext';
 import tratamientoContext from '../../context/tratamientos/tratamientoContext';
 import authContext from '../../context/autenticacion/authContext';
 import Historia from './Historia';
-import img1 from '../../media/Logo.png';
+import img1 from '../../assets/img/Logo.png';
 import Pagination from '../layout/paginacion';
 
 const ListadoHistorias = () => {

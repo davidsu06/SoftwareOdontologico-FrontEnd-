@@ -1,62 +1,46 @@
-import React,{Fragment,useState, useContext, useEffect} from 'react';
-import NavbarAdmin from '../layout/NavbarAdmin';
-import MenuAdmin from '../layout/MenuAdmin';
+import React,{ useContext, useEffect } from 'react';
+import Layout from '../layout/Layout';
 import FormularioTratamiento from '../tratamientos/formularioIniciarTratamiento';
 import TratamientoContext from '../../context/tratamientos/tratamientoContext';
 import AuthContext from '../../context/autenticacion/authContext';
 
 const CrearFactura = (props) => {
+  const { usuarioAutenticado } = useContext(AuthContext);
 
-    const [bandera,actualizarBandera]=useState(true);
+  const { tratamientoseleccionado } = useContext(TratamientoContext);
+  let header;
 
-    const authContext = useContext(AuthContext);
-    const { usuarioAutenticado } = authContext;
+  if (tratamientoseleccionado !== null) {
+    header = "Editar Tratamiento"
+  } else {
+    header = "Iniciar Tratamiento"
+  }
 
-    const { tratamientoseleccionado } = useContext(TratamientoContext);
-    let header;
+  
+  useEffect(() => {
+    usuarioAutenticado();
+    // eslint-disable-next-line
+  }, [])
 
-    if (tratamientoseleccionado !== null) {
-      header = "Editar Tratamiento"
-    }
+  // Protecting component
+  const styleNotAuth = {
+    display: 'flex',
+    padding: '1rem 0rem 2rem 1rem',
+    justifyContent: 'center'
+  }
 
-    else{
-      header = "Iniciar Tratamiento"
-    }
+  if (typeof window !== 'undefined') {
+      const item = localStorage.getItem('token');
+      if (!item) {
+          return <h3 style={styleNotAuth}>No autorizado</h3>
+      }
+  }
 
-    
-    useEffect(() => {
-      usuarioAutenticado();
-      // eslint-disable-next-line
-    }, [])
-
-    // Protecting component
-    const styleNotAuth = {
-      display: 'flex',
-      padding: '1rem 0rem 2rem 1rem',
-      justifyContent: 'center'
-    }
-
-    if (typeof window !== 'undefined') {
-        const item = localStorage.getItem('token');
-        if (!item) {
-            return <h3 style={styleNotAuth}>No autorizado</h3>
-        }
-    }
-
-    return (  
-        <Fragment>
-             <div className="d-flex" id="wrapper">
-               {bandera ?  <NavbarAdmin/> : null}
-                <div id="page-content-wrapper">
-                  <MenuAdmin titulo={header} actualizarBandera={actualizarBandera} Bandera={bandera}/>
-                  <div className="container-fluid">
-                    <FormularioTratamiento props={props} />
-                  </div> 
-                </div> 
-            </div> 
-            
-        </Fragment>
-    );
+  return (  
+    <Layout title={header}>
+      <FormularioTratamiento props={props} />
+    </Layout>
+  );
 }
  
 export default CrearFactura;

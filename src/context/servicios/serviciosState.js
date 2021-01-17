@@ -25,7 +25,6 @@ const ServiciosState = props => {
     // Funciones
     //Agrega un Servicio
     const agregarServicios = async (servicio, file) => {
-
         try {
             const formData = new FormData();
             formData.append('file', file)
@@ -51,7 +50,6 @@ const ServiciosState = props => {
 
     //Lista los servicios del sistema
     const listarServicios = async () => {
-        
         try {
             const resultado = await clienteAxios.get('/api/servicios');
             dispatch({
@@ -77,7 +75,8 @@ const ServiciosState = props => {
                 'Eliminado!',
                 'El Servicio se ha eliminado correctamente.',
                 'success'
-              )
+            );
+            
             dispatch({
                 type: ELIMINAR_SERVICIO,
                 payload: servicio._id

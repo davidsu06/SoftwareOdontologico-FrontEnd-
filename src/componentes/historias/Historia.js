@@ -1,6 +1,5 @@
 import React, {useContext} from 'react';
 import Tooltip from 'rc-tooltip';
-import 'rc-tooltip/assets/bootstrap.css';
 import historiaContext from '../../context/historia/historiaContext';
 import citaContext from '../../context/citas/citaContext';
 import { Link } from 'react-router-dom';

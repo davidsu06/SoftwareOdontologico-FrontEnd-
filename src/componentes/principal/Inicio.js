@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react';
 import {Link} from 'react-router-dom';
-import im1 from '../../media/imagenes inicio/odontologia1.jpg';
-import im2 from '../../media/imagenes inicio/odontologia2.jpg';
-import im3 from '../../media/imagenes inicio/odontologia3.jpg';
-import icono1 from '../../media/imagenes inicio/dental.png';
-import icono2 from '../../media/imagenes inicio/calendario.png';
-import icono3 from '../../media/imagenes inicio/pregunta.png';
-import im4 from '../../media/imagenes inicio/odontologia4.jpg';
+import im1 from '../../assets/img/odontologia1.jpg';
+import im2 from '../../assets/img/odontologia2.jpg';
+import im3 from '../../assets/img/odontologia3.jpg';
+import icono1 from '../../assets/img/dental.png';
+import icono2 from '../../assets/img/calendario.png';
+import icono3 from '../../assets/img/pregunta.png';
+import im4 from '../../assets/img/odontologia4.jpg';
 import Styled from '@emotion/styled';
 
 const Inicio = ({actualizarNavegacion}) => {

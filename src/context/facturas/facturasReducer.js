@@ -6,8 +6,7 @@ import {
     FACTURA_NULL
  } from '../../types';
 
-
-export default (state, action) => {
+const facturaReducer = (state, action) => {
     switch(action.type) {
 
         case CREAR_FACTURA:
@@ -44,3 +43,5 @@ export default (state, action) => {
             return state;
     }
 }
+
+export default facturaReducer;

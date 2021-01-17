@@ -1,18 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
-import NavbarAdmin from '../layout/NavbarAdmin';
-import MenuAdmin from '../layout/MenuAdmin';
+import Layout from '../layout/Layout';
 import citaContext from '../../context/citas/citaContext';
 import CitaPaciente from './CitaPaciente';
 import AuthContext from '../../context/autenticacion/authContext';
 import Pagination from '../layout/paginacion';
 
 const MisCitas = () => {
-
-    const [bandera,actualizarBandera]=useState(true);
-
-    const authContext = useContext(AuthContext);
-    const {  usuario, usuarioAutenticado } = authContext;
-    
+    const {  usuario, usuarioAutenticado } = useContext(AuthContext);
     
     useEffect(() => {
         usuarioAutenticado();
@@ -57,70 +51,53 @@ const MisCitas = () => {
     }
 
     return ( 
-        <>
+        <Layout title='Mis citas'>
+            <div className="container mt-4 col-8">
+            {citasfiltradas.length === 0 
+                ? 
+                (<h3 className="text-center">No tiene ninguna cita pendiente</h3>)
+                :
+                (
+                    <table className="table table-bordered">
 
-        <div className="d-flex" id="wrapper">
+                        <thead>
+                            
+                            <tr>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Hora</th>
+                                <th scope="col">Tipo Cita</th>
+                                <th scope="col" className="text-center">Acciones</th>
+                            </tr>
 
-            {bandera ?  <NavbarAdmin/> : null}
-            <div id="page-content-wrapper">
+                        </thead>
 
-                <MenuAdmin titulo="Mis citas" actualizarBandera={actualizarBandera} Bandera={bandera}/>
+                        <tbody>
 
-                <div className="container-fluid">
+                                {
+                                currentPosts.map( citafiltrada => (
+                                    <CitaPaciente 
+                                        key={citafiltrada._id}
+                                        cita={citafiltrada}
+                                    />
+                                ))
+                                }
+                        
 
-                    <div className="container mt-4 col-8">
+                        </tbody>
 
-                    {
-                        citasfiltradas.length === 0 
-                        ? 
-                        (<h3 className="text-center">No tiene ninguna cita pendiente</h3>)
-                        :
-                        (
-                            <table className="table table-bordered">
-
-                                <thead>
-                                    
-                                    <tr>
-                                        <th scope="col">Fecha</th>
-                                        <th scope="col">Hora</th>
-                                        <th scope="col">Tipo Cita</th>
-                                        <th scope="col" className="text-center">Acciones</th>
-                                    </tr>
-
-                                </thead>
-
-                                <tbody>
-
-                                        {
-                                        currentPosts.map( citafiltrada => (
-                                            <CitaPaciente 
-                                                key={citafiltrada._id}
-                                                cita={citafiltrada}
-                                            />
-                                        ))
-                                        }
-                                
-
-                                </tbody>
-
-                            </table>
-                        )
-                    }
-                    </div>
-
-                </div>
-
+                    </table>
+                )
+            }
             </div>
 
-        </div> 
-        <Pagination
-            postsPerPage={postsPerPage}
-            totalPosts={citasfiltradas.length}
-            paginate={paginate}
-         />      
+            <Pagination
+                postsPerPage={postsPerPage}
+                totalPosts={citasfiltradas.length}
+                paginate={paginate}
+            />      
 
-        </>
-     );
-}
+        </Layout>
+    );
+};
  
 export default MisCitas;

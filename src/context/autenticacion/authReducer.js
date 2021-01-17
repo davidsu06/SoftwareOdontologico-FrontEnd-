@@ -8,8 +8,7 @@ import {
 
  } from '../../types';
 
-
-export default (state, action) => {
+const authReducer = (state, action) => {
     switch(action.type) {
 
         case CERRAR_SESION:
@@ -44,3 +43,5 @@ export default (state, action) => {
             return state;
     }
 }
+
+export default authReducer;

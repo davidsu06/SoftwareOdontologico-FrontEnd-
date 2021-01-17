@@ -5,17 +5,17 @@ const Footer = () => {
     
     const Footer = Styled.footer`
         background-color: #006e9c;
-        margin-top: 1cm;
+        padding: 2px;
+        margin-top: 20px;
+        height: 50px;
     `;
     let year = new Date().getFullYear();
 
     return ( 
         <Footer>
-            <ul className="navbar justify-content-center" >
-                <li className="nav-item">
-                    <a href="#!" style={{color: 'white'}}><b>Software Odontológico {year}</b></a>
-                </li>
-            </ul>  
+            <div className="nav w-100 d-flex justify-content-center" >
+                <p className='text-white mt-2'><b>Software Odontológico {year}</b></p>
+            </div>  
         </Footer> 
     );
 }

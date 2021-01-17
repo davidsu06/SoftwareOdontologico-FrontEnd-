@@ -8,7 +8,7 @@ import {
  } from '../../types';
 
 
-export default (state, action) => {
+const personalReducer = (state, action) => {
     switch(action.type) {
 
         case AGREGAR_PERSONAL:
@@ -49,4 +49,6 @@ export default (state, action) => {
         default:
             return state;
     }
-}
+};
+
+export default personalReducer;

@@ -1,27 +1,16 @@
 import React, { useContext, Fragment } from 'react';
 import Swal from 'sweetalert2';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import facturaContext from '../../context/facturas/facturasContext';
 import tratamientoContext from '../../context/tratamientos/tratamientoContext';
 import Tooltip from 'rc-tooltip';
-import 'rc-tooltip/assets/bootstrap.css';
 
 const Factura = ({factura, tratamiento, servicio, usuario}) => {
 
-    const {modificarEstadoFactura, seleccionarFactura} = useContext(facturaContext);
+    const { modificarEstadoFactura } = useContext(facturaContext);
     const {actualizarTratamiento} = useContext(tratamientoContext);
 
-    const generarFacturaPDF = factura =>{ 
-        try {
-            seleccionarFactura(factura);
-        } catch (error) {
-            console.log(error);
-        }
-        
-    }
-
     const onClickModificarEstadoPagada = (factura, tratamiento, servicio) => {
-        
         Swal.fire({
             title: '¿Estas seguro?',
             text: "No se podrá revertir esta acción!",
@@ -144,9 +133,7 @@ const Factura = ({factura, tratamiento, servicio, usuario}) => {
                                         :( 
                                             <td className="text-center">
                                                 <Tooltip placement="top" overlay="Ver Factura" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
-                                                    <Link to={'/factura-pdf'} type="button" className="fas fa-print text-dark font-weight-bold mr-3" 
-                                                        onClick={() => generarFacturaPDF(factura)}>
-                                                    </Link>  
+                                                    <Link to={`/facturas/${factura?._id}`} type="button" className="fas fa-print text-dark font-weight-bold mr-3"></Link>  
                                                 </Tooltip>
 
                                                 <Tooltip placement="top" overlay="Efectuar Pago" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>

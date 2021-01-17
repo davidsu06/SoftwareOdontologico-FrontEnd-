@@ -1,55 +1,36 @@
-import React, { useContext, useState, useEffect } from 'react';
-import NavbarAdmin from '../layout/NavbarAdmin';
-import MenuAdmin from '../layout/MenuAdmin';
+import React, { useContext, useEffect } from 'react';
+import Layout from '../layout/Layout';
 import MisHistorias from '../historias/MisHistorias';
 import AuthContext from '../../context/autenticacion/authContext';
 
 const MiHistorial = () => {
+  const authContext = useContext(AuthContext);
+  const { usuarioAutenticado } = authContext;
 
-    const [bandera,actualizarBandera]=useState(true);
+  useEffect(() => {
+    usuarioAutenticado();
+    // eslint-disable-next-line
+  }, [])
 
-    const authContext = useContext(AuthContext);
-    const { usuarioAutenticado } = authContext;
+  // Protecting component
+  const styleNotAuth = {
+    display: 'flex',
+    padding: '1rem 0rem 2rem 1rem',
+    justifyContent: 'center'
+  }
 
-    useEffect(() => {
-      usuarioAutenticado();
-      // eslint-disable-next-line
-    }, [])
+  if (typeof window !== 'undefined') {
+      const item = localStorage.getItem('token');
+      if (!item) {
+          return <h3 style={styleNotAuth}>No autorizado</h3>
+      }
+  }
 
-    // Protecting component
-    const styleNotAuth = {
-      display: 'flex',
-      padding: '1rem 0rem 2rem 1rem',
-      justifyContent: 'center'
-    }
-
-    if (typeof window !== 'undefined') {
-        const item = localStorage.getItem('token');
-        if (!item) {
-            return <h3 style={styleNotAuth}>No autorizado</h3>
-        }
-    }
-
-    return (
-        <>
-            <div className="d-flex" id="wrapper">
-
-            {bandera ?  <NavbarAdmin/> : null}
-            <div id="page-content-wrapper">
-
-                <MenuAdmin titulo="Mi Historial Clínico" actualizarBandera={actualizarBandera} Bandera={bandera}/>
-
-                <div className="container-fluid">
-
-                  <MisHistorias/>
-
-                </div>
-
-            </div>
-
-            </div> 
-        </>
-      );
+  return (
+    <Layout title='Mi Historial Clínico'>
+      <MisHistorias/>
+    </Layout>
+  );
 }
  
 export default MiHistorial;

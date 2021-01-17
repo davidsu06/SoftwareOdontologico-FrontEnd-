@@ -3,7 +3,6 @@ import citaContext from '../../context/citas/citaContext';
 import AuthContext from '../../context/autenticacion/authContext';
 import Swal from 'sweetalert2';
 import Tooltip from 'rc-tooltip';
-import 'rc-tooltip/assets/bootstrap.css';
 
 const CitaPaciente = ({cita}) => {
 

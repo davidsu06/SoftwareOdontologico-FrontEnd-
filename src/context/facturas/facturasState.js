@@ -38,7 +38,6 @@ const FacturasState = props => {
         }
     }
 
-
     const listarFacturas = async () => {
         try {
             const resultado = await clienteAxios.get('/api/facturas');
@@ -51,8 +50,20 @@ const FacturasState = props => {
         }
     }
 
+    const seleccionarFactura = async idFactura =>{
+        try {
+            const resultado = await clienteAxios.get(`/api/facturas/${idFactura}`);
+
+            dispatch({
+                type: FACTURA_ACTUAL,
+                payload: resultado.data.factura
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     const modificarEstadoFactura = async nuevafactura => {
-       
         try {
             await clienteAxios.put(`/api/facturas/${nuevafactura._id}`, nuevafactura);
             Swal.fire(
@@ -68,13 +79,6 @@ const FacturasState = props => {
             console.log(error);
             
         }
-    }
-
-    const seleccionarFactura = factura =>{
-        dispatch({
-            type: FACTURA_ACTUAL,
-            payload: factura
-        })
     }
 
     const facturaNull = () =>{

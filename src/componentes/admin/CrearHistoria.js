@@ -1,14 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
-import NavbarAdmin from '../layout/NavbarAdmin';
-import MenuAdmin from '../layout/MenuAdmin';
+import React, { useContext, useEffect } from 'react';
+import Layout from '../layout/Layout';
 import FormularioCrearHistoria from '../historias/FormularioCrearHistoria';
 import AuthContext from '../../context/autenticacion/authContext';
 import HistoriaContext from '../../context/historia/historiaContext';
 
 const AsignarCitas = (props) => {
-
-    const [bandera,actualizarBandera]=useState(true);
-
     const authContext = useContext(AuthContext);
     const { usuarioAutenticado } = authContext;
 
@@ -41,24 +37,9 @@ const AsignarCitas = (props) => {
     }
 
     return (
-        <>
-            <div className="d-flex" id="wrapper">
-            
-            {bandera ?  <NavbarAdmin/> : null}
-            <div id="page-content-wrapper">
-
-                <MenuAdmin titulo={tituloHead} actualizarBandera={actualizarBandera} Bandera={bandera}/>
-
-                <div className="container-fluid">
-
-                <FormularioCrearHistoria props={props} />
-
-                </div>
-
-            </div>
-
-            </div> 
-        </>
+        <Layout title={tituloHead}>
+            <FormularioCrearHistoria props={props} />
+        </Layout>
       );
 }
  

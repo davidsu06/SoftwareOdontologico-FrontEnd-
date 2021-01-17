@@ -1,13 +1,10 @@
-import React, {useState, Fragment, useEffect, useContext} from 'react';
-import NavbarAdmin from '../layout/NavbarAdmin';
-import MenuAdmin from '../layout/MenuAdmin';
+import React, { useEffect, useContext } from 'react';
+import Layout from '../layout/Layout';
 import AuthContext from '../../context/autenticacion/authContext'
 import FormularioCrearServicio from '../servicios/formularioCrearServicio';
 import servicioState from '../../context/servicios/serviciosContext';
 
 const CrearServicio = (props) => {
-    const [bandera,actualizarBandera]=useState(true);
-
     const authContext = useContext(AuthContext);
     const { usuarioAutenticado } = authContext;
 
@@ -41,18 +38,10 @@ const CrearServicio = (props) => {
     }
 
     return (  
-        <Fragment>
-        <div className="d-flex" id="wrapper">
-            {bandera ?  <NavbarAdmin/> : null}
-                <div id="page-content-wrapper">
-                  <MenuAdmin titulo={tituloHead} actualizarBandera={actualizarBandera} Bandera={bandera}/>
-                <div className="container-fluid">
-                    <FormularioCrearServicio props={props} />
-                </div>
-            </div>
-          </div> 
-        </Fragment>
+        <Layout title={tituloHead}>
+            <FormularioCrearServicio props={props} />
+        </Layout>
     );
-}
+};
  
 export default CrearServicio;

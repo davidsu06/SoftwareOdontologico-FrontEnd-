@@ -109,30 +109,30 @@ const FormularioCrearServicio = ({props}) => {
             <div className="container mt-4 pfacturas" >
             
                 <form onSubmit={submit}>
-                    <div className=" container fondoFormServicio">
+                    <div className=" container fondoForm">
                         
-                        <div className="container align-content-center formularioservicio">
+                        <div className="container align-content-center Formularios">
                             <div className="form-group">
                                 <label className="font-weight-bold">Nombre del Servicio</label>
                                 <input type="text" className="form-control" name="nombre_servicio" value={servicio.nombre_servicio} onChange={Guardar}/>
                             </div> 
                         </div>
 
-                        <div className="container align-content-center formularioservicio">
+                        <div className="container align-content-center Formularios">
                             <div className="form-group">
                                 <label className="font-weight-bold">Precio Total del Servicio</label>
                                 <input type="number" className="form-control" name="precioTotal" value={servicio.precioTotal} onChange={Guardar}/>
                             </div> 
                         </div>
 
-                        <div className="container align-content-center formularioservicio">
+                        <div className="container align-content-center Formularios">
                             <div className="form-group">
                                 <label className="font-weight-bold">Cantidad Citas del Servicio</label>
                                 <input type="text" className="form-control" name="cantidadCitas" value={servicio.cantidadCitas} onChange={Guardar}/>
                             </div> 
                         </div>
 
-                        <div className="container align-content-center formularioservicio">
+                        <div className="container align-content-center Formularios">
                             <div className="form-group">
                                 <label className="font-weight-bold">Imagen Servicio</label>
                                 <input type="file" className="form-control" name="file" accept="image/*" onChange={handleChangeFile}/>
@@ -144,9 +144,8 @@ const FormularioCrearServicio = ({props}) => {
                         </div> 
 
                         <div className="form-group">
-                        
                             <input type="submit" 
-                            className="form-control btnFormServicio font-weight-bold" 
+                            className="form-control btnForm font-weight-bold" 
                             value={servicioseleccionado ?("Editar Servicio") :("Crear Servicio")}
                             />
                         </div>

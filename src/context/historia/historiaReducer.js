@@ -7,8 +7,7 @@ import {
     HISTORIAS_FILTRADAS
 } from '../../types';
 
-export default (state, action) => {
-
+const historiaReducer = (state, action) => {
     switch (action.type) {
 
         case AGREGAR_HISTORIA:
@@ -51,6 +50,7 @@ export default (state, action) => {
 
         default:
             return state;
-
     }
-}
+};
+
+export default historiaReducer;

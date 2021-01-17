@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
-import logo from '../../media/Logo.png'
+import logo from '../../assets/img/Logo.png'
 import { Link } from 'react-router-dom';
 import AlertContext from '../../context/alertas/alertaContext';
 import AuthContext from '../../context/autenticacion/authContext';

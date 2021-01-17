@@ -12,7 +12,7 @@
   } 
 
   /* LISTADO PACIENTES / PERSONAL */
-ul {
+  ul {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -143,7 +143,7 @@ ul {
   }
 
   /*este css se llama desde los formularios de crear paciente y personal*/
-  .boton{
+  .boton {
     padding: 0px 39px 0px 39px;
     color: #FFF;
     background-color: #28a745;
@@ -160,13 +160,13 @@ ul {
 
 
   /* stilos de todos los formularios de la parte de administracion*/
-  .Formularios{
+  .Formularios {
     width: 400px;
     min-height: auto;
-    float:left;
+    float: left;
   }
 
-  .btnForm{
+  .btnForm {
     color: #FFF;
     background-color: #28a745;
     font-size: 18px;
@@ -176,22 +176,22 @@ ul {
     margin-left: 10px;
     
   }
-  .fondoForm{
+  .fondoForm {
     height: auto;
     width: 880px;
     border-radius: 20px;
   }
-  .formularioservicio{
+  .formularioservicio {
     width: 400px;
     min-height: auto;
     float:center;
   }
-  .fondoFormServicio{
+  .fondoFormServicio {
     height: auto;
     width: 400px;
     border-radius: 20px;
   }
-  .btnFormServicio{
+  .btnFormServicio {
     color: #FFF;
     background-color: #28a745;
     font-size: 18px;
@@ -201,12 +201,12 @@ ul {
     margin-left: 15px;
     
   }
-  .casillaesquina{
+  .casillaesquina {
     border-bottom: 5px black;
     color: #fafafa;
     border-bottom: white 1px solid;
   }
-  .casilla{
+  .casilla {
     width: auto;
     background-color: transparent;
     border: none;
@@ -216,7 +216,7 @@ ul {
     margin-top: 0px;
     margin-bottom: 0px;
   }
-  .subcasilla{
+  .subcasilla {
     width: auto;
     background-color: #ffffff;
     opacity: 0.5;
@@ -226,12 +226,12 @@ ul {
     font-style: italic;
     margin-bottom: 1px;
   }
-  .menuver{ 
+  .menuver { 
     min-height: 100vh;
     border: none;
     background-image: url('./media/circle-blues.png');
   }
-  .navhor{
+  .navhor {
     color: #fafafa;
     border: none;
     height: 100px;

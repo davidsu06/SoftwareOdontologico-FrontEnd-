@@ -1,8 +1,6 @@
 import React from 'react';
-import Logo from '../../media/Logo.png'
-import {Link} from 'react-router-dom';
-import Tooltip from 'rc-tooltip';
-import 'rc-tooltip/assets/bootstrap.css';
+import Logo from '../../assets/img/Logo.png'
+import { Link } from 'react-router-dom';
 
 const NavPrincipal = ({navegacion, actualizarNavegacion}) => {
 
@@ -10,7 +8,7 @@ const NavPrincipal = ({navegacion, actualizarNavegacion}) => {
 
     return ( 
         
-        <nav className="navbar navbar-icon-top navbar-expand-lg navbar-dark " style={{backgroundColor:'#006e9c'}}>
+        <nav className="navbar navbar-icon-top navbar-expand-lg navbar-dark" style={{backgroundColor:'#006e9c'}}>
             <button
                 className="btn btn-link mr-2" 
                 onClick={()=> actualizarNavegacion('inicio')}
@@ -21,10 +19,8 @@ const NavPrincipal = ({navegacion, actualizarNavegacion}) => {
             </button>
 
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
-
-                <ul className="navbar-nav mr-auto">
-
-                    <li className={navegacion === 'inicio' ?`${claseNav} active` :claseNav}>
+                <ul className="navbar-nav ml-auto">
+                    <li className={navegacion === 'inicio' ? `${claseNav} active` : claseNav}>
                         <a className="nav-link" href="#!"
                             style={{fontSize:'18px'}}
                             onClick={()=> actualizarNavegacion('inicio')}
@@ -40,7 +36,7 @@ const NavPrincipal = ({navegacion, actualizarNavegacion}) => {
                         </a>
                     </li> */}
 
-                    <li className={navegacion === 'servicios' ?`${claseNav} active` :claseNav}>
+                    <li className={navegacion === 'servicios' ? `${claseNav} active` : claseNav}>
                         <a className="nav-link" href="#!"
                                 style={{fontSize:'18px'}}
                                 onClick={()=> actualizarNavegacion('servicios')}
@@ -48,7 +44,7 @@ const NavPrincipal = ({navegacion, actualizarNavegacion}) => {
                         </a>
                     </li>
 
-                    <li className={navegacion === 'salud' ?`${claseNav} active` :claseNav}>
+                    <li className={navegacion === 'salud' ? `${claseNav} active` : claseNav}>
                         <a className="nav-link" href="#!" 
                                 style={{fontSize:'18px'}}
                                 onClick={()=> actualizarNavegacion('salud')}
@@ -56,7 +52,7 @@ const NavPrincipal = ({navegacion, actualizarNavegacion}) => {
                         </a>
                     </li>
 
-                    <li className={navegacion === 'preguntas' ?`${claseNav} active` :claseNav}>
+                    <li className={navegacion === 'preguntas' ? `${claseNav} active` : claseNav}>
                         <a className="nav-link" href="#!" 
                                 style={{fontSize:'18px'}}
                                 onClick={()=> actualizarNavegacion('preguntas')}
@@ -64,13 +60,8 @@ const NavPrincipal = ({navegacion, actualizarNavegacion}) => {
                         </a>
                     </li>
 
-                </ul>
-
-                <ul className="navbar-nav mr-4">
-                    <li className="nav-item">
-                        <Tooltip placement="bottomRight" overlay="Iniciar Sesión" overlayClassName="font-weight-bold text-white" overlayStyle={{fontSize:'14px'}}>
-                            <Link to={'/iniciar-sesion'} className="btn btn-success rounded-pill w-100"><i className="fas fa-users"></i></Link>    
-                        </Tooltip>      
+                    <li className="nav-item mr-4">
+                        <Link to={'/iniciar-sesion'} className="btn btn-success font-weight-bold w-100"><i className="fas fa-users mr-2"></i>Iniciar Sesión</Link>      
                     </li>
                 </ul>
             </div>

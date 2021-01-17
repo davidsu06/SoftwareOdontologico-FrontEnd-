@@ -9,7 +9,7 @@ import {
  } from '../../types';
 
 
-export default (state, action) => {
+const pacienteReducer = (state, action) => {
     switch(action.type) {
 
         case AGREGAR_PACIENTE:
@@ -58,4 +58,6 @@ export default (state, action) => {
         default:
             return state;
     }
-}
+};
+
+export default pacienteReducer;

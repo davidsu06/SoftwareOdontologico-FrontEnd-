@@ -1,13 +1,9 @@
-import React, { useContext, useState, useEffect } from 'react';
-import NavbarAdmin from '../layout/NavbarAdmin';
-import MenuAdmin from '../layout/MenuAdmin';
+import React, { useContext, useEffect } from 'react';
+import Layout from '../layout/Layout';
 import ListadoTratamientos from '../tratamientos/ListadoTratamientos';
 import AuthContext from '../../context/autenticacion/authContext';
 
 const AsignarCitas = () => {
-
-    const [bandera,actualizarBandera]=useState(true);
-
     const authContext = useContext(AuthContext);
     const { usuarioAutenticado } = authContext;
 
@@ -31,21 +27,10 @@ const AsignarCitas = () => {
     }  
 
     return (
-        <>
-            <div className="d-flex" id="wrapper">
-
-            {bandera ?  <NavbarAdmin/> : null}
-            <div id="page-content-wrapper">
-
-                <MenuAdmin titulo="Consultar Tratamientos" actualizarBandera={actualizarBandera} Bandera={bandera}/>
-                    <div className="container-fluid">
-                        <ListadoTratamientos/>
-                    </div>
-            </div>
-
-            </div> 
-        </>
-      );
+        <Layout title='Consultar Tratamientos'>
+            <ListadoTratamientos/>
+        </Layout>
+    );
 }
  
 export default AsignarCitas;

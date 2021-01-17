@@ -14,7 +14,7 @@ import {
     SOLICITAR_CITA
 } from '../../types';
 
-export default (state, action) => {
+const citaReducer = (state, action) => {
 
     switch (action.type) {
 
@@ -102,6 +102,7 @@ export default (state, action) => {
 
         default:
             return state;
-
     }
-}
+};
+
+export default citaReducer;

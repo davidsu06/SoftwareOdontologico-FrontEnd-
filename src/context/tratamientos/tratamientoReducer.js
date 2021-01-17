@@ -8,7 +8,7 @@ import {
  } from '../../types';
 
 
-export default (state, action) => {
+const tratamientoReducer = (state, action) => {
     switch(action.type) {
 
         case INICIAR_TRATAMIENTO:
@@ -50,4 +50,6 @@ export default (state, action) => {
         default:
             return state;
     }
-}
+};
+
+export default tratamientoReducer;

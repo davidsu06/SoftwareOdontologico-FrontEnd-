@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom';
 import tratamientoContext from '../../context/tratamientos/tratamientoContext';
 import Swal from 'sweetalert2';
 import Tooltip from 'rc-tooltip';
-import 'rc-tooltip/assets/bootstrap.css';
 
 const Servicio = ({tratamiento}) => {
     const {eliminarTratamiento, tratamientoActual} = useContext(tratamientoContext);

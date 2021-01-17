@@ -2,11 +2,10 @@ import React, { useContext, useState, useEffect } from 'react';
 import citaContext from '../../context/citas/citaContext';
 import historiaContext from '../../context/historia/historiaContext';
 import AuthContext from '../../context/autenticacion/authContext';
-import Logo from '../../media/Logo.png';
+import Logo from '../../assets/img/Logo.png';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Tooltip from 'rc-tooltip';
-import 'rc-tooltip/assets/bootstrap.css';
 import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
 

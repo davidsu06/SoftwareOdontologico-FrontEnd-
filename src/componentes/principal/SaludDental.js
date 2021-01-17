@@ -1,8 +1,8 @@
 import React from 'react';
-import im1 from '../../media/imagenes inicio/dental1.jpg'
-import im2 from '../../media/imagenes inicio/dental2.jpg'
-import im3 from '../../media/imagenes inicio/dental3.jpg'
-import im4 from '../../media/imagenes inicio/hilo-dental.jpg'
+import im1 from '../../assets/img/dental1.jpg'
+import im2 from '../../assets/img/dental2.jpg'
+import im3 from '../../assets/img/dental3.jpg'
+import im4 from '../../assets/img/hilo-dental.jpg'
 import Styled from '@emotion/styled';
 
 const SaludDental = () => {

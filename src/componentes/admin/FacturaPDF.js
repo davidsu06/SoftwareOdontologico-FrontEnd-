@@ -1,13 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
-import NavbarAdmin from '../layout/NavbarAdmin';
-import MenuAdmin from '../layout/MenuAdmin';
-import PDF from '../Facturas/VistaPDF';
+import React, { useContext, useEffect } from 'react';
 import AuthContext from '../../context/autenticacion/authContext';
 
-const MiHistorial = () => {
+import Layout from '../layout/Layout';
+import PDF from '../facturas/VistaPDF';
 
-    const [bandera,actualizarBandera]=useState(true);
-
+const FacturaPDF = () => {
     const authContext = useContext(AuthContext);
     const { usuarioAutenticado } = authContext;
 
@@ -31,23 +28,10 @@ const MiHistorial = () => {
     }
 
     return (
-        <>
-            <div className="d-flex" id="wrapper">
-
-            {bandera ?  <NavbarAdmin/> : null}
-            <div id="page-content-wrapper">
-
-                <MenuAdmin titulo="Visualización Factura" actualizarBandera={actualizarBandera} Bandera={bandera}/>
-
-                <div className="container-fluid">
-                    <PDF/>
-                </div>
-
-            </div>
-
-            </div> 
-        </>
-      );
+    <Layout title='Visualización Factura'>
+        <PDF/>
+    </Layout>
+    );
 }
  
-export default MiHistorial;
+export default FacturaPDF;

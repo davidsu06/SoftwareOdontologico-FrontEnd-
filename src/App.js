@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import tokenAuth from './config/token';
 
 import MenuPrincipal from './componentes/principal/MenuPrincipal';
@@ -78,8 +78,8 @@ function App() {
                           <Route exact path="/mi-hist-clinica" component={MiHistorial}/>
                           <Route exact path="/crear-factura" component={CrearFactura}/>
                           <Route exact path="/consultar-facturas" component={ConsultarFacturas}/>
+                          <Route exact path="/facturas/:slug" component={FacturaPDF}/>
                           <Route exact path="/mis-facturas" component={MisFacturas}/>
-                          <Route exact path="/factura-pdf" component={FacturaPDF}/>
                           <Route exact path="/iniciar-tratamiento" component={IniciarTratamiento}/>
                           <Route exact path="/editar-tratamiento" component={IniciarTratamiento}/>
                           <Route exact path="/consultar-tratamientos" component={ConsultarTratamiento}/>

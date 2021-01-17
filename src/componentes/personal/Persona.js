@@ -3,7 +3,6 @@ import personaContext from '../../context/personal/personaContext';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Tooltip from 'rc-tooltip';
-import 'rc-tooltip/assets/bootstrap.css';
 
 const Persona = ({persona}) => {
 
