@@ -62,23 +62,23 @@ const FormularioCrearServicio = () => {
             <div className="container mt-4 pfacturas" >
             
                 <form onSubmit={submit}>
-                    <div className=" container fondoFormServicio">
+                    <div className=" container fondoForm">
                         
-                        <div className="container align-content-center formularioservicio">
+                        <div className="container align-content-center Formularios">
                             <div className="form-group">
                                 <label data-testid='NomServ' className="font-weight-bold">Nombre del Servicio</label>
                                 <input type="text" data-testid='test-nombreserv' className="form-control" name="nombre_servicio" value={servicio.nombre_servicio} onChange={Guardar}/>
                             </div> 
                         </div>
 
-                        <div className="container align-content-center formularioservicio">
+                        <div className="container align-content-center Formularios">
                             <div className="form-group">
                                 <label className="font-weight-bold PrecioServ">Precio Total del Servicio</label>
                                 <input type="number" data-testid='test-precio' className="form-control" name="precioTotal" value={servicio.precioTotal} onChange={Guardar}/>
                             </div> 
                         </div>
 
-                        <div className="container align-content-center formularioservicio">
+                        <div className="container align-content-center Formularios">
                             <div className="form-group">
                                 <label className="font-weight-bold CantCitas">Cantidad Citas del Servicio</label>
                                 <input type="text" data-testid='test-cantidadcitas' className="form-control" name="cantidadCitas" value={servicio.cantidadCitas} onChange={Guardar}/>
@@ -94,7 +94,9 @@ const FormularioCrearServicio = () => {
                         <div className="form-group">
                         
                             <input type="submit" 
-                            data-testid='btn-submit' className="form-control btnFormServicio font-weight-bold" 
+                            data-testid='btn-submit'
+                            className="form-control btnForm font-weight-bold"
+                            style={{ width: '95%' }} 
                             value={"Crear Servicio"}
                             />
                         </div>

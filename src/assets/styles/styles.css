@@ -116,12 +116,6 @@ body {
   float: left;
 }
 
-.formularioservicio {
-  width: 400px;
-  min-height: auto;
-  float: center;
-}
-
 .fondoForm {
   height: auto;
   width: 880px;
@@ -138,17 +132,6 @@ body {
   margin-left: 10px;
 }
 
-.btnFormServicio {
-  color: #FFF;
-  background-color: #28a745;
-  font-size: 18px;
-  text-align: center;
-  font-style: normal;
-  border-radius: 5px;
-  margin-left: 15px;
-  
-}
-
 .titulos_principal {
   text-align: center;
   margin-top: 1cm;
@@ -159,10 +142,6 @@ body {
 /* ------------------- Estilos para la plantilla de PDF ------------------------------- */
 .alturapdf {
   height: 600px;
-}
-
-.tamano {
-  width: 15px;
 }
 
 .pfacturas{

@@ -143,9 +143,10 @@ const FormularioCrearServicio = ({props}) => {
                             {error.bandera ? <Error mensaje={error.Mensaje}/> : null}
                         </div> 
 
-                        <div className="form-group">
+                        <div className="form-group ml-1">
                             <input type="submit" 
-                            className="form-control btnForm font-weight-bold" 
+                            className="form-control btnForm font-weight-bold"
+                            style={{ width: '95%' }} 
                             value={servicioseleccionado ?("Editar Servicio") :("Crear Servicio")}
                             />
                         </div>

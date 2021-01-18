@@ -129,9 +129,9 @@ const FormularioCrearServicio = ({props}) => {
             <div className="container mt-4 pfacturas" >
             
                 <form onSubmit={submitTratamiento}>
-                    <div className="container fondoFormServicio">
+                    <div className="container fondoForm">
 
-                        <div className="container align-content-center formularioservicio">
+                        <div className="container align-content-center Formularios">
                             <div className="form-group">
                                 <label className="font-weight-bold">Documento del Paciente</label>
                                 <input type="text" 
@@ -145,7 +145,7 @@ const FormularioCrearServicio = ({props}) => {
                             </div> 
                         </div>
 
-                        <div className="container align-content-center formularioservicio">
+                        <div className="container align-content-center Formularios">
                             <div className="form-group">
                                 <label className="font-weight-bold">Servicio</label>
                                 <select className="form-control" name="servicio" value={servicio} onChange={changeTratamiento}>
@@ -161,7 +161,7 @@ const FormularioCrearServicio = ({props}) => {
                             </div> 
                         </div>
 
-                        <div className="container align-content-center formularioservicio">
+                        <div className="container align-content-center Formularios" style={{ width: '94.5%' }}>
                             <div className="form-group">
                                 <label className="font-weight-bold">Cuotas para pago del Tratamiento</label>
                                 <input type="number"
@@ -178,9 +178,10 @@ const FormularioCrearServicio = ({props}) => {
                             {error.bandera ? <Error mensaje={error.Mensaje}/> : null}
                         </div> 
 
-                        <div className="form-group">
+                        <div className="form-group ml-2">
                             <input type="submit" id="GuardarIniciarTratamiento"
-                                className="form-control btnFormServicio font-weight-bold"
+                                className="form-control btnForm font-weight-bold"
+                                style={{ width: '95.5%' }}
                                 value= {tratamientoseleccionado ? "Editar Tratamiento" : "Iniciar Tratamiento"}
                             />
                         </div>
