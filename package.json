@@ -20,7 +20,7 @@
     "react-infinite-calendar": "^2.3.1",
     "react-moment": "^1.1.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.1",
+    "react-scripts": "5.0.1",
     "react-spinners-kit": "^1.9.1",
     "sweetalert2": "^10.13.0"
   },
