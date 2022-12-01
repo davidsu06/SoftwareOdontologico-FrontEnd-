@@ -13,7 +13,7 @@
     "axios": "^0.21.1",
     "init": "^0.1.2",
     "moment": "^2.29.1",
-    "moment-timezone": "^0.5.32",
+    "moment-timezone": "^0.5.35",
     "rc-tooltip": "^5.0.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
